@@ -1,0 +1,17 @@
+{
+ "version":"backbone/1",
+ "thresholds":{
+  "topCards":{"value":15,"why":"首屏保留单元与资源身份，超过阅读预算的内容明确收在可展开卡内。"},
+  "moduleRows":{"value":6,"why":"超过六个业务模块时先显示总数，沿现有卡片展开，避免大项目占满画布。"},
+  "frontendWidth":{"value":360,"why":"前端摘要使用一列，在既有服务间距内为接口调用数留出可读空间。"},
+  "externalWidth":{"value":280,"why":"项目外接口分两行展示身份和主机端口，保证端口不会被省略。"},
+  "detailsHeight":{"value":300,"why":"展开内容在卡内滚动，保留周围主干，不随页面或调用总数无限长高。"}
+ },
+ "frontendTools":[
+  {"name":"Vite","dependency":"vite","basis":"https://vite.dev/guide/"},
+  {"name":"Vue CLI","dependency":"@vue/cli-service","basis":"https://cli.vuejs.org/guide/cli-service.html"},
+  {"name":"Create React App","dependency":"react-scripts","basis":"https://create-react-app.dev/docs/available-scripts/"},
+  {"name":"Next.js","dependency":"next","basis":"https://nextjs.org/docs/app/getting-started/installation"}
+ ],
+ "resourceLabels":{"database":"数据库","cache":"缓存","queue":"消息队列","vector":"向量库","search":"搜索","table":"数据表","file":"文件","model":"模型服务","external":"项目外接口"}
+}

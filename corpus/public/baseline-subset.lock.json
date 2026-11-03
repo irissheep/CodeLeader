@@ -1,0 +1,6 @@
+{
+  "schema": 1,
+  "subsetSha256": "42c1a9bcaa90a329f5bcb36d669d01b79473ca29edc2059503fab6b67eabb9ca",
+  "sourceBaselineSha256": "bbc1cbb3f5a33255ca1541051058c77002692ec0a5c5a724d503042a7b2bea9c",
+  "sourceExpectedLockSha256": "21c755fc85fdbe3d0bb863c1f3a4b360e9ee9cd2ada67e78843f6b4cd3c55dff"
+}

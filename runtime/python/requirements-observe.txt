@@ -1,0 +1,6 @@
+# Tool-only instrumentation, separate from application requirements. Versions match the existing recorder.
+opentelemetry-sdk==1.45.1
+opentelemetry-exporter-otlp-proto-http==1.45.1
+opentelemetry-instrumentation-flask==0.66b1
+opentelemetry-instrumentation-sqlalchemy==0.66b1
+opentelemetry-instrumentation-fastapi==0.66b1

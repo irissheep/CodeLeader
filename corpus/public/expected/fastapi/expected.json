@@ -1,0 +1,1068 @@
+{
+  "schema": 1,
+  "id": "fastapi",
+  "commit": "b1125d8839482cb7bbae603ddc6d0081bf87532e",
+  "reviewed": "2026-10-24",
+  "review": "先读目录、构建、启动/路由、HTTP封装和资源配置，再独立按注解/装饰器/语法统计；不导入产品分析代码。",
+  "units": {
+    "backend": {
+      "count": 0,
+      "items": [],
+      "evidence": [
+        {
+          "file": "backend/pyproject.toml",
+          "line": 1,
+          "sha256": "e786cd8e1d230e1c9950d5e22025f9cdcf1e6d8b51c7a0bc750ff02556143b6c"
+        },
+        {
+          "file": "backend/app/main.py",
+          "line": 1,
+          "sha256": "dc3d8efff477948a0f4f4cf1f4c1e297a3b27d7da734872139782418d63cc2af"
+        },
+        {
+          "file": "frontend/package.json",
+          "line": 1,
+          "sha256": "e64e197639dbe6175427d4de43ac841d421f3b1c34be917a41f8d84453ba56a9"
+        }
+      ]
+    },
+    "frontend": {
+      "count": 1,
+      "items": [
+        {
+          "root": "frontend",
+          "evidence": [
+            {
+              "file": "frontend/package.json",
+              "line": 1,
+              "sha256": "e64e197639dbe6175427d4de43ac841d421f3b1c34be917a41f8d84453ba56a9"
+            }
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "file": "backend/pyproject.toml",
+          "line": 1,
+          "sha256": "e786cd8e1d230e1c9950d5e22025f9cdcf1e6d8b51c7a0bc750ff02556143b6c"
+        },
+        {
+          "file": "backend/app/main.py",
+          "line": 1,
+          "sha256": "dc3d8efff477948a0f4f4cf1f4c1e297a3b27d7da734872139782418d63cc2af"
+        },
+        {
+          "file": "frontend/package.json",
+          "line": 1,
+          "sha256": "e64e197639dbe6175427d4de43ac841d421f3b1c34be917a41f8d84453ba56a9"
+        }
+      ]
+    },
+    "python": {
+      "count": 1,
+      "items": [
+        {
+          "root": "backend",
+          "evidence": [
+            {
+              "file": "backend/pyproject.toml",
+              "line": 1,
+              "sha256": "e786cd8e1d230e1c9950d5e22025f9cdcf1e6d8b51c7a0bc750ff02556143b6c"
+            }
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "file": "backend/pyproject.toml",
+          "line": 1,
+          "sha256": "e786cd8e1d230e1c9950d5e22025f9cdcf1e6d8b51c7a0bc750ff02556143b6c"
+        },
+        {
+          "file": "backend/app/main.py",
+          "line": 1,
+          "sha256": "dc3d8efff477948a0f4f4cf1f4c1e297a3b27d7da734872139782418d63cc2af"
+        },
+        {
+          "file": "frontend/package.json",
+          "line": 1,
+          "sha256": "e64e197639dbe6175427d4de43ac841d421f3b1c34be917a41f8d84453ba56a9"
+        }
+      ]
+    }
+  },
+  "infrastructure": {
+    "count": 1,
+    "items": [
+      {
+        "name": "PostgreSQL",
+        "kind": "database",
+        "condition": "configured",
+        "evidence": [
+          {
+            "file": "compose.yml",
+            "line": 1,
+            "sha256": "4c7a23dc33906120d0ee5fbe97bb092cccb01cfde25fda4bc38e5f9ef235cb8a"
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "file": "backend/pyproject.toml",
+        "line": 1,
+        "sha256": "e786cd8e1d230e1c9950d5e22025f9cdcf1e6d8b51c7a0bc750ff02556143b6c"
+      },
+      {
+        "file": "backend/app/main.py",
+        "line": 1,
+        "sha256": "dc3d8efff477948a0f4f4cf1f4c1e297a3b27d7da734872139782418d63cc2af"
+      },
+      {
+        "file": "frontend/package.json",
+        "line": 1,
+        "sha256": "e64e197639dbe6175427d4de43ac841d421f3b1c34be917a41f8d84453ba56a9"
+      }
+    ]
+  },
+  "http": {
+    "count": 23,
+    "items": [
+      {
+        "method": "GET",
+        "path": "/api/v1/items/",
+        "module": "backend/app/api/routes/items.py",
+        "name": "read_items",
+        "file": "backend/app/api/routes/items.py",
+        "line": 14,
+        "decoratorLine": 13,
+        "evidence": [
+          {
+            "file": "backend/app/api/routes/items.py",
+            "line": 13,
+            "sha256": "e710b3e160bff038f079d99afff92d1d3f85b461e6e87db78f918027bf56c2b1"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/items/{id}",
+        "module": "backend/app/api/routes/items.py",
+        "name": "read_item",
+        "file": "backend/app/api/routes/items.py",
+        "line": 49,
+        "decoratorLine": 48,
+        "evidence": [
+          {
+            "file": "backend/app/api/routes/items.py",
+            "line": 48,
+            "sha256": "e710b3e160bff038f079d99afff92d1d3f85b461e6e87db78f918027bf56c2b1"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/items/",
+        "module": "backend/app/api/routes/items.py",
+        "name": "create_item",
+        "file": "backend/app/api/routes/items.py",
+        "line": 62,
+        "decoratorLine": 61,
+        "evidence": [
+          {
+            "file": "backend/app/api/routes/items.py",
+            "line": 61,
+            "sha256": "e710b3e160bff038f079d99afff92d1d3f85b461e6e87db78f918027bf56c2b1"
+          }
+        ]
+      },
+      {
+        "method": "PUT",
+        "path": "/api/v1/items/{id}",
+        "module": "backend/app/api/routes/items.py",
+        "name": "update_item",
+        "file": "backend/app/api/routes/items.py",
+        "line": 76,
+        "decoratorLine": 75,
+        "evidence": [
+          {
+            "file": "backend/app/api/routes/items.py",
+            "line": 75,
+            "sha256": "e710b3e160bff038f079d99afff92d1d3f85b461e6e87db78f918027bf56c2b1"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "path": "/api/v1/items/{id}",
+        "module": "backend/app/api/routes/items.py",
+        "name": "delete_item",
+        "file": "backend/app/api/routes/items.py",
+        "line": 100,
+        "decoratorLine": 99,
+        "evidence": [
+          {
+            "file": "backend/app/api/routes/items.py",
+            "line": 99,
+            "sha256": "e710b3e160bff038f079d99afff92d1d3f85b461e6e87db78f918027bf56c2b1"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/login/access-token",
+        "module": "backend/app/api/routes/login.py",
+        "name": "login_access_token",
+        "file": "backend/app/api/routes/login.py",
+        "line": 24,
+        "decoratorLine": 23,
+        "evidence": [
+          {
+            "file": "backend/app/api/routes/login.py",
+            "line": 23,
+            "sha256": "3bd3232ba76cd7abc1f78d4aaa78e1f250bb0e1590c79ed48b89a2b703afb34d"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/login/test-token",
+        "module": "backend/app/api/routes/login.py",
+        "name": "test_token",
+        "file": "backend/app/api/routes/login.py",
+        "line": 46,
+        "decoratorLine": 45,
+        "evidence": [
+          {
+            "file": "backend/app/api/routes/login.py",
+            "line": 45,
+            "sha256": "3bd3232ba76cd7abc1f78d4aaa78e1f250bb0e1590c79ed48b89a2b703afb34d"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/password-recovery/{email}",
+        "module": "backend/app/api/routes/login.py",
+        "name": "recover_password",
+        "file": "backend/app/api/routes/login.py",
+        "line": 54,
+        "decoratorLine": 53,
+        "evidence": [
+          {
+            "file": "backend/app/api/routes/login.py",
+            "line": 53,
+            "sha256": "3bd3232ba76cd7abc1f78d4aaa78e1f250bb0e1590c79ed48b89a2b703afb34d"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/reset-password/",
+        "module": "backend/app/api/routes/login.py",
+        "name": "reset_password",
+        "file": "backend/app/api/routes/login.py",
+        "line": 78,
+        "decoratorLine": 77,
+        "evidence": [
+          {
+            "file": "backend/app/api/routes/login.py",
+            "line": 77,
+            "sha256": "3bd3232ba76cd7abc1f78d4aaa78e1f250bb0e1590c79ed48b89a2b703afb34d"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/password-recovery-html-content/{email}",
+        "module": "backend/app/api/routes/login.py",
+        "name": "recover_password_html_content",
+        "file": "backend/app/api/routes/login.py",
+        "line": 105,
+        "decoratorLine": 100,
+        "evidence": [
+          {
+            "file": "backend/app/api/routes/login.py",
+            "line": 100,
+            "sha256": "3bd3232ba76cd7abc1f78d4aaa78e1f250bb0e1590c79ed48b89a2b703afb34d"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/private/users/",
+        "module": "backend/app/api/routes/private.py",
+        "name": "create_user",
+        "file": "backend/app/api/routes/private.py",
+        "line": 24,
+        "decoratorLine": 23,
+        "evidence": [
+          {
+            "file": "backend/app/api/routes/private.py",
+            "line": 23,
+            "sha256": "98a65c511d6b1206a9475781de3b07d9a7b114ded53b03025d3d8723d4a509df"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/users/",
+        "module": "backend/app/api/routes/users.py",
+        "name": "read_users",
+        "file": "backend/app/api/routes/users.py",
+        "line": 37,
+        "decoratorLine": 32,
+        "evidence": [
+          {
+            "file": "backend/app/api/routes/users.py",
+            "line": 32,
+            "sha256": "b7de1ea3fd10ba5ac80f14ab37b6bcad0840f8bc60c53d5f237623be9feae97a"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/users/",
+        "module": "backend/app/api/routes/users.py",
+        "name": "create_user",
+        "file": "backend/app/api/routes/users.py",
+        "line": 57,
+        "decoratorLine": 54,
+        "evidence": [
+          {
+            "file": "backend/app/api/routes/users.py",
+            "line": 54,
+            "sha256": "b7de1ea3fd10ba5ac80f14ab37b6bcad0840f8bc60c53d5f237623be9feae97a"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "path": "/api/v1/users/me",
+        "module": "backend/app/api/routes/users.py",
+        "name": "update_user_me",
+        "file": "backend/app/api/routes/users.py",
+        "line": 82,
+        "decoratorLine": 81,
+        "evidence": [
+          {
+            "file": "backend/app/api/routes/users.py",
+            "line": 81,
+            "sha256": "b7de1ea3fd10ba5ac80f14ab37b6bcad0840f8bc60c53d5f237623be9feae97a"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "path": "/api/v1/users/me/password",
+        "module": "backend/app/api/routes/users.py",
+        "name": "update_password_me",
+        "file": "backend/app/api/routes/users.py",
+        "line": 104,
+        "decoratorLine": 103,
+        "evidence": [
+          {
+            "file": "backend/app/api/routes/users.py",
+            "line": 103,
+            "sha256": "b7de1ea3fd10ba5ac80f14ab37b6bcad0840f8bc60c53d5f237623be9feae97a"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/users/me",
+        "module": "backend/app/api/routes/users.py",
+        "name": "read_user_me",
+        "file": "backend/app/api/routes/users.py",
+        "line": 125,
+        "decoratorLine": 124,
+        "evidence": [
+          {
+            "file": "backend/app/api/routes/users.py",
+            "line": 124,
+            "sha256": "b7de1ea3fd10ba5ac80f14ab37b6bcad0840f8bc60c53d5f237623be9feae97a"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "path": "/api/v1/users/me",
+        "module": "backend/app/api/routes/users.py",
+        "name": "delete_user_me",
+        "file": "backend/app/api/routes/users.py",
+        "line": 133,
+        "decoratorLine": 132,
+        "evidence": [
+          {
+            "file": "backend/app/api/routes/users.py",
+            "line": 132,
+            "sha256": "b7de1ea3fd10ba5ac80f14ab37b6bcad0840f8bc60c53d5f237623be9feae97a"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/users/signup",
+        "module": "backend/app/api/routes/users.py",
+        "name": "register_user",
+        "file": "backend/app/api/routes/users.py",
+        "line": 147,
+        "decoratorLine": 146,
+        "evidence": [
+          {
+            "file": "backend/app/api/routes/users.py",
+            "line": 146,
+            "sha256": "b7de1ea3fd10ba5ac80f14ab37b6bcad0840f8bc60c53d5f237623be9feae97a"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/users/{user_id}",
+        "module": "backend/app/api/routes/users.py",
+        "name": "read_user_by_id",
+        "file": "backend/app/api/routes/users.py",
+        "line": 163,
+        "decoratorLine": 162,
+        "evidence": [
+          {
+            "file": "backend/app/api/routes/users.py",
+            "line": 162,
+            "sha256": "b7de1ea3fd10ba5ac80f14ab37b6bcad0840f8bc60c53d5f237623be9feae97a"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "path": "/api/v1/users/{user_id}",
+        "module": "backend/app/api/routes/users.py",
+        "name": "update_user",
+        "file": "backend/app/api/routes/users.py",
+        "line": 187,
+        "decoratorLine": 182,
+        "evidence": [
+          {
+            "file": "backend/app/api/routes/users.py",
+            "line": 182,
+            "sha256": "b7de1ea3fd10ba5ac80f14ab37b6bcad0840f8bc60c53d5f237623be9feae97a"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "path": "/api/v1/users/{user_id}",
+        "module": "backend/app/api/routes/users.py",
+        "name": "delete_user",
+        "file": "backend/app/api/routes/users.py",
+        "line": 215,
+        "decoratorLine": 214,
+        "evidence": [
+          {
+            "file": "backend/app/api/routes/users.py",
+            "line": 214,
+            "sha256": "b7de1ea3fd10ba5ac80f14ab37b6bcad0840f8bc60c53d5f237623be9feae97a"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/utils/test-email/",
+        "module": "backend/app/api/routes/utils.py",
+        "name": "test_email",
+        "file": "backend/app/api/routes/utils.py",
+        "line": 16,
+        "decoratorLine": 11,
+        "evidence": [
+          {
+            "file": "backend/app/api/routes/utils.py",
+            "line": 11,
+            "sha256": "a7cbdfc35873a5347ca55c313b97248f6fc8f13e86eea8dd404494ea3389dba4"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/utils/health-check/",
+        "module": "backend/app/api/routes/utils.py",
+        "name": "health_check",
+        "file": "backend/app/api/routes/utils.py",
+        "line": 30,
+        "decoratorLine": 29,
+        "evidence": [
+          {
+            "file": "backend/app/api/routes/utils.py",
+            "line": 29,
+            "sha256": "a7cbdfc35873a5347ca55c313b97248f6fc8f13e86eea8dd404494ea3389dba4"
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "file": "backend/pyproject.toml",
+        "line": 1,
+        "sha256": "e786cd8e1d230e1c9950d5e22025f9cdcf1e6d8b51c7a0bc750ff02556143b6c"
+      },
+      {
+        "file": "backend/app/main.py",
+        "line": 1,
+        "sha256": "dc3d8efff477948a0f4f4cf1f4c1e297a3b27d7da734872139782418d63cc2af"
+      },
+      {
+        "file": "frontend/package.json",
+        "line": 1,
+        "sha256": "e64e197639dbe6175427d4de43ac841d421f3b1c34be917a41f8d84453ba56a9"
+      }
+    ]
+  },
+  "modules": {
+    "count": 5,
+    "items": [
+      {
+        "name": "backend/app/api/routes/items.py",
+        "count": 5,
+        "files": [
+          "backend/app/api/routes/items.py"
+        ],
+        "evidence": [
+          {
+            "file": "backend/app/api/routes/items.py",
+            "line": 1,
+            "sha256": "e710b3e160bff038f079d99afff92d1d3f85b461e6e87db78f918027bf56c2b1"
+          }
+        ]
+      },
+      {
+        "name": "backend/app/api/routes/login.py",
+        "count": 5,
+        "files": [
+          "backend/app/api/routes/login.py"
+        ],
+        "evidence": [
+          {
+            "file": "backend/app/api/routes/login.py",
+            "line": 1,
+            "sha256": "3bd3232ba76cd7abc1f78d4aaa78e1f250bb0e1590c79ed48b89a2b703afb34d"
+          }
+        ]
+      },
+      {
+        "name": "backend/app/api/routes/private.py",
+        "count": 1,
+        "files": [
+          "backend/app/api/routes/private.py"
+        ],
+        "evidence": [
+          {
+            "file": "backend/app/api/routes/private.py",
+            "line": 1,
+            "sha256": "98a65c511d6b1206a9475781de3b07d9a7b114ded53b03025d3d8723d4a509df"
+          }
+        ]
+      },
+      {
+        "name": "backend/app/api/routes/users.py",
+        "count": 10,
+        "files": [
+          "backend/app/api/routes/users.py"
+        ],
+        "evidence": [
+          {
+            "file": "backend/app/api/routes/users.py",
+            "line": 1,
+            "sha256": "b7de1ea3fd10ba5ac80f14ab37b6bcad0840f8bc60c53d5f237623be9feae97a"
+          }
+        ]
+      },
+      {
+        "name": "backend/app/api/routes/utils.py",
+        "count": 2,
+        "files": [
+          "backend/app/api/routes/utils.py"
+        ],
+        "evidence": [
+          {
+            "file": "backend/app/api/routes/utils.py",
+            "line": 1,
+            "sha256": "a7cbdfc35873a5347ca55c313b97248f6fc8f13e86eea8dd404494ea3389dba4"
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "file": "backend/pyproject.toml",
+        "line": 1,
+        "sha256": "e786cd8e1d230e1c9950d5e22025f9cdcf1e6d8b51c7a0bc750ff02556143b6c"
+      },
+      {
+        "file": "backend/app/main.py",
+        "line": 1,
+        "sha256": "dc3d8efff477948a0f4f4cf1f4c1e297a3b27d7da734872139782418d63cc2af"
+      },
+      {
+        "file": "frontend/package.json",
+        "line": 1,
+        "sha256": "e64e197639dbe6175427d4de43ac841d421f3b1c34be917a41f8d84453ba56a9"
+      }
+    ]
+  },
+  "frontend": {
+    "pages": {
+      "count": 8,
+      "items": [
+        {
+          "file": "frontend/src/routes/_layout/admin.tsx",
+          "line": 20,
+          "path": "/_layout/admin",
+          "evidence": [
+            {
+              "file": "frontend/src/routes/_layout/admin.tsx",
+              "line": 20,
+              "sha256": "9e1fa0495f4b30afc983b58a004a28c9a28b30d5ef14aeb6988221ecb4e2d34a"
+            }
+          ]
+        },
+        {
+          "file": "frontend/src/routes/_layout/index.tsx",
+          "line": 5,
+          "path": "/_layout/",
+          "evidence": [
+            {
+              "file": "frontend/src/routes/_layout/index.tsx",
+              "line": 5,
+              "sha256": "4d1f7d43b03f3cbb6c107729b2243e1c6a096ac05a738ff67b0b8572ae64c33d"
+            }
+          ]
+        },
+        {
+          "file": "frontend/src/routes/_layout/items.tsx",
+          "line": 20,
+          "path": "/_layout/items",
+          "evidence": [
+            {
+              "file": "frontend/src/routes/_layout/items.tsx",
+              "line": 20,
+              "sha256": "ef0de0a78f46254651cdc17db2859a8722f9c4edddc9f2beb0f36bf09a8aa6e1"
+            }
+          ]
+        },
+        {
+          "file": "frontend/src/routes/_layout/settings.tsx",
+          "line": 15,
+          "path": "/_layout/settings",
+          "evidence": [
+            {
+              "file": "frontend/src/routes/_layout/settings.tsx",
+              "line": 15,
+              "sha256": "080947a8b5096ebce75f3c6747b46c63871cba887b9897b07b0b96cc5e4ef1b6"
+            }
+          ]
+        },
+        {
+          "file": "frontend/src/routes/login.tsx",
+          "line": 35,
+          "path": "/login",
+          "evidence": [
+            {
+              "file": "frontend/src/routes/login.tsx",
+              "line": 35,
+              "sha256": "9de816fd04ca631e3d681eff229d4ff3787ad39c990011129664c22b9f925686"
+            }
+          ]
+        },
+        {
+          "file": "frontend/src/routes/recover-password.tsx",
+          "line": 33,
+          "path": "/recover-password",
+          "evidence": [
+            {
+              "file": "frontend/src/routes/recover-password.tsx",
+              "line": 33,
+              "sha256": "2e1d944c37776e9c0d62d2b7b7a33e391db5377c30e06ffe3835a72ed795d22a"
+            }
+          ]
+        },
+        {
+          "file": "frontend/src/routes/reset-password.tsx",
+          "line": 49,
+          "path": "/reset-password",
+          "evidence": [
+            {
+              "file": "frontend/src/routes/reset-password.tsx",
+              "line": 49,
+              "sha256": "7f24fa1dc8d55b3deeaec400170098c336bb354fac587d89665d7f9f3c8c3897"
+            }
+          ]
+        },
+        {
+          "file": "frontend/src/routes/signup.tsx",
+          "line": 42,
+          "path": "/signup",
+          "evidence": [
+            {
+              "file": "frontend/src/routes/signup.tsx",
+              "line": 42,
+              "sha256": "5a4cbbd608076f94de67d97749ab0392f494c8f353f1ca181446cdf83aaf507b"
+            }
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "file": "backend/pyproject.toml",
+          "line": 1,
+          "sha256": "e786cd8e1d230e1c9950d5e22025f9cdcf1e6d8b51c7a0bc750ff02556143b6c"
+        },
+        {
+          "file": "backend/app/main.py",
+          "line": 1,
+          "sha256": "dc3d8efff477948a0f4f4cf1f4c1e297a3b27d7da734872139782418d63cc2af"
+        },
+        {
+          "file": "frontend/package.json",
+          "line": 1,
+          "sha256": "e64e197639dbe6175427d4de43ac841d421f3b1c34be917a41f8d84453ba56a9"
+        }
+      ]
+    },
+    "api": {
+      "count": 23,
+      "items": [
+        {
+          "file": "frontend/src/client/sdk.gen.ts",
+          "line": 28,
+          "method": "POST",
+          "path": "/api/v1/login/access-token",
+          "evidence": [
+            {
+              "file": "frontend/src/client/sdk.gen.ts",
+              "line": 28,
+              "sha256": "c4fb6050993bda1cfa75b708cced8904094f6a5121ff461ec76f20c257886d84"
+            }
+          ]
+        },
+        {
+          "file": "frontend/src/client/sdk.gen.ts",
+          "line": 46,
+          "method": "POST",
+          "path": "/api/v1/login/test-token",
+          "evidence": [
+            {
+              "file": "frontend/src/client/sdk.gen.ts",
+              "line": 46,
+              "sha256": "c4fb6050993bda1cfa75b708cced8904094f6a5121ff461ec76f20c257886d84"
+            }
+          ]
+        },
+        {
+          "file": "frontend/src/client/sdk.gen.ts",
+          "line": 60,
+          "method": "POST",
+          "path": "/api/v1/password-recovery/{email}",
+          "evidence": [
+            {
+              "file": "frontend/src/client/sdk.gen.ts",
+              "line": 60,
+              "sha256": "c4fb6050993bda1cfa75b708cced8904094f6a5121ff461ec76f20c257886d84"
+            }
+          ]
+        },
+        {
+          "file": "frontend/src/client/sdk.gen.ts",
+          "line": 73,
+          "method": "POST",
+          "path": "/api/v1/reset-password/",
+          "evidence": [
+            {
+              "file": "frontend/src/client/sdk.gen.ts",
+              "line": 73,
+              "sha256": "c4fb6050993bda1cfa75b708cced8904094f6a5121ff461ec76f20c257886d84"
+            }
+          ]
+        },
+        {
+          "file": "frontend/src/client/sdk.gen.ts",
+          "line": 90,
+          "method": "POST",
+          "path": "/api/v1/password-recovery-html-content/{email}",
+          "evidence": [
+            {
+              "file": "frontend/src/client/sdk.gen.ts",
+              "line": 90,
+              "sha256": "c4fb6050993bda1cfa75b708cced8904094f6a5121ff461ec76f20c257886d84"
+            }
+          ]
+        },
+        {
+          "file": "frontend/src/client/sdk.gen.ts",
+          "line": 106,
+          "method": "GET",
+          "path": "/api/v1/users/",
+          "evidence": [
+            {
+              "file": "frontend/src/client/sdk.gen.ts",
+              "line": 106,
+              "sha256": "c4fb6050993bda1cfa75b708cced8904094f6a5121ff461ec76f20c257886d84"
+            }
+          ]
+        },
+        {
+          "file": "frontend/src/client/sdk.gen.ts",
+          "line": 120,
+          "method": "POST",
+          "path": "/api/v1/users/",
+          "evidence": [
+            {
+              "file": "frontend/src/client/sdk.gen.ts",
+              "line": 120,
+              "sha256": "c4fb6050993bda1cfa75b708cced8904094f6a5121ff461ec76f20c257886d84"
+            }
+          ]
+        },
+        {
+          "file": "frontend/src/client/sdk.gen.ts",
+          "line": 138,
+          "method": "DELETE",
+          "path": "/api/v1/users/me",
+          "evidence": [
+            {
+              "file": "frontend/src/client/sdk.gen.ts",
+              "line": 138,
+              "sha256": "c4fb6050993bda1cfa75b708cced8904094f6a5121ff461ec76f20c257886d84"
+            }
+          ]
+        },
+        {
+          "file": "frontend/src/client/sdk.gen.ts",
+          "line": 152,
+          "method": "GET",
+          "path": "/api/v1/users/me",
+          "evidence": [
+            {
+              "file": "frontend/src/client/sdk.gen.ts",
+              "line": 152,
+              "sha256": "c4fb6050993bda1cfa75b708cced8904094f6a5121ff461ec76f20c257886d84"
+            }
+          ]
+        },
+        {
+          "file": "frontend/src/client/sdk.gen.ts",
+          "line": 166,
+          "method": "PATCH",
+          "path": "/api/v1/users/me",
+          "evidence": [
+            {
+              "file": "frontend/src/client/sdk.gen.ts",
+              "line": 166,
+              "sha256": "c4fb6050993bda1cfa75b708cced8904094f6a5121ff461ec76f20c257886d84"
+            }
+          ]
+        },
+        {
+          "file": "frontend/src/client/sdk.gen.ts",
+          "line": 184,
+          "method": "PATCH",
+          "path": "/api/v1/users/me/password",
+          "evidence": [
+            {
+              "file": "frontend/src/client/sdk.gen.ts",
+              "line": 184,
+              "sha256": "c4fb6050993bda1cfa75b708cced8904094f6a5121ff461ec76f20c257886d84"
+            }
+          ]
+        },
+        {
+          "file": "frontend/src/client/sdk.gen.ts",
+          "line": 202,
+          "method": "POST",
+          "path": "/api/v1/users/signup",
+          "evidence": [
+            {
+              "file": "frontend/src/client/sdk.gen.ts",
+              "line": 202,
+              "sha256": "c4fb6050993bda1cfa75b708cced8904094f6a5121ff461ec76f20c257886d84"
+            }
+          ]
+        },
+        {
+          "file": "frontend/src/client/sdk.gen.ts",
+          "line": 219,
+          "method": "DELETE",
+          "path": "/api/v1/users/{user_id}",
+          "evidence": [
+            {
+              "file": "frontend/src/client/sdk.gen.ts",
+              "line": 219,
+              "sha256": "c4fb6050993bda1cfa75b708cced8904094f6a5121ff461ec76f20c257886d84"
+            }
+          ]
+        },
+        {
+          "file": "frontend/src/client/sdk.gen.ts",
+          "line": 233,
+          "method": "GET",
+          "path": "/api/v1/users/{user_id}",
+          "evidence": [
+            {
+              "file": "frontend/src/client/sdk.gen.ts",
+              "line": 233,
+              "sha256": "c4fb6050993bda1cfa75b708cced8904094f6a5121ff461ec76f20c257886d84"
+            }
+          ]
+        },
+        {
+          "file": "frontend/src/client/sdk.gen.ts",
+          "line": 247,
+          "method": "PATCH",
+          "path": "/api/v1/users/{user_id}",
+          "evidence": [
+            {
+              "file": "frontend/src/client/sdk.gen.ts",
+              "line": 247,
+              "sha256": "c4fb6050993bda1cfa75b708cced8904094f6a5121ff461ec76f20c257886d84"
+            }
+          ]
+        },
+        {
+          "file": "frontend/src/client/sdk.gen.ts",
+          "line": 267,
+          "method": "POST",
+          "path": "/api/v1/utils/test-email/",
+          "evidence": [
+            {
+              "file": "frontend/src/client/sdk.gen.ts",
+              "line": 267,
+              "sha256": "c4fb6050993bda1cfa75b708cced8904094f6a5121ff461ec76f20c257886d84"
+            }
+          ]
+        },
+        {
+          "file": "frontend/src/client/sdk.gen.ts",
+          "line": 279,
+          "method": "GET",
+          "path": "/api/v1/utils/health-check/",
+          "evidence": [
+            {
+              "file": "frontend/src/client/sdk.gen.ts",
+              "line": 279,
+              "sha256": "c4fb6050993bda1cfa75b708cced8904094f6a5121ff461ec76f20c257886d84"
+            }
+          ]
+        },
+        {
+          "file": "frontend/src/client/sdk.gen.ts",
+          "line": 294,
+          "method": "GET",
+          "path": "/api/v1/items/",
+          "evidence": [
+            {
+              "file": "frontend/src/client/sdk.gen.ts",
+              "line": 294,
+              "sha256": "c4fb6050993bda1cfa75b708cced8904094f6a5121ff461ec76f20c257886d84"
+            }
+          ]
+        },
+        {
+          "file": "frontend/src/client/sdk.gen.ts",
+          "line": 308,
+          "method": "POST",
+          "path": "/api/v1/items/",
+          "evidence": [
+            {
+              "file": "frontend/src/client/sdk.gen.ts",
+              "line": 308,
+              "sha256": "c4fb6050993bda1cfa75b708cced8904094f6a5121ff461ec76f20c257886d84"
+            }
+          ]
+        },
+        {
+          "file": "frontend/src/client/sdk.gen.ts",
+          "line": 326,
+          "method": "DELETE",
+          "path": "/api/v1/items/{id}",
+          "evidence": [
+            {
+              "file": "frontend/src/client/sdk.gen.ts",
+              "line": 326,
+              "sha256": "c4fb6050993bda1cfa75b708cced8904094f6a5121ff461ec76f20c257886d84"
+            }
+          ]
+        },
+        {
+          "file": "frontend/src/client/sdk.gen.ts",
+          "line": 340,
+          "method": "GET",
+          "path": "/api/v1/items/{id}",
+          "evidence": [
+            {
+              "file": "frontend/src/client/sdk.gen.ts",
+              "line": 340,
+              "sha256": "c4fb6050993bda1cfa75b708cced8904094f6a5121ff461ec76f20c257886d84"
+            }
+          ]
+        },
+        {
+          "file": "frontend/src/client/sdk.gen.ts",
+          "line": 354,
+          "method": "PUT",
+          "path": "/api/v1/items/{id}",
+          "evidence": [
+            {
+              "file": "frontend/src/client/sdk.gen.ts",
+              "line": 354,
+              "sha256": "c4fb6050993bda1cfa75b708cced8904094f6a5121ff461ec76f20c257886d84"
+            }
+          ]
+        },
+        {
+          "file": "frontend/src/client/sdk.gen.ts",
+          "line": 374,
+          "method": "POST",
+          "path": "/api/v1/private/users/",
+          "evidence": [
+            {
+              "file": "frontend/src/client/sdk.gen.ts",
+              "line": 374,
+              "sha256": "c4fb6050993bda1cfa75b708cced8904094f6a5121ff461ec76f20c257886d84"
+            }
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "file": "frontend/src/client/sdk.gen.ts",
+          "line": 1,
+          "sha256": "c4fb6050993bda1cfa75b708cced8904094f6a5121ff461ec76f20c257886d84"
+        }
+      ]
+    }
+  },
+  "size": {
+    "files": 252,
+    "classes": 27,
+    "classScope": "生产 Java class/interface、Python class 及选择的前端 class 声明；不含测试",
+    "evidence": [
+      {
+        "file": "backend/pyproject.toml",
+        "line": 1,
+        "sha256": "e786cd8e1d230e1c9950d5e22025f9cdcf1e6d8b51c7a0bc750ff02556143b6c"
+      },
+      {
+        "file": "backend/app/main.py",
+        "line": 1,
+        "sha256": "dc3d8efff477948a0f4f4cf1f4c1e297a3b27d7da734872139782418d63cc2af"
+      },
+      {
+        "file": "frontend/package.json",
+        "line": 1,
+        "sha256": "e64e197639dbe6175427d4de43ac841d421f3b1c34be917a41f8d84453ba56a9"
+      }
+    ]
+  },
+  "notes": [
+    "private 路由仅 development 条件，单独保留，不称为当前运行环境。",
+    "react-email 是邮件组件开发包，不是独立前端应用。",
+    "文件路由排除 __root/_layout 容器；生成 routeTree 不重复计数。"
+  ]
+}

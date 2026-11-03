@@ -1,0 +1,110 @@
+[
+  {
+    "term":"5173","file":"src/shared/runtime-policy.json","contains":"\"dependency\":\"vite\"",
+    "reason":"Only Vite's documented default server port in the centralized startup table: https://vite.dev/config/server-options#server-port . The same value in project-specific paths or branches remains checked."
+  },
+  {
+    "term":"8080","file":"src/shared/runtime-policy.json","contains":"\"dependency\":\"@vue/cli-service\"",
+    "reason":"Only Vue CLI's documented default serve port in the centralized startup table: https://cli.vuejs.org/guide/cli-service.html#vue-cli-service-serve . This does not exempt other code or project ports."
+  },
+  {
+    "term":"8080","file":"src/shared/http-link-policy.json","contains":"\"framework\":\"Spring Boot\"",
+    "reason":"Only the documented Spring Boot default HTTP port in the centralized framework table: https://docs.spring.io/spring-boot/appendix/application-properties/index.html . The same port remains checked in every other file/context."
+  },
+  {
+    "term":"8000","file":"src/shared/http-link-policy.json","contains":"\"framework\":\"FastAPI\"",
+    "reason":"Only the documented FastAPI/Uvicorn default in the framework table: https://fastapi.tiangolo.com/deployment/manually/ . No project-specific runtime port is exempted."
+  },
+  {
+    "term":"8000","file":"src/shared/http-link-policy.json","contains":"\"framework\":\"Django\"",
+    "reason":"Only Django runserver's documented default: https://docs.djangoproject.com/en/stable/ref/django-admin/#runserver . Other occurrences remain guarded."
+  },
+  {
+    "term": "fastapi",
+    "reason": "Official framework/package name; it cannot identify the corpus repository independently."
+  },
+  {
+    "term": "flask",
+    "reason": "Official Python web framework/package name."
+  },
+  {
+    "term": "vue",
+    "reason": "UI framework name, not a repository identifier."
+  },
+  {
+    "term": "react",
+    "reason": "UI framework name, not a repository identifier."
+  },
+  {
+    "term": "app",
+    "reason": "Conventional generic Python application package; not unique to a corpus repository."
+  },
+  {
+    "term": "api",
+    "reason": "Generic package convention; insufficient to identify a repository."
+  },
+  {
+    "term": "tests",
+    "reason": "Generic test package convention, used by role detection."
+  },
+  {
+    "term": "test",
+    "reason": "Generic test package convention, used by role detection."
+  },
+  {
+    "term": "localhost",
+    "reason": "Reserved loopback hostname used for local connections; not project identity."
+  },
+  {
+    "term": "127.0.0.1",
+    "reason": "IPv4 loopback address used by the local-only tool protocol."
+  },
+  {
+    "term": "0.0.0.0",
+    "reason": "Wildcard bind address, not project identity."
+  },
+  {
+    "term": "example.com",
+    "reason": "IANA reserved documentation domain."
+  },
+  {
+    "term": "3306",
+    "reason": "Standard MySQL protocol port; a framework signal, not a project-selected port."
+  },
+  {
+    "term": "5432",
+    "reason": "Standard PostgreSQL protocol port."
+  },
+  {
+    "term": "6379",
+    "reason": "Standard Redis protocol port."
+  },
+  {
+    "term": "80",
+    "reason": "Standard HTTP protocol port."
+  },
+  {
+    "term": "443",
+    "reason": "Standard HTTPS protocol port."
+  },
+  {
+    "term": "www.w3.org",
+    "reason": "W3C namespace used by SVG/XML standards, not a project domain."
+  },
+  {
+    "term": "maven.apache.org",
+    "reason": "Official Maven XML/schema domain."
+  },
+  {
+    "term": "github.com",
+    "reason": "Repository hosting domain shared by unrelated projects; repository-specific paths are scanned separately."
+  },
+  {
+    "term": "registry.npmjs.org",
+    "reason": "Shared npm package registry, not a project-specific domain."
+  },
+  {
+    "term": "repo.maven.apache.org",
+    "reason": "Official public Maven Central repository host, not project identity."
+  }
+]

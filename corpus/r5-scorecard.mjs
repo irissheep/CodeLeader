@@ -1,0 +1,24 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import {repository,records} from './acquire.mjs';
+const out=path.join(repository,'.tmp/verification-generalization-baseline'),read=async file=>JSON.parse(await fs.readFile(file,'utf8')),current=await read(path.join(out,'scorecard-v2.json'));
+const rows=[],clean=x=>String(x??'').replaceAll('|',' / ').replaceAll('\n',' '),same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
+const targetKey=t=>`${t.file||t.location.file}:${t.line||t.location.range.start.line+1}:${t.method}`;
+for(const project of current.projects){const index=await read(path.join(out,project.project,'model.json')),reference=await read(path.join(records,'expected-links',project.project,'expected.json')),links=index.frontendLinks,calls=links?.calls||[],issues=[],evaluations=[];let correct=0,wrong=0,missing=0;
+ for(const expected of reference.cases){const row=calls.find(c=>c.source.file===expected.front.file&&c.source.range.start.line+1===expected.front.line&&c.method===expected.front.method);
+  if(!row){issues.push({front:expected.front,kind:'missing-call',expected:expected.expected,reason:'产品没有该调用位置'});missing++;continue;}
+  const actualTargets=row.targets.map(targetKey).sort(),expectedTargets=expected.expected.targets.map(targetKey).sort(),extra=actualTargets.filter(key=>!expectedTargets.includes(key)),absent=expectedTargets.filter(key=>!actualTargets.includes(key));
+  const actualExternal=row.external?{host:row.external.host,port:row.external.port}:undefined,expectedExternal=expected.expected.externalOrigin?{host:expected.expected.externalOrigin.host,port:expected.expected.externalOrigin.port}:undefined;
+  const targetCorrect=!extra.length&&!absent.length,stateCorrect=row.outcome===expected.expected.outcome&&row.reason===expected.expected.reason,externalCorrect=same(actualExternal,expectedExternal),ok=targetCorrect&&stateCorrect&&externalCorrect;
+  const kind=extra.length||row.outcome==='matched'&&expected.expected.outcome==='unmatched'?'wrong-target':absent.length?'missing-target':!stateCorrect?'different-state':!externalCorrect?'different-external':'ok';
+  if(ok)correct++;else{if(kind==='wrong-target')wrong++;else missing++;issues.push({front:expected.front,kind,expected:expected.expected,actual:row,extra,absent,reason:row.reason});}evaluations.push({front:expected.front,ok,kind,actualId:row.id});
+ }
+ const stateCounts=Object.fromEntries(['matched','ambiguous','unmatched','configured'].map(state=>[state,calls.filter(c=>c.outcome===state).length])),external=calls.filter(c=>c.reason==='external-backend').length,unknown=calls.filter(c=>c.reason==='unknown-address').length;
+ const grade={status:!links||wrong?'✗':correct===reference.cases.length?'✓':'△',text:`判定 ${correct}/${reference.cases.length} · 真正对上 ${stateCounts.matched}/${calls.length} · 项目外 ${external} · 地址未定 ${unknown} · 配置推测 ${stateCounts.configured} · 错配 ${wrong}`,metrics:{correct,reference:reference.cases.length,totalCalls:calls.length,matched:stateCounts.matched,ambiguous:stateCounts.ambiguous,configured:stateCounts.configured,external,unknown,wrong,missing},reason:'R5 独立源码标准；判定正确不等于已匹配。RuoYi 为固定 30 条，其余全量；E-v2 页面/API 分数原样保留。'};
+ rows.push({project:project.project,grade,pageApiGrade:project.grades.E,issues,evaluations,scope:reference.scope,unitLinks:links?.units||[]});
+}
+const latest={...current,schema:3,versions:{...current.versions,E:3},projects:current.projects.map(p=>({...p,pageApiGrade:p.grades.E,grades:{...p.grades,E:rows.find(row=>row.project===p.project).grade}}))};
+await fs.writeFile(path.join(out,'link-scorecard.json'),JSON.stringify({definition:'R5-links-v1 / E-v3',projects:rows},null,2));await fs.writeFile(path.join(out,'scorecard-v3.json'),JSON.stringify(latest,null,2));
+const md=['# R5 当前评分卡（E-v2 页面/API + E-v3 对接判定）','', '对接的“判定正确”包含正确识别项目外和未知地址，不是实际连上；E-v2 的旧差额完整保留。定义见 corpus/SCORECARD-LINKS-V1.md。','', '| 项目 | A | B | C | D | E-v2 页面/API | E-v3 对接 | F | G | H |','|---|---|---|---|---|---|---|---|---|---|',...latest.projects.map(p=>`| ${p.project} | ${[...'ABCD'].map(k=>clean(p.grades[k].status+' '+p.grades[k].text)).join(' | ')} | ${clean(p.pageApiGrade.status+' '+p.pageApiGrade.text)} | ${clean(p.grades.E.status+' '+p.grades.E.text)} | ${[...'FGH'].map(k=>clean(p.grades[k].status+' '+p.grades[k].text)).join(' | ')} |`),'','## 差额逐条',''];
+for(const p of rows)for(const issue of p.issues)md.push(`- ${p.project} ${issue.front.file}:${issue.front.line} ${issue.front.method}：${issue.kind}；期望 ${issue.expected.outcome}/${issue.expected.reason}，实际 ${issue.actual?.outcome||'没有记录'}/${issue.actual?.reason||''}。缺目标 ${issue.absent?.join(',')||'无'}；额外目标 ${issue.extra?.join(',')||'无'}。`);
+md.push('','RuoYi 未抽中的调用全量保留于 model.json，没有声称全部经过标准逐条核验。');await fs.writeFile(path.join(out,'SCORECARD-V3.md'),md.join('\n')+'\n');console.log('R5',rows.map(p=>`${p.project} ${p.grade.status} ${p.grade.metrics.correct}/${p.grade.metrics.reference}, wrong ${p.grade.metrics.wrong}`).join('; '));

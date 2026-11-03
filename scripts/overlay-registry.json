@@ -1,0 +1,6 @@
+{
+  "modal": ["runtime-entry", "startup-setup", "workspace", "search", "settings-help", "another-exploration", "backend-choice"],
+  "docked": ["project-drawer", "inspector", "execution-inspector", "execution-technical-drawer", "source-panel"],
+  "popover": ["source-values-popover", "runtime-request-info", "execution-menu-content", "dock-menu-content", "dock-history-popover", "orientation-help", "command-menu", "card-hint", "capability-hint", "module-tooltip", "action-tooltip", "dock-tooltip", "dock-phase-tooltip", "routing-hint"],
+  "note": "停靠面板与锚定浮层目前尚未迁入统一外壳。新增模态窗口必须在此登记；浮层和抽屉的覆盖尚未完成。"
+}

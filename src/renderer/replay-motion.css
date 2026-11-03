@@ -1,0 +1,15 @@
+.replay-dock[data-motion] .dock-phase-rail .walk-phase{position:relative;background:transparent!important;border:0!important;opacity:1;box-shadow:none;transform:none;transition:none;pointer-events:auto;isolation:isolate}
+.replay-dock[data-motion] .phase-接收{--phase-color:var(--color-phase-receive)}
+.replay-dock[data-motion] .phase-业务{--phase-color:var(--color-phase-business)}
+.replay-dock[data-motion] .phase-数据{--phase-color:var(--color-phase-data)}
+.replay-dock[data-motion] .phase-返回{--phase-color:var(--color-phase-return)}
+.replay-dock[data-motion] .phase-之后{--phase-color:var(--color-secondary)}
+.replay-dock[data-motion] .dock-phase-rail .walk-phase.is-current{z-index:1}
+.replay-dock[data-motion] .dock-phase-rail .dock-phase-paint{position:absolute;inset:0;display:block;transform:scaleX(1);transform-origin:center;transition:transform var(--motion-phase) var(--motion-easeInOut);pointer-events:none}
+.replay-dock[data-motion=full] .dock-phase-rail .walk-phase.is-current .dock-phase-paint{transform:scaleX(var(--motionPolicy-phaseScale));z-index:1}
+.replay-dock[data-motion] .dock-phase-base,.replay-dock[data-motion] .dock-phase-progress{position:absolute;inset:0;display:block;background:var(--phase-color);border-radius:var(--radius-pill);pointer-events:none}
+.replay-dock[data-motion] .dock-phase-base{opacity:var(--motionPolicy-opacityUnrelated)}
+.replay-dock[data-motion] .dock-phase-progress{transform:scaleX(0);transform-origin:left;will-change:transform,opacity}
+.replay-dock[data-motion] .phase-之后 .dock-phase-base{border:1px dashed var(--phase-color);background:transparent}
+.replay-dock[data-motion=reduced] .dock-phase-rail .dock-phase-paint,.replay-dock[data-motion=off] .dock-phase-rail .dock-phase-paint{transition:none;transform:none}
+.replay-dock[data-motion=off] .dock-phase-progress{will-change:auto}

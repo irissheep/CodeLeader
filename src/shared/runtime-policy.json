@@ -1,0 +1,29 @@
+{
+ "version":"runtime-general/1",
+ "scripts":["dev","start","serve"],
+ "toolPreference":{"order":["maven","gradle","java","npm","python"],"why":"同一 Java 应用同时提供 pom 与 Gradle 时默认选择已有 Maven 接入，所有可能目标仍可选；不启动同一应用两次。"},
+ "pythonCommands":["uvicorn","flask","gunicorn","manage.py","fastapi"],
+ "frontendServers":[
+  {"dependency":"vite","port":5173,"portOption":"--port","basis":"https://vite.dev/config/server-options#server-port"},
+  {"dependency":"@vue/cli-service","port":8080,"portOption":"--port","basis":"https://cli.vuejs.org/guide/cli-service.html#vue-cli-service-serve"},
+  {"dependency":"react-scripts","port":3000,"portOption":"PORT","basis":"https://create-react-app.dev/docs/advanced-configuration/"},
+  {"dependency":"next","port":3000,"portOption":"--port","basis":"https://nextjs.org/docs/app/api-reference/cli/next"}
+ ],
+ "frameworkRequests":[
+  {"dependency":"org.springframework.boot:spring-boot-starter-actuator","prefix":"/actuator","basis":"https://docs.spring.io/spring-boot/reference/actuator/endpoints.html"}
+ ],
+ "hotReload":[
+  {"dependency":"vite","prefixes":["/@vite/","/@id/__x00__vite"],"basis":"https://vite.dev/guide/api-hmr"},
+  {"dependency":"next","prefixes":["/_next/webpack-hmr"],"basis":"https://nextjs.org/docs/app/api-reference/cli/next"},
+  {"dependency":"@vue/cli-service","prefixes":["/sockjs-node"],"basis":"https://cli.vuejs.org/config/"},
+  {"dependency":"react-scripts","prefixes":["/sockjs-node"],"basis":"https://create-react-app.dev/docs/available-scripts/"}
+ ],
+ "assetTypes":["Stylesheet","Script","Image","Font","Media","Manifest"],
+ "thresholds":{
+  "metadataBytes":{"value":1048576,"why":"启动检测只读小型文本配置，不把大产物或依赖文件当命令来源。"},
+  "startupWaitMs":{"value":600000,"why":"首次 Maven 启动可能下载依赖；允许取消，并监测子进程提前退出。"},
+  "pollRepeats":{"value":3,"why":"至少三次无用户动作的相同 GET 才作为重复轮询，避免把连续业务点击归走。"},
+  "pollWindowMs":{"value":60000,"why":"只比较近期同签名请求，限制内存，不按路径名猜后台请求。"}
+ },
+ "excludedUrls":{"default":"","basis":"默认不按地址排除；用户确认的正则传给 OTEL_PYTHON_EXCLUDED_URLS：https://opentelemetry-python-contrib.readthedocs.io/en/latest/instrumentation/flask/flask.html"}
+}

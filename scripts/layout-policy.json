@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "minimumFont": 11,
+  "overlapFraction": 0.1,
+  "pixelTolerance": 0.75,
+  "dependencyRoutes": {"outerMargin":24,"reason":"U6：任何依赖连线不得越过全部卡片包围盒外扩24px；按当前画布缩放还原为世界尺寸，不豁免公共类连线。"},
+  "viewportClips": [{"selector":".graph-canvas,.react-flow,.react-flow__renderer,.react-flow__viewport","reason":"画布允许平移；视口外的背景内容不属于卡片内部裁字。仍检查可见文字字号、卡内裁切与相互重叠。"}],
+  "exemptions": [
+    {"selector":".card-hint,.capability-hint,[role=tooltip]","checks":["outside-card"],"reason":"悬停详情是卡片外的浮层；仍检查浮层内部文字、字号与窗口边界。"},
+    {"selector":".runtime-step-bubble","checks":["outside-card"],"reason":"当前步骤可位于卡片上沿之外；仍检查与文字及图标的重叠。"}
+  ],
+  "surfaces": [
+    {"selector":".card-hint,.capability-hint,[role=tooltip]","reason":"悬停浮层有独立不透明底面；不把底图被遮住的文字算作浮层内部叠字。"},
+    {"selector":".inspector,.execution-inspector,.walkthrough-panel,.execution-menu-content,.command-menu,.runtime-request-info,.edge-choices,.settings-modal,.search-dialog","reason":"主动打开的详情、搜索或菜单位于独立表面；不把其不透明底面下方的图标当成浮层压字，同一表面内的检查不豁免。"}
+  ]
+}

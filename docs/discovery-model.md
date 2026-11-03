@@ -1,0 +1,15 @@
+# Build declarations, runnable units and resources
+
+`ProjectIndex.buildDeclarations` records Maven/Gradle/npm/Python declarations. A build is not automatically an application. Aggregate builds remain group declarations. `units` records applications, consumed libraries, frontends and tools separately; `usedBy` links libraries transitively to their consuming applications. Legacy `components` now projects applications/frontends only so runtime configuration does not pick an aggregate or library as a backend.
+
+Java application evidence is a Boot startup class with main, an active declaration of the Boot archive plugin, or an independent plain Java main. A main inside a module consumed as a library does not by itself promote that library to an application. Both Maven and Gradle declarations are read without execution. A same-root Maven/Gradle pair describes one unit with multiple build declarations.
+
+Python web applications require a declared framework dependency and an imported application constructor in source, including factories; Django requires manage.py and the declared settings file. Frontends require a UI dependency, a page/application entry and a build/start script. Workspace manifests or template packages without entries remain tools. Build scripts are not evaluated.
+
+`resources` records engine capabilities discovered from production client dependencies, all scanned profiles, connection values, all Compose images and source imports. The engine table and rationale are in `src/shared/discovery-signals.json`. Test-only drivers are excluded; profile settings remain explicitly unselected. Resource evidence stores keys and source positions, not credentials or connection-string values. Each resource has unit IDs and per-unit evidence; an unconfirmed consumer is left unassigned.
+
+`identity: engine` means a repository-wide engine inventory, **not one shared physical database instance**. Multiple units mentioning an engine must not be rendered as sharing the same instance without connection/configuration evidence. `resources` discovery does not create access relations. Existing proven access targets keep their IDs; discovery can enrich their category/evidence. Resource cards newly made visible are configuration discoveries (`discoveredOnly`), not proof that an interface called them.
+
+Static limits: dynamic Gradle/Poetry configuration, computed factories, unresolved Maven property coordinates, Python setup.py execution, dynamically selected Django settings and executable frontend config are not evaluated. Shared build roots containing multiple separately deployed Python application objects are not split into deployment units merely by counting constructors. Libraries with an independent explicit launcher may require additional launch configuration to distinguish them from helper main methods.
+
+`npm run test:unit-discovery` reads the minimal Gradle, plain-Java, Django and Python fixtures without running their code. `npm run corpus` retains v1 and generates `SCORECARD-V2.md` / `scorecard-v2.json` using explicit unit/resource fields; see `corpus/SCORECARD-AB-V2.md`. Frozen answers/baseline remain unchanged.

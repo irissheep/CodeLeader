@@ -1,0 +1,10 @@
+import { build } from 'esbuild';
+import { build as viteBuild } from 'vite';
+import { guard, root } from './common.mjs';
+import fs from 'node:fs/promises';
+import path from 'node:path';
+guard();
+await build({ entryPoints: { main:'src/main/main.ts', preload:'src/preload/preload.ts', worker:'src/analysis/worker.ts' }, outdir: 'dist', outExtension: { '.js': '.cjs' }, platform: 'node', target: 'node22', format: 'cjs', bundle: true, external: ['electron', 'web-tree-sitter'], sourcemap: true });
+await viteBuild({ configFile: root + '/vite.config.ts' });
+await fs.mkdir(path.join(root,'dist/renderer/licenses'),{recursive:true});
+for(const name of ['Inter-OFL.txt','JetBrainsMono-OFL.txt'])await fs.copyFile(path.join(root,'src/renderer/fonts',name),path.join(root,'dist/renderer/licenses',name));

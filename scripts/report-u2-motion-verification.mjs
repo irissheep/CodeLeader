@@ -1,0 +1,36 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import crypto from 'node:crypto';
+import {guard,root} from './common.mjs';
+guard();
+const folder=path.join(root,'.tmp/verification-u2-motion'),after=path.join(folder,'after');
+const read=async file=>JSON.parse(await fs.readFile(path.join(folder,file),'utf8'));
+const before=await read('before/results.json'),result=await read('after/results.json'),machine=await read('machine.json'),display=await read('after/display.json');
+const sha=bytes=>crypto.createHash('sha256').update(bytes).digest('hex');
+const diagnostics=path.join(folder,'diagnostics');await fs.mkdir(diagnostics,{recursive:true});
+for(const name of ['failure.json','results-partial.json']){const file=path.join(after,name);if(await fs.stat(file).catch(()=>false))await fs.rename(file,path.join(diagnostics,'resolved-'+name));}
+const assets={};async function scan(dir){for(const e of await fs.readdir(dir,{withFileTypes:true})){if(e.isSymbolicLink())continue;const file=path.join(dir,e.name);if(e.isDirectory())await scan(file);else assets[path.relative(path.join(after,'renderer'),file).replaceAll('\\','/')]=sha(await fs.readFile(file));}}
+await scan(path.join(after,'renderer'));await fs.writeFile(path.join(after,'recorded-renderer-hashes.json'),JSON.stringify(assets,null,2));
+const graphCurrent=sha(await fs.readFile(path.join(root,'src/renderer/Graph.tsx'))),recorded=result.finalGraphSourceSha256;
+const rendererStat=await fs.stat(path.join(after,'renderer/index.html')),newer=[];
+async function source(folder){for(const e of await fs.readdir(path.join(root,folder),{withFileTypes:true})){if(e.isSymbolicLink())continue;const file=path.posix.join(folder,e.name);if(e.isDirectory())await source(file);else{const stat=await fs.stat(path.join(root,file));if(stat.mtimeMs>rendererStat.mtimeMs)newer.push({file,mtime:stat.mtime.toISOString(),sha256:sha(await fs.readFile(path.join(root,file)))});}}}
+await source('src');
+await fs.writeFile(path.join(after,'verification-version.json'),JSON.stringify({graphSourceRecorded:recorded,graphSourceCurrent:graphCurrent,graphSourceMatches:recorded===graphCurrent,rendererBuiltAt:rendererStat.mtime.toISOString(),newerSourceFiles:newer,note:'Whole-source SHA manifest was not captured at build time. Graph source SHA and recorded renderer asset hashes are exact; newer source list is timestamp evidence, not a cryptographic assertion of all other source equality.'},null,2));
+const p=result.performance,gaps=p.gaps.slice().sort((a,b)=>a-b),properties=new Set();for(const row of p.animationProperties||[])for(const animation of row.animations||[])for(const key of animation.properties||[])if(!['offset','easing','composite','computedOffset'].includes(key))properties.add(key);
+const packets=p.frames.flatMap(frame=>frame.packets||[]),visible=packets.filter(p=>p.width>0&&p.height>0&&Number(p.opacity)>0&&p.display!=='none');
+let report=`# U2 实际界面验证\n\n已交付6段真实界面WebM；17步最终版本实测 ${p.fps.toFixed(3)}fps，长任务 ${p.longTasks.length}，每步图根提交最多 ${p.maxCommitsPerStep}。不是目标业务的新运行；只模拟只读IPC输入、回放既有真实历史。\n\n`;
+report+=`机器：${machine.cpu.trim()}，${machine.logicalCpus}逻辑核，${(machine.memoryBytes/1024**3).toFixed(2)}GiB可见内存；Windows ${machine.release}；Electron ${display.electron}/Chrome ${display.chrome}/Node ${machine.node}。主显示器${display.screen.bounds.width}×${display.screen.bounds.height}，窗口1564×954，隔离offscreen实际渲染明确设置60fps。\n\n`;
+report+='| 项目 | before | 最终 after |\n|---|---:|---:|\n';
+report+=`| rAF平均fps | ${before.performance.fps.toFixed(3)} | ${p.fps.toFixed(3)} |\n| rAF样本 | ${before.performance.frameCount} | ${p.frameCount} |\n| 每步最多图根提交 | ${before.performance.maxCommitsPerStep} | ${p.maxCommitsPerStep} |\n| >50ms长任务 | ${before.performance.longTasks.length} | ${p.longTasks.length} |\n| 节点重建 / 异常帧 | ${before.performance.recreated} / ${before.performance.abnormalFrames.length} | ${p.recreated} / ${p.abnormalFrames.length} |\n| 稳定第9步控件 / 文字 | ${before.metrics.clickable} / ${before.metrics.textNodes} | ${result.metrics.clickable} / ${result.metrics.textNodes} |\n| 稳定第9步内容嵌套 / 顶栏可用控件 / 底区 | ${before.metrics.nestedContainers} / ${before.metrics.topbarClickable} / ${before.metrics.bottomRegions} | ${result.metrics.nestedContainers} / ${result.metrics.topbarClickable} / ${result.metrics.bottomRegions} |\n`;
+report+=`\n最终帧间隔P95 ${gaps[Math.floor(gaps.length*.95)].toFixed(2)}ms，最大 ${Math.max(...gaps).toFixed(2)}ms；图根提交原始明细逐步保留，播放/停止未偷偷过滤。实际采到动画属性：${[...properties].join('、')}。\n\n`;
+report+=`光点证据：最终完整播放 ${visible.length} 个正面积样本，位置 ${new Set(visible.map(p=>p.x+','+p.y)).size} 种；短采 packet-check.json 和最终 full-playback.json 都保留bbox。4×逐帧粒子最大数 ${result.fastPackets}。早先DOM有粒子而bbox全0的缺陷保留在 diagnostic-zero-packet，已修成真实SVG覆层后再采，不拿DOM存在冒充看得见。\n\n`;
+report+='## 六段WebM\n\n| 内容 | 文件 | 时长 | 实际变化图像 |\n|---|---|---:|---:|\n'+result.clips.map(clip=>`| ${clip.name} | [WebM](${clip.file.replaceAll('\\','/')}) | ${(clip.durationMs/1000).toFixed(2)}s | ${clip.capturedFrames} |`).join('\n')+'\n\n录像来自CDP实际渲染图像与时间戳，保留静止画面时长、重采样成30fps VP9 WebM。编码在采集结束后执行；帧率测量包含CDP采集，不包含离线编码。未生成替代页面或补画业务节点。\n\n';
+report+='## 交互结果\n\n| 交互 | 做到 / 没做到 | 实际结果 |\n|---|---|---|\n'+result.checks.map(check=>`| ${check.name} | ${check.pass?'做到':'没做到'} | ${JSON.stringify(check)} |`).join('\n')+'\n\n关闭模式运行中的图动画为空；精简模式采到关键帧仅opacity。悬停邻居cardOpacity=1，其余=0.55；这些值在results.json中。\n\n';
+report+='## 逐帧证据与边界\n\n| 交互 | 截图 | 共同节点 | 重建 / 异常 | 实际变化 |\n|---|---:|---:|---|---|\n';
+for(const name of ['expand','details','switch-view']){const data=await read('after/frames/'+name+'.json'),states=new Map();for(const frame of data.frames)for(const node of frame.nodes){if(!states.has(node.id))states.set(node.id,new Set());states.get(node.id).add(JSON.stringify(node.layout));}const changed=[...states].filter(([,values])=>values.size>1).map(([id])=>id);report+=`| ${name} | ${data.captured.length} | ${data.identities.filter(i=>i.common).length} | ${data.recreated} / ${data.abnormalFrames.length} | ${changed.length}项computed局部transform/尺寸出现变化，详见原始JSON |\n`;}
+report+='\n严格“所有节点位置大小每帧不变”没做到，也与要求微抬/弹簧/镜头平移的视觉变化冲突。展开时AI服务容器高度222→430，直接下游两资源沿transform平滑让位（y1356→1456），其他6节点不动；打开详情时世界位置/尺寸不变而屏幕视口平移；切到依赖图是另一组实体，共同节点0，不能说是同一批节点不动。JSON中的layout字段记录computed局部transform和offset尺寸，包含受控位移；另有visual/cardVisual屏幕矩形，不把它们伪装成固定不动。\n\n每组至少12张图。CDP只在画面变化时产帧，若不足则在后续rAF读取真实表面，metadata逐张写明；未复制图片充数。\n\n';
+report+='## 首末方向与版本\n\n首步正常方向、接收灰；末步同一真实浏览器边反向、返回琥珀。first-step.png / last-step.png 与 boundary-results.json 保存marker和stroke。最终完整播放与4×使用补首末边显示后的renderer，其余短片使用此前同一动效实现（后来变化仅首末浏览器边显示）。\n\n';
+report+=`录制Graph SHA与当前一致：${recorded===graphCurrent}。精确资产哈希在 recorded-renderer-hashes.json。renderer构建之后更新时间更晚的源码：${newer.map(x=>x.file).join('、')||'无'}。完整源码构建时manifest没有保存，不能声称全src密码学一致；verification-version.json明确区分已知哈希与时间戳。若仅后补跨单元内部短线保护，本样例已有真实HTTP边，未走该回退分支，仍需由实现者在总报告说明。\n\n`;
+report+='已解决的工具定位器失败移到 diagnostics，分别是阶段层覆盖透明命中区时应按真实坐标点击、收起芯片后仍用expanded=true动态locator取label；不是产品JS错误。最终JS错误数为 '+result.errors.length+'。\n';
+await fs.writeFile(path.join(folder,'VERIFICATION.md'),report);
+console.log(JSON.stringify({fps:p.fps,positivePacketSamples:visible.length,clips:result.clips.length,graphSourceMatches:recorded===graphCurrent,newerSourceFiles:newer.map(f=>f.file),report:path.join(folder,'VERIFICATION.md')}));

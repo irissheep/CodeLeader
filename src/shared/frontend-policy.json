@@ -1,0 +1,38 @@
+{
+  "version":"frontend/2",
+  "globalBindings":[
+    {"module":"vue","kind":"factory","export":"createApp","chain":["config","globalProperties"],"basis":"https://vuejs.org/api/application.html#app-config-globalproperties"},
+    {"module":"vue","kind":"constructor","export":"default","chain":["prototype"],"pluginMethod":"use","hook":"install","basis":"https://v2.vuejs.org/v2/guide/plugins.html"}
+  ],
+  "roles":[
+    {"id":"frontend-page","label":"页面","plural":"页面","fileLabel":"页面","layer":0,"color":"receive","basis":"路由明确指向的组件。"},
+    {"id":"frontend-component","label":"组件","plural":"组件","fileLabel":"组件","layer":1,"color":"business","basis":"Vue 单文件组件或 JSX 界面。"},
+    {"id":"frontend-api","label":"接口封装","plural":"接口封装","fileLabel":"接口文件","layer":2,"color":"business","basis":"包含已追到 HTTP 客户端的调用。"},
+    {"id":"frontend-store","label":"状态","plural":"状态","fileLabel":"状态文件","layer":3,"color":"data","basis":"已确认的状态管理库创建操作。"},
+    {"id":"frontend-utility","label":"工具","plural":"工具","fileLabel":"工具文件","layer":3,"color":"common","basis":"其余脚本文件；不靠目录名推断职责。"}
+  ],
+  "clients":[
+    {"module":"axios","kind":"axios","default":"default","factory":"create","types":["AxiosInstance"],"basis":"https://axios-http.com/docs/instance"},
+    {"module":"global","kind":"fetch","default":"fetch","factory":"","types":[],"basis":"https://developer.mozilla.org/en-US/docs/Web/API/Window/fetch"},
+    {"module":"global","kind":"xhr","default":"XMLHttpRequest","factory":"open","terminal":"send","types":[],"basis":"https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/open"}
+  ],
+  "methods":["get","post","put","patch","delete","head","options"],
+  "routers":[
+    {"module":"vue-router","functions":["createRouter","default"],"kind":"object","basis":"https://router.vuejs.org/guide/essentials/nested-routes.html"},
+    {"module":"react-router-dom","functions":["createBrowserRouter","createHashRouter","useRoutes"],"kind":"object","basis":"https://reactrouter.com/start/data/routing"},
+    {"module":"react-router","functions":["createBrowserRouter","createHashRouter","useRoutes"],"kind":"object","basis":"https://reactrouter.com/start/data/routing"},
+    {"module":"react-router-dom","functions":["Route"],"kind":"jsx","basis":"https://reactrouter.com/start/declarative/routing"},
+    {"module":"react-router","functions":["Route"],"kind":"jsx","basis":"https://reactrouter.com/start/declarative/routing"},
+    {"module":"@tanstack/react-router","functions":["createFileRoute"],"kind":"file","basis":"https://tanstack.com/router/latest/docs/framework/react/routing/file-based-routing"}
+  ],
+  "stores":[
+    {"module":"pinia","exports":["defineStore"],"basis":"https://pinia.vuejs.org/core-concepts/"},
+    {"module":"vuex","exports":["createStore","Store"],"basis":"https://vuex.vuejs.org/guide/"},
+    {"module":"@reduxjs/toolkit","exports":["configureStore","createSlice"],"basis":"https://redux-toolkit.js.org/api/configureStore"},
+    {"module":"redux","exports":["createStore","legacy_createStore"],"basis":"https://redux.js.org/api/createstore"}
+  ],
+  "thresholds":{
+    "valueCandidates":{"value":32,"why":"限制多份配置与字符串拼接的组合增长；超出时保留未知，不随意挑一个配置。"},
+    "referenceDepth":{"value":40,"why":"限制循环别名与递归包装的静态追溯；达到限制保留未知调用，不执行源码。"}
+  }
+}

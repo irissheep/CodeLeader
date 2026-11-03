@@ -1,0 +1,288 @@
+{
+  "schema": 1,
+  "project": "vue-ts",
+  "commit": "edac9de9e77b4fe83ccd53e86217d87a8006efee",
+  "originalExpectedSha256": "f21de460d4a51a3c5425059e9db8f3427c0a3adcb0dc1a139412cbdddedbbfcf",
+  "referenceSha256": "6c8dcce3892981474a7cbf2a524d74de4374eca074ce17895a2d1f27ae418f8e",
+  "scope": {
+    "allCalls": 7,
+    "sample": 7,
+    "sampling": "全部选定 HTTP 调用",
+    "sources": "独立 TypeScript/Tree-sitter 语法读取、旧冻结 HTTP 依据重新验证；不读取产品输出"
+  },
+  "cases": [
+    {
+      "front": {
+        "file": "src/services/TutorialDataService.ts",
+        "line": 6,
+        "method": "GET",
+        "path": "/tutorials"
+      },
+      "urls": [
+        "http://localhost:8080/api/tutorials"
+      ],
+      "expected": {
+        "outcome": "unmatched",
+        "reason": "external-backend",
+        "targets": [],
+        "externalOrigin": {
+          "host": "localhost",
+          "port": 8080,
+          "origin": "http://localhost:8080"
+        }
+      },
+      "evidence": [
+        {
+          "file": "src/services/TutorialDataService.ts",
+          "line": 6,
+          "sha256": "52ddf82d44fd1154e20012119719d1ef1d347a0fb8ac64116abd80526d53df85"
+        },
+        {
+          "file": "src/http-common.ts",
+          "line": 4,
+          "sha256": "5c8a539d9802014095b160865c917869ce7a1c1ebca699390ba6c9be60888a19"
+        }
+      ]
+    },
+    {
+      "front": {
+        "file": "src/services/TutorialDataService.ts",
+        "line": 10,
+        "method": "GET",
+        "path": "/tutorials/{param}"
+      },
+      "urls": [
+        "http://localhost:8080/api/tutorials/{param}"
+      ],
+      "expected": {
+        "outcome": "unmatched",
+        "reason": "external-backend",
+        "targets": [],
+        "externalOrigin": {
+          "host": "localhost",
+          "port": 8080,
+          "origin": "http://localhost:8080"
+        }
+      },
+      "evidence": [
+        {
+          "file": "src/services/TutorialDataService.ts",
+          "line": 10,
+          "sha256": "52ddf82d44fd1154e20012119719d1ef1d347a0fb8ac64116abd80526d53df85"
+        },
+        {
+          "file": "src/http-common.ts",
+          "line": 4,
+          "sha256": "5c8a539d9802014095b160865c917869ce7a1c1ebca699390ba6c9be60888a19"
+        }
+      ]
+    },
+    {
+      "front": {
+        "file": "src/services/TutorialDataService.ts",
+        "line": 14,
+        "method": "POST",
+        "path": "/tutorials"
+      },
+      "urls": [
+        "http://localhost:8080/api/tutorials"
+      ],
+      "expected": {
+        "outcome": "unmatched",
+        "reason": "external-backend",
+        "targets": [],
+        "externalOrigin": {
+          "host": "localhost",
+          "port": 8080,
+          "origin": "http://localhost:8080"
+        }
+      },
+      "evidence": [
+        {
+          "file": "src/services/TutorialDataService.ts",
+          "line": 14,
+          "sha256": "52ddf82d44fd1154e20012119719d1ef1d347a0fb8ac64116abd80526d53df85"
+        },
+        {
+          "file": "src/http-common.ts",
+          "line": 4,
+          "sha256": "5c8a539d9802014095b160865c917869ce7a1c1ebca699390ba6c9be60888a19"
+        }
+      ]
+    },
+    {
+      "front": {
+        "file": "src/services/TutorialDataService.ts",
+        "line": 18,
+        "method": "PUT",
+        "path": "/tutorials/{param}"
+      },
+      "urls": [
+        "http://localhost:8080/api/tutorials/{param}"
+      ],
+      "expected": {
+        "outcome": "unmatched",
+        "reason": "external-backend",
+        "targets": [],
+        "externalOrigin": {
+          "host": "localhost",
+          "port": 8080,
+          "origin": "http://localhost:8080"
+        }
+      },
+      "evidence": [
+        {
+          "file": "src/services/TutorialDataService.ts",
+          "line": 18,
+          "sha256": "52ddf82d44fd1154e20012119719d1ef1d347a0fb8ac64116abd80526d53df85"
+        },
+        {
+          "file": "src/http-common.ts",
+          "line": 4,
+          "sha256": "5c8a539d9802014095b160865c917869ce7a1c1ebca699390ba6c9be60888a19"
+        }
+      ]
+    },
+    {
+      "front": {
+        "file": "src/services/TutorialDataService.ts",
+        "line": 22,
+        "method": "DELETE",
+        "path": "/tutorials/{param}"
+      },
+      "urls": [
+        "http://localhost:8080/api/tutorials/{param}"
+      ],
+      "expected": {
+        "outcome": "unmatched",
+        "reason": "external-backend",
+        "targets": [],
+        "externalOrigin": {
+          "host": "localhost",
+          "port": 8080,
+          "origin": "http://localhost:8080"
+        }
+      },
+      "evidence": [
+        {
+          "file": "src/services/TutorialDataService.ts",
+          "line": 22,
+          "sha256": "52ddf82d44fd1154e20012119719d1ef1d347a0fb8ac64116abd80526d53df85"
+        },
+        {
+          "file": "src/http-common.ts",
+          "line": 4,
+          "sha256": "5c8a539d9802014095b160865c917869ce7a1c1ebca699390ba6c9be60888a19"
+        }
+      ]
+    },
+    {
+      "front": {
+        "file": "src/services/TutorialDataService.ts",
+        "line": 26,
+        "method": "DELETE",
+        "path": "/tutorials"
+      },
+      "urls": [
+        "http://localhost:8080/api/tutorials"
+      ],
+      "expected": {
+        "outcome": "unmatched",
+        "reason": "external-backend",
+        "targets": [],
+        "externalOrigin": {
+          "host": "localhost",
+          "port": 8080,
+          "origin": "http://localhost:8080"
+        }
+      },
+      "evidence": [
+        {
+          "file": "src/services/TutorialDataService.ts",
+          "line": 26,
+          "sha256": "52ddf82d44fd1154e20012119719d1ef1d347a0fb8ac64116abd80526d53df85"
+        },
+        {
+          "file": "src/http-common.ts",
+          "line": 4,
+          "sha256": "5c8a539d9802014095b160865c917869ce7a1c1ebca699390ba6c9be60888a19"
+        }
+      ]
+    },
+    {
+      "front": {
+        "file": "src/services/TutorialDataService.ts",
+        "line": 30,
+        "method": "GET",
+        "path": "/tutorials?title={param}"
+      },
+      "urls": [
+        "http://localhost:8080/api/tutorials?title={param}"
+      ],
+      "expected": {
+        "outcome": "unmatched",
+        "reason": "external-backend",
+        "targets": [],
+        "externalOrigin": {
+          "host": "localhost",
+          "port": 8080,
+          "origin": "http://localhost:8080"
+        }
+      },
+      "evidence": [
+        {
+          "file": "src/services/TutorialDataService.ts",
+          "line": 30,
+          "sha256": "52ddf82d44fd1154e20012119719d1ef1d347a0fb8ac64116abd80526d53df85"
+        },
+        {
+          "file": "src/http-common.ts",
+          "line": 4,
+          "sha256": "5c8a539d9802014095b160865c917869ce7a1c1ebca699390ba6c9be60888a19"
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "file": "src/services/TutorialDataService.ts",
+      "line": 6,
+      "sha256": "52ddf82d44fd1154e20012119719d1ef1d347a0fb8ac64116abd80526d53df85"
+    },
+    {
+      "file": "src/http-common.ts",
+      "line": 4,
+      "sha256": "5c8a539d9802014095b160865c917869ce7a1c1ebca699390ba6c9be60888a19"
+    },
+    {
+      "file": "src/services/TutorialDataService.ts",
+      "line": 10,
+      "sha256": "52ddf82d44fd1154e20012119719d1ef1d347a0fb8ac64116abd80526d53df85"
+    },
+    {
+      "file": "src/services/TutorialDataService.ts",
+      "line": 14,
+      "sha256": "52ddf82d44fd1154e20012119719d1ef1d347a0fb8ac64116abd80526d53df85"
+    },
+    {
+      "file": "src/services/TutorialDataService.ts",
+      "line": 18,
+      "sha256": "52ddf82d44fd1154e20012119719d1ef1d347a0fb8ac64116abd80526d53df85"
+    },
+    {
+      "file": "src/services/TutorialDataService.ts",
+      "line": 22,
+      "sha256": "52ddf82d44fd1154e20012119719d1ef1d347a0fb8ac64116abd80526d53df85"
+    },
+    {
+      "file": "src/services/TutorialDataService.ts",
+      "line": 26,
+      "sha256": "52ddf82d44fd1154e20012119719d1ef1d347a0fb8ac64116abd80526d53df85"
+    },
+    {
+      "file": "src/services/TutorialDataService.ts",
+      "line": 30,
+      "sha256": "52ddf82d44fd1154e20012119719d1ef1d347a0fb8ac64116abd80526d53df85"
+    }
+  ]
+}

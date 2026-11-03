@@ -1,0 +1,20 @@
+title = "Reviewed false positives"
+
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Source assignment references two layout policy objects; no credential is present."
+targetRules = ["generic-api-key"]
+condition = "AND"
+paths = ['''(^|/)src/renderer/dependency-lanes\.ts$''']
+regexTarget = "line"
+regexes = ['''^\s*const t=tokens\.lanes,p=policy\.thresholds;\s*$''']
+
+[[allowlists]]
+description = "Documentation of supported database connectors, not an API credential."
+targetRules = ["generic-api-key"]
+condition = "AND"
+paths = ['''(^|/)src/shared/discovery-signals\.json$''']
+regexTarget = "line"
+regexes = ['''^\s*"basis": "MySQL Connector/J/Python, DBAPI clients, JDBC/SQLAlchemy DSNs and official MySQL images"\s*$''']

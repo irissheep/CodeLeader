@@ -1,0 +1,2 @@
+remote:
+  url: ${REMOTE_URL:http://different:9000}

@@ -1,0 +1,10 @@
+.motion-packet-overlay{position:absolute;left:0;top:0;overflow:visible;pointer-events:none;z-index:20}
+.motion-packet-layer{pointer-events:none;color:var(--color-path)}
+.motion-packet{fill:currentColor;transform-origin:0 0;will-change:transform}
+.motion-flow-dash{fill:currentColor;opacity:var(--motionPolicy-edgePast);transform-origin:0 0;will-change:transform}
+.motion-internal-route{fill:none;stroke:currentColor;stroke-width:1;opacity:var(--motionPolicy-edgePast);stroke-dasharray:4 4}
+.motion-data-arrival{position:absolute;z-index:35;right:0;top:0;padding:var(--space-half) var(--space-1);border-radius:var(--radius-control);background:var(--color-raised);border:1px solid var(--packet-color);color:var(--color-text);font:calc(var(--font-small) * var(--read-scale,1)) var(--font-family);line-height:1.4;max-width:320px;white-space:nowrap;pointer-events:none;box-shadow:0 4px 12px var(--color-shadow)}
+.runtime-method-row>.motion-data-arrival{top:calc(-1 * var(--space-1));transform:translateY(-100%)}
+.card-accessible>.motion-data-arrival{top:var(--space-half);right:var(--space-half)}
+
+.react-flow__edge.is-pointer-hover .react-flow__edge-path{stroke:var(--color-accent);opacity:1}

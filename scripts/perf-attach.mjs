@@ -1,0 +1,15 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import os from 'node:os';
+import {spawn} from 'node:child_process';
+import {guard,root} from './common.mjs';
+import {managedPath} from './managed-path.mjs';
+import {report} from './perf-report.mjs';
+guard();
+const get=name=>process.argv.find(value=>value.startsWith(`--${name}=`))?.slice(name.length+3),pid=Number(get('pid')),seconds=Number(get('seconds')||60),label=get('label')||`attach-${Date.now()}`;
+if(!Number.isSafeInteger(pid)||pid<=0||!Number.isFinite(seconds)||seconds<1||seconds>3600||!/^[a-z0-9_-]+$/i.test(label))throw Error('请输入合法的进程 PID 和测量时间');
+const output=managedPath(path.join(root,'.tmp/verification-p1-resources',label));if(await fs.stat(output).catch(()=>undefined))throw Error('测量名称已存在');await fs.mkdir(output,{recursive:true});
+const start=Date.now(),sampler=spawn('powershell.exe',['-NoProfile','-ExecutionPolicy','Bypass','-File',path.join(root,'scripts/perf-process-sampler.ps1'),'-RootPid',String(pid),'-Output',path.join(output,'processes.jsonl')],{cwd:root,env:process.env,windowsHide:true,stdio:'ignore'});
+await new Promise(resolve=>setTimeout(resolve,seconds*1000));sampler.kill();
+const run={mode:'attach',target:`PID ${pid}`,logicalCpus:os.cpus().length,cpu:os.cpus()[0]?.model,seconds,phases:[{name:'观察现有进程',start,end:Date.now()}],unavailable:['只读附加不含 Electron 内部指标、函数剖析和窗口状态；不知道用户在此期间是否操作。'],errors:[],notes:['每秒采样器本身有额外开销','少于采样间隔的子进程可能遗漏','用户进程保持运行，未发送任何操作']};
+await fs.writeFile(path.join(output,'run.json'),JSON.stringify(run,null,2));await fs.writeFile(path.join(output,'electron-metrics.json'),'[]');await report(output);

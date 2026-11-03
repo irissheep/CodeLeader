@@ -1,0 +1,39 @@
+.graph-canvas[data-dependency-lanes] .graph-region{background:var(--lanes-background);border:1px solid var(--lanes-border);border-radius:var(--radius-card);pointer-events:none;z-index:-1}
+.graph-canvas[data-dependency-lanes] .graph-region>span{font:400 calc(var(--lanes-subtitle)*var(--semantic-read-scale,1))/1.3 var(--font-family);top:var(--lanes-padding-px);left:var(--lanes-padding-px);color:var(--secondary);background:transparent}
+.graph-canvas[data-dependency-lanes] .dependency-lane-card{box-sizing:border-box;width:100%;height:100%;padding:var(--lanes-cardPadY-px) var(--lanes-padding-px);background:var(--hierarchy-card);border:1px solid var(--hierarchy-border);border-radius:var(--radius-card);box-shadow:none;overflow:hidden;position:relative;animation:up var(--lanes-entryDuration-ms) var(--viewMotion-moduleEase) backwards;animation-delay:var(--lane-enter-delay)}
+.graph-canvas[data-dependency-lanes] .lane-compact{border-radius:var(--radius-control)}
+.dependency-lane-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:var(--lanes-roleBar-px);background:var(--lane-color)}
+.graph-canvas[data-dependency-lanes] .lane-card-row{display:flex;min-height:0;line-height:1.2;align-items:center;gap:0}
+.graph-canvas[data-dependency-lanes] .lane-card-row>.layout-leading,.graph-canvas[data-dependency-lanes] .lane-card-row>.layout-tail{display:none}
+.graph-canvas[data-dependency-lanes] .lane-card-row .layout-text{min-width:0;width:100%;gap:0}
+.graph-canvas[data-dependency-lanes] .lane-card-row .layout-title{line-height:1.2;min-width:0;overflow:hidden}
+.graph-canvas[data-dependency-lanes] .lane-card-name{display:block;font:500 calc(var(--lanes-title)*var(--layout-read-scale,1))/1.2 var(--font-family);overflow:hidden;white-space:nowrap;text-overflow:ellipsis;max-height:none}
+.graph-canvas[data-dependency-lanes] .lane-card-row .layout-detail{font:400 calc(var(--lanes-subtitle)*var(--layout-read-scale,1))/1.1 var(--font-family);line-height:1.1;margin:0;min-height:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.lane-card-subtitle{display:block;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;color:var(--secondary)}
+.graph-canvas[data-dependency-lanes] .lane-common-chip{border-style:dashed}
+.graph-canvas[data-dependency-lanes] .lane-common-chip::before{opacity:var(--lanes-auxiliaryOpacity)}
+.lane-common-dots{position:absolute;right:var(--space-1);bottom:var(--space-half);display:flex;gap:var(--space-half);pointer-events:none}
+.lane-common-dots>i{width:var(--lanes-commonDot-px);height:var(--lanes-commonDot-px);border-radius:var(--radius-pill);background:var(--secondary)}
+.graph-canvas[data-dependency-lanes][data-lane-detail=small] .dependency-lane-card:not(.lane-common-chip) .layout-detail{display:none}
+.graph-canvas[data-dependency-lanes] .lane-unrelated{opacity:var(--lanes-unrelatedCardOpacity)}
+.graph-canvas[data-dependency-lanes][data-motion-mode] .card-accessible{opacity:1!important}
+.graph-canvas[data-dependency-lanes][data-motion-mode] .react-flow__edge[data-u2-hover]{opacity:1!important}
+.graph-canvas[data-dependency-lanes] .react-flow__edge.lane-unrelated{opacity:1}
+.graph-canvas[data-dependency-lanes] .react-flow__edge.lane-unrelated .react-flow__edge-path{opacity:var(--lanes-unrelatedOpacity)!important}
+.graph-canvas[data-dependency-lanes] .react-flow__edge.lane-related .react-flow__edge-path{opacity:var(--lanes-focusedOpacity)!important}
+.graph-canvas[data-dependency-lanes] .react-flow__edge:has(.lane-common-edge):not(.lane-related){pointer-events:none}
+.graph-canvas[data-dependency-lanes] .react-flow__edge:has(.lane-common-edge):not(.lane-related) .react-flow__edge-path{opacity:0!important}
+.graph-canvas[data-dependency-lanes] .react-flow__edge:has(.lane-common-edge).lane-related{pointer-events:all}
+.lane-edge-visual{animation:fade var(--viewMotion-lineDuration) var(--viewMotion-cardEase) var(--viewMotion-lineDelay) backwards;transition:opacity var(--viewMotion-dependencyTransition)}
+.graph-canvas[data-dependency-lanes] .dependency-lane-card,.graph-canvas[data-dependency-lanes] .react-flow__node,.graph-canvas[data-dependency-lanes] .react-flow__edge,.graph-canvas[data-dependency-lanes] .react-flow__edge-path{transition:opacity var(--viewMotion-dependencyTransition)}
+.lane-draw-mask{stroke-dasharray:1;stroke-dashoffset:0;animation:draw var(--lanes-drawDuration-ms) var(--viewMotion-cardEase) var(--viewMotion-drawDelay) backwards}
+.lane-implementation-label{position:absolute;padding:var(--space-half);font:400 calc(var(--lanes-subtitle)*var(--semantic-read-scale,1))/1.2 var(--font-family);background:var(--hierarchy-card);color:var(--secondary);pointer-events:none;border-radius:var(--radius-control)}
+.lane-skeleton .lane-card-row{opacity:0}.lane-skeleton::after{content:'';position:absolute;inset:var(--space-1) var(--lanes-padding-px);background:var(--hierarchy-block);border-radius:var(--radius-control)}
+.lane-skeleton-underlay{position:absolute;inset:0;background:var(--hierarchy-card);border:1px solid var(--hierarchy-border);border-radius:var(--radius-card);pointer-events:none}
+.lane-skeleton-underlay[data-active=false]{opacity:0}
+.lane-skeleton-underlay::after{content:'';position:absolute;inset:var(--space-1) var(--lanes-padding-px);background:var(--hierarchy-block);border-radius:var(--radius-control)}
+.lane-common-underlay{border-style:dashed}
+.graph-canvas[data-dependency-lanes] .lane-skeleton{animation:none;opacity:0}
+@keyframes draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+.graph-canvas:not(.motion) .dependency-lane-card,.graph-canvas:not(.motion) .lane-draw-mask,.graph-canvas:not(.motion) .lane-edge-visual,.reduce-motion .dependency-lane-card,.reduce-motion .lane-draw-mask,.reduce-motion .lane-edge-visual{animation:none}
+@media(prefers-reduced-motion:reduce){.dependency-lane-card,.lane-draw-mask,.lane-edge-visual{animation:none!important}}

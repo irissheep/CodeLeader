@@ -1,0 +1,10 @@
+.runtime-page-divider{position:relative;flex:0 0 8px;min-width:8px;touch-action:none;cursor:col-resize;z-index:16;outline:none}
+.runtime-shell.runtime-enabled>.execution-page{flex-shrink:1;min-width:320px}
+.runtime-shell.runtime-enabled>.runtime-canvas-stack{min-width:320px}
+.runtime-page-divider:after{content:'';position:absolute;left:3px;top:calc(50% - 28px);height:56px;width:2px;background:var(--line);border-radius:var(--radius-control)}
+.runtime-page-divider:hover:after,.runtime-page-divider:active:after,.runtime-page-divider:focus-visible:after{background:var(--accent)}
+.runtime-page-divider:focus-visible{outline:1px dashed var(--accent);outline-offset:-1px}
+.runtime-page-divider.is-collapsed{position:absolute;left:0;top:0;bottom:0;width:10px}
+.runtime-fit-overview{position:absolute;z-index:16;min-height:32px;padding:6px 10px;border:1px solid var(--line);border-radius:var(--radius-control);background:var(--surface);color:var(--text);font-size:var(--font-body);cursor:pointer}
+.runtime-fit-overview:hover{background:var(--surface-raised)}.runtime-fit-overview:focus-visible{outline:2px dashed var(--accent);outline-offset:2px}
+.runtime-fit-overview[hidden]{display:none}

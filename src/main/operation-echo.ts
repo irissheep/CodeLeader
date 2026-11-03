@@ -1,0 +1,34 @@
+import uiTokens from '../shared/ui-tokens';
+import {BrowserWindow} from 'electron';
+import type {BrowserOperation} from '../shared/execution';
+import {operationMark} from '../runtime/operation-evidence';
+type Anchor={x:number;y:number;visible:boolean;operationId?:string;preview?:string;reducedMotion?:boolean};
+const markup=`<!doctype html><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'">
+<style>html,body{margin:0;background:transparent;overflow:hidden;pointer-events:none;font:13px system-ui;color:${uiTokens.color["text"]}}svg{position:absolute;inset:0;width:100%;height:100%}.outline{position:absolute;border:2px solid ${uiTokens.color["compat-019"]};border-radius:7px;box-shadow:0 0 0 2px ${uiTokens.color["compat-020"]}}.badge,.value{position:absolute;background:${uiTokens.color["compat-021"]};border:1px solid ${uiTokens.color["compat-022"]};white-space:nowrap}.badge{display:grid;place-items:center;width:28px;height:28px;box-sizing:border-box;border-radius:50%;font:600 13px Consolas,monospace}.value{padding:3px 7px;border-radius:14px;font-size:12px;max-width:260px;overflow:hidden;text-overflow:ellipsis}.ring{position:absolute;border:1.5px solid ${uiTokens.color["compat-023"]};border-radius:50%;animation:ring var(--duration) ${uiTokens.motion.easeOut} both}.echo{position:absolute;inset:0;animation:fade var(--duration) ${uiTokens.motion.easeOut} both}@keyframes fade{0%,60%{opacity:1}100%{opacity:0}}@keyframes ring{0%{opacity:.9;transform:translateY(0)}100%{opacity:0;transform:translateY(-2px)}}.reduce .ring,.reduce .echo{animation:none}</style>
+<div id="root"></div><script>
+let timer;const root=document.getElementById('root');
+window.paintEcho=p=>{clearTimeout(timer);root.replaceChildren();document.body.className=p.reducedMotion?'reduce':'';const layer=document.createElement('div');layer.className='echo';layer.style.setProperty('--duration',p.duration+'ms');
+ for(const size of [20,38,56]){const ring=document.createElement('i');ring.className='ring';Object.assign(ring.style,{left:(p.x-size/2)+'px',top:(p.y-size/2)+'px',width:size+'px',height:size+'px'});layer.append(ring);}
+ if(p.mark){const r=p.rect,box=document.createElement('div');box.className='outline';Object.assign(box.style,{left:r.x+'px',top:r.y+'px',width:r.width+'px',height:r.height+'px'});layer.append(box);const badge=document.createElement('span');badge.className='badge';badge.textContent=p.mark;badge.style.left=Math.max(2,r.x+r.width-12)+'px';badge.style.top=Math.max(2,r.y-13)+'px';layer.append(badge);
+  if(p.target){const svg=document.createElementNS('http://www.w3.org/2000/svg','svg'),path=document.createElementNS(svg.namespaceURI,'path');path.setAttribute('d','M '+p.x+' '+p.y+' C '+(p.x+80)+' '+p.y+', '+(p.target.x-80)+' '+p.target.y+', '+p.target.x+' '+p.target.y);path.setAttribute('fill','none');path.setAttribute('stroke','${uiTokens.color["compat-024"]}');path.setAttribute('stroke-width','2');path.setAttribute('stroke-dasharray','6 5');svg.append(path);layer.prepend(svg);}
+  const value=document.createElement('span');value.className='value';value.id='echo-value';value.hidden=!p.preview;value.textContent=p.preview||'';value.style.left=Math.max(0,Math.min(innerWidth-270,(p.x+(p.target?.x||p.x))/2))+'px';value.style.top=Math.max(4,(p.y+(p.target?.y||p.y))/2-24)+'px';layer.append(value);
+ }
+ root.append(layer);timer=setTimeout(()=>root.replaceChildren(),p.duration);
+};window.echoValue=text=>{const node=document.getElementById('echo-value');if(node){node.textContent=text;node.hidden=!text;}};window.echoTarget=visible=>{if(!visible)for(const node of root.querySelectorAll('svg,.value'))node.remove();};</script>`;
+export class OperationEcho {
+ private view:BrowserWindow;private ready:Promise<void>;private anchor?:Anchor;private last?:{id:string;time:number;confirmed:boolean};private timer?:ReturnType<typeof setTimeout>;
+ constructor(private parent:BrowserWindow){
+  this.view=new BrowserWindow({parent,show:false,frame:false,transparent:true,focusable:false,skipTaskbar:true,hasShadow:false,resizable:false,webPreferences:{nodeIntegration:false,contextIsolation:true,sandbox:true,webSecurity:true}});
+  this.view.setIgnoreMouseEvents(true,{forward:true});this.ready=this.view.loadURL('data:text/html;charset=utf-8,'+encodeURIComponent(markup));void this.ready.catch(()=>{});
+  parent.on('move',this.reposition);parent.on('resize',this.reposition);parent.on('minimize',this.hide);parent.on('blur',this.hide);
+ }
+ private reposition=()=>{if(!this.view.isDestroyed())this.view.setBounds(this.parent.getContentBounds());};
+ private hide=()=>{if(!this.view.isDestroyed())this.view.hide();};
+ setAnchor(anchor:Anchor){const bounds=this.parent.getContentBounds();if(![anchor.x,anchor.y].every(Number.isFinite)||anchor.x<0||anchor.y<0||anchor.x>bounds.width||anchor.y>bounds.height)return;this.anchor={x:anchor.x,y:anchor.y,visible:!!anchor.visible,operationId:anchor.operationId,preview:anchor.preview?.slice(0,180),reducedMotion:!!anchor.reducedMotion};if(this.last?.confirmed&&this.last.id===anchor.operationId&&Date.now()-this.last.time<1500)void this.view.webContents.executeJavaScript(`window.echoTarget(${!!anchor.visible});window.echoValue(${JSON.stringify(anchor.preview||'')})`).catch(()=>{});}
+ show(operation:BrowserOperation,bounds:{x:number;y:number;width:number;height:number;visible:boolean},confirmed=true){
+  const click=operation.click;if(!click||!bounds.visible)return;this.last={id:operation.id,time:Date.now(),confirmed};const sx=bounds.width/click.viewport.width,sy=bounds.height/click.viewport.height,duration=parseFloat(confirmed?uiTokens.motion.echo:uiTokens.motion.phase);
+  const payload={x:bounds.x+click.x*sx,y:bounds.y+click.y*sy,rect:{x:bounds.x+click.rect.x*sx,y:bounds.y+click.rect.y*sy,width:click.rect.width*sx,height:click.rect.height*sy},mark:confirmed?operationMark(operation.number!):undefined,target:confirmed&&this.anchor?.visible?{x:this.anchor.x,y:this.anchor.y}:undefined,reducedMotion:this.anchor?.reducedMotion,preview:confirmed&&this.anchor?.operationId===operation.id?this.anchor.preview:undefined,duration};
+  void this.ready.then(async()=>{if(this.view.isDestroyed()||this.last?.id!==operation.id||this.last.confirmed!==confirmed||Date.now()-this.last.time>duration)return;this.reposition();await this.view.webContents.executeJavaScript(`window.paintEcho(${JSON.stringify(payload)})`);this.view.showInactive();clearTimeout(this.timer);this.timer=setTimeout(this.hide,duration+uiTokens.motionPolicy.echoCleanup);}).catch(()=>{});
+ }
+ close(){clearTimeout(this.timer);this.parent.removeListener('move',this.reposition);this.parent.removeListener('resize',this.reposition);this.parent.removeListener('minimize',this.hide);this.parent.removeListener('blur',this.hide);if(!this.view.isDestroyed())this.view.destroy();}
+}

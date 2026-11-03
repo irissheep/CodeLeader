@@ -1,0 +1,548 @@
+{
+  "schema": 1,
+  "id": "petclinic",
+  "commit": "500158f732419217507c7656904b8e6aa1bcc0d6",
+  "reviewed": "2026-10-24",
+  "review": "先读目录、构建、启动/路由、HTTP封装和资源配置，再独立按注解/装饰器/语法统计；不导入产品分析代码。",
+  "units": {
+    "backend": {
+      "count": 1,
+      "items": [
+        {
+          "root": ".",
+          "evidence": [
+            {
+              "file": "pom.xml",
+              "line": 1,
+              "sha256": "7979e9f7fa4123290fe657c75357fa8b54323d1f2b00a8e7c6f888e234e9d52d"
+            }
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "file": "pom.xml",
+          "line": 1,
+          "sha256": "7979e9f7fa4123290fe657c75357fa8b54323d1f2b00a8e7c6f888e234e9d52d"
+        },
+        {
+          "file": "src/main/java/org/springframework/samples/petclinic/PetClinicApplication.java",
+          "line": 1,
+          "sha256": "9d99b4b59cc6e185e9a27964b24ede04180ca34211a7e19f968249ee3dac9df3"
+        }
+      ]
+    },
+    "frontend": {
+      "count": 0,
+      "items": [],
+      "evidence": [
+        {
+          "file": "pom.xml",
+          "line": 1,
+          "sha256": "7979e9f7fa4123290fe657c75357fa8b54323d1f2b00a8e7c6f888e234e9d52d"
+        },
+        {
+          "file": "src/main/java/org/springframework/samples/petclinic/PetClinicApplication.java",
+          "line": 1,
+          "sha256": "9d99b4b59cc6e185e9a27964b24ede04180ca34211a7e19f968249ee3dac9df3"
+        }
+      ]
+    },
+    "python": {
+      "count": 0,
+      "items": [],
+      "evidence": [
+        {
+          "file": "pom.xml",
+          "line": 1,
+          "sha256": "7979e9f7fa4123290fe657c75357fa8b54323d1f2b00a8e7c6f888e234e9d52d"
+        },
+        {
+          "file": "src/main/java/org/springframework/samples/petclinic/PetClinicApplication.java",
+          "line": 1,
+          "sha256": "9d99b4b59cc6e185e9a27964b24ede04180ca34211a7e19f968249ee3dac9df3"
+        }
+      ]
+    }
+  },
+  "infrastructure": {
+    "count": 3,
+    "items": [
+      {
+        "name": "H2",
+        "kind": "database",
+        "condition": "default",
+        "evidence": [
+          {
+            "file": "pom.xml",
+            "line": 1,
+            "sha256": "7979e9f7fa4123290fe657c75357fa8b54323d1f2b00a8e7c6f888e234e9d52d"
+          }
+        ]
+      },
+      {
+        "name": "MySQL",
+        "kind": "database",
+        "condition": "profile=mysql",
+        "evidence": [
+          {
+            "file": "src/main/resources/application-mysql.properties",
+            "line": 1,
+            "sha256": "0f70b73eef1979cbfc28843c1afd08c3dfca691deb19b66e99bfefe7d88a7de8"
+          }
+        ]
+      },
+      {
+        "name": "PostgreSQL",
+        "kind": "database",
+        "condition": "profile=postgres",
+        "evidence": [
+          {
+            "file": "src/main/resources/application-postgres.properties",
+            "line": 1,
+            "sha256": "751dad09e0ec5dfcb744761152c9062030cecfc4fb96af760ebd818976883287"
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "file": "pom.xml",
+        "line": 1,
+        "sha256": "7979e9f7fa4123290fe657c75357fa8b54323d1f2b00a8e7c6f888e234e9d52d"
+      },
+      {
+        "file": "src/main/java/org/springframework/samples/petclinic/PetClinicApplication.java",
+        "line": 1,
+        "sha256": "9d99b4b59cc6e185e9a27964b24ede04180ca34211a7e19f968249ee3dac9df3"
+      }
+    ]
+  },
+  "http": {
+    "count": 17,
+    "items": [
+      {
+        "method": "GET",
+        "path": "/owners/new",
+        "module": "OwnerController",
+        "name": "initCreationForm",
+        "file": "src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java",
+        "line": 72,
+        "evidence": [
+          {
+            "file": "src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java",
+            "line": 72,
+            "sha256": "611115841f671065ca2796fbb096102d56ce6aafd20bfe9a264f0a6968cca3ff"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/owners/new",
+        "module": "OwnerController",
+        "name": "processCreationForm",
+        "file": "src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java",
+        "line": 77,
+        "evidence": [
+          {
+            "file": "src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java",
+            "line": 77,
+            "sha256": "611115841f671065ca2796fbb096102d56ce6aafd20bfe9a264f0a6968cca3ff"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/owners/find",
+        "module": "OwnerController",
+        "name": "initFindForm",
+        "file": "src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java",
+        "line": 89,
+        "evidence": [
+          {
+            "file": "src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java",
+            "line": 89,
+            "sha256": "611115841f671065ca2796fbb096102d56ce6aafd20bfe9a264f0a6968cca3ff"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/owners",
+        "module": "OwnerController",
+        "name": "processFindForm",
+        "file": "src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java",
+        "line": 94,
+        "evidence": [
+          {
+            "file": "src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java",
+            "line": 94,
+            "sha256": "611115841f671065ca2796fbb096102d56ce6aafd20bfe9a264f0a6968cca3ff"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/owners/{ownerId}/edit",
+        "module": "OwnerController",
+        "name": "initUpdateOwnerForm",
+        "file": "src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java",
+        "line": 148,
+        "evidence": [
+          {
+            "file": "src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java",
+            "line": 148,
+            "sha256": "611115841f671065ca2796fbb096102d56ce6aafd20bfe9a264f0a6968cca3ff"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/owners/{ownerId}/edit",
+        "module": "OwnerController",
+        "name": "processUpdateOwnerForm",
+        "file": "src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java",
+        "line": 153,
+        "evidence": [
+          {
+            "file": "src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java",
+            "line": 153,
+            "sha256": "611115841f671065ca2796fbb096102d56ce6aafd20bfe9a264f0a6968cca3ff"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/owners/{ownerId}",
+        "module": "OwnerController",
+        "name": "showOwner",
+        "file": "src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java",
+        "line": 178,
+        "evidence": [
+          {
+            "file": "src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java",
+            "line": 178,
+            "sha256": "611115841f671065ca2796fbb096102d56ce6aafd20bfe9a264f0a6968cca3ff"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/owners/{ownerId}/pets/new",
+        "module": "PetController",
+        "name": "initCreationForm",
+        "file": "src/main/java/org/springframework/samples/petclinic/owner/PetController.java",
+        "line": 100,
+        "evidence": [
+          {
+            "file": "src/main/java/org/springframework/samples/petclinic/owner/PetController.java",
+            "line": 100,
+            "sha256": "1a8a8097ff334b85d3a62c4df79ec52c2dbee8777925970e140081cff7e7c25e"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/owners/{ownerId}/pets/new",
+        "module": "PetController",
+        "name": "processCreationForm",
+        "file": "src/main/java/org/springframework/samples/petclinic/owner/PetController.java",
+        "line": 107,
+        "evidence": [
+          {
+            "file": "src/main/java/org/springframework/samples/petclinic/owner/PetController.java",
+            "line": 107,
+            "sha256": "1a8a8097ff334b85d3a62c4df79ec52c2dbee8777925970e140081cff7e7c25e"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/owners/{ownerId}/pets/{petId}/edit",
+        "module": "PetController",
+        "name": "initUpdateForm",
+        "file": "src/main/java/org/springframework/samples/petclinic/owner/PetController.java",
+        "line": 139,
+        "evidence": [
+          {
+            "file": "src/main/java/org/springframework/samples/petclinic/owner/PetController.java",
+            "line": 139,
+            "sha256": "1a8a8097ff334b85d3a62c4df79ec52c2dbee8777925970e140081cff7e7c25e"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/owners/{ownerId}/pets/{petId}/edit",
+        "module": "PetController",
+        "name": "processUpdateForm",
+        "file": "src/main/java/org/springframework/samples/petclinic/owner/PetController.java",
+        "line": 144,
+        "evidence": [
+          {
+            "file": "src/main/java/org/springframework/samples/petclinic/owner/PetController.java",
+            "line": 144,
+            "sha256": "1a8a8097ff334b85d3a62c4df79ec52c2dbee8777925970e140081cff7e7c25e"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/owners/{ownerId}/pets/{petId}/visits/new",
+        "module": "VisitController",
+        "name": "initNewVisitForm",
+        "file": "src/main/java/org/springframework/samples/petclinic/owner/VisitController.java",
+        "line": 90,
+        "evidence": [
+          {
+            "file": "src/main/java/org/springframework/samples/petclinic/owner/VisitController.java",
+            "line": 90,
+            "sha256": "b7c8f9cb7b2b2b5827d85787d1f18c95762a0213760013cef9d0a9e1c2c0f8d8"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/owners/{ownerId}/pets/{petId}/visits/new",
+        "module": "VisitController",
+        "name": "processNewVisitForm",
+        "file": "src/main/java/org/springframework/samples/petclinic/owner/VisitController.java",
+        "line": 97,
+        "evidence": [
+          {
+            "file": "src/main/java/org/springframework/samples/petclinic/owner/VisitController.java",
+            "line": 97,
+            "sha256": "b7c8f9cb7b2b2b5827d85787d1f18c95762a0213760013cef9d0a9e1c2c0f8d8"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/oups",
+        "module": "CrashController",
+        "name": "triggerException",
+        "file": "src/main/java/org/springframework/samples/petclinic/system/CrashController.java",
+        "line": 31,
+        "evidence": [
+          {
+            "file": "src/main/java/org/springframework/samples/petclinic/system/CrashController.java",
+            "line": 31,
+            "sha256": "d7c003dc6357596eefa345eff63ecf3909a50238e030e3c93f09426e537ba517"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/",
+        "module": "WelcomeController",
+        "name": "welcome",
+        "file": "src/main/java/org/springframework/samples/petclinic/system/WelcomeController.java",
+        "line": 25,
+        "evidence": [
+          {
+            "file": "src/main/java/org/springframework/samples/petclinic/system/WelcomeController.java",
+            "line": 25,
+            "sha256": "cfdffa794c8ec7a0c634a7d39d39f9abc1dd2ddc4b4d7a591b341136015a6f66"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/vets.html",
+        "module": "VetController",
+        "name": "showVetList",
+        "file": "src/main/java/org/springframework/samples/petclinic/vet/VetController.java",
+        "line": 45,
+        "evidence": [
+          {
+            "file": "src/main/java/org/springframework/samples/petclinic/vet/VetController.java",
+            "line": 45,
+            "sha256": "8fb67351a3d4b28c220a870178cb72998ef6dfaa303dd65f2e8c242eb2ddbbfa"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/vets",
+        "module": "VetController",
+        "name": "showResourcesVetList",
+        "file": "src/main/java/org/springframework/samples/petclinic/vet/VetController.java",
+        "line": 72,
+        "evidence": [
+          {
+            "file": "src/main/java/org/springframework/samples/petclinic/vet/VetController.java",
+            "line": 72,
+            "sha256": "8fb67351a3d4b28c220a870178cb72998ef6dfaa303dd65f2e8c242eb2ddbbfa"
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "file": "pom.xml",
+        "line": 1,
+        "sha256": "7979e9f7fa4123290fe657c75357fa8b54323d1f2b00a8e7c6f888e234e9d52d"
+      },
+      {
+        "file": "src/main/java/org/springframework/samples/petclinic/PetClinicApplication.java",
+        "line": 1,
+        "sha256": "9d99b4b59cc6e185e9a27964b24ede04180ca34211a7e19f968249ee3dac9df3"
+      }
+    ]
+  },
+  "modules": {
+    "count": 6,
+    "items": [
+      {
+        "name": "OwnerController",
+        "count": 7,
+        "files": [
+          "src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java"
+        ],
+        "evidence": [
+          {
+            "file": "src/main/java/org/springframework/samples/petclinic/owner/OwnerController.java",
+            "line": 1,
+            "sha256": "611115841f671065ca2796fbb096102d56ce6aafd20bfe9a264f0a6968cca3ff"
+          }
+        ]
+      },
+      {
+        "name": "PetController",
+        "count": 4,
+        "files": [
+          "src/main/java/org/springframework/samples/petclinic/owner/PetController.java"
+        ],
+        "evidence": [
+          {
+            "file": "src/main/java/org/springframework/samples/petclinic/owner/PetController.java",
+            "line": 1,
+            "sha256": "1a8a8097ff334b85d3a62c4df79ec52c2dbee8777925970e140081cff7e7c25e"
+          }
+        ]
+      },
+      {
+        "name": "VisitController",
+        "count": 2,
+        "files": [
+          "src/main/java/org/springframework/samples/petclinic/owner/VisitController.java"
+        ],
+        "evidence": [
+          {
+            "file": "src/main/java/org/springframework/samples/petclinic/owner/VisitController.java",
+            "line": 1,
+            "sha256": "b7c8f9cb7b2b2b5827d85787d1f18c95762a0213760013cef9d0a9e1c2c0f8d8"
+          }
+        ]
+      },
+      {
+        "name": "CrashController",
+        "count": 1,
+        "files": [
+          "src/main/java/org/springframework/samples/petclinic/system/CrashController.java"
+        ],
+        "evidence": [
+          {
+            "file": "src/main/java/org/springframework/samples/petclinic/system/CrashController.java",
+            "line": 1,
+            "sha256": "d7c003dc6357596eefa345eff63ecf3909a50238e030e3c93f09426e537ba517"
+          }
+        ]
+      },
+      {
+        "name": "WelcomeController",
+        "count": 1,
+        "files": [
+          "src/main/java/org/springframework/samples/petclinic/system/WelcomeController.java"
+        ],
+        "evidence": [
+          {
+            "file": "src/main/java/org/springframework/samples/petclinic/system/WelcomeController.java",
+            "line": 1,
+            "sha256": "cfdffa794c8ec7a0c634a7d39d39f9abc1dd2ddc4b4d7a591b341136015a6f66"
+          }
+        ]
+      },
+      {
+        "name": "VetController",
+        "count": 2,
+        "files": [
+          "src/main/java/org/springframework/samples/petclinic/vet/VetController.java"
+        ],
+        "evidence": [
+          {
+            "file": "src/main/java/org/springframework/samples/petclinic/vet/VetController.java",
+            "line": 1,
+            "sha256": "8fb67351a3d4b28c220a870178cb72998ef6dfaa303dd65f2e8c242eb2ddbbfa"
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "file": "pom.xml",
+        "line": 1,
+        "sha256": "7979e9f7fa4123290fe657c75357fa8b54323d1f2b00a8e7c6f888e234e9d52d"
+      },
+      {
+        "file": "src/main/java/org/springframework/samples/petclinic/PetClinicApplication.java",
+        "line": 1,
+        "sha256": "9d99b4b59cc6e185e9a27964b24ede04180ca34211a7e19f968249ee3dac9df3"
+      }
+    ]
+  },
+  "frontend": {
+    "pages": {
+      "count": 0,
+      "items": [],
+      "evidence": [
+        {
+          "file": "pom.xml",
+          "line": 1,
+          "sha256": "7979e9f7fa4123290fe657c75357fa8b54323d1f2b00a8e7c6f888e234e9d52d"
+        },
+        {
+          "file": "src/main/java/org/springframework/samples/petclinic/PetClinicApplication.java",
+          "line": 1,
+          "sha256": "9d99b4b59cc6e185e9a27964b24ede04180ca34211a7e19f968249ee3dac9df3"
+        }
+      ]
+    },
+    "api": {
+      "count": 0,
+      "items": [],
+      "evidence": [
+        {
+          "file": "pom.xml",
+          "line": 1,
+          "sha256": "7979e9f7fa4123290fe657c75357fa8b54323d1f2b00a8e7c6f888e234e9d52d"
+        },
+        {
+          "file": "src/main/java/org/springframework/samples/petclinic/PetClinicApplication.java",
+          "line": 1,
+          "sha256": "9d99b4b59cc6e185e9a27964b24ede04180ca34211a7e19f968249ee3dac9df3"
+        }
+      ]
+    }
+  },
+  "size": {
+    "files": 132,
+    "classes": 25,
+    "classScope": "生产 Java class/interface、Python class 及选择的前端 class 声明；不含测试",
+    "evidence": [
+      {
+        "file": "pom.xml",
+        "line": 1,
+        "sha256": "7979e9f7fa4123290fe657c75357fa8b54323d1f2b00a8e7c6f888e234e9d52d"
+      },
+      {
+        "file": "src/main/java/org/springframework/samples/petclinic/PetClinicApplication.java",
+        "line": 1,
+        "sha256": "9d99b4b59cc6e185e9a27964b24ede04180ca34211a7e19f968249ee3dac9df3"
+      }
+    ]
+  },
+  "notes": [
+    "服务器渲染页面不另算独立前端单元；接口统计用户源码映射，不包括框架自动提供的 Actuator、错误和静态文件入口。"
+  ]
+}

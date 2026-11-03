@@ -1,0 +1,384 @@
+{
+  "version": 1,
+  "thresholds": {
+    "looseCards": {
+      "value": 5,
+      "why": "至多五个顶层对象时，用较大的卡和间距保持小项目的阅读重心。"
+    },
+    "standardCards": {
+      "value": 15,
+      "why": "沿用主干的十五卡阅读预算；更大范围改用紧凑内容。"
+    },
+    "compactModules": {
+      "value": 8,
+      "why": "超过八个模块不再堆同权重的文字芯片，以瓦片保留每个入口。"
+    },
+    "looseScale": {
+      "value": 1.25,
+      "why": "宽松卡最多放大四分之一，不随画布无限膨胀。"
+    },
+    "looseGap": {
+      "value": 96,
+      "why": "宽松卡之间保留十二个八像素栅格，仍留给正交连线空间。"
+    },
+    "standardGap": {
+      "value": 64,
+      "why": "标准图八个栅格的横向间距，避免卡边标签拥挤。"
+    },
+    "resourceGap": {
+      "value": 48,
+      "why": "资源放在应用下方，六个栅格留给读写线。"
+    },
+    "padding": {
+      "value": 24,
+      "why": "取景四周三个栅格，保持卡片与窗口控件分开。"
+    },
+    "minGap": {
+      "value": 16,
+      "why": "相邻卡至少两个栅格，作为取景缩放时的最小屏幕间距目标。"
+    },
+    "minOccupation": {
+      "value": 0.25,
+      "why": "小图包围盒至少占四分之一画布，避免缩成中央的小块。"
+    },
+    "maxZoom": {
+      "value": 1.8,
+      "why": "沿用图库缩放上限；小图允许比默认取景更大，但不无限放大。"
+    },
+    "slenderRatio": {
+      "value": 2.2,
+      "why": "高宽比超过2.2时，以双列阅读替代窄长单列；只在首次构图判断。"
+    },
+    "pillZoom": {
+      "value": 0.68,
+      "why": "低于此比例时十三像素正文不足九屏幕像素，改读图标和名称。"
+    },
+    "summaryZoom": {
+      "value": 0.78,
+      "why": "低于约八成时模块文字及其间距不足以同时保持可读，先收起叶子并保留组名。"
+    },
+    "leafMetricsZoom": {
+      "value": 0.9,
+      "why": "模块块高度缩到约九成时，保留名称优先，先隐藏会与名称抢行高的次要计数。"
+    },
+    "applicationZoom": {
+      "value": 0.68,
+      "why": "沿用已有药丸档与其回差，约三分之二尺寸时转成应用名及计数。"
+    },
+    "overviewZoom": {
+      "value": 0.34,
+      "why": "沿用已有图标档与其回差，约三分之一尺寸时改为图标与可容纳的名称。"
+    },
+    "overviewLabelHeight": {
+      "value": 20,
+      "why": "按十四像素标题及行高预留二十屏幕像素，用于避免远景名称相互覆盖。"
+    },
+    "overviewLabelGap": {
+      "value": 3,
+      "why": "名称与图标及其他名称之间保留三个屏幕像素，以免抗锯齿边缘相碰。"
+    },
+    "overviewLabelWidth": {
+      "value": 140,
+      "why": "远景名称最多占一百四十屏幕像素，更长名称由详情和悬停查看。"
+    },
+    "applicationLabelReserve": {
+      "value": 32,
+      "why": "应用摘要中为图标和内边距预留三十二屏幕像素，剩余宽度不足时不显示截断名称。"
+    },
+    "dotZoom": {
+      "value": 0.34,
+      "why": "再缩一半时文字不再可读，只保留可放大查看的图标。"
+    },
+    "zoomHysteresis": {
+      "value": 0.08,
+      "why": "用户缩放预算：进入和退出档位分别以阈值的8%回差，避免边界来回切换。"
+    },
+    "pillHeight": {
+      "value": 64,
+      "why": "两行名称与角色图标所需的固定阅读高度。"
+    },
+    "dotSize": {
+      "value": 80,
+      "why": "远景仍留给图标、阶段点和点击目标。"
+    },
+    "tileColumns": {
+      "value": 8,
+      "why": "一条八块，二十四模块可在三条内阅读且全部可点。"
+    },
+    "tileStep": {
+      "value": 40,
+      "why": "瓦片32像素加8像素间距，保持点击面积。"
+    },
+    "tileMaxRows": {
+      "value": 5,
+      "why": "最多五条瓦片后内部滚动，不让大模块列表吃掉整个画布。"
+    },
+    "maxRouteRatio": {
+      "value": 1.6,
+      "why": "按本轮要求限制绕线；优先短正交路线，不为避交叉绕回卡背。"
+    },
+    "routeClearance": {
+      "value": 10,
+      "why": "沿用正交避障安全距离，避免擦过卡角。"
+    },
+    "routeEscape": {
+      "value": 16,
+      "why": "端口向外两个栅格后再转向，同向边共享这段出线。"
+    },
+    "cornerRadius": {
+      "value": 8,
+      "why": "正交线转角沿用八像素栅格。"
+    },
+    "pillMinScreenHeight": {
+      "value": 40,
+      "why": "远景药丸仍容纳两行十三像素屏幕文字。"
+    },
+    "dotMinScreenSize": {
+      "value": 32,
+      "why": "图标档保留三十二像素的屏幕点击目标。"
+    },
+    "pillIconPixels": {
+      "value": 18,
+      "why": "名称药丸的图标采用现有十八像素阅读大小。"
+    },
+    "dotIconPixels": {
+      "value": 20,
+      "why": "图标档保留二十像素可辨图形。"
+    },
+    "minimumZoom": {
+      "value": 0.15,
+      "why": "沿用静态画布最小缩放；放不下时仍可主动平移和放大。"
+    }
+  },
+  "roles": {
+    "browser": {
+      "label": "浏览器",
+      "icon": "Globe",
+      "color": "receive",
+      "basis": "已有浏览器节点身份"
+    },
+    "frontend": {
+      "label": "前端",
+      "icon": "PanelsTopLeft",
+      "color": "receive",
+      "basis": "已识别前端单元"
+    },
+    "backend": {
+      "label": "后端",
+      "icon": "Server",
+      "color": "business",
+      "basis": "已识别应用单元"
+    },
+    "python": {
+      "label": "Python 服务",
+      "icon": "Code2",
+      "color": "business",
+      "basis": "应用单元的语言为Python"
+    },
+    "database": {
+      "label": "数据库",
+      "icon": "Database",
+      "color": "data",
+      "basis": "资源的数据库类别"
+    },
+    "cache": {
+      "label": "缓存",
+      "icon": "Layers",
+      "color": "data",
+      "basis": "资源的缓存类别"
+    },
+    "search": {
+      "label": "搜索与向量",
+      "icon": "Search",
+      "color": "data",
+      "basis": "资源的搜索或向量类别"
+    },
+    "queue": {
+      "label": "消息队列",
+      "icon": "MessagesSquare",
+      "color": "data",
+      "basis": "资源的消息类别"
+    },
+    "external": {
+      "label": "项目外接口",
+      "icon": "Globe",
+      "color": "receive",
+      "basis": "已确认项目外地址或外部资源"
+    },
+    "file": {
+      "label": "文件",
+      "icon": "FileCode2",
+      "color": "receive",
+      "basis": "已有源码文件或文件资源身份"
+    },
+    "code": {
+      "label": "业务代码",
+      "icon": "Code2",
+      "color": "business",
+      "basis": "已有方法、类或模块身份"
+    },
+    "entry": {
+      "label": "入口",
+      "icon": "Route",
+      "color": "receive",
+      "basis": "已有入口或控制层角色"
+    },
+    "data": {
+      "label": "数据访问",
+      "icon": "Database",
+      "color": "data",
+      "basis": "已有依赖视图数据层角色"
+    },
+    "common": {
+      "label": "公共代码",
+      "icon": "Box",
+      "color": "receive",
+      "basis": "已有公共或配置角色"
+    },
+    "unknown": {
+      "label": "未知",
+      "icon": "CircleHelp",
+      "color": "receive",
+      "basis": "没有足够的已识别角色，使用中性外观"
+    }
+  },
+  "resourceRoles": {
+    "database": "database",
+    "relational": "database",
+    "cache": "cache",
+    "search": "search",
+    "vector": "search",
+    "message": "queue",
+    "queue": "queue",
+    "file": "file",
+    "external": "external",
+    "model": "external"
+  },
+  "dependencyRoles": {
+    "controller": {
+      "appearance": "entry",
+      "lane": "entry",
+      "basis": "沿用已识别职责；只决定外观与阅读泳道，不改变源码角色。"
+    },
+    "service": {
+      "appearance": "code",
+      "lane": "business",
+      "basis": "沿用已识别职责；只决定外观与阅读泳道，不改变源码角色。"
+    },
+    "service-interface": {
+      "appearance": "code",
+      "lane": "business",
+      "basis": "沿用已识别职责；只决定外观与阅读泳道，不改变源码角色。"
+    },
+    "data": {
+      "appearance": "data",
+      "lane": "data",
+      "basis": "沿用已识别职责；只决定外观与阅读泳道，不改变源码角色。"
+    },
+    "mapper": {
+      "appearance": "data",
+      "lane": "data",
+      "basis": "沿用已识别职责；只决定外观与阅读泳道，不改变源码角色。"
+    },
+    "entity": {
+      "appearance": "data",
+      "lane": "object",
+      "basis": "沿用已识别职责；只决定外观与阅读泳道，不改变源码角色。"
+    },
+    "object": {
+      "appearance": "data",
+      "lane": "object",
+      "basis": "沿用已识别职责；只决定外观与阅读泳道，不改变源码角色。"
+    },
+    "config": {
+      "appearance": "common",
+      "lane": "common",
+      "basis": "沿用已识别职责；只决定外观与阅读泳道，不改变源码角色。"
+    },
+    "tool": {
+      "appearance": "common",
+      "lane": "common",
+      "basis": "沿用已识别职责；只决定外观与阅读泳道，不改变源码角色。"
+    },
+    "page": {
+      "appearance": "frontend",
+      "lane": "entry",
+      "basis": "沿用已识别职责；只决定外观与阅读泳道，不改变源码角色。"
+    },
+    "component": {
+      "appearance": "frontend",
+      "lane": "business",
+      "basis": "沿用已识别职责；只决定外观与阅读泳道，不改变源码角色。"
+    },
+    "api": {
+      "appearance": "code",
+      "lane": "business",
+      "basis": "沿用已识别职责；只决定外观与阅读泳道，不改变源码角色。"
+    },
+    "state": {
+      "appearance": "common",
+      "lane": "data",
+      "basis": "沿用已识别职责；只决定外观与阅读泳道，不改变源码角色。"
+    },
+    "file": {
+      "appearance": "file",
+      "lane": "business",
+      "basis": "沿用已识别职责；只决定外观与阅读泳道，不改变源码角色。"
+    },
+    "module": {
+      "appearance": "code",
+      "lane": "business",
+      "basis": "沿用已识别职责；只决定外观与阅读泳道，不改变源码角色。"
+    },
+    "cycle": {
+      "appearance": "code",
+      "lane": "business",
+      "basis": "沿用已识别职责；只决定外观与阅读泳道，不改变源码角色。"
+    },
+    "common": {
+      "appearance": "common",
+      "lane": "common",
+      "basis": "沿用已识别职责；只决定外观与阅读泳道，不改变源码角色。"
+    },
+    "frontend-page": {
+      "appearance": "frontend",
+      "lane": "entry",
+      "basis": "沿用已识别职责；只决定外观与阅读泳道，不改变源码角色。"
+    },
+    "frontend-api": {
+      "appearance": "code",
+      "lane": "business",
+      "basis": "沿用已识别职责；只决定外观与阅读泳道，不改变源码角色。"
+    },
+    "frontend-utility": {
+      "appearance": "common",
+      "lane": "common",
+      "basis": "沿用已识别职责；只决定外观与阅读泳道，不改变源码角色。"
+    },
+    "mapping": {
+      "appearance": "data",
+      "lane": "data",
+      "basis": "沿用已识别职责；只决定外观与阅读泳道，不改变源码角色。"
+    },
+    "other": {
+      "appearance": "unknown",
+      "lane": "business",
+      "basis": "沿用已识别职责；只决定外观与阅读泳道，不改变源码角色。"
+    },
+    "frontend-component": {
+      "appearance": "frontend",
+      "lane": "business",
+      "basis": "与前端/基类的现有结构角色共用一张外观映射。"
+    },
+    "frontend-store": {
+      "appearance": "common",
+      "lane": "data",
+      "basis": "与前端/基类的现有结构角色共用一张外观映射。"
+    },
+    "base": {
+      "appearance": "common",
+      "lane": "common",
+      "basis": "与前端/基类的现有结构角色共用一张外观映射。"
+    }
+  }
+}

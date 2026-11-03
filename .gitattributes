@@ -1,0 +1,4 @@
+# Frozen reference evidence is verified byte-for-byte across clones.
+corpus/public/** -text
+# Keep the portable hook executable by POSIX shells on Windows too.
+.githooks/pre-commit text eol=lf

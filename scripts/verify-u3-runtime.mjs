@@ -1,0 +1,10 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import {guard,root} from './common.mjs';
+import {runMotionUI} from './verify-u2-ui.mjs';
+guard();
+const output=path.join(root,'.tmp/verification-u3-adaptive-look/runtime-regression');
+await fs.mkdir(path.join(output,'after'),{recursive:true});
+await fs.copyFile(path.join(root,'.tmp/verification-u2-motion/inputs.json'),path.join(output,'inputs.json'));
+await fs.writeFile(path.join(output,'after/results.json'),JSON.stringify({regression:true,clips:[],errors:[]}));
+await runMotionUI(root,output,'after');

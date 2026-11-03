@@ -1,0 +1,379 @@
+{
+  "version": 1,
+  "thresholds": {
+    "classesPerPackage": {
+      "value": 8,
+      "why": "八张类卡仍能在常见桌面宽度以少量列阅读；更大的包先呈现类数和角色，用户可展开。"
+    },
+    "visibleClasses": {
+      "value": 12,
+      "why": "五层主线各保留代表类和相应 XML 后，仍给公共与输入输出类型留位；更宽的链把其余事实收进可展开卡，保证默认字号可读。"
+    },
+    "cardWidth": {
+      "value": 252,
+      "why": "保留普通 Java 类名与 13px 角色文字的可读宽度。"
+    },
+    "cardHeight": {
+      "value": 122,
+      "why": "容纳类名、角色与展开或源码操作，不沿用大空卡。"
+    },
+    "columnGap": {
+      "value": 66,
+      "why": "给相邻卡片之间保留独立布线通道。"
+    },
+    "rowGap": {
+      "value": 84,
+      "why": "给相邻角色层之间的连线、标签留空间。"
+    },
+    "margin": {
+      "value": 52,
+      "why": "保留画布阅读边距。"
+    },
+    "transitionMs": {
+      "value": 220,
+      "why": "局部移动低于 250ms，配合现有减少动效设置。"
+    },
+    "orderPasses": {
+      "value": 4,
+      "why": "上下各两次邻居重心排序，降低交叉且保持可重复，不按样本调参。"
+    },
+    "routePasses": {
+      "value": 4,
+      "why": "短正交通道最多协调四轮；每次必须减少真实成员线交叉，没有改善立即停止，不改变节点预算。"
+    },
+    "sharedIncomingRatio": {
+      "value": 0.5,
+      "why": "本轮要求：入边数达到可见节点数的一半，或具有配置/工具角色时，作为公共使用点放到侧边；不改变识别角色和真实关系。"
+    },
+    "channelGap": {
+      "value": 8,
+      "why": "相邻成员线留一个间距栅格；普通边使用独立隐形端口，公共目标允许共用末端主干，仍保留逐条路径和来源。"
+    },
+    "memberMenuWidth": {
+      "value": 380,
+      "why": "沿用现有关系列表的最大宽度，在画布内定位成员菜单而不压缩正文。"
+    },
+    "memberMenuHeight": {
+      "value": 240,
+      "why": "成员列表按需滚动，最多预留约六行与关闭入口，避免窄画布下越过底部。"
+    },
+    "crossingCost": {
+      "value": 300,
+      "why": "依赖布线宁可多绕约一张卡宽也优先避免一次交叉；只用于本视图，不改变主干与回放路由。"
+    },
+    "laneExactPermutations": {
+      "value": 24,
+      "why": "至多4!个排列完整评估。720个排列在多关系折叠图上曾耗时约20秒，因此采用统一24次精确预算；超过后使用固定种子的有限搜索，不按项目调整。"
+    },
+    "laneAnnealIterations": {
+      "value": 640,
+      "why": "对默认十二卡提供有限交换搜索；只在Worker运行，相同种子与输入保持相同结果。"
+    },
+    "laneSeed": {
+      "value": 1979,
+      "why": "固定伪随机序列，只用于层内排序，不使用时间或项目身份作种子。"
+    },
+    "laneWideAspect": {
+      "value": 1.4,
+      "why": "按本轮规格，首次宽高比超过1.4用列；同项目随后只缩放，不切换泳道方向。"
+    },
+    "laneCompactCount": {
+      "value": 5,
+      "why": "本轮要求，同泳道超过五卡用紧凑块，保留全部身份与展开能力。"
+    },
+    "laneMaxBends": {
+      "value": 4,
+      "why": "本轮走线限制，最多四折；跨泳道仅使用相邻间隙或边侧通道。"
+    },
+    "laneRouteChoices": {
+      "value": 7,
+      "why": "在相邻泳道间均匀试七个通道位置，有限搜索独立端口，避免长时间主线程工作。"
+    },
+    "laneInvalidCost": {
+      "value": 1000000000000,
+      "why": "有穿卡的方案永远劣于有效路线。"
+    },
+    "laneMainCrossingCost": {
+      "value": 1000000000,
+      "why": "主线交叉先于全关系交叉、重合和长度优化，不能用缩短线条交换主线可读性。"
+    },
+    "laneMemberCrossingCost": {
+      "value": 1000000,
+      "why": "所有真实成员交叉优先于重合和长度，避免为了短线制造新的交叉。"
+    },
+    "laneAnnealTemperature": {
+      "value": 1000000,
+      "why": "初始允许有限的成员交叉交换，随后线性降温；始终使用固定种子。"
+    },
+    "laneMainOverlapCost": {
+      "value": 1000000000000,
+      "why": "两条无共同端点的主线重合不能冒充零交叉，优先独立走线；真实交叉另如实计数。"
+    }
+  },
+  "roles": [
+    {
+      "id": "controller",
+      "label": "控制器",
+      "plural": "控制器",
+      "layer": 0,
+      "color": "receive",
+      "fileLabel": "入口文件"
+    },
+    {
+      "id": "service-interface",
+      "label": "服务接口",
+      "plural": "服务接口",
+      "layer": 1,
+      "color": "business",
+      "fileLabel": "服务接口文件"
+    },
+    {
+      "id": "service",
+      "label": "服务实现",
+      "plural": "服务实现",
+      "layer": 2,
+      "color": "business",
+      "fileLabel": "业务文件"
+    },
+    {
+      "id": "data",
+      "label": "数据访问",
+      "plural": "数据访问",
+      "layer": 3,
+      "color": "data",
+      "fileLabel": "数据访问文件"
+    },
+    {
+      "id": "mapping",
+      "label": "SQL 映射",
+      "plural": "SQL 映射",
+      "layer": 3,
+      "color": "data",
+      "fileLabel": "SQL 映射文件"
+    },
+    {
+      "id": "entity",
+      "label": "实体",
+      "plural": "实体",
+      "layer": 4,
+      "color": "data",
+      "fileLabel": "实体文件"
+    },
+    {
+      "id": "object",
+      "label": "数据对象",
+      "plural": "数据对象",
+      "layer": 4,
+      "color": "data",
+      "fileLabel": "数据对象文件"
+    },
+    {
+      "id": "config",
+      "label": "配置",
+      "plural": "配置",
+      "layer": 5,
+      "color": "common",
+      "fileLabel": "配置文件"
+    },
+    {
+      "id": "tool",
+      "label": "工具",
+      "plural": "工具",
+      "layer": 5,
+      "color": "common",
+      "fileLabel": "工具文件"
+    },
+    {
+      "id": "other",
+      "label": "类",
+      "plural": "类",
+      "layer": 2,
+      "color": "business",
+      "fileLabel": "模块文件"
+    }
+  ],
+  "signals": [
+    {
+      "kind": "annotation",
+      "pattern": "^org\\.springframework\\.(?:web\\.bind\\.annotation\\.RestController|stereotype\\.Controller)$",
+      "role": "controller",
+      "basis": "Spring 控制器注解的规范类型。"
+    },
+    {
+      "kind": "annotation",
+      "pattern": "^org\\.springframework\\.stereotype\\.Service$",
+      "role": "service",
+      "basis": "Spring 服务组件注解。"
+    },
+    {
+      "kind": "annotation",
+      "pattern": "^(?:org\\.apache\\.ibatis\\.annotations\\.Mapper|org\\.springframework\\.stereotype\\.Repository)$",
+      "role": "data",
+      "basis": "MyBatis Mapper 与 Spring Repository 声明。"
+    },
+    {
+      "kind": "annotation",
+      "pattern": "^(?:jakarta|javax)\\.persistence\\.(?:Entity|MappedSuperclass)$|^com\\.baomidou\\.mybatisplus\\.annotation\\.TableName$",
+      "role": "entity",
+      "basis": "JPA 实体/映射基类或 MyBatis-Plus 显式表映射。"
+    },
+    {
+      "kind": "annotation",
+      "pattern": "^lombok\\.Data$",
+      "role": "object",
+      "basis": "Lombok 数据对象；不足以单独认定数据库实体，后续须有 Mapper/ORM 来源。"
+    },
+    {
+      "kind": "annotation",
+      "pattern": "^org\\.springframework\\.(?:context\\.annotation\\.Configuration|boot\\.autoconfigure\\.SpringBootApplication)$",
+      "role": "config",
+      "basis": "Spring 配置与启动配置类。"
+    },
+    {
+      "kind": "base",
+      "pattern": "^(?:com\\.baomidou\\.mybatisplus\\.core\\.mapper\\.BaseMapper|org\\.springframework\\.data\\.(?:jpa\\.repository\\.JpaRepository|repository\\.(?:CrudRepository|PagingAndSortingRepository)))\\b",
+      "role": "data",
+      "entityArgument": 0,
+      "basis": "框架数据接口及其实体泛型。"
+    },
+    {
+      "kind": "base",
+      "pattern": "^com\\.baomidou\\.mybatisplus\\.(?:spring|extension)\\.service\\.impl\\.ServiceImpl\\b",
+      "role": "service",
+      "entityArgument": 1,
+      "basis": "MyBatis-Plus 服务实现及 Mapper/实体泛型。"
+    },
+    {
+      "kind": "base",
+      "pattern": "^com\\.baomidou\\.mybatisplus\\.extension\\.service\\.IService\\b",
+      "role": "service-interface",
+      "entityArgument": 0,
+      "basis": "MyBatis-Plus 服务接口及实体泛型。"
+    },
+    {
+      "kind": "base",
+      "pattern": "^sqlmodel\\.SQLModel\\b",
+      "requiresTable": true,
+      "role": "entity",
+      "basis": "SQLModel 模型基类与本类 table=True 声明共同确认表模型。"
+    },
+    {
+      "kind": "base",
+      "pattern": "^(?:flask_sqlalchemy\\.SQLAlchemy\\.Model|django\\.db\\.models\\.Model|sqlalchemy\\.orm\\.DeclarativeBase)\\b",
+      "role": "entity",
+      "basis": "ORM 的规范模型基类。"
+    },
+    {
+      "kind": "base",
+      "pattern": "^(?:pydantic_settings\\.BaseSettings|pydantic\\.BaseSettings)\\b",
+      "role": "config",
+      "basis": "Pydantic 配置对象基类。"
+    },
+    {
+      "kind": "base",
+      "pattern": "^org\\.springframework\\.security\\.core\\.userdetails\\.UserDetails\\b",
+      "role": "object",
+      "basis": "Spring Security 的用户身份数据接口，不按名称推断成业务服务。"
+    },
+    {
+      "kind": "binding",
+      "pattern": "^(?:fastapi\\.(?:APIRouter|FastAPI)|flask\\.(?:Blueprint|Flask))$",
+      "role": "controller",
+      "basis": "路由文件绑定的框架路由对象；不因此新增 HTTP 入口。"
+    },
+    {
+      "kind": "shape",
+      "pattern": "^static-only$",
+      "role": "tool",
+      "basis": "本类声明的方法和字段全部为 static，不按包名或入度判断工具类。"
+    },
+    {
+      "kind": "declaration",
+      "pattern": "^enum_declaration$",
+      "role": "tool",
+      "basis": "语言枚举声明，收在公共类型中；展开仍可看源码。"
+    }
+  ],
+  "suffixes": [
+    {
+      "pattern": "Controller$",
+      "role": "controller",
+      "basis": "只有缺少结构信号时，采用常见控制器命名。"
+    },
+    {
+      "pattern": "(?:Mapper|Repository|Dao|DAO)$",
+      "role": "data",
+      "basis": "只有缺少结构信号时，采用数据访问命名。"
+    },
+    {
+      "pattern": "Service$",
+      "role": "service",
+      "interfaceRole": "service-interface",
+      "basis": "只有缺少结构信号时，采用服务命名并区分接口。"
+    },
+    {
+      "pattern": "ServiceImpl$",
+      "role": "service",
+      "basis": "只有缺少结构信号时，采用服务实现命名。"
+    },
+    {
+      "pattern": "(?:Configuration|Config|Settings)$",
+      "role": "config",
+      "basis": "只有缺少结构信号时，采用配置命名。"
+    },
+    {
+      "pattern": "(?:Request|Response|DTO|Dto|VO|Vo|Param|Result)$",
+      "role": "object",
+      "basis": "只有缺少结构信号时，采用数据传输对象命名，不冒充数据库实体。"
+    },
+    {
+      "pattern": "(?:Utils?|Helper|Constants|Exception|Error)$",
+      "role": "tool",
+      "basis": "只有缺少结构信号时，收起通用辅助类型。"
+    }
+  ],
+  "sqlResultAnnotations": [
+    {
+      "pattern": "^org\\.apache\\.ibatis\\.annotations\\.(?:Select|SelectProvider)$",
+      "basis": "Mapper 查询方法实际声明的返回类型是 SQL 结果对象；不按实体类名或包名猜表。"
+    }
+  ],
+  "routeDecorators": [
+    {
+      "name": "route",
+      "basis": "已绑定 Flask/FastAPI 路由对象上的 HTTP 装饰器；只判定文件职责，不增加接口计数。"
+    },
+    {
+      "name": "get",
+      "basis": "已绑定 Flask/FastAPI 路由对象上的 HTTP 装饰器；只判定文件职责，不增加接口计数。"
+    },
+    {
+      "name": "post",
+      "basis": "已绑定 Flask/FastAPI 路由对象上的 HTTP 装饰器；只判定文件职责，不增加接口计数。"
+    },
+    {
+      "name": "put",
+      "basis": "已绑定 Flask/FastAPI 路由对象上的 HTTP 装饰器；只判定文件职责，不增加接口计数。"
+    },
+    {
+      "name": "patch",
+      "basis": "已绑定 Flask/FastAPI 路由对象上的 HTTP 装饰器；只判定文件职责，不增加接口计数。"
+    },
+    {
+      "name": "delete",
+      "basis": "已绑定 Flask/FastAPI 路由对象上的 HTTP 装饰器；只判定文件职责，不增加接口计数。"
+    },
+    {
+      "name": "head",
+      "basis": "已绑定 Flask/FastAPI 路由对象上的 HTTP 装饰器；只判定文件职责，不增加接口计数。"
+    },
+    {
+      "name": "options",
+      "basis": "已绑定 Flask/FastAPI 路由对象上的 HTTP 装饰器；只判定文件职责，不增加接口计数。"
+    },
+    {
+      "name": "api_route",
+      "basis": "已绑定 Flask/FastAPI 路由对象上的 HTTP 装饰器；只判定文件职责，不增加接口计数。"
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+/* U5 is scoped to the two static reading views. Dependency and replay keep their own appearance. */
+.graph-canvas[data-hierarchy-view]{background:radial-gradient(ellipse at right top,var(--hierarchy-glowPurple),transparent 60%),radial-gradient(ellipse at left bottom,var(--hierarchy-glowCyan),transparent 60%),var(--hierarchy-canvas)}
+.graph-canvas[data-hierarchy-view] .canvas-dots{opacity:var(--hierarchy-dotOpacity);background-size:var(--hierarchy-dotPitch) var(--hierarchy-dotPitch);background-image:radial-gradient(circle,var(--color-text) var(--hierarchy-dotRadius),transparent var(--hierarchy-dotRadius))}
+.graph-canvas[data-hierarchy-view] .card-hint{display:none}
+.graph-canvas[data-hierarchy-view] .card-accessible .graph-card,.graph-canvas[data-hierarchy-view] .hierarchy-unit{background:var(--hierarchy-card);border:1px solid var(--hierarchy-border);box-shadow:var(--hierarchy-shadow);border-radius:var(--radius-card)}
+.graph-canvas[data-hierarchy-view] .hierarchy-unit{box-sizing:border-box;padding:var(--hierarchy-cardPadding-px);width:100%;height:100%;pointer-events:auto;overflow:hidden}
+.layout-row[data-leading=false]{grid-template-columns:minmax(calc(var(--layout-textCharacters)*1ch),1fr) max-content}
+.layout-row[data-leading=false]>.layout-leading{display:none}
+.layout-row[data-visual=true]{grid-template-columns:calc(var(--layout-leading)*var(--layout-read-scale,1)) minmax(0,1fr) max-content}
+.hierarchy-unit .layout-row,.module-block .layout-row{font-size:calc(var(--hierarchy-body)*var(--layout-read-scale,1))}
+.hierarchy-application-heading{display:flex;align-items:center;gap:var(--space-2);min-height:var(--hierarchy-groupHeading-px);margin-bottom:var(--space-1)}
+.hierarchy-application-heading>.layout-row{flex:1;min-width:0}.hierarchy-application-heading strong{font-size:calc(var(--hierarchy-title)*var(--layout-read-scale,1));font-weight:500}.hierarchy-application-heading>.layout-row .layout-tail,.hierarchy-application-heading>span{font-size:calc(var(--hierarchy-caption)*var(--layout-read-scale,1));color:var(--secondary);white-space:nowrap}
+.hierarchy-unit .hierarchy-application-heading{display:flex;padding:0}.hierarchy-unit .hierarchy-frontend-heading{display:flex;padding:0}
+.hierarchy-application-heading .layout-title{overflow:visible}.hierarchy-application-heading .layout-title strong{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.graph-canvas[data-hierarchy-view] .hierarchy-application-heading .layout-title strong{font:500 calc(var(--hierarchy-title)*var(--layout-read-scale,1))/1.4 var(--font-family)}
+.hierarchy-unit>.service-heading{width:100%}.hierarchy-unit .hierarchy-application-heading{flex-wrap:wrap;gap:var(--space-1)}.hierarchy-application-heading>.layout-row{min-width:60%}
+.graph-canvas[data-hierarchy-view] .backbone-external{display:flex!important;padding:var(--hierarchy-cardPadding-px)!important}
+.graph-canvas[data-hierarchy-view] .backbone-external strong{font:500 calc(var(--hierarchy-title)*var(--layout-read-scale,1))/1.4 var(--font-family)}
+.hierarchy-frontend{overflow-x:hidden!important}
+.hierarchy-frontend,.hierarchy-frontend .address-explanation,.hierarchy-frontend .backend-choice{font-size:calc(var(--hierarchy-body)*var(--layout-read-scale,1))}
+body:has(.module-tooltip[data-open=true]) .address-examples{visibility:hidden}
+.hierarchy-unit .hierarchy-frontend-heading strong{font:500 calc(var(--hierarchy-title)*var(--layout-read-scale,1))/1.4 var(--font-family)}
+.graph-canvas[data-hierarchy-view] .hierarchy-application-heading>span{font:400 calc(var(--hierarchy-caption)*var(--layout-read-scale,1))/1.4 var(--font-family)}
+.graph-canvas[data-hierarchy-view=guide] .graph-region>span{font-size:calc(var(--hierarchy-groupTitle)*var(--semantic-read-scale,1))!important}
+.hierarchy-application-heading .layout-tail{padding:var(--space-half);background:var(--hierarchy-block);border-radius:var(--radius-pill)}
+.hierarchy-unit-note{font-size:calc(var(--hierarchy-body)*var(--layout-read-scale,1));line-height:1.5;color:var(--secondary);margin:var(--space-1) 0 0}
+.module-group+.module-group{margin-top:var(--hierarchy-groupGap-px)}
+.module-group-heading{display:flex;align-items:center;gap:var(--space-1);height:var(--hierarchy-groupHeading-px);white-space:nowrap}
+.module-group-heading strong{font:500 calc(var(--hierarchy-groupTitle)*var(--layout-read-scale,1))/1.4 var(--font-family)}
+.module-group-heading>span{color:var(--secondary);font-size:calc(var(--hierarchy-body)*var(--layout-read-scale,1))}
+.module-blocks{display:flex;flex-wrap:wrap;gap:var(--hierarchy-blockGap-px)}
+.module-block{position:relative;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;gap:var(--hierarchy-blockContentGap);padding:var(--hierarchy-blockPadY) var(--hierarchy-blockPadX);border:1px solid var(--hierarchy-border);border-radius:var(--radius-control);background:linear-gradient(var(--module-tint),var(--module-tint)),var(--hierarchy-block);color:var(--text);cursor:pointer;text-align:left;flex-shrink:0;transform:translateY(0);transition:transform var(--viewMotion-blockTransition),opacity var(--viewMotion-blockTransition),border-color var(--viewMotion-blockTransition),box-shadow var(--viewMotion-blockTransition);animation:up var(--hierarchy-entryDuration-ms) var(--viewMotion-moduleEase) backwards;animation-delay:var(--module-enter-delay)}
+.module-block::before{content:'';position:absolute;inset:var(--space-half) auto var(--space-half) 0;width:var(--hierarchy-heatStrip);background:var(--accent);opacity:var(--module-heat-line);border-radius:var(--radius-pill)}
+.module-block .layout-row{min-height:0;gap:var(--space-half);line-height:1.2}
+.module-block .module-title{grid-template-columns:minmax(0,1fr) max-content}
+.module-block .module-name{font-size:calc(var(--hierarchy-body)*var(--layout-read-scale,1));line-height:1.4;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+.graph-canvas[data-hierarchy-view] .module-block .module-name{font-size:calc(var(--hierarchy-body)*var(--layout-read-scale,1));line-height:1.4;max-height:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+.module-block .module-metric{font-size:calc(var(--hierarchy-caption)*var(--layout-read-scale,1));line-height:1.3}
+.graph-canvas[data-hierarchy-view][data-block-compact=true] .module-block{padding-block:0;gap:0}
+.module-block .module-metric>.layout-leading{justify-content:flex-start}.module-block .module-metric .layout-title{overflow:visible;line-height:1.3}
+.module-amount{position:relative;color:var(--color-text);line-height:1.3}.module-amount kbd{display:none;font:400 calc(var(--hierarchy-caption)*var(--layout-read-scale,1))/1 var(--font-family)}
+.module-block:focus-visible .module-amount>span{display:none}.module-block:focus-visible .module-amount kbd{display:inline}
+.module-block:is(:hover,:focus-visible,[aria-pressed=true]){transform:translateY(var(--hierarchy-lift));border-color:var(--accent);outline:none}
+.graph-canvas[data-hierarchy-view]:has(.module-block:hover) .module-block:not(:hover){opacity:var(--hierarchy-hoverOthers)}
+.graph-canvas[data-hierarchy-view=guide]:has(.module-block[aria-pressed=true]) .module-block[aria-pressed=false]{opacity:var(--hierarchy-guideOthers)}
+.graph-canvas[data-hierarchy-view=guide]:has(.module-block:hover) .module-block:not(:hover){opacity:var(--hierarchy-hoverOthers)}
+.module-method-bar{display:flex;width:100%;height:var(--hierarchy-barHeight);overflow:hidden;border-radius:var(--radius-pill);gap:0}
+.module-method-bar>i{height:100%;min-width:0;flex-basis:0}
+.module-legend{font-size:calc(var(--hierarchy-caption)*var(--layout-read-scale,1));color:var(--secondary);white-space:nowrap;margin:var(--space-2) 0 0}
+.module-tooltip{position:fixed;top:0;left:0;width:var(--hierarchy-tooltipWidth);max-width:calc(100vw - 2*var(--hierarchy-tooltipMargin-px));box-sizing:border-box;padding:var(--space-2);z-index:120;background:var(--hierarchy-card);border:1px solid var(--hierarchy-border);box-shadow:var(--hierarchy-shadow);border-radius:var(--radius-card);font:400 var(--hierarchy-body)/1.5 var(--font-family);pointer-events:none;color:var(--text);opacity:0;transform:translateY(var(--viewMotion-tooltipLift));transition:opacity var(--viewMotion-tooltipTransition),transform var(--viewMotion-tooltipTransition)}
+.module-tooltip[data-open=true]{opacity:1;transform:none}
+@starting-style{.module-tooltip[data-open=true]{opacity:0;transform:translateY(var(--viewMotion-tooltipLift))}}
+.module-tooltip>strong{display:block;font-weight:500;font-size:var(--hierarchy-groupTitle);overflow-wrap:anywhere}.module-tooltip p{margin:var(--space-half) 0 var(--space-1);color:var(--secondary)}
+.module-method-legend{display:flex;flex-wrap:wrap;gap:var(--space-1);font-size:var(--hierarchy-caption);margin-top:var(--space-1)}.module-method-legend>span{display:inline-flex;align-items:center;gap:var(--space-half)}.module-method-legend i{width:var(--space-1);height:var(--space-1);border-radius:var(--radius-pill)}
+.hierarchy-frontend{display:flex;flex-direction:column;gap:var(--space-half);overflow:auto!important}
+.hierarchy-frontend-heading{display:flex;align-items:center;gap:var(--space-1);min-width:0;padding:0;border:0;background:transparent;color:inherit;text-align:left;cursor:pointer}
+.hierarchy-frontend-heading>svg{width:var(--layout-icon);height:var(--layout-icon);flex-shrink:0}.hierarchy-frontend-heading strong{font:500 calc(var(--hierarchy-title)*var(--layout-read-scale,1))/1.4 var(--font-family);min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hierarchy-stack{font:400 calc(var(--hierarchy-caption)*var(--layout-read-scale,1))/1.4 var(--font-family);color:var(--secondary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hierarchy-front-total{display:flex;flex-direction:column;gap:var(--space-half);margin:var(--space-2) 0 var(--space-1)}.hierarchy-front-total strong{font:500 calc(var(--hierarchy-number)*var(--layout-read-scale,1))/1.1 var(--font-family);font-variant-numeric:tabular-nums}.hierarchy-front-total>span{font-size:calc(var(--hierarchy-body)*var(--layout-read-scale,1));color:var(--secondary)}
+.hierarchy-front-pages{font:400 calc(var(--hierarchy-body)*var(--layout-read-scale,1))/1.5 var(--font-family);margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.hierarchy-unit-note{text-wrap:balance}
+.hierarchy-front-progress{display:block;flex-shrink:0;height:var(--hierarchy-progressHeight);border-radius:var(--radius-pill);background:var(--hierarchy-block);overflow:hidden;margin-top:auto}.hierarchy-front-progress i{display:block;width:100%;height:100%;background:linear-gradient(to right,var(--hierarchy-bandFrom),var(--hierarchy-bandTo));transform-origin:left center}
+.hierarchy-front-band{opacity:1;transition:opacity var(--viewMotion-blockTransition);animation:fade var(--viewMotion-lineDuration) var(--viewMotion-cardEase) var(--hierarchy-link-delay,var(--viewMotion-lineDelay)) backwards}.hierarchy-travel-dot{fill:var(--viewMotion-dotFill);opacity:var(--viewMotion-dotOpacity);pointer-events:none;animation-duration:var(--band-period);animation-delay:var(--band-phase);animation-timing-function:var(--motion-linear);animation-iteration-count:infinite}.has-module-focus .hierarchy-front-band{opacity:var(--hierarchy-bandDim)}.has-module-focus .hierarchy-front-band .hierarchy-travel-dot{opacity:0;animation-play-state:paused}
+.hierarchy-focus-band{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;opacity:0;z-index:3}.hierarchy-focus-band [data-hover-path]{fill:none;stroke:var(--accent);stroke-width:calc(var(--overlay-stroke)*var(--overlay-inverse-zoom,1)*1px)}.hierarchy-focus-band .hierarchy-travel-dot{animation-play-state:paused}.has-module-focus .hierarchy-focus-band .hierarchy-travel-dot{animation-play-state:running}
+.hierarchy-focus-band .hierarchy-endpoint{fill:var(--accent)}
+.hierarchy-focus-band circle,.hierarchy-front-band .hierarchy-travel-dot{r:calc(var(--hierarchy-bandDotRadius)*var(--overlay-inverse-zoom,1)*1px)}
+.graph-canvas[data-hierarchy-view] .graph-card.configuration-only{border-style:dashed}
+.graph-canvas[data-hierarchy-view=guide][data-guide-panel=true]{display:grid;grid-template-columns:calc(var(--hierarchy-guideFraction)*100%) minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto;gap:var(--space-2)}
+.graph-canvas[data-hierarchy-view=guide][data-guide-panel=true]>.react-flow{grid-column:1;grid-row:1;width:100%;height:100%!important;min-width:0}
+.graph-canvas[data-hierarchy-view=guide] .graph-region{border:0;background:transparent;pointer-events:none}.graph-canvas[data-hierarchy-view=guide] .graph-region>span{font:500 calc(var(--hierarchy-groupTitle)*var(--semantic-read-scale,1))/1.4 var(--font-family);top:var(--space-1)}
+.graph-canvas[data-hierarchy-view=guide]>.graph-absence{grid-column:1/-1;grid-row:2}
+.hierarchy-interface-panel{grid-column:2;grid-row:1;display:flex;flex-direction:column;min-height:0;min-width:0;margin:var(--space-2) var(--space-2) var(--space-2) 0;padding:0;background:var(--hierarchy-card);border:1px solid var(--hierarchy-border);box-shadow:var(--hierarchy-shadow);color:var(--text);overflow:hidden}
+.hierarchy-interface-panel>header{padding:var(--space-2);border-bottom:1px solid var(--hierarchy-border)}.hierarchy-interface-panel>header>div{display:flex;align-items:center;gap:var(--space-2);margin-bottom:var(--space-2)}.hierarchy-interface-panel header strong{font:500 var(--hierarchy-title)/1.4 var(--font-family)}.hierarchy-interface-panel header span{font-size:var(--hierarchy-body);color:var(--secondary)}
+.hierarchy-interface-list{flex:1;min-height:0;overflow:auto;padding:var(--space-1) var(--space-2)}
+.hierarchy-interface-item{position:relative;display:flex;align-items:center;min-height:var(--hierarchy-guideRowHeight);gap:var(--space-1);border-bottom:1px solid var(--hierarchy-border);animation:up var(--viewMotion-rowDuration) var(--viewMotion-cardEase) backwards;animation-delay:var(--module-enter-delay)}
+.hierarchy-interface-open{display:flex;align-items:center;gap:var(--space-1);min-height:var(--hierarchy-guideRowHeight);min-width:0;flex:1;background:transparent;border:0;color:inherit;text-align:left;padding:0;cursor:pointer}
+.hierarchy-http-method{width:var(--hierarchy-methodWidth);flex-shrink:0;font:500 var(--hierarchy-caption)/1.4 var(--font-family)}
+.hierarchy-interface-copy{display:flex;flex-direction:column;gap:var(--space-half);min-width:0;flex:1}.hierarchy-interface-copy strong{font:500 var(--hierarchy-groupTitle)/1.3 var(--font-family);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.hierarchy-interface-copy small{font:400 var(--hierarchy-caption)/1.3 var(--font-family);color:var(--secondary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hierarchy-page-count{flex-shrink:0;min-height:var(--space-4);padding:var(--space-half);font:400 var(--hierarchy-caption)/1.4 var(--font-family);background:var(--hierarchy-block);color:var(--secondary);border:1px solid var(--hierarchy-border);border-radius:var(--radius-control);cursor:pointer}.hierarchy-page-count:disabled{opacity:1;border-style:dashed;cursor:default}
+.hierarchy-interface-open:focus-visible,.hierarchy-page-count:focus-visible{outline:1px solid var(--accent);outline-offset:var(--space-half)}
+.hierarchy-page-choices{position:absolute;right:0;top:100%;z-index:8;padding:var(--space-1);background:var(--hierarchy-card);border:1px solid var(--hierarchy-border);border-radius:var(--radius-control);box-shadow:var(--hierarchy-shadow);max-width:100%}.hierarchy-page-choices>button{display:flex;align-items:center;gap:var(--space-1);padding:var(--space-1);background:transparent;border:0;font:400 var(--hierarchy-body)/1.4 var(--font-family);color:var(--text);cursor:pointer;text-align:left}.hierarchy-page-choices>span{font:400 var(--hierarchy-caption)/1.4 var(--font-family);color:var(--secondary)}
+@keyframes up{from{opacity:0;transform:translateY(var(--hierarchy-entryDistance))}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.graph-canvas[data-hierarchy-view] .card-accessible .graph-card,.graph-canvas[data-hierarchy-view] .hierarchy-unit{animation:up var(--viewMotion-cardDuration) var(--viewMotion-cardEase) backwards}
+.graph-canvas[data-hierarchy-view] .main-context-edge{animation:fade var(--viewMotion-lineDuration) var(--viewMotion-cardEase) var(--hierarchy-link-delay,var(--viewMotion-lineDelay)) backwards}
+.reduce-motion .graph-canvas[data-hierarchy-view] *,body:has(.reduce-motion) .module-tooltip{animation:none!important;transition:none!important}
+@media(prefers-reduced-motion:reduce){.graph-canvas *,.graph-canvas *::before,.graph-canvas *::after,.module-tooltip{animation:none!important;transition:none!important}}

@@ -1,0 +1,1 @@
+<project><modelVersion>4.0.0</modelVersion><groupId>fixture</groupId><artifactId>modules</artifactId><version>1</version><modules><module>one</module><module>two</module></modules></project>

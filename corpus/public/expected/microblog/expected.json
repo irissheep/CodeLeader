@@ -1,0 +1,926 @@
+{
+  "schema": 1,
+  "id": "microblog",
+  "commit": "a975ef64864354867c88e0ed3a17ba7d17dca752",
+  "reviewed": "2026-10-24",
+  "review": "先读目录、构建、启动/路由、HTTP封装和资源配置，再独立按注解/装饰器/语法统计；不导入产品分析代码。",
+  "units": {
+    "backend": {
+      "count": 0,
+      "items": [],
+      "evidence": [
+        {
+          "file": "microblog.py",
+          "line": 1,
+          "sha256": "9a3f1d28594c1ed95a05959c33172e42f8872ff46599f57dc47f0e68456a586e"
+        },
+        {
+          "file": "app/__init__.py",
+          "line": 1,
+          "sha256": "61d09b93b59d1c1d957e2f855ef6efd9921ef5b6c41c129bf7840de0ff2e2c33"
+        },
+        {
+          "file": "requirements.txt",
+          "line": 1,
+          "sha256": "d1a46ab01c6ac7cc9eac794307a7ea706ba3ab599da1c5ade066a4b66a924d6b"
+        }
+      ]
+    },
+    "frontend": {
+      "count": 0,
+      "items": [],
+      "evidence": [
+        {
+          "file": "microblog.py",
+          "line": 1,
+          "sha256": "9a3f1d28594c1ed95a05959c33172e42f8872ff46599f57dc47f0e68456a586e"
+        },
+        {
+          "file": "app/__init__.py",
+          "line": 1,
+          "sha256": "61d09b93b59d1c1d957e2f855ef6efd9921ef5b6c41c129bf7840de0ff2e2c33"
+        },
+        {
+          "file": "requirements.txt",
+          "line": 1,
+          "sha256": "d1a46ab01c6ac7cc9eac794307a7ea706ba3ab599da1c5ade066a4b66a924d6b"
+        }
+      ]
+    },
+    "python": {
+      "count": 1,
+      "items": [
+        {
+          "root": ".",
+          "evidence": [
+            {
+              "file": "microblog.py",
+              "line": 1,
+              "sha256": "9a3f1d28594c1ed95a05959c33172e42f8872ff46599f57dc47f0e68456a586e"
+            }
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "file": "microblog.py",
+          "line": 1,
+          "sha256": "9a3f1d28594c1ed95a05959c33172e42f8872ff46599f57dc47f0e68456a586e"
+        },
+        {
+          "file": "app/__init__.py",
+          "line": 1,
+          "sha256": "61d09b93b59d1c1d957e2f855ef6efd9921ef5b6c41c129bf7840de0ff2e2c33"
+        },
+        {
+          "file": "requirements.txt",
+          "line": 1,
+          "sha256": "d1a46ab01c6ac7cc9eac794307a7ea706ba3ab599da1c5ade066a4b66a924d6b"
+        }
+      ]
+    }
+  },
+  "infrastructure": {
+    "count": 5,
+    "items": [
+      {
+        "name": "SQLite",
+        "kind": "database",
+        "condition": "default",
+        "evidence": [
+          {
+            "file": "config.py",
+            "line": 1,
+            "sha256": "eaad79d356b63c9da50d479fdde2b8bd2f49bf3553e0a5f8c37e5e1ca6023f67"
+          }
+        ]
+      },
+      {
+        "name": "PostgreSQL",
+        "kind": "database",
+        "condition": "DATABASE_URL postgres scheme alternative",
+        "evidence": [
+          {
+            "file": "config.py",
+            "line": 1,
+            "sha256": "eaad79d356b63c9da50d479fdde2b8bd2f49bf3553e0a5f8c37e5e1ca6023f67"
+          }
+        ]
+      },
+      {
+        "name": "Redis",
+        "kind": "cache",
+        "condition": "REDIS_URL/default",
+        "evidence": [
+          {
+            "file": "config.py",
+            "line": 1,
+            "sha256": "eaad79d356b63c9da50d479fdde2b8bd2f49bf3553e0a5f8c37e5e1ca6023f67"
+          }
+        ]
+      },
+      {
+        "name": "RQ",
+        "kind": "queue",
+        "condition": "queue over Redis",
+        "evidence": [
+          {
+            "file": "app/__init__.py",
+            "line": 1,
+            "sha256": "61d09b93b59d1c1d957e2f855ef6efd9921ef5b6c41c129bf7840de0ff2e2c33"
+          }
+        ]
+      },
+      {
+        "name": "Elasticsearch",
+        "kind": "search",
+        "condition": "ELASTICSEARCH_URL present",
+        "evidence": [
+          {
+            "file": "app/__init__.py",
+            "line": 1,
+            "sha256": "61d09b93b59d1c1d957e2f855ef6efd9921ef5b6c41c129bf7840de0ff2e2c33"
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "file": "microblog.py",
+        "line": 1,
+        "sha256": "9a3f1d28594c1ed95a05959c33172e42f8872ff46599f57dc47f0e68456a586e"
+      },
+      {
+        "file": "app/__init__.py",
+        "line": 1,
+        "sha256": "61d09b93b59d1c1d957e2f855ef6efd9921ef5b6c41c129bf7840de0ff2e2c33"
+      },
+      {
+        "file": "requirements.txt",
+        "line": 1,
+        "sha256": "d1a46ab01c6ac7cc9eac794307a7ea706ba3ab599da1c5ade066a4b66a924d6b"
+      }
+    ]
+  },
+  "http": {
+    "count": 35,
+    "items": [
+      {
+        "method": "POST",
+        "path": "/api/tokens",
+        "module": "app/api/tokens.py",
+        "name": "get_token",
+        "file": "app/api/tokens.py",
+        "line": 8,
+        "decoratorLine": 6,
+        "evidence": [
+          {
+            "file": "app/api/tokens.py",
+            "line": 6,
+            "sha256": "00a73283c159a048ca06de2452e9289407623e688fe4b09a146a46d862bae150"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "path": "/api/tokens",
+        "module": "app/api/tokens.py",
+        "name": "revoke_token",
+        "file": "app/api/tokens.py",
+        "line": 16,
+        "decoratorLine": 14,
+        "evidence": [
+          {
+            "file": "app/api/tokens.py",
+            "line": 14,
+            "sha256": "00a73283c159a048ca06de2452e9289407623e688fe4b09a146a46d862bae150"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/api/users/<int:id>",
+        "module": "app/api/users.py",
+        "name": "get_user",
+        "file": "app/api/users.py",
+        "line": 12,
+        "decoratorLine": 10,
+        "evidence": [
+          {
+            "file": "app/api/users.py",
+            "line": 10,
+            "sha256": "16844254c28efb118d2db8749a87f3a743fbf73608cf2c690099199aefb4c5ab"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/api/users",
+        "module": "app/api/users.py",
+        "name": "get_users",
+        "file": "app/api/users.py",
+        "line": 18,
+        "decoratorLine": 16,
+        "evidence": [
+          {
+            "file": "app/api/users.py",
+            "line": 16,
+            "sha256": "16844254c28efb118d2db8749a87f3a743fbf73608cf2c690099199aefb4c5ab"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/api/users/<int:id>/followers",
+        "module": "app/api/users.py",
+        "name": "get_followers",
+        "file": "app/api/users.py",
+        "line": 27,
+        "decoratorLine": 25,
+        "evidence": [
+          {
+            "file": "app/api/users.py",
+            "line": 25,
+            "sha256": "16844254c28efb118d2db8749a87f3a743fbf73608cf2c690099199aefb4c5ab"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/api/users/<int:id>/following",
+        "module": "app/api/users.py",
+        "name": "get_following",
+        "file": "app/api/users.py",
+        "line": 37,
+        "decoratorLine": 35,
+        "evidence": [
+          {
+            "file": "app/api/users.py",
+            "line": 35,
+            "sha256": "16844254c28efb118d2db8749a87f3a743fbf73608cf2c690099199aefb4c5ab"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/api/users",
+        "module": "app/api/users.py",
+        "name": "create_user",
+        "file": "app/api/users.py",
+        "line": 46,
+        "decoratorLine": 45,
+        "evidence": [
+          {
+            "file": "app/api/users.py",
+            "line": 45,
+            "sha256": "16844254c28efb118d2db8749a87f3a743fbf73608cf2c690099199aefb4c5ab"
+          }
+        ]
+      },
+      {
+        "method": "PUT",
+        "path": "/api/users/<int:id>",
+        "module": "app/api/users.py",
+        "name": "update_user",
+        "file": "app/api/users.py",
+        "line": 66,
+        "decoratorLine": 64,
+        "evidence": [
+          {
+            "file": "app/api/users.py",
+            "line": 64,
+            "sha256": "16844254c28efb118d2db8749a87f3a743fbf73608cf2c690099199aefb4c5ab"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/auth/login",
+        "module": "app/auth/routes.py",
+        "name": "login",
+        "file": "app/auth/routes.py",
+        "line": 15,
+        "decoratorLine": 14,
+        "evidence": [
+          {
+            "file": "app/auth/routes.py",
+            "line": 14,
+            "sha256": "3ee0174e7afe9556932476ab1686f5c334d22eda396c75ed4b946f533e9d2d98"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/auth/login",
+        "module": "app/auth/routes.py",
+        "name": "login",
+        "file": "app/auth/routes.py",
+        "line": 15,
+        "decoratorLine": 14,
+        "evidence": [
+          {
+            "file": "app/auth/routes.py",
+            "line": 14,
+            "sha256": "3ee0174e7afe9556932476ab1686f5c334d22eda396c75ed4b946f533e9d2d98"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/auth/logout",
+        "module": "app/auth/routes.py",
+        "name": "logout",
+        "file": "app/auth/routes.py",
+        "line": 34,
+        "decoratorLine": 33,
+        "evidence": [
+          {
+            "file": "app/auth/routes.py",
+            "line": 33,
+            "sha256": "3ee0174e7afe9556932476ab1686f5c334d22eda396c75ed4b946f533e9d2d98"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/auth/register",
+        "module": "app/auth/routes.py",
+        "name": "register",
+        "file": "app/auth/routes.py",
+        "line": 40,
+        "decoratorLine": 39,
+        "evidence": [
+          {
+            "file": "app/auth/routes.py",
+            "line": 39,
+            "sha256": "3ee0174e7afe9556932476ab1686f5c334d22eda396c75ed4b946f533e9d2d98"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/auth/register",
+        "module": "app/auth/routes.py",
+        "name": "register",
+        "file": "app/auth/routes.py",
+        "line": 40,
+        "decoratorLine": 39,
+        "evidence": [
+          {
+            "file": "app/auth/routes.py",
+            "line": 39,
+            "sha256": "3ee0174e7afe9556932476ab1686f5c334d22eda396c75ed4b946f533e9d2d98"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/auth/reset_password_request",
+        "module": "app/auth/routes.py",
+        "name": "reset_password_request",
+        "file": "app/auth/routes.py",
+        "line": 56,
+        "decoratorLine": 55,
+        "evidence": [
+          {
+            "file": "app/auth/routes.py",
+            "line": 55,
+            "sha256": "3ee0174e7afe9556932476ab1686f5c334d22eda396c75ed4b946f533e9d2d98"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/auth/reset_password_request",
+        "module": "app/auth/routes.py",
+        "name": "reset_password_request",
+        "file": "app/auth/routes.py",
+        "line": 56,
+        "decoratorLine": 55,
+        "evidence": [
+          {
+            "file": "app/auth/routes.py",
+            "line": 55,
+            "sha256": "3ee0174e7afe9556932476ab1686f5c334d22eda396c75ed4b946f533e9d2d98"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/auth/reset_password/<token>",
+        "module": "app/auth/routes.py",
+        "name": "reset_password",
+        "file": "app/auth/routes.py",
+        "line": 73,
+        "decoratorLine": 72,
+        "evidence": [
+          {
+            "file": "app/auth/routes.py",
+            "line": 72,
+            "sha256": "3ee0174e7afe9556932476ab1686f5c334d22eda396c75ed4b946f533e9d2d98"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/auth/reset_password/<token>",
+        "module": "app/auth/routes.py",
+        "name": "reset_password",
+        "file": "app/auth/routes.py",
+        "line": 73,
+        "decoratorLine": 72,
+        "evidence": [
+          {
+            "file": "app/auth/routes.py",
+            "line": 72,
+            "sha256": "3ee0174e7afe9556932476ab1686f5c334d22eda396c75ed4b946f533e9d2d98"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/",
+        "module": "app/main/routes.py",
+        "name": "index",
+        "file": "app/main/routes.py",
+        "line": 28,
+        "decoratorLine": 25,
+        "evidence": [
+          {
+            "file": "app/main/routes.py",
+            "line": 25,
+            "sha256": "c984b72bb1d0d5ac3020a1529752a99963a478421f9f1faff42aa1596347a06c"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/",
+        "module": "app/main/routes.py",
+        "name": "index",
+        "file": "app/main/routes.py",
+        "line": 28,
+        "decoratorLine": 25,
+        "evidence": [
+          {
+            "file": "app/main/routes.py",
+            "line": 25,
+            "sha256": "c984b72bb1d0d5ac3020a1529752a99963a478421f9f1faff42aa1596347a06c"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/index",
+        "module": "app/main/routes.py",
+        "name": "index",
+        "file": "app/main/routes.py",
+        "line": 28,
+        "decoratorLine": 26,
+        "evidence": [
+          {
+            "file": "app/main/routes.py",
+            "line": 26,
+            "sha256": "c984b72bb1d0d5ac3020a1529752a99963a478421f9f1faff42aa1596347a06c"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/index",
+        "module": "app/main/routes.py",
+        "name": "index",
+        "file": "app/main/routes.py",
+        "line": 28,
+        "decoratorLine": 26,
+        "evidence": [
+          {
+            "file": "app/main/routes.py",
+            "line": 26,
+            "sha256": "c984b72bb1d0d5ac3020a1529752a99963a478421f9f1faff42aa1596347a06c"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/explore",
+        "module": "app/main/routes.py",
+        "name": "explore",
+        "file": "app/main/routes.py",
+        "line": 56,
+        "decoratorLine": 54,
+        "evidence": [
+          {
+            "file": "app/main/routes.py",
+            "line": 54,
+            "sha256": "c984b72bb1d0d5ac3020a1529752a99963a478421f9f1faff42aa1596347a06c"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/user/<username>",
+        "module": "app/main/routes.py",
+        "name": "user",
+        "file": "app/main/routes.py",
+        "line": 73,
+        "decoratorLine": 71,
+        "evidence": [
+          {
+            "file": "app/main/routes.py",
+            "line": 71,
+            "sha256": "c984b72bb1d0d5ac3020a1529752a99963a478421f9f1faff42aa1596347a06c"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/user/<username>/popup",
+        "module": "app/main/routes.py",
+        "name": "user_popup",
+        "file": "app/main/routes.py",
+        "line": 91,
+        "decoratorLine": 89,
+        "evidence": [
+          {
+            "file": "app/main/routes.py",
+            "line": 89,
+            "sha256": "c984b72bb1d0d5ac3020a1529752a99963a478421f9f1faff42aa1596347a06c"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/edit_profile",
+        "module": "app/main/routes.py",
+        "name": "edit_profile",
+        "file": "app/main/routes.py",
+        "line": 99,
+        "decoratorLine": 97,
+        "evidence": [
+          {
+            "file": "app/main/routes.py",
+            "line": 97,
+            "sha256": "c984b72bb1d0d5ac3020a1529752a99963a478421f9f1faff42aa1596347a06c"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/edit_profile",
+        "module": "app/main/routes.py",
+        "name": "edit_profile",
+        "file": "app/main/routes.py",
+        "line": 99,
+        "decoratorLine": 97,
+        "evidence": [
+          {
+            "file": "app/main/routes.py",
+            "line": 97,
+            "sha256": "c984b72bb1d0d5ac3020a1529752a99963a478421f9f1faff42aa1596347a06c"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/follow/<username>",
+        "module": "app/main/routes.py",
+        "name": "follow",
+        "file": "app/main/routes.py",
+        "line": 116,
+        "decoratorLine": 114,
+        "evidence": [
+          {
+            "file": "app/main/routes.py",
+            "line": 114,
+            "sha256": "c984b72bb1d0d5ac3020a1529752a99963a478421f9f1faff42aa1596347a06c"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/unfollow/<username>",
+        "module": "app/main/routes.py",
+        "name": "unfollow",
+        "file": "app/main/routes.py",
+        "line": 137,
+        "decoratorLine": 135,
+        "evidence": [
+          {
+            "file": "app/main/routes.py",
+            "line": 135,
+            "sha256": "c984b72bb1d0d5ac3020a1529752a99963a478421f9f1faff42aa1596347a06c"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/translate",
+        "module": "app/main/routes.py",
+        "name": "translate_text",
+        "file": "app/main/routes.py",
+        "line": 158,
+        "decoratorLine": 156,
+        "evidence": [
+          {
+            "file": "app/main/routes.py",
+            "line": 156,
+            "sha256": "c984b72bb1d0d5ac3020a1529752a99963a478421f9f1faff42aa1596347a06c"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/search",
+        "module": "app/main/routes.py",
+        "name": "search",
+        "file": "app/main/routes.py",
+        "line": 167,
+        "decoratorLine": 165,
+        "evidence": [
+          {
+            "file": "app/main/routes.py",
+            "line": 165,
+            "sha256": "c984b72bb1d0d5ac3020a1529752a99963a478421f9f1faff42aa1596347a06c"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/send_message/<recipient>",
+        "module": "app/main/routes.py",
+        "name": "send_message",
+        "file": "app/main/routes.py",
+        "line": 183,
+        "decoratorLine": 181,
+        "evidence": [
+          {
+            "file": "app/main/routes.py",
+            "line": 181,
+            "sha256": "c984b72bb1d0d5ac3020a1529752a99963a478421f9f1faff42aa1596347a06c"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/send_message/<recipient>",
+        "module": "app/main/routes.py",
+        "name": "send_message",
+        "file": "app/main/routes.py",
+        "line": 183,
+        "decoratorLine": 181,
+        "evidence": [
+          {
+            "file": "app/main/routes.py",
+            "line": 181,
+            "sha256": "c984b72bb1d0d5ac3020a1529752a99963a478421f9f1faff42aa1596347a06c"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/messages",
+        "module": "app/main/routes.py",
+        "name": "messages",
+        "file": "app/main/routes.py",
+        "line": 201,
+        "decoratorLine": 199,
+        "evidence": [
+          {
+            "file": "app/main/routes.py",
+            "line": 199,
+            "sha256": "c984b72bb1d0d5ac3020a1529752a99963a478421f9f1faff42aa1596347a06c"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/export_posts",
+        "module": "app/main/routes.py",
+        "name": "export_posts",
+        "file": "app/main/routes.py",
+        "line": 221,
+        "decoratorLine": 219,
+        "evidence": [
+          {
+            "file": "app/main/routes.py",
+            "line": 219,
+            "sha256": "c984b72bb1d0d5ac3020a1529752a99963a478421f9f1faff42aa1596347a06c"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/notifications",
+        "module": "app/main/routes.py",
+        "name": "notifications",
+        "file": "app/main/routes.py",
+        "line": 232,
+        "decoratorLine": 230,
+        "evidence": [
+          {
+            "file": "app/main/routes.py",
+            "line": 230,
+            "sha256": "c984b72bb1d0d5ac3020a1529752a99963a478421f9f1faff42aa1596347a06c"
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "file": "microblog.py",
+        "line": 1,
+        "sha256": "9a3f1d28594c1ed95a05959c33172e42f8872ff46599f57dc47f0e68456a586e"
+      },
+      {
+        "file": "app/__init__.py",
+        "line": 1,
+        "sha256": "61d09b93b59d1c1d957e2f855ef6efd9921ef5b6c41c129bf7840de0ff2e2c33"
+      },
+      {
+        "file": "requirements.txt",
+        "line": 1,
+        "sha256": "d1a46ab01c6ac7cc9eac794307a7ea706ba3ab599da1c5ade066a4b66a924d6b"
+      }
+    ]
+  },
+  "modules": {
+    "count": 4,
+    "items": [
+      {
+        "name": "app/api/tokens.py",
+        "count": 2,
+        "files": [
+          "app/api/tokens.py"
+        ],
+        "evidence": [
+          {
+            "file": "app/api/tokens.py",
+            "line": 1,
+            "sha256": "00a73283c159a048ca06de2452e9289407623e688fe4b09a146a46d862bae150"
+          }
+        ]
+      },
+      {
+        "name": "app/api/users.py",
+        "count": 6,
+        "files": [
+          "app/api/users.py"
+        ],
+        "evidence": [
+          {
+            "file": "app/api/users.py",
+            "line": 1,
+            "sha256": "16844254c28efb118d2db8749a87f3a743fbf73608cf2c690099199aefb4c5ab"
+          }
+        ]
+      },
+      {
+        "name": "app/auth/routes.py",
+        "count": 9,
+        "files": [
+          "app/auth/routes.py"
+        ],
+        "evidence": [
+          {
+            "file": "app/auth/routes.py",
+            "line": 1,
+            "sha256": "3ee0174e7afe9556932476ab1686f5c334d22eda396c75ed4b946f533e9d2d98"
+          }
+        ]
+      },
+      {
+        "name": "app/main/routes.py",
+        "count": 18,
+        "files": [
+          "app/main/routes.py"
+        ],
+        "evidence": [
+          {
+            "file": "app/main/routes.py",
+            "line": 1,
+            "sha256": "c984b72bb1d0d5ac3020a1529752a99963a478421f9f1faff42aa1596347a06c"
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "file": "microblog.py",
+        "line": 1,
+        "sha256": "9a3f1d28594c1ed95a05959c33172e42f8872ff46599f57dc47f0e68456a586e"
+      },
+      {
+        "file": "app/__init__.py",
+        "line": 1,
+        "sha256": "61d09b93b59d1c1d957e2f855ef6efd9921ef5b6c41c129bf7840de0ff2e2c33"
+      },
+      {
+        "file": "requirements.txt",
+        "line": 1,
+        "sha256": "d1a46ab01c6ac7cc9eac794307a7ea706ba3ab599da1c5ade066a4b66a924d6b"
+      }
+    ]
+  },
+  "frontend": {
+    "pages": {
+      "count": 0,
+      "items": [],
+      "evidence": [
+        {
+          "file": "microblog.py",
+          "line": 1,
+          "sha256": "9a3f1d28594c1ed95a05959c33172e42f8872ff46599f57dc47f0e68456a586e"
+        },
+        {
+          "file": "app/__init__.py",
+          "line": 1,
+          "sha256": "61d09b93b59d1c1d957e2f855ef6efd9921ef5b6c41c129bf7840de0ff2e2c33"
+        },
+        {
+          "file": "requirements.txt",
+          "line": 1,
+          "sha256": "d1a46ab01c6ac7cc9eac794307a7ea706ba3ab599da1c5ade066a4b66a924d6b"
+        }
+      ]
+    },
+    "api": {
+      "count": 3,
+      "items": [
+        {
+          "file": "app/templates/base.html",
+          "line": 101,
+          "method": "GET",
+          "path": "/translate",
+          "evidence": [
+            {
+              "file": "app/templates/base.html",
+              "line": 101,
+              "sha256": "04d46ba8bb4fe4e05301bc07e3f9b4b7438bb96e980dcaad021e8dc0d11a9c4f"
+            }
+          ]
+        },
+        {
+          "file": "app/templates/base.html",
+          "line": 131,
+          "method": "GET",
+          "path": "/user/{value}/popup",
+          "evidence": [
+            {
+              "file": "app/templates/base.html",
+              "line": 131,
+              "sha256": "04d46ba8bb4fe4e05301bc07e3f9b4b7438bb96e980dcaad021e8dc0d11a9c4f"
+            }
+          ]
+        },
+        {
+          "file": "app/templates/base.html",
+          "line": 161,
+          "method": "GET",
+          "path": null,
+          "expression": "fetch('{{ url_for('main.notifications') }}?since=' + since)",
+          "evidence": [
+            {
+              "file": "app/templates/base.html",
+              "line": 161,
+              "sha256": "04d46ba8bb4fe4e05301bc07e3f9b4b7438bb96e980dcaad021e8dc0d11a9c4f"
+            }
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "file": "app/templates/base.html",
+          "line": 1,
+          "sha256": "04d46ba8bb4fe4e05301bc07e3f9b4b7438bb96e980dcaad021e8dc0d11a9c4f"
+        }
+      ]
+    }
+  },
+  "size": {
+    "files": 73,
+    "classes": 32,
+    "classScope": "生产 Java class/interface、Python class 及选择的前端 class 声明；不含测试",
+    "evidence": [
+      {
+        "file": "microblog.py",
+        "line": 1,
+        "sha256": "9a3f1d28594c1ed95a05959c33172e42f8872ff46599f57dc47f0e68456a586e"
+      },
+      {
+        "file": "app/__init__.py",
+        "line": 1,
+        "sha256": "61d09b93b59d1c1d957e2f855ef6efd9921ef5b6c41c129bf7840de0ff2e2c33"
+      },
+      {
+        "file": "requirements.txt",
+        "line": 1,
+        "sha256": "d1a46ab01c6ac7cc9eac794307a7ea706ba3ab599da1c5ade066a4b66a924d6b"
+      }
+    ]
+  },
+  "notes": [
+    "Flask 服务端模板不算独立前端，也不混入客户端页面路由数；HTTP 映射含页面路由。",
+    "请求方法按显式声明计，不扩充 Flask 自动 HEAD/OPTIONS。"
+  ]
+}

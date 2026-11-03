@@ -1,0 +1,77 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import net from 'node:net';
+import {spawn} from 'node:child_process';
+import {createRequire} from 'node:module';
+import {build} from 'vite';
+import {build as bundle} from 'esbuild';
+import electron from 'electron';
+import {chromium} from 'playwright';
+import {root,guard} from './common.mjs';
+import {checkWordingSummaries} from './wording-probe.mjs';
+import {scanLayout} from './layout-probe.mjs';
+
+guard();
+const read=async f=>JSON.parse(await fs.readFile(f,'utf8'));
+const configFile=path.resolve(root,process.argv.find(a=>a.startsWith('--review-config='))?.slice('--review-config='.length)||'tests/fixtures/u7-review.json'),config=await read(configFile),out=path.join(root,config.output),navigationOnly=process.argv.includes('--navigation-only'),folder=path.join(out,navigationOnly?'layout/wording-navigation':'layout/wording-after'),policy=await read(path.join(root,'scripts/layout-policy.json'));
+await fs.mkdir(folder,{recursive:true});
+await bundle({stdin:{contents:"export {collectAnalysisNotes} from './src/main/analysis-notes'; export {isTestFile} from './src/shared/source-roles';",resolveDir:root},outfile:path.join(folder,'notes.cjs'),bundle:true,platform:'node',format:'cjs'});
+const {isTestFile}=createRequire(import.meta.url)(path.join(folder,'notes.cjs'));
+await build({configFile:false,root:path.join(root,'src/renderer'),base:'./',build:{outDir:path.join(folder,'renderer'),emptyOutDir:true,chunkSizeWarningLimit:4000},worker:{format:'es'}});
+const server=net.createServer();await new Promise(r=>server.listen(0,'127.0.0.1',r));const port=server.address().port;await new Promise(r=>server.close(r));
+const env={...process.env,CODELEADER_LAYOUT_CONFIG:configFile,CODELEADER_LAYOUT_PHASE:navigationOnly?'wording-navigation':'wording-after',CODELEADER_LAYOUT_PORT:String(port)};delete env.ELECTRON_RUN_AS_NODE;
+const log=await fs.open(path.join(folder,'window.log'),'a'),child=spawn(electron,[path.join(root,'scripts/layout-window.cjs')],{cwd:root,env,windowsHide:true,stdio:['ignore',log.fd,log.fd]});
+let browser,page;const results=[],errors=[],navigation=[];
+try{
+ for(let i=0;i<60;i++){try{browser=await chromium.connectOverCDP('http://127.0.0.1:'+port,{timeout:1000});break;}catch{await new Promise(r=>setTimeout(r,100));}}if(!browser)throw Error('No wording review window');
+ page=browser.contexts()[0].pages()[0];page.setDefaultTimeout(10000);page.on('pageerror',e=>errors.push(String(e)));await page.waitForSelector('[data-view=main]');
+ const ready=async()=>{await page.waitForFunction(()=>document.querySelector('.graph-canvas')?.dataset.layoutBusy==='false'&&!!document.querySelector('.react-flow__node'));await page.waitForTimeout(500);};
+ const load=async project=>{const done=page.waitForEvent('load');await page.evaluate(project=>window.codeleader.layoutLoad({mode:'static',project}),project).catch(e=>{if(!String(e).includes('destroyed'))throw e;});await done;await page.waitForSelector('[data-view=main]');await ready();};
+ const close=async()=>{const button=page.getByTitle('关闭检查面板',{exact:true});if(await button.count())await button.click();};
+ const tab=async name=>{const button=page.locator(`[data-view=${name}]`);if(await button.isEnabled())await button.click();await ready();};
+ const shot=async(project,kind,supported,reason)=>{
+  await page.mouse.move(5,50);await page.evaluate(()=>document.activeElement?.blur());await page.waitForTimeout(180);const numbers=await page.evaluate(checkWordingSummaries),layout=await page.evaluate(scanLayout,policy),name=project+'/'+kind;
+  await page.evaluate(name=>window.codeleader.capture(name),name);results.push({project,kind,supported,reason,screenshot:path.relative(out,path.join(folder,name+'.png')).replaceAll('\\','/'),numbers,layout});
+  await fs.writeFile(path.join(out,'WORDING-UI.json'),JSON.stringify({results,errors},null,2));console.log(JSON.stringify({project,kind,supported,numberViolations:numbers.violations.length,layoutViolations:layout.violations.length}));
+ };
+ const search=async text=>{await page.keyboard.press('Control+k');await page.getByLabel('搜索文件与方法',{exact:true}).fill(text);};
+ const frontFile=async module=>{await page.keyboard.press('Control+b');const details=page.locator('.drawer-files>details').filter({has:page.locator('summary').filter({hasText:'前端文件'})});await details.evaluate(e=>e.open=true);await page.locator('.file-item').filter({hasText:module.file}).first().click();await page.keyboard.press('Control+b');await tab('overview');};
+ for(const project of await read(path.join(out,'projects.json'))){
+  await load(project.id);const index=await read(path.join(out,'before',project.id,'model.json')),graphs=await read(path.join(out,'before',project.id,'graphs.json'));
+  if(navigationOnly){
+   const model=index.frontend;
+   if(!model?.pages.length){navigation.push({project:project.id,supported:false,reason:'没有已识别的路由页面'});continue;}
+   const ranked=model.pages.filter(p=>!p.test).map(p=>({page:p,calls:model.httpCalls.filter(c=>!c.test&&c.pageIds.includes(p.id)).length,imports:model.imports.filter(i=>i.to&&p.componentModuleIds.includes(i.from)).length})).sort((a,b)=>(b.calls+b.imports)-(a.calls+a.imports)||b.calls-a.calls||a.page.name.localeCompare(b.page.name)||a.page.id.localeCompare(b.page.id));
+   await page.evaluate(()=>{const original=Worker.prototype.postMessage;window.__wordingFocus=[];Worker.prototype.postMessage=function(message,...args){if(message?.kind==='dependency-model')window.__wordingFocus.push({focus:message.view.focus,filter:message.view.filter});return original.call(this,message,...args);};});
+   await tab('overview');const select=page.getByLabel('选择前端或后端',{exact:true});if(await select.count()){await select.click();const front=page.locator('.command-menu button').filter({hasText:/^前端$/});if(await front.count())await front.click();await ready();}
+   const actual=await page.evaluate(()=>window.__wordingFocus.at(-1)),expected=ranked[0].page.componentModuleIds[0],nodes=await page.locator('.react-flow__node').evaluateAll(items=>items.map(e=>e.dataset.id));
+   const item={project:project.id,supported:true,expected,actual,nodes,passed:actual?.focus===expected&&nodes.includes(expected),layout:await page.evaluate(scanLayout,policy)};
+   await page.evaluate(name=>window.codeleader.capture(name),project.id+'/navigation-default');
+   const selected=page.locator('.react-flow__node').filter({has:page.locator('.card-accessible')});const selectedIndex=await selected.evaluateAll((nodes,id)=>nodes.findIndex(n=>n.dataset.id===id),expected);await selected.nth(selectedIndex).locator('.card-accessible').click({force:true});await page.waitForSelector('.frontend-page-readout');item.pagePanel={numbers:await page.evaluate(checkWordingSummaries),layout:await page.evaluate(scanLayout,policy)};await page.evaluate(name=>window.codeleader.capture(name),project.id+'/navigation-data');await close();
+   const isolated=ranked.find(p=>!p.calls&&!p.imports);
+   if(isolated){await frontFile(model.modules.find(m=>isolated.page.componentModuleIds.includes(m.id)));await page.waitForSelector('.single-page-state');const size=await page.locator('.dependency-lane-card').first().boundingBox(),chips=await page.locator('.single-page-state button').evaluateAll(items=>items.map(e=>({name:e.title,text:e.textContent})));const group=await page.locator('.graph-canvas>.react-flow').boundingBox();
+    item.single={size,chips,area:group,upper:(size.y+size.height/2-group.y)/group.height,layout:await page.evaluate(scanLayout,policy)};await page.evaluate(name=>window.codeleader.capture(name),project.id+'/navigation-empty');
+    if(chips.length){const target=model.pages.find(p=>p.name===chips[0].name);await page.locator('.single-page-state button').first().click();await ready();item.choice={expected:target?.componentModuleIds[0],actual:await page.evaluate(()=>window.__wordingFocus.at(-1)?.focus),layout:await page.evaluate(scanLayout,policy)};item.choice.passed=item.choice.expected===item.choice.actual;await page.evaluate(name=>window.codeleader.capture(name),project.id+'/navigation-choice');}
+   }
+   navigation.push(item);console.log(JSON.stringify({project:project.id,defaultPassed:item.passed,single:item.single?.size,choice:item.choice?.passed}));continue;
+  }
+  const resource=graphs.main.cards.find(c=>c.resource?.engine==='MySQL')||graphs.main.cards.find(c=>c.resource);
+  if(resource){const node=page.locator('.react-flow__node').filter({has:page.getByRole('group',{name:resource.name,exact:true})}).first();await node.getByRole('group',{name:resource.name,exact:true}).click();await page.waitForSelector('.inspector');await page.getByRole('tab',{name:'详情',exact:true}).click();await shot(project.id,'resource',true,resource.name);if(!results.some(r=>r.selftest)){const original=await page.locator('[data-copy-key=resource-places]').textContent();await page.locator('[data-copy-key=resource-places]').evaluate(e=>e.textContent='999 处读写');const selftest=await page.evaluate(checkWordingSummaries);await page.locator('[data-copy-key=resource-places]').evaluate((e,text)=>e.textContent=text,original);await fs.writeFile(path.join(out,'SUMMARY-GUARD-SELFTEST.json'),JSON.stringify(selftest,null,2));results.at(-1).selftest=true;if(!selftest.violations.length)throw Error('Summary check did not catch changed visible count');}await close();
+   const link=graphs.main.links.find(l=>l.target===resource.id);if(link){const position=await page.locator('.react-flow__edge').evaluateAll((edges,id)=>{const edge=edges.find(e=>e.dataset.id===id),path=edge?.querySelector('.react-flow__edge-path');if(!path)throw Error('Missing connection');const matrix=path.getScreenCTM();for(const t of [.5,.3,.7,.15,.85]){const p=path.getPointAtLength(path.getTotalLength()*t).matrixTransform(matrix);if(document.elementFromPoint(p.x,p.y)?.closest('.react-flow__edge'))return{x:p.x,y:p.y};}const p=path.getPointAtLength(path.getTotalLength()/2).matrixTransform(matrix);return{x:p.x,y:p.y};},link.id);await page.mouse.click(position.x,position.y);if(await page.locator('.edge-choices').count())await page.locator('.edge-choices button').filter({hasText:resource.name}).first().click();await page.waitForSelector('.inspector');await shot(project.id,'connection',true,resource.name);await close();}else await shot(project.id,'connection',false,'这个资源没有已画出的连接');
+  }else{await shot(project.id,'resource',false,'项目没有识别到数据资源');await shot(project.id,'connection',false,'项目没有资源连接');}
+  const callables=index.symbols.filter(s=>['method','function','constructor'].includes(s.kind));
+  const entryIds=new Set((index.entries||[]).map(e=>e.symbolId)),methods=callables.filter(s=>!entryIds.has(s.id)&&!isTestFile(s.file,index));
+  const symbol=methods.sort((a,b)=>index.relations.filter(r=>r.from===b.id&&r.type==='CALLS'&&r.to).length-index.relations.filter(r=>r.from===a.id&&r.type==='CALLS'&&r.to).length)[0]||callables[0];
+  if(symbol){await search(symbol.qualifiedName);const item=page.locator('.symbol-item').filter({has:page.locator('small').filter({hasText:symbol.file+':'+(symbol.selection.start.line+1)})}).first();await item.click();await ready();const node=page.locator('.react-flow__node').filter({has:page.locator('.card-accessible')});const own=await node.evaluateAll((nodes,id)=>nodes.findIndex(n=>n.dataset.id===id),symbol.id);if(own<0)throw Error('Selected method not visible');await node.nth(own).locator('.card-accessible').click({force:true});await page.waitForSelector('.inspector');await shot(project.id,'method',true,symbol.name);const methodCase=results.at(-1),before=await page.locator('[data-hidden-total]').getAttribute('data-hidden-total');if(Number(before)>0){await page.locator('.inspector').getByRole('button',{name:'展开',exact:true}).click();await page.waitForFunction(n=>Number(document.querySelector('[data-hidden-total]')?.getAttribute('data-hidden-total'))<n,Number(before));await ready();const checks=await page.evaluate(checkWordingSummaries),layout=await page.evaluate(scanLayout,policy);methodCase.expansion={before:Number(before),after:Number(await page.locator('[data-hidden-total]').getAttribute('data-hidden-total')),checks,layout};await page.evaluate(name=>window.codeleader.capture(name),project.id+'/method-expanded');}await close();await tab('main');}else await shot(project.id,'method',false,'项目没有Java或Python方法，保留真实前端结构');
+  const frontend=page.locator('.hierarchy-frontend-heading').first();
+  if(await frontend.count()){await frontend.click();await ready();await page.locator('.backbone-page').evaluateAll(items=>items.forEach(e=>e.open=true));await shot(project.id,'frontend',true,index.frontend?.pages.length?'前端页面与调用':'没有路由页面，展示实际调用列表');await tab('guide');await tab('main');}else await shot(project.id,'frontend',false,'项目没有识别到前端单元');
+  const isolated=index.frontend?.pages.find(p=>!index.frontend.httpCalls.some(c=>c.pageIds.includes(p.id))&&!index.frontend.imports.some(i=>i.to&&p.componentModuleIds.includes(i.from)));
+  if(isolated){const module=index.frontend.modules.find(m=>isolated.componentModuleIds.includes(m.id));await frontFile(module);await page.waitForSelector('.single-page-state');await shot(project.id,'empty',true,'实际零调用且没有项目内引用的页面');}
+  else{await search('no-result-'+index.id+'-unmatched');await shot(project.id,'empty',true,'当前项目有内容，展示真实的搜索无结果状态');await page.keyboard.press('Escape');}
+ }
+ if(navigationOnly){const failures=navigation.filter(r=>r.supported&&(!r.passed||r.layout.violations.length||r.pagePanel?.numbers.violations.length||r.pagePanel?.layout.violations.length||r.single&&(Math.abs(r.single.size.width-160)>.75||Math.abs(r.single.size.height-44)>.75||Math.abs(r.single.upper-.32)>.02||r.single.chips.length!==3||r.single.layout.violations.length)||r.choice&&(!r.choice.passed||r.choice.layout.violations.length)));await fs.writeFile(path.join(out,'DEFAULT-PAGES.json'),JSON.stringify({navigation,failures,errors},null,2));console.log(JSON.stringify({cases:navigation.length,checked:navigation.filter(r=>r.supported).length,failures:failures.length,errors}));if(failures.length||errors.length)process.exitCode=1;}else{
+ const summary={projects:config.projects.length,cases:results.length,expectedCases:config.projects.length*5,unsupported:results.filter(r=>!r.supported).map(r=>({project:r.project,kind:r.kind,reason:r.reason})),numberViolations:results.reduce((n,r)=>n+r.numbers.violations.length+(r.expansion?.checks.violations.length||0),0),layoutViolations:results.reduce((n,r)=>n+r.layout.violations.length+(r.expansion?.layout.violations.length||0),0),errors};
+ const resources=new Map();for(const r of results)for(const s of r.numbers.summaries.filter(s=>s.kind==='resource')){const key=r.project+':'+s.id,old=resources.get(key);if(old&&JSON.stringify(old)!==JSON.stringify(s))errors.push(r.project+': node/connection resource totals disagree');resources.set(key,s);}
+ await fs.writeFile(path.join(out,'WORDING-UI-SUMMARY.json'),JSON.stringify(summary,null,2));console.log(JSON.stringify(summary));if(summary.cases!==summary.expectedCases||summary.numberViolations||summary.layoutViolations||errors.length)process.exitCode=1;}
+}catch(e){await page?.screenshot({path:path.join(out,'wording-failure.png')}).catch(()=>{});await fs.writeFile(path.join(out,'WORDING-UI-FAILURE.json'),JSON.stringify({error:String(e),errors,completed:results.length},null,2));throw e;}
+finally{await page?.evaluate(()=>window.codeleader.reviewClose()).catch(()=>{});await browser?.close().catch(()=>{});child.kill();await log.close();}

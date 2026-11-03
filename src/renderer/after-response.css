@@ -1,0 +1,6 @@
+.after-response-status{font-size:var(--font-small);color:var(--path);white-space:nowrap;flex-shrink:0}
+.after-response-setting{display:flex;flex-direction:column;gap:8px;font-size:var(--font-body);color:var(--secondary)}
+.walk-after-heading{border-top:1px dashed var(--secondary);padding:12px 8px 6px;color:var(--path);font-size:var(--font-body)}
+.walk-after-time{font-size:var(--font-small);color:var(--path);font-variant-numeric:tabular-nums}
+.walk-phase.after-response-start{border-left:1px dashed var(--secondary);border-radius:0;padding-left:4px}
+.replay-dock .dock-segment.after-response-start{border-left:1px dashed var(--secondary)}

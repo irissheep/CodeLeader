@@ -1,0 +1,10 @@
+import fs from 'node:fs';
+import {spawn} from 'node:child_process';
+import {guard,root} from './common.mjs';
+import {managedPath} from './managed-path.mjs';
+guard();const out=managedPath(process.argv[2]||root+'/.tmp/verification-runtime-flow');
+const frames=fs.readdirSync(out+'/recording-frames').filter(f=>f.endsWith('.jpg')).sort();
+const log=fs.openSync(out+'/recording-encoding.log','w');
+const child=spawn(root+'/.cache/browsers/ffmpeg-1013/ffmpeg-win64.exe',['-y','-f','image2pipe','-c:v','mjpeg','-r','2','-i','pipe:0','-an','-c:v','libvpx-vp9','-crf','32','-b:v','0',out+'/real-operation.webm'],{windowsHide:true,stdio:['pipe','ignore',log]});
+const finished=new Promise((resolve,reject)=>{child.once('error',reject);child.once('exit',code=>code===0?resolve():reject(Error('Video encoder exit '+code)));});child.stdin.on('error',()=>{});
+for(const frame of frames){if(child.stdin.destroyed)break;if(!child.stdin.write(fs.readFileSync(out+'/recording-frames/'+frame)))await new Promise(resolve=>{const ready=()=>{child.stdin.removeListener('drain',ready);child.stdin.removeListener('error',ready);resolve();};child.stdin.once('drain',ready);child.stdin.once('error',ready);});}child.stdin.end();await finished;fs.closeSync(log);console.log('Encoded real window frames:',frames.length);

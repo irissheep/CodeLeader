@@ -1,0 +1,2928 @@
+{
+  "schema": 1,
+  "project": "ruoyi",
+  "commit": "5e6c917ab0c29536b6ca792475c6611ebe0cea85",
+  "originalExpectedSha256": "ab45b343cf1b8870223d0512a0c3e17ae946284b8db9e2b010b92f9a5151ea19",
+  "referenceSha256": "6c8dcce3892981474a7cbf2a524d74de4374eca074ce17895a2d1f27ae418f8e",
+  "scope": {
+    "allCalls": 113,
+    "sample": 30,
+    "sampling": "按文件（en 排序）和行号，固定取前 30 条",
+    "sources": "独立 TypeScript/Tree-sitter 语法读取、旧冻结 HTTP 依据重新验证；不读取产品输出"
+  },
+  "cases": [
+    {
+      "front": {
+        "file": "ruoyi-ui/src/api/login.js",
+        "line": 11,
+        "method": "POST",
+        "path": "/login"
+      },
+      "urls": [
+        "http://localhost:8080/login"
+      ],
+      "expected": {
+        "outcome": "matched",
+        "reason": "unique",
+        "targets": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysLoginController.java",
+            "line": 49,
+            "method": "POST",
+            "path": "/login",
+            "unitRoot": "ruoyi-admin"
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "file": "ruoyi-ui/src/api/login.js",
+          "line": 11,
+          "sha256": "75c0def10f37b3a9447bbbb5bab377ac8576641fea0a9fb2f1e0a5b142aea51d"
+        },
+        {
+          "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysLoginController.java",
+          "line": 49,
+          "sha256": "1fa8babdf2c6c4ea1c55ff3a98a5ae1b23e484413a29731efcbf2d73a91e665a"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.development",
+          "line": 7,
+          "sha256": "5f6ef50d6bf4e353e3e0657c8b85db9965cc8e9e55efdb10f89d5b3d72c2dade"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.production",
+          "line": 7,
+          "sha256": "b8534ae70629afe5358277ad226f46ce74ef59885d3811031c6cd09f85d82be2"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.staging",
+          "line": 11,
+          "sha256": "471df2c4332832093dfcbef0c71c897d1489fac3f7141c147de947c83e3beca8"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/src/utils/request.js",
+          "line": 18,
+          "sha256": "0e7f0fe774aa8dc7b344e0a57c189584640c5a7e88e0c73a3c0b90401cf97928"
+        }
+      ]
+    },
+    {
+      "front": {
+        "file": "ruoyi-ui/src/api/login.js",
+        "line": 24,
+        "method": "POST",
+        "path": "/register"
+      },
+      "urls": [
+        "http://localhost:8080/register"
+      ],
+      "expected": {
+        "outcome": "matched",
+        "reason": "unique",
+        "targets": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysRegisterController.java",
+            "line": 29,
+            "method": "POST",
+            "path": "/register",
+            "unitRoot": "ruoyi-admin"
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "file": "ruoyi-ui/src/api/login.js",
+          "line": 24,
+          "sha256": "75c0def10f37b3a9447bbbb5bab377ac8576641fea0a9fb2f1e0a5b142aea51d"
+        },
+        {
+          "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysRegisterController.java",
+          "line": 29,
+          "sha256": "4ba1ee192fae2e2ebdc716d0fc4179b3aba1477f147fceff967350e90e8ca8c9"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.development",
+          "line": 7,
+          "sha256": "5f6ef50d6bf4e353e3e0657c8b85db9965cc8e9e55efdb10f89d5b3d72c2dade"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.production",
+          "line": 7,
+          "sha256": "b8534ae70629afe5358277ad226f46ce74ef59885d3811031c6cd09f85d82be2"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.staging",
+          "line": 11,
+          "sha256": "471df2c4332832093dfcbef0c71c897d1489fac3f7141c147de947c83e3beca8"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/src/utils/request.js",
+          "line": 18,
+          "sha256": "0e7f0fe774aa8dc7b344e0a57c189584640c5a7e88e0c73a3c0b90401cf97928"
+        }
+      ]
+    },
+    {
+      "front": {
+        "file": "ruoyi-ui/src/api/login.js",
+        "line": 36,
+        "method": "GET",
+        "path": "/getInfo"
+      },
+      "urls": [
+        "http://localhost:8080/getInfo"
+      ],
+      "expected": {
+        "outcome": "matched",
+        "reason": "unique",
+        "targets": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysLoginController.java",
+            "line": 65,
+            "method": "GET",
+            "path": "/getInfo",
+            "unitRoot": "ruoyi-admin"
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "file": "ruoyi-ui/src/api/login.js",
+          "line": 36,
+          "sha256": "75c0def10f37b3a9447bbbb5bab377ac8576641fea0a9fb2f1e0a5b142aea51d"
+        },
+        {
+          "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysLoginController.java",
+          "line": 65,
+          "sha256": "1fa8babdf2c6c4ea1c55ff3a98a5ae1b23e484413a29731efcbf2d73a91e665a"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.development",
+          "line": 7,
+          "sha256": "5f6ef50d6bf4e353e3e0657c8b85db9965cc8e9e55efdb10f89d5b3d72c2dade"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.production",
+          "line": 7,
+          "sha256": "b8534ae70629afe5358277ad226f46ce74ef59885d3811031c6cd09f85d82be2"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.staging",
+          "line": 11,
+          "sha256": "471df2c4332832093dfcbef0c71c897d1489fac3f7141c147de947c83e3beca8"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/src/utils/request.js",
+          "line": 18,
+          "sha256": "0e7f0fe774aa8dc7b344e0a57c189584640c5a7e88e0c73a3c0b90401cf97928"
+        }
+      ]
+    },
+    {
+      "front": {
+        "file": "ruoyi-ui/src/api/login.js",
+        "line": 44,
+        "method": "POST",
+        "path": "/logout"
+      },
+      "urls": [
+        "http://localhost:8080/logout"
+      ],
+      "expected": {
+        "outcome": "matched",
+        "reason": "unique",
+        "targets": [
+          {
+            "file": "ruoyi-framework/src/main/java/com/ruoyi/framework/config/SecurityConfig.java",
+            "line": 122,
+            "method": "POST",
+            "path": "/logout",
+            "unitRoot": "ruoyi-admin",
+            "framework": true
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "file": "ruoyi-ui/src/api/login.js",
+          "line": 44,
+          "sha256": "75c0def10f37b3a9447bbbb5bab377ac8576641fea0a9fb2f1e0a5b142aea51d"
+        },
+        {
+          "file": "ruoyi-framework/src/main/java/com/ruoyi/framework/config/SecurityConfig.java",
+          "line": 122,
+          "sha256": "3974882069a8570257c9942528bf9f62d09b68765a1798ff0547b178f605d326"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.development",
+          "line": 7,
+          "sha256": "5f6ef50d6bf4e353e3e0657c8b85db9965cc8e9e55efdb10f89d5b3d72c2dade"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.production",
+          "line": 7,
+          "sha256": "b8534ae70629afe5358277ad226f46ce74ef59885d3811031c6cd09f85d82be2"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.staging",
+          "line": 11,
+          "sha256": "471df2c4332832093dfcbef0c71c897d1489fac3f7141c147de947c83e3beca8"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/src/utils/request.js",
+          "line": 18,
+          "sha256": "0e7f0fe774aa8dc7b344e0a57c189584640c5a7e88e0c73a3c0b90401cf97928"
+        }
+      ]
+    },
+    {
+      "front": {
+        "file": "ruoyi-ui/src/api/login.js",
+        "line": 52,
+        "method": "GET",
+        "path": "/captchaImage"
+      },
+      "urls": [
+        "http://localhost:8080/captchaImage"
+      ],
+      "expected": {
+        "outcome": "matched",
+        "reason": "unique",
+        "targets": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/common/CaptchaController.java",
+            "line": 46,
+            "method": "GET",
+            "path": "/captchaImage",
+            "unitRoot": "ruoyi-admin"
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "file": "ruoyi-ui/src/api/login.js",
+          "line": 52,
+          "sha256": "75c0def10f37b3a9447bbbb5bab377ac8576641fea0a9fb2f1e0a5b142aea51d"
+        },
+        {
+          "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/common/CaptchaController.java",
+          "line": 46,
+          "sha256": "80d37d38164690b6e67b6554c7bad1b730a4b274bac65722e43588d247490418"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.development",
+          "line": 7,
+          "sha256": "5f6ef50d6bf4e353e3e0657c8b85db9965cc8e9e55efdb10f89d5b3d72c2dade"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.production",
+          "line": 7,
+          "sha256": "b8534ae70629afe5358277ad226f46ce74ef59885d3811031c6cd09f85d82be2"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.staging",
+          "line": 11,
+          "sha256": "471df2c4332832093dfcbef0c71c897d1489fac3f7141c147de947c83e3beca8"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/src/utils/request.js",
+          "line": 18,
+          "sha256": "0e7f0fe774aa8dc7b344e0a57c189584640c5a7e88e0c73a3c0b90401cf97928"
+        }
+      ]
+    },
+    {
+      "front": {
+        "file": "ruoyi-ui/src/api/menu.js",
+        "line": 5,
+        "method": "GET",
+        "path": "/getRouters"
+      },
+      "urls": [
+        "http://localhost:8080/getRouters"
+      ],
+      "expected": {
+        "outcome": "matched",
+        "reason": "unique",
+        "targets": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysLoginController.java",
+            "line": 91,
+            "method": "GET",
+            "path": "/getRouters",
+            "unitRoot": "ruoyi-admin"
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "file": "ruoyi-ui/src/api/menu.js",
+          "line": 5,
+          "sha256": "66d916a76b3f2cd1e0f29573f6edd19239a9cb50573dc26448730d4b1ac79c50"
+        },
+        {
+          "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysLoginController.java",
+          "line": 91,
+          "sha256": "1fa8babdf2c6c4ea1c55ff3a98a5ae1b23e484413a29731efcbf2d73a91e665a"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.development",
+          "line": 7,
+          "sha256": "5f6ef50d6bf4e353e3e0657c8b85db9965cc8e9e55efdb10f89d5b3d72c2dade"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.production",
+          "line": 7,
+          "sha256": "b8534ae70629afe5358277ad226f46ce74ef59885d3811031c6cd09f85d82be2"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.staging",
+          "line": 11,
+          "sha256": "471df2c4332832093dfcbef0c71c897d1489fac3f7141c147de947c83e3beca8"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/src/utils/request.js",
+          "line": 18,
+          "sha256": "0e7f0fe774aa8dc7b344e0a57c189584640c5a7e88e0c73a3c0b90401cf97928"
+        }
+      ]
+    },
+    {
+      "front": {
+        "file": "ruoyi-ui/src/api/monitor/cache.js",
+        "line": 5,
+        "method": "GET",
+        "path": "/monitor/cache"
+      },
+      "urls": [
+        "http://localhost:8080/monitor/cache"
+      ],
+      "expected": {
+        "outcome": "matched",
+        "reason": "unique",
+        "targets": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/CacheController.java",
+            "line": 50,
+            "method": "GET",
+            "path": "/monitor/cache",
+            "unitRoot": "ruoyi-admin"
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "file": "ruoyi-ui/src/api/monitor/cache.js",
+          "line": 5,
+          "sha256": "074331ad120d0023cd9ce2ac080287cdaaf886078cbba2f872e466460b421a33"
+        },
+        {
+          "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/CacheController.java",
+          "line": 50,
+          "sha256": "7029c47166eacbaec605dd4812099e8a8c97ac23cf1a635902b017120ca45e8f"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.development",
+          "line": 7,
+          "sha256": "5f6ef50d6bf4e353e3e0657c8b85db9965cc8e9e55efdb10f89d5b3d72c2dade"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.production",
+          "line": 7,
+          "sha256": "b8534ae70629afe5358277ad226f46ce74ef59885d3811031c6cd09f85d82be2"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.staging",
+          "line": 11,
+          "sha256": "471df2c4332832093dfcbef0c71c897d1489fac3f7141c147de947c83e3beca8"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/src/utils/request.js",
+          "line": 18,
+          "sha256": "0e7f0fe774aa8dc7b344e0a57c189584640c5a7e88e0c73a3c0b90401cf97928"
+        }
+      ]
+    },
+    {
+      "front": {
+        "file": "ruoyi-ui/src/api/monitor/cache.js",
+        "line": 13,
+        "method": "GET",
+        "path": "/monitor/cache/getNames"
+      },
+      "urls": [
+        "http://localhost:8080/monitor/cache/getNames"
+      ],
+      "expected": {
+        "outcome": "matched",
+        "reason": "unique",
+        "targets": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/CacheController.java",
+            "line": 74,
+            "method": "GET",
+            "path": "/monitor/cache/getNames",
+            "unitRoot": "ruoyi-admin"
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "file": "ruoyi-ui/src/api/monitor/cache.js",
+          "line": 13,
+          "sha256": "074331ad120d0023cd9ce2ac080287cdaaf886078cbba2f872e466460b421a33"
+        },
+        {
+          "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/CacheController.java",
+          "line": 74,
+          "sha256": "7029c47166eacbaec605dd4812099e8a8c97ac23cf1a635902b017120ca45e8f"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.development",
+          "line": 7,
+          "sha256": "5f6ef50d6bf4e353e3e0657c8b85db9965cc8e9e55efdb10f89d5b3d72c2dade"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.production",
+          "line": 7,
+          "sha256": "b8534ae70629afe5358277ad226f46ce74ef59885d3811031c6cd09f85d82be2"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.staging",
+          "line": 11,
+          "sha256": "471df2c4332832093dfcbef0c71c897d1489fac3f7141c147de947c83e3beca8"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/src/utils/request.js",
+          "line": 18,
+          "sha256": "0e7f0fe774aa8dc7b344e0a57c189584640c5a7e88e0c73a3c0b90401cf97928"
+        }
+      ]
+    },
+    {
+      "front": {
+        "file": "ruoyi-ui/src/api/monitor/cache.js",
+        "line": 21,
+        "method": "GET",
+        "path": "/monitor/cache/getKeys/{param}"
+      },
+      "urls": [
+        "http://localhost:8080/monitor/cache/getKeys/{param}"
+      ],
+      "expected": {
+        "outcome": "matched",
+        "reason": "unique",
+        "targets": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/CacheController.java",
+            "line": 81,
+            "method": "GET",
+            "path": "/monitor/cache/getKeys/{cacheName}",
+            "unitRoot": "ruoyi-admin"
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "file": "ruoyi-ui/src/api/monitor/cache.js",
+          "line": 21,
+          "sha256": "074331ad120d0023cd9ce2ac080287cdaaf886078cbba2f872e466460b421a33"
+        },
+        {
+          "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/CacheController.java",
+          "line": 81,
+          "sha256": "7029c47166eacbaec605dd4812099e8a8c97ac23cf1a635902b017120ca45e8f"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.development",
+          "line": 7,
+          "sha256": "5f6ef50d6bf4e353e3e0657c8b85db9965cc8e9e55efdb10f89d5b3d72c2dade"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.production",
+          "line": 7,
+          "sha256": "b8534ae70629afe5358277ad226f46ce74ef59885d3811031c6cd09f85d82be2"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.staging",
+          "line": 11,
+          "sha256": "471df2c4332832093dfcbef0c71c897d1489fac3f7141c147de947c83e3beca8"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/src/utils/request.js",
+          "line": 18,
+          "sha256": "0e7f0fe774aa8dc7b344e0a57c189584640c5a7e88e0c73a3c0b90401cf97928"
+        }
+      ]
+    },
+    {
+      "front": {
+        "file": "ruoyi-ui/src/api/monitor/cache.js",
+        "line": 29,
+        "method": "GET",
+        "path": "/monitor/cache/getValue/{param}/{param}"
+      },
+      "urls": [
+        "http://localhost:8080/monitor/cache/getValue/{param}/{param}"
+      ],
+      "expected": {
+        "outcome": "matched",
+        "reason": "unique",
+        "targets": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/CacheController.java",
+            "line": 89,
+            "method": "GET",
+            "path": "/monitor/cache/getValue/{cacheName}/{cacheKey}",
+            "unitRoot": "ruoyi-admin"
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "file": "ruoyi-ui/src/api/monitor/cache.js",
+          "line": 29,
+          "sha256": "074331ad120d0023cd9ce2ac080287cdaaf886078cbba2f872e466460b421a33"
+        },
+        {
+          "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/CacheController.java",
+          "line": 89,
+          "sha256": "7029c47166eacbaec605dd4812099e8a8c97ac23cf1a635902b017120ca45e8f"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.development",
+          "line": 7,
+          "sha256": "5f6ef50d6bf4e353e3e0657c8b85db9965cc8e9e55efdb10f89d5b3d72c2dade"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.production",
+          "line": 7,
+          "sha256": "b8534ae70629afe5358277ad226f46ce74ef59885d3811031c6cd09f85d82be2"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.staging",
+          "line": 11,
+          "sha256": "471df2c4332832093dfcbef0c71c897d1489fac3f7141c147de947c83e3beca8"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/src/utils/request.js",
+          "line": 18,
+          "sha256": "0e7f0fe774aa8dc7b344e0a57c189584640c5a7e88e0c73a3c0b90401cf97928"
+        }
+      ]
+    },
+    {
+      "front": {
+        "file": "ruoyi-ui/src/api/monitor/cache.js",
+        "line": 37,
+        "method": "DELETE",
+        "path": "/monitor/cache/clearCacheName/{param}"
+      },
+      "urls": [
+        "http://localhost:8080/monitor/cache/clearCacheName/{param}"
+      ],
+      "expected": {
+        "outcome": "matched",
+        "reason": "unique",
+        "targets": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/CacheController.java",
+            "line": 98,
+            "method": "DELETE",
+            "path": "/monitor/cache/clearCacheName/{cacheName}",
+            "unitRoot": "ruoyi-admin"
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "file": "ruoyi-ui/src/api/monitor/cache.js",
+          "line": 37,
+          "sha256": "074331ad120d0023cd9ce2ac080287cdaaf886078cbba2f872e466460b421a33"
+        },
+        {
+          "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/CacheController.java",
+          "line": 98,
+          "sha256": "7029c47166eacbaec605dd4812099e8a8c97ac23cf1a635902b017120ca45e8f"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.development",
+          "line": 7,
+          "sha256": "5f6ef50d6bf4e353e3e0657c8b85db9965cc8e9e55efdb10f89d5b3d72c2dade"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.production",
+          "line": 7,
+          "sha256": "b8534ae70629afe5358277ad226f46ce74ef59885d3811031c6cd09f85d82be2"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.staging",
+          "line": 11,
+          "sha256": "471df2c4332832093dfcbef0c71c897d1489fac3f7141c147de947c83e3beca8"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/src/utils/request.js",
+          "line": 18,
+          "sha256": "0e7f0fe774aa8dc7b344e0a57c189584640c5a7e88e0c73a3c0b90401cf97928"
+        }
+      ]
+    },
+    {
+      "front": {
+        "file": "ruoyi-ui/src/api/monitor/cache.js",
+        "line": 45,
+        "method": "DELETE",
+        "path": "/monitor/cache/clearCacheKey/{param}"
+      },
+      "urls": [
+        "http://localhost:8080/monitor/cache/clearCacheKey/{param}"
+      ],
+      "expected": {
+        "outcome": "matched",
+        "reason": "unique",
+        "targets": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/CacheController.java",
+            "line": 107,
+            "method": "DELETE",
+            "path": "/monitor/cache/clearCacheKey/{cacheKey}",
+            "unitRoot": "ruoyi-admin"
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "file": "ruoyi-ui/src/api/monitor/cache.js",
+          "line": 45,
+          "sha256": "074331ad120d0023cd9ce2ac080287cdaaf886078cbba2f872e466460b421a33"
+        },
+        {
+          "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/CacheController.java",
+          "line": 107,
+          "sha256": "7029c47166eacbaec605dd4812099e8a8c97ac23cf1a635902b017120ca45e8f"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.development",
+          "line": 7,
+          "sha256": "5f6ef50d6bf4e353e3e0657c8b85db9965cc8e9e55efdb10f89d5b3d72c2dade"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.production",
+          "line": 7,
+          "sha256": "b8534ae70629afe5358277ad226f46ce74ef59885d3811031c6cd09f85d82be2"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.staging",
+          "line": 11,
+          "sha256": "471df2c4332832093dfcbef0c71c897d1489fac3f7141c147de947c83e3beca8"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/src/utils/request.js",
+          "line": 18,
+          "sha256": "0e7f0fe774aa8dc7b344e0a57c189584640c5a7e88e0c73a3c0b90401cf97928"
+        }
+      ]
+    },
+    {
+      "front": {
+        "file": "ruoyi-ui/src/api/monitor/cache.js",
+        "line": 53,
+        "method": "DELETE",
+        "path": "/monitor/cache/clearCacheAll"
+      },
+      "urls": [
+        "http://localhost:8080/monitor/cache/clearCacheAll"
+      ],
+      "expected": {
+        "outcome": "matched",
+        "reason": "unique",
+        "targets": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/CacheController.java",
+            "line": 115,
+            "method": "DELETE",
+            "path": "/monitor/cache/clearCacheAll",
+            "unitRoot": "ruoyi-admin"
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "file": "ruoyi-ui/src/api/monitor/cache.js",
+          "line": 53,
+          "sha256": "074331ad120d0023cd9ce2ac080287cdaaf886078cbba2f872e466460b421a33"
+        },
+        {
+          "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/CacheController.java",
+          "line": 115,
+          "sha256": "7029c47166eacbaec605dd4812099e8a8c97ac23cf1a635902b017120ca45e8f"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.development",
+          "line": 7,
+          "sha256": "5f6ef50d6bf4e353e3e0657c8b85db9965cc8e9e55efdb10f89d5b3d72c2dade"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.production",
+          "line": 7,
+          "sha256": "b8534ae70629afe5358277ad226f46ce74ef59885d3811031c6cd09f85d82be2"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.staging",
+          "line": 11,
+          "sha256": "471df2c4332832093dfcbef0c71c897d1489fac3f7141c147de947c83e3beca8"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/src/utils/request.js",
+          "line": 18,
+          "sha256": "0e7f0fe774aa8dc7b344e0a57c189584640c5a7e88e0c73a3c0b90401cf97928"
+        }
+      ]
+    },
+    {
+      "front": {
+        "file": "ruoyi-ui/src/api/monitor/job.js",
+        "line": 5,
+        "method": "GET",
+        "path": "/monitor/job/list"
+      },
+      "urls": [
+        "http://localhost:8080/monitor/job/list"
+      ],
+      "expected": {
+        "outcome": "matched",
+        "reason": "unique",
+        "targets": [
+          {
+            "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobController.java",
+            "line": 47,
+            "method": "GET",
+            "path": "/monitor/job/list",
+            "unitRoot": "ruoyi-admin"
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "file": "ruoyi-ui/src/api/monitor/job.js",
+          "line": 5,
+          "sha256": "bafe5f26c8fc36281a6a2b5297fabcc656a708413bec38d9b33dbced19598694"
+        },
+        {
+          "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobController.java",
+          "line": 47,
+          "sha256": "4c81a924e1b717546b58a896c35a87701e58975ce1b5948920626024357e3800"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.development",
+          "line": 7,
+          "sha256": "5f6ef50d6bf4e353e3e0657c8b85db9965cc8e9e55efdb10f89d5b3d72c2dade"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.production",
+          "line": 7,
+          "sha256": "b8534ae70629afe5358277ad226f46ce74ef59885d3811031c6cd09f85d82be2"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.staging",
+          "line": 11,
+          "sha256": "471df2c4332832093dfcbef0c71c897d1489fac3f7141c147de947c83e3beca8"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/src/utils/request.js",
+          "line": 18,
+          "sha256": "0e7f0fe774aa8dc7b344e0a57c189584640c5a7e88e0c73a3c0b90401cf97928"
+        }
+      ]
+    },
+    {
+      "front": {
+        "file": "ruoyi-ui/src/api/monitor/job.js",
+        "line": 14,
+        "method": "GET",
+        "path": "/monitor/job/{param}"
+      },
+      "urls": [
+        "http://localhost:8080/monitor/job/{param}"
+      ],
+      "expected": {
+        "outcome": "matched",
+        "reason": "unique",
+        "targets": [
+          {
+            "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobController.java",
+            "line": 72,
+            "method": "GET",
+            "path": "/monitor/job/{jobId}",
+            "unitRoot": "ruoyi-admin"
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "file": "ruoyi-ui/src/api/monitor/job.js",
+          "line": 14,
+          "sha256": "bafe5f26c8fc36281a6a2b5297fabcc656a708413bec38d9b33dbced19598694"
+        },
+        {
+          "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobController.java",
+          "line": 72,
+          "sha256": "4c81a924e1b717546b58a896c35a87701e58975ce1b5948920626024357e3800"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.development",
+          "line": 7,
+          "sha256": "5f6ef50d6bf4e353e3e0657c8b85db9965cc8e9e55efdb10f89d5b3d72c2dade"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.production",
+          "line": 7,
+          "sha256": "b8534ae70629afe5358277ad226f46ce74ef59885d3811031c6cd09f85d82be2"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.staging",
+          "line": 11,
+          "sha256": "471df2c4332832093dfcbef0c71c897d1489fac3f7141c147de947c83e3beca8"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/src/utils/request.js",
+          "line": 18,
+          "sha256": "0e7f0fe774aa8dc7b344e0a57c189584640c5a7e88e0c73a3c0b90401cf97928"
+        }
+      ]
+    },
+    {
+      "front": {
+        "file": "ruoyi-ui/src/api/monitor/job.js",
+        "line": 22,
+        "method": "POST",
+        "path": "/monitor/job"
+      },
+      "urls": [
+        "http://localhost:8080/monitor/job"
+      ],
+      "expected": {
+        "outcome": "matched",
+        "reason": "unique",
+        "targets": [
+          {
+            "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobController.java",
+            "line": 83,
+            "method": "POST",
+            "path": "/monitor/job",
+            "unitRoot": "ruoyi-admin"
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "file": "ruoyi-ui/src/api/monitor/job.js",
+          "line": 22,
+          "sha256": "bafe5f26c8fc36281a6a2b5297fabcc656a708413bec38d9b33dbced19598694"
+        },
+        {
+          "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobController.java",
+          "line": 83,
+          "sha256": "4c81a924e1b717546b58a896c35a87701e58975ce1b5948920626024357e3800"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.development",
+          "line": 7,
+          "sha256": "5f6ef50d6bf4e353e3e0657c8b85db9965cc8e9e55efdb10f89d5b3d72c2dade"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.production",
+          "line": 7,
+          "sha256": "b8534ae70629afe5358277ad226f46ce74ef59885d3811031c6cd09f85d82be2"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.staging",
+          "line": 11,
+          "sha256": "471df2c4332832093dfcbef0c71c897d1489fac3f7141c147de947c83e3beca8"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/src/utils/request.js",
+          "line": 18,
+          "sha256": "0e7f0fe774aa8dc7b344e0a57c189584640c5a7e88e0c73a3c0b90401cf97928"
+        }
+      ]
+    },
+    {
+      "front": {
+        "file": "ruoyi-ui/src/api/monitor/job.js",
+        "line": 31,
+        "method": "PUT",
+        "path": "/monitor/job"
+      },
+      "urls": [
+        "http://localhost:8080/monitor/job"
+      ],
+      "expected": {
+        "outcome": "matched",
+        "reason": "unique",
+        "targets": [
+          {
+            "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobController.java",
+            "line": 119,
+            "method": "PUT",
+            "path": "/monitor/job",
+            "unitRoot": "ruoyi-admin"
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "file": "ruoyi-ui/src/api/monitor/job.js",
+          "line": 31,
+          "sha256": "bafe5f26c8fc36281a6a2b5297fabcc656a708413bec38d9b33dbced19598694"
+        },
+        {
+          "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobController.java",
+          "line": 119,
+          "sha256": "4c81a924e1b717546b58a896c35a87701e58975ce1b5948920626024357e3800"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.development",
+          "line": 7,
+          "sha256": "5f6ef50d6bf4e353e3e0657c8b85db9965cc8e9e55efdb10f89d5b3d72c2dade"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.production",
+          "line": 7,
+          "sha256": "b8534ae70629afe5358277ad226f46ce74ef59885d3811031c6cd09f85d82be2"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.staging",
+          "line": 11,
+          "sha256": "471df2c4332832093dfcbef0c71c897d1489fac3f7141c147de947c83e3beca8"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/src/utils/request.js",
+          "line": 18,
+          "sha256": "0e7f0fe774aa8dc7b344e0a57c189584640c5a7e88e0c73a3c0b90401cf97928"
+        }
+      ]
+    },
+    {
+      "front": {
+        "file": "ruoyi-ui/src/api/monitor/job.js",
+        "line": 40,
+        "method": "DELETE",
+        "path": "/monitor/job/{param}"
+      },
+      "urls": [
+        "http://localhost:8080/monitor/job/{param}"
+      ],
+      "expected": {
+        "outcome": "matched",
+        "reason": "unique",
+        "targets": [
+          {
+            "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobController.java",
+            "line": 180,
+            "method": "DELETE",
+            "path": "/monitor/job/{jobIds}",
+            "unitRoot": "ruoyi-admin"
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "file": "ruoyi-ui/src/api/monitor/job.js",
+          "line": 40,
+          "sha256": "bafe5f26c8fc36281a6a2b5297fabcc656a708413bec38d9b33dbced19598694"
+        },
+        {
+          "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobController.java",
+          "line": 180,
+          "sha256": "4c81a924e1b717546b58a896c35a87701e58975ce1b5948920626024357e3800"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.development",
+          "line": 7,
+          "sha256": "5f6ef50d6bf4e353e3e0657c8b85db9965cc8e9e55efdb10f89d5b3d72c2dade"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.production",
+          "line": 7,
+          "sha256": "b8534ae70629afe5358277ad226f46ce74ef59885d3811031c6cd09f85d82be2"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.staging",
+          "line": 11,
+          "sha256": "471df2c4332832093dfcbef0c71c897d1489fac3f7141c147de947c83e3beca8"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/src/utils/request.js",
+          "line": 18,
+          "sha256": "0e7f0fe774aa8dc7b344e0a57c189584640c5a7e88e0c73a3c0b90401cf97928"
+        }
+      ]
+    },
+    {
+      "front": {
+        "file": "ruoyi-ui/src/api/monitor/job.js",
+        "line": 52,
+        "method": "PUT",
+        "path": "/monitor/job/changeStatus"
+      },
+      "urls": [
+        "http://localhost:8080/monitor/job/changeStatus"
+      ],
+      "expected": {
+        "outcome": "matched",
+        "reason": "unique",
+        "targets": [
+          {
+            "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobController.java",
+            "line": 155,
+            "method": "PUT",
+            "path": "/monitor/job/changeStatus",
+            "unitRoot": "ruoyi-admin"
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "file": "ruoyi-ui/src/api/monitor/job.js",
+          "line": 52,
+          "sha256": "bafe5f26c8fc36281a6a2b5297fabcc656a708413bec38d9b33dbced19598694"
+        },
+        {
+          "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobController.java",
+          "line": 155,
+          "sha256": "4c81a924e1b717546b58a896c35a87701e58975ce1b5948920626024357e3800"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.development",
+          "line": 7,
+          "sha256": "5f6ef50d6bf4e353e3e0657c8b85db9965cc8e9e55efdb10f89d5b3d72c2dade"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.production",
+          "line": 7,
+          "sha256": "b8534ae70629afe5358277ad226f46ce74ef59885d3811031c6cd09f85d82be2"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.staging",
+          "line": 11,
+          "sha256": "471df2c4332832093dfcbef0c71c897d1489fac3f7141c147de947c83e3beca8"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/src/utils/request.js",
+          "line": 18,
+          "sha256": "0e7f0fe774aa8dc7b344e0a57c189584640c5a7e88e0c73a3c0b90401cf97928"
+        }
+      ]
+    },
+    {
+      "front": {
+        "file": "ruoyi-ui/src/api/monitor/job.js",
+        "line": 66,
+        "method": "PUT",
+        "path": "/monitor/job/run"
+      },
+      "urls": [
+        "http://localhost:8080/monitor/job/run"
+      ],
+      "expected": {
+        "outcome": "matched",
+        "reason": "unique",
+        "targets": [
+          {
+            "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobController.java",
+            "line": 168,
+            "method": "PUT",
+            "path": "/monitor/job/run",
+            "unitRoot": "ruoyi-admin"
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "file": "ruoyi-ui/src/api/monitor/job.js",
+          "line": 66,
+          "sha256": "bafe5f26c8fc36281a6a2b5297fabcc656a708413bec38d9b33dbced19598694"
+        },
+        {
+          "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobController.java",
+          "line": 168,
+          "sha256": "4c81a924e1b717546b58a896c35a87701e58975ce1b5948920626024357e3800"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.development",
+          "line": 7,
+          "sha256": "5f6ef50d6bf4e353e3e0657c8b85db9965cc8e9e55efdb10f89d5b3d72c2dade"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.production",
+          "line": 7,
+          "sha256": "b8534ae70629afe5358277ad226f46ce74ef59885d3811031c6cd09f85d82be2"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.staging",
+          "line": 11,
+          "sha256": "471df2c4332832093dfcbef0c71c897d1489fac3f7141c147de947c83e3beca8"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/src/utils/request.js",
+          "line": 18,
+          "sha256": "0e7f0fe774aa8dc7b344e0a57c189584640c5a7e88e0c73a3c0b90401cf97928"
+        }
+      ]
+    },
+    {
+      "front": {
+        "file": "ruoyi-ui/src/api/monitor/jobLog.js",
+        "line": 5,
+        "method": "GET",
+        "path": "/monitor/jobLog/list"
+      },
+      "urls": [
+        "http://localhost:8080/monitor/jobLog/list"
+      ],
+      "expected": {
+        "outcome": "matched",
+        "reason": "unique",
+        "targets": [
+          {
+            "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobLogController.java",
+            "line": 39,
+            "method": "GET",
+            "path": "/monitor/jobLog/list",
+            "unitRoot": "ruoyi-admin"
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "file": "ruoyi-ui/src/api/monitor/jobLog.js",
+          "line": 5,
+          "sha256": "0032077dc97869ad9e410c2a9764cb7faad95010cca7a5344ea2f0f9d10eb88b"
+        },
+        {
+          "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobLogController.java",
+          "line": 39,
+          "sha256": "2320159febac2a3df9d0104ed2fb814013a15d3ee2bba774dc9cb96ecd13472c"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.development",
+          "line": 7,
+          "sha256": "5f6ef50d6bf4e353e3e0657c8b85db9965cc8e9e55efdb10f89d5b3d72c2dade"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.production",
+          "line": 7,
+          "sha256": "b8534ae70629afe5358277ad226f46ce74ef59885d3811031c6cd09f85d82be2"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.staging",
+          "line": 11,
+          "sha256": "471df2c4332832093dfcbef0c71c897d1489fac3f7141c147de947c83e3beca8"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/src/utils/request.js",
+          "line": 18,
+          "sha256": "0e7f0fe774aa8dc7b344e0a57c189584640c5a7e88e0c73a3c0b90401cf97928"
+        }
+      ]
+    },
+    {
+      "front": {
+        "file": "ruoyi-ui/src/api/monitor/jobLog.js",
+        "line": 14,
+        "method": "DELETE",
+        "path": "/monitor/jobLog/{param}"
+      },
+      "urls": [
+        "http://localhost:8080/monitor/jobLog/{param}"
+      ],
+      "expected": {
+        "outcome": "matched",
+        "reason": "unique",
+        "targets": [
+          {
+            "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobLogController.java",
+            "line": 76,
+            "method": "DELETE",
+            "path": "/monitor/jobLog/{jobLogIds}",
+            "unitRoot": "ruoyi-admin"
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "file": "ruoyi-ui/src/api/monitor/jobLog.js",
+          "line": 14,
+          "sha256": "0032077dc97869ad9e410c2a9764cb7faad95010cca7a5344ea2f0f9d10eb88b"
+        },
+        {
+          "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobLogController.java",
+          "line": 76,
+          "sha256": "2320159febac2a3df9d0104ed2fb814013a15d3ee2bba774dc9cb96ecd13472c"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.development",
+          "line": 7,
+          "sha256": "5f6ef50d6bf4e353e3e0657c8b85db9965cc8e9e55efdb10f89d5b3d72c2dade"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.production",
+          "line": 7,
+          "sha256": "b8534ae70629afe5358277ad226f46ce74ef59885d3811031c6cd09f85d82be2"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.staging",
+          "line": 11,
+          "sha256": "471df2c4332832093dfcbef0c71c897d1489fac3f7141c147de947c83e3beca8"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/src/utils/request.js",
+          "line": 18,
+          "sha256": "0e7f0fe774aa8dc7b344e0a57c189584640c5a7e88e0c73a3c0b90401cf97928"
+        }
+      ]
+    },
+    {
+      "front": {
+        "file": "ruoyi-ui/src/api/monitor/jobLog.js",
+        "line": 22,
+        "method": "DELETE",
+        "path": "/monitor/jobLog/clean"
+      },
+      "urls": [
+        "http://localhost:8080/monitor/jobLog/clean"
+      ],
+      "expected": {
+        "outcome": "matched",
+        "reason": "unique",
+        "targets": [
+          {
+            "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobLogController.java",
+            "line": 87,
+            "method": "DELETE",
+            "path": "/monitor/jobLog/clean",
+            "unitRoot": "ruoyi-admin"
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "file": "ruoyi-ui/src/api/monitor/jobLog.js",
+          "line": 22,
+          "sha256": "0032077dc97869ad9e410c2a9764cb7faad95010cca7a5344ea2f0f9d10eb88b"
+        },
+        {
+          "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobLogController.java",
+          "line": 87,
+          "sha256": "2320159febac2a3df9d0104ed2fb814013a15d3ee2bba774dc9cb96ecd13472c"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.development",
+          "line": 7,
+          "sha256": "5f6ef50d6bf4e353e3e0657c8b85db9965cc8e9e55efdb10f89d5b3d72c2dade"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.production",
+          "line": 7,
+          "sha256": "b8534ae70629afe5358277ad226f46ce74ef59885d3811031c6cd09f85d82be2"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.staging",
+          "line": 11,
+          "sha256": "471df2c4332832093dfcbef0c71c897d1489fac3f7141c147de947c83e3beca8"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/src/utils/request.js",
+          "line": 18,
+          "sha256": "0e7f0fe774aa8dc7b344e0a57c189584640c5a7e88e0c73a3c0b90401cf97928"
+        }
+      ]
+    },
+    {
+      "front": {
+        "file": "ruoyi-ui/src/api/monitor/logininfor.js",
+        "line": 5,
+        "method": "GET",
+        "path": "/monitor/logininfor/list"
+      },
+      "urls": [
+        "http://localhost:8080/monitor/logininfor/list"
+      ],
+      "expected": {
+        "outcome": "matched",
+        "reason": "unique",
+        "targets": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/SysLogininforController.java",
+            "line": 40,
+            "method": "GET",
+            "path": "/monitor/logininfor/list",
+            "unitRoot": "ruoyi-admin"
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "file": "ruoyi-ui/src/api/monitor/logininfor.js",
+          "line": 5,
+          "sha256": "1a076089e0049572e74ad08a247507809a6423aacb3ce3336941452ba4bd5bf7"
+        },
+        {
+          "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/SysLogininforController.java",
+          "line": 40,
+          "sha256": "3cca69a7ef125556abe0c75252e29a6e4f4d53f52b87b7d6d8d16beeee67adc4"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.development",
+          "line": 7,
+          "sha256": "5f6ef50d6bf4e353e3e0657c8b85db9965cc8e9e55efdb10f89d5b3d72c2dade"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.production",
+          "line": 7,
+          "sha256": "b8534ae70629afe5358277ad226f46ce74ef59885d3811031c6cd09f85d82be2"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.staging",
+          "line": 11,
+          "sha256": "471df2c4332832093dfcbef0c71c897d1489fac3f7141c147de947c83e3beca8"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/src/utils/request.js",
+          "line": 18,
+          "sha256": "0e7f0fe774aa8dc7b344e0a57c189584640c5a7e88e0c73a3c0b90401cf97928"
+        }
+      ]
+    },
+    {
+      "front": {
+        "file": "ruoyi-ui/src/api/monitor/logininfor.js",
+        "line": 14,
+        "method": "DELETE",
+        "path": "/monitor/logininfor/{param}"
+      },
+      "urls": [
+        "http://localhost:8080/monitor/logininfor/{param}"
+      ],
+      "expected": {
+        "outcome": "matched",
+        "reason": "unique",
+        "targets": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/SysLogininforController.java",
+            "line": 60,
+            "method": "DELETE",
+            "path": "/monitor/logininfor/{infoIds}",
+            "unitRoot": "ruoyi-admin"
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "file": "ruoyi-ui/src/api/monitor/logininfor.js",
+          "line": 14,
+          "sha256": "1a076089e0049572e74ad08a247507809a6423aacb3ce3336941452ba4bd5bf7"
+        },
+        {
+          "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/SysLogininforController.java",
+          "line": 60,
+          "sha256": "3cca69a7ef125556abe0c75252e29a6e4f4d53f52b87b7d6d8d16beeee67adc4"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.development",
+          "line": 7,
+          "sha256": "5f6ef50d6bf4e353e3e0657c8b85db9965cc8e9e55efdb10f89d5b3d72c2dade"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.production",
+          "line": 7,
+          "sha256": "b8534ae70629afe5358277ad226f46ce74ef59885d3811031c6cd09f85d82be2"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.staging",
+          "line": 11,
+          "sha256": "471df2c4332832093dfcbef0c71c897d1489fac3f7141c147de947c83e3beca8"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/src/utils/request.js",
+          "line": 18,
+          "sha256": "0e7f0fe774aa8dc7b344e0a57c189584640c5a7e88e0c73a3c0b90401cf97928"
+        }
+      ]
+    },
+    {
+      "front": {
+        "file": "ruoyi-ui/src/api/monitor/logininfor.js",
+        "line": 22,
+        "method": "GET",
+        "path": "/monitor/logininfor/unlock/{param}"
+      },
+      "urls": [
+        "http://localhost:8080/monitor/logininfor/unlock/{param}"
+      ],
+      "expected": {
+        "outcome": "matched",
+        "reason": "unique",
+        "targets": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/SysLogininforController.java",
+            "line": 77,
+            "method": "GET",
+            "path": "/monitor/logininfor/unlock/{userName}",
+            "unitRoot": "ruoyi-admin"
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "file": "ruoyi-ui/src/api/monitor/logininfor.js",
+          "line": 22,
+          "sha256": "1a076089e0049572e74ad08a247507809a6423aacb3ce3336941452ba4bd5bf7"
+        },
+        {
+          "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/SysLogininforController.java",
+          "line": 77,
+          "sha256": "3cca69a7ef125556abe0c75252e29a6e4f4d53f52b87b7d6d8d16beeee67adc4"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.development",
+          "line": 7,
+          "sha256": "5f6ef50d6bf4e353e3e0657c8b85db9965cc8e9e55efdb10f89d5b3d72c2dade"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.production",
+          "line": 7,
+          "sha256": "b8534ae70629afe5358277ad226f46ce74ef59885d3811031c6cd09f85d82be2"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.staging",
+          "line": 11,
+          "sha256": "471df2c4332832093dfcbef0c71c897d1489fac3f7141c147de947c83e3beca8"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/src/utils/request.js",
+          "line": 18,
+          "sha256": "0e7f0fe774aa8dc7b344e0a57c189584640c5a7e88e0c73a3c0b90401cf97928"
+        }
+      ]
+    },
+    {
+      "front": {
+        "file": "ruoyi-ui/src/api/monitor/logininfor.js",
+        "line": 30,
+        "method": "DELETE",
+        "path": "/monitor/logininfor/clean"
+      },
+      "urls": [
+        "http://localhost:8080/monitor/logininfor/clean"
+      ],
+      "expected": {
+        "outcome": "matched",
+        "reason": "unique",
+        "targets": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/SysLogininforController.java",
+            "line": 68,
+            "method": "DELETE",
+            "path": "/monitor/logininfor/clean",
+            "unitRoot": "ruoyi-admin"
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "file": "ruoyi-ui/src/api/monitor/logininfor.js",
+          "line": 30,
+          "sha256": "1a076089e0049572e74ad08a247507809a6423aacb3ce3336941452ba4bd5bf7"
+        },
+        {
+          "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/SysLogininforController.java",
+          "line": 68,
+          "sha256": "3cca69a7ef125556abe0c75252e29a6e4f4d53f52b87b7d6d8d16beeee67adc4"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.development",
+          "line": 7,
+          "sha256": "5f6ef50d6bf4e353e3e0657c8b85db9965cc8e9e55efdb10f89d5b3d72c2dade"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.production",
+          "line": 7,
+          "sha256": "b8534ae70629afe5358277ad226f46ce74ef59885d3811031c6cd09f85d82be2"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.staging",
+          "line": 11,
+          "sha256": "471df2c4332832093dfcbef0c71c897d1489fac3f7141c147de947c83e3beca8"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/src/utils/request.js",
+          "line": 18,
+          "sha256": "0e7f0fe774aa8dc7b344e0a57c189584640c5a7e88e0c73a3c0b90401cf97928"
+        }
+      ]
+    },
+    {
+      "front": {
+        "file": "ruoyi-ui/src/api/monitor/online.js",
+        "line": 5,
+        "method": "GET",
+        "path": "/monitor/online/list"
+      },
+      "urls": [
+        "http://localhost:8080/monitor/online/list"
+      ],
+      "expected": {
+        "outcome": "matched",
+        "reason": "unique",
+        "targets": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/SysUserOnlineController.java",
+            "line": 43,
+            "method": "GET",
+            "path": "/monitor/online/list",
+            "unitRoot": "ruoyi-admin"
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "file": "ruoyi-ui/src/api/monitor/online.js",
+          "line": 5,
+          "sha256": "b6419feb82928993e67c7ef30d89c36737313ccfcca5357e0e0a770b7f3353c7"
+        },
+        {
+          "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/SysUserOnlineController.java",
+          "line": 43,
+          "sha256": "5c35ea2f33b365892e54791b48a1cc10d4a6264dc3bc8c535c8a3cc4cc450413"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.development",
+          "line": 7,
+          "sha256": "5f6ef50d6bf4e353e3e0657c8b85db9965cc8e9e55efdb10f89d5b3d72c2dade"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.production",
+          "line": 7,
+          "sha256": "b8534ae70629afe5358277ad226f46ce74ef59885d3811031c6cd09f85d82be2"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.staging",
+          "line": 11,
+          "sha256": "471df2c4332832093dfcbef0c71c897d1489fac3f7141c147de947c83e3beca8"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/src/utils/request.js",
+          "line": 18,
+          "sha256": "0e7f0fe774aa8dc7b344e0a57c189584640c5a7e88e0c73a3c0b90401cf97928"
+        }
+      ]
+    },
+    {
+      "front": {
+        "file": "ruoyi-ui/src/api/monitor/online.js",
+        "line": 14,
+        "method": "DELETE",
+        "path": "/monitor/online/{param}"
+      },
+      "urls": [
+        "http://localhost:8080/monitor/online/{param}"
+      ],
+      "expected": {
+        "outcome": "matched",
+        "reason": "unique",
+        "targets": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/SysUserOnlineController.java",
+            "line": 78,
+            "method": "DELETE",
+            "path": "/monitor/online/{tokenId}",
+            "unitRoot": "ruoyi-admin"
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "file": "ruoyi-ui/src/api/monitor/online.js",
+          "line": 14,
+          "sha256": "b6419feb82928993e67c7ef30d89c36737313ccfcca5357e0e0a770b7f3353c7"
+        },
+        {
+          "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/SysUserOnlineController.java",
+          "line": 78,
+          "sha256": "5c35ea2f33b365892e54791b48a1cc10d4a6264dc3bc8c535c8a3cc4cc450413"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.development",
+          "line": 7,
+          "sha256": "5f6ef50d6bf4e353e3e0657c8b85db9965cc8e9e55efdb10f89d5b3d72c2dade"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.production",
+          "line": 7,
+          "sha256": "b8534ae70629afe5358277ad226f46ce74ef59885d3811031c6cd09f85d82be2"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.staging",
+          "line": 11,
+          "sha256": "471df2c4332832093dfcbef0c71c897d1489fac3f7141c147de947c83e3beca8"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/src/utils/request.js",
+          "line": 18,
+          "sha256": "0e7f0fe774aa8dc7b344e0a57c189584640c5a7e88e0c73a3c0b90401cf97928"
+        }
+      ]
+    },
+    {
+      "front": {
+        "file": "ruoyi-ui/src/api/monitor/operlog.js",
+        "line": 5,
+        "method": "GET",
+        "path": "/monitor/operlog/list"
+      },
+      "urls": [
+        "http://localhost:8080/monitor/operlog/list"
+      ],
+      "expected": {
+        "outcome": "matched",
+        "reason": "unique",
+        "targets": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/SysOperlogController.java",
+            "line": 36,
+            "method": "GET",
+            "path": "/monitor/operlog/list",
+            "unitRoot": "ruoyi-admin"
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "file": "ruoyi-ui/src/api/monitor/operlog.js",
+          "line": 5,
+          "sha256": "dc07d884fadc33adb9252ebdef1bba142bec5ab3b3295b6b69c011cfc4aa2609"
+        },
+        {
+          "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/SysOperlogController.java",
+          "line": 36,
+          "sha256": "0cda61dbd7b50c6e26f2687ce008b074164ebc7872222325c7fd6e85333a74f1"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.development",
+          "line": 7,
+          "sha256": "5f6ef50d6bf4e353e3e0657c8b85db9965cc8e9e55efdb10f89d5b3d72c2dade"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.production",
+          "line": 7,
+          "sha256": "b8534ae70629afe5358277ad226f46ce74ef59885d3811031c6cd09f85d82be2"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/vue.config.js",
+          "line": 38,
+          "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+        },
+        {
+          "file": "ruoyi-ui/.env.staging",
+          "line": 11,
+          "sha256": "471df2c4332832093dfcbef0c71c897d1489fac3f7141c147de947c83e3beca8"
+        },
+        {
+          "file": "ruoyi-admin/src/main/resources/application.yml",
+          "line": 19,
+          "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+        },
+        {
+          "file": "ruoyi-ui/src/utils/request.js",
+          "line": 18,
+          "sha256": "0e7f0fe774aa8dc7b344e0a57c189584640c5a7e88e0c73a3c0b90401cf97928"
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "file": "ruoyi-ui/vue.config.js",
+      "line": 38,
+      "sha256": "b06c91ad3028bfbfaf837df4b3c7be7931ead47fc1ba1a2021de5685ba39ef78"
+    },
+    {
+      "file": "ruoyi-ui/.env.development",
+      "line": 7,
+      "sha256": "5f6ef50d6bf4e353e3e0657c8b85db9965cc8e9e55efdb10f89d5b3d72c2dade"
+    },
+    {
+      "file": "ruoyi-admin/src/main/resources/application.yml",
+      "line": 19,
+      "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+    },
+    {
+      "file": "ruoyi-ui/.env.production",
+      "line": 7,
+      "sha256": "b8534ae70629afe5358277ad226f46ce74ef59885d3811031c6cd09f85d82be2"
+    },
+    {
+      "file": "ruoyi-ui/.env.staging",
+      "line": 11,
+      "sha256": "471df2c4332832093dfcbef0c71c897d1489fac3f7141c147de947c83e3beca8"
+    },
+    {
+      "file": "ruoyi-ui/src/api/login.js",
+      "line": 11,
+      "sha256": "75c0def10f37b3a9447bbbb5bab377ac8576641fea0a9fb2f1e0a5b142aea51d"
+    },
+    {
+      "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysLoginController.java",
+      "line": 49,
+      "sha256": "1fa8babdf2c6c4ea1c55ff3a98a5ae1b23e484413a29731efcbf2d73a91e665a"
+    },
+    {
+      "file": "ruoyi-ui/src/utils/request.js",
+      "line": 18,
+      "sha256": "0e7f0fe774aa8dc7b344e0a57c189584640c5a7e88e0c73a3c0b90401cf97928"
+    },
+    {
+      "file": "ruoyi-ui/src/api/login.js",
+      "line": 24,
+      "sha256": "75c0def10f37b3a9447bbbb5bab377ac8576641fea0a9fb2f1e0a5b142aea51d"
+    },
+    {
+      "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysRegisterController.java",
+      "line": 29,
+      "sha256": "4ba1ee192fae2e2ebdc716d0fc4179b3aba1477f147fceff967350e90e8ca8c9"
+    },
+    {
+      "file": "ruoyi-ui/src/api/login.js",
+      "line": 36,
+      "sha256": "75c0def10f37b3a9447bbbb5bab377ac8576641fea0a9fb2f1e0a5b142aea51d"
+    },
+    {
+      "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysLoginController.java",
+      "line": 65,
+      "sha256": "1fa8babdf2c6c4ea1c55ff3a98a5ae1b23e484413a29731efcbf2d73a91e665a"
+    },
+    {
+      "file": "ruoyi-ui/src/api/login.js",
+      "line": 44,
+      "sha256": "75c0def10f37b3a9447bbbb5bab377ac8576641fea0a9fb2f1e0a5b142aea51d"
+    },
+    {
+      "file": "ruoyi-framework/src/main/java/com/ruoyi/framework/config/SecurityConfig.java",
+      "line": 122,
+      "sha256": "3974882069a8570257c9942528bf9f62d09b68765a1798ff0547b178f605d326"
+    },
+    {
+      "file": "ruoyi-ui/src/api/login.js",
+      "line": 52,
+      "sha256": "75c0def10f37b3a9447bbbb5bab377ac8576641fea0a9fb2f1e0a5b142aea51d"
+    },
+    {
+      "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/common/CaptchaController.java",
+      "line": 46,
+      "sha256": "80d37d38164690b6e67b6554c7bad1b730a4b274bac65722e43588d247490418"
+    },
+    {
+      "file": "ruoyi-ui/src/api/menu.js",
+      "line": 5,
+      "sha256": "66d916a76b3f2cd1e0f29573f6edd19239a9cb50573dc26448730d4b1ac79c50"
+    },
+    {
+      "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysLoginController.java",
+      "line": 91,
+      "sha256": "1fa8babdf2c6c4ea1c55ff3a98a5ae1b23e484413a29731efcbf2d73a91e665a"
+    },
+    {
+      "file": "ruoyi-ui/src/api/monitor/cache.js",
+      "line": 5,
+      "sha256": "074331ad120d0023cd9ce2ac080287cdaaf886078cbba2f872e466460b421a33"
+    },
+    {
+      "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/CacheController.java",
+      "line": 50,
+      "sha256": "7029c47166eacbaec605dd4812099e8a8c97ac23cf1a635902b017120ca45e8f"
+    },
+    {
+      "file": "ruoyi-ui/src/api/monitor/cache.js",
+      "line": 13,
+      "sha256": "074331ad120d0023cd9ce2ac080287cdaaf886078cbba2f872e466460b421a33"
+    },
+    {
+      "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/CacheController.java",
+      "line": 74,
+      "sha256": "7029c47166eacbaec605dd4812099e8a8c97ac23cf1a635902b017120ca45e8f"
+    },
+    {
+      "file": "ruoyi-ui/src/api/monitor/cache.js",
+      "line": 21,
+      "sha256": "074331ad120d0023cd9ce2ac080287cdaaf886078cbba2f872e466460b421a33"
+    },
+    {
+      "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/CacheController.java",
+      "line": 81,
+      "sha256": "7029c47166eacbaec605dd4812099e8a8c97ac23cf1a635902b017120ca45e8f"
+    },
+    {
+      "file": "ruoyi-ui/src/api/monitor/cache.js",
+      "line": 29,
+      "sha256": "074331ad120d0023cd9ce2ac080287cdaaf886078cbba2f872e466460b421a33"
+    },
+    {
+      "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/CacheController.java",
+      "line": 89,
+      "sha256": "7029c47166eacbaec605dd4812099e8a8c97ac23cf1a635902b017120ca45e8f"
+    },
+    {
+      "file": "ruoyi-ui/src/api/monitor/cache.js",
+      "line": 37,
+      "sha256": "074331ad120d0023cd9ce2ac080287cdaaf886078cbba2f872e466460b421a33"
+    },
+    {
+      "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/CacheController.java",
+      "line": 98,
+      "sha256": "7029c47166eacbaec605dd4812099e8a8c97ac23cf1a635902b017120ca45e8f"
+    },
+    {
+      "file": "ruoyi-ui/src/api/monitor/cache.js",
+      "line": 45,
+      "sha256": "074331ad120d0023cd9ce2ac080287cdaaf886078cbba2f872e466460b421a33"
+    },
+    {
+      "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/CacheController.java",
+      "line": 107,
+      "sha256": "7029c47166eacbaec605dd4812099e8a8c97ac23cf1a635902b017120ca45e8f"
+    },
+    {
+      "file": "ruoyi-ui/src/api/monitor/cache.js",
+      "line": 53,
+      "sha256": "074331ad120d0023cd9ce2ac080287cdaaf886078cbba2f872e466460b421a33"
+    },
+    {
+      "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/CacheController.java",
+      "line": 115,
+      "sha256": "7029c47166eacbaec605dd4812099e8a8c97ac23cf1a635902b017120ca45e8f"
+    },
+    {
+      "file": "ruoyi-ui/src/api/monitor/job.js",
+      "line": 5,
+      "sha256": "bafe5f26c8fc36281a6a2b5297fabcc656a708413bec38d9b33dbced19598694"
+    },
+    {
+      "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobController.java",
+      "line": 47,
+      "sha256": "4c81a924e1b717546b58a896c35a87701e58975ce1b5948920626024357e3800"
+    },
+    {
+      "file": "ruoyi-ui/src/api/monitor/job.js",
+      "line": 14,
+      "sha256": "bafe5f26c8fc36281a6a2b5297fabcc656a708413bec38d9b33dbced19598694"
+    },
+    {
+      "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobController.java",
+      "line": 72,
+      "sha256": "4c81a924e1b717546b58a896c35a87701e58975ce1b5948920626024357e3800"
+    },
+    {
+      "file": "ruoyi-ui/src/api/monitor/job.js",
+      "line": 22,
+      "sha256": "bafe5f26c8fc36281a6a2b5297fabcc656a708413bec38d9b33dbced19598694"
+    },
+    {
+      "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobController.java",
+      "line": 83,
+      "sha256": "4c81a924e1b717546b58a896c35a87701e58975ce1b5948920626024357e3800"
+    },
+    {
+      "file": "ruoyi-ui/src/api/monitor/job.js",
+      "line": 31,
+      "sha256": "bafe5f26c8fc36281a6a2b5297fabcc656a708413bec38d9b33dbced19598694"
+    },
+    {
+      "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobController.java",
+      "line": 119,
+      "sha256": "4c81a924e1b717546b58a896c35a87701e58975ce1b5948920626024357e3800"
+    },
+    {
+      "file": "ruoyi-ui/src/api/monitor/job.js",
+      "line": 40,
+      "sha256": "bafe5f26c8fc36281a6a2b5297fabcc656a708413bec38d9b33dbced19598694"
+    },
+    {
+      "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobController.java",
+      "line": 180,
+      "sha256": "4c81a924e1b717546b58a896c35a87701e58975ce1b5948920626024357e3800"
+    },
+    {
+      "file": "ruoyi-ui/src/api/monitor/job.js",
+      "line": 52,
+      "sha256": "bafe5f26c8fc36281a6a2b5297fabcc656a708413bec38d9b33dbced19598694"
+    },
+    {
+      "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobController.java",
+      "line": 155,
+      "sha256": "4c81a924e1b717546b58a896c35a87701e58975ce1b5948920626024357e3800"
+    },
+    {
+      "file": "ruoyi-ui/src/api/monitor/job.js",
+      "line": 66,
+      "sha256": "bafe5f26c8fc36281a6a2b5297fabcc656a708413bec38d9b33dbced19598694"
+    },
+    {
+      "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobController.java",
+      "line": 168,
+      "sha256": "4c81a924e1b717546b58a896c35a87701e58975ce1b5948920626024357e3800"
+    },
+    {
+      "file": "ruoyi-ui/src/api/monitor/jobLog.js",
+      "line": 5,
+      "sha256": "0032077dc97869ad9e410c2a9764cb7faad95010cca7a5344ea2f0f9d10eb88b"
+    },
+    {
+      "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobLogController.java",
+      "line": 39,
+      "sha256": "2320159febac2a3df9d0104ed2fb814013a15d3ee2bba774dc9cb96ecd13472c"
+    },
+    {
+      "file": "ruoyi-ui/src/api/monitor/jobLog.js",
+      "line": 14,
+      "sha256": "0032077dc97869ad9e410c2a9764cb7faad95010cca7a5344ea2f0f9d10eb88b"
+    },
+    {
+      "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobLogController.java",
+      "line": 76,
+      "sha256": "2320159febac2a3df9d0104ed2fb814013a15d3ee2bba774dc9cb96ecd13472c"
+    },
+    {
+      "file": "ruoyi-ui/src/api/monitor/jobLog.js",
+      "line": 22,
+      "sha256": "0032077dc97869ad9e410c2a9764cb7faad95010cca7a5344ea2f0f9d10eb88b"
+    },
+    {
+      "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobLogController.java",
+      "line": 87,
+      "sha256": "2320159febac2a3df9d0104ed2fb814013a15d3ee2bba774dc9cb96ecd13472c"
+    },
+    {
+      "file": "ruoyi-ui/src/api/monitor/logininfor.js",
+      "line": 5,
+      "sha256": "1a076089e0049572e74ad08a247507809a6423aacb3ce3336941452ba4bd5bf7"
+    },
+    {
+      "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/SysLogininforController.java",
+      "line": 40,
+      "sha256": "3cca69a7ef125556abe0c75252e29a6e4f4d53f52b87b7d6d8d16beeee67adc4"
+    },
+    {
+      "file": "ruoyi-ui/src/api/monitor/logininfor.js",
+      "line": 14,
+      "sha256": "1a076089e0049572e74ad08a247507809a6423aacb3ce3336941452ba4bd5bf7"
+    },
+    {
+      "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/SysLogininforController.java",
+      "line": 60,
+      "sha256": "3cca69a7ef125556abe0c75252e29a6e4f4d53f52b87b7d6d8d16beeee67adc4"
+    },
+    {
+      "file": "ruoyi-ui/src/api/monitor/logininfor.js",
+      "line": 22,
+      "sha256": "1a076089e0049572e74ad08a247507809a6423aacb3ce3336941452ba4bd5bf7"
+    },
+    {
+      "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/SysLogininforController.java",
+      "line": 77,
+      "sha256": "3cca69a7ef125556abe0c75252e29a6e4f4d53f52b87b7d6d8d16beeee67adc4"
+    },
+    {
+      "file": "ruoyi-ui/src/api/monitor/logininfor.js",
+      "line": 30,
+      "sha256": "1a076089e0049572e74ad08a247507809a6423aacb3ce3336941452ba4bd5bf7"
+    },
+    {
+      "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/SysLogininforController.java",
+      "line": 68,
+      "sha256": "3cca69a7ef125556abe0c75252e29a6e4f4d53f52b87b7d6d8d16beeee67adc4"
+    },
+    {
+      "file": "ruoyi-ui/src/api/monitor/online.js",
+      "line": 5,
+      "sha256": "b6419feb82928993e67c7ef30d89c36737313ccfcca5357e0e0a770b7f3353c7"
+    },
+    {
+      "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/SysUserOnlineController.java",
+      "line": 43,
+      "sha256": "5c35ea2f33b365892e54791b48a1cc10d4a6264dc3bc8c535c8a3cc4cc450413"
+    },
+    {
+      "file": "ruoyi-ui/src/api/monitor/online.js",
+      "line": 14,
+      "sha256": "b6419feb82928993e67c7ef30d89c36737313ccfcca5357e0e0a770b7f3353c7"
+    },
+    {
+      "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/SysUserOnlineController.java",
+      "line": 78,
+      "sha256": "5c35ea2f33b365892e54791b48a1cc10d4a6264dc3bc8c535c8a3cc4cc450413"
+    },
+    {
+      "file": "ruoyi-ui/src/api/monitor/operlog.js",
+      "line": 5,
+      "sha256": "dc07d884fadc33adb9252ebdef1bba142bec5ab3b3295b6b69c011cfc4aa2609"
+    },
+    {
+      "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/SysOperlogController.java",
+      "line": 36,
+      "sha256": "0cda61dbd7b50c6e26f2687ce008b074164ebc7872222325c7fd6e85333a74f1"
+    }
+  ]
+}

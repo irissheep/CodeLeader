@@ -1,0 +1,22 @@
+{
+  "interactionIdleMilliseconds": {
+    "value": 1000,
+    "reason": "停止输入 1 秒后暂停持续装饰，既允许交互反馈短暂播放，也避免静止画布持续绘制。"
+  },
+  "idleMachineCpuPercent": {
+    "value": 1,
+    "reason": "用户提出的可见空闲整机 CPU 预算；统计所有应用进程并除以逻辑处理器数。"
+  },
+  "repeatAnalysisRatio": {
+    "value": 0.2,
+    "reason": "用户提出的同项目重复打开 CPU 秒预算，尚需可靠缓存和子进程完整计数。"
+  },
+  "soakGrowthRatio": {
+    "value": 0.05,
+    "reason": "用户提出的 30 分钟内存增长预算；按测量范围报告，不能把进程堆与总工作集混为一项。"
+  },
+  "corpusRegressionRatio": {
+    "value": 0.15,
+    "reason": "用户提出的语料项目分析 CPU 秒回归上限，必须先建立可复测的逐项目基线。"
+  }
+}

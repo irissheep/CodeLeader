@@ -1,0 +1,19 @@
+.graph-canvas[data-motion-mode] .react-flow__node{animation:none!important}
+.graph-canvas[data-motion-mode] .react-flow__node.runtime-background{opacity:1!important}
+.graph-canvas[data-motion-mode] .runtime-background .card-accessible>:first-child{opacity:1!important}
+.graph-canvas[data-motion-mode] .card-accessible{opacity:var(--u2-opacity,1);transform:translateY(var(--u2-lift,0px));transition:opacity var(--motion-fast) var(--motion-easeInOut),transform var(--motion-normal) var(--motion-easeOut)}
+.graph-canvas[data-motion-mode] .card-accessible>:first-child{transform-origin:center top}
+.graph-canvas[data-motion-mode] .service-heading,.graph-canvas[data-motion-mode] .capability-grid,.graph-canvas[data-motion-mode] .backbone-inline-list{transform-origin:center top}
+.graph-canvas[data-motion-mode] .card-accessible::after{content:'';position:absolute;inset:calc(-1 * var(--space-half));border:1px solid var(--color-accent);border-radius:var(--radius-card);box-shadow:0 0 var(--space-2) var(--color-accent-soft);opacity:0;pointer-events:none}
+.graph-canvas[data-motion-mode] .card-accessible:not(.u2-current)::after{opacity:0!important}
+.graph-canvas[data-motion-mode] .react-flow__node.has-error .card-accessible::after{border-color:var(--color-failure)}
+.graph-canvas[data-motion-mode] .runtime-method-row{opacity:var(--u2-row-opacity,1)}
+.graph-canvas[data-motion-mode] .runtime-domain-future{opacity:1}
+.graph-canvas[data-motion-mode] .react-flow__edge[data-u2-hover=other]{opacity:var(--motionPolicy-opacityHoverOther)!important}
+.graph-canvas[data-motion-mode] .react-flow__edge[data-u2-hover=neighbor]{opacity:1!important}
+.graph-canvas[data-motion-mode] .react-flow__edge[data-u2-hover=neighbor] .react-flow__edge-path{opacity:1!important;stroke-width:2.5}
+.graph-canvas[data-motion-mode] .react-flow__edge{transition:opacity var(--motion-fast) var(--motion-easeInOut)}
+.u2-exit-layer{position:absolute;inset:0;overflow:visible;pointer-events:none;contain:layout style;z-index:2}
+.u2-exit-layer *{pointer-events:none!important}
+.graph-canvas[data-motion-mode=reduced] .card-accessible{transform:none!important;transition-property:opacity}
+.graph-canvas[data-motion-mode=off] *,.graph-canvas[data-motion-mode=off] *::before,.graph-canvas[data-motion-mode=off] *::after{animation:none!important;transition:none!important}

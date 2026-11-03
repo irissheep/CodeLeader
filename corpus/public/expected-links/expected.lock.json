@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "files": {
+    "petclinic/expected.json": "5d55500c256e31149ee80807ceb4d5b0b15eb51d02b97f5cb03ca5243d993112",
+    "ruoyi/expected.json": "7230b1f0de2e3114efaf4ca0a36a92b2372d5beeec8969f754b2ab5b9489b4a4",
+    "fastapi/expected.json": "aa7ccb20453bc34691f3e9d8cbc3dab0738a953f9df14d6106cad4813c76b879",
+    "microblog/expected.json": "7a50c13a346c800adba9d4b6dd0e073c553824a3f30ab81416e5bcfc73ad2833",
+    "vue-ts/expected.json": "f9ae976f44b070394dd5a41f00fb33440f897cdf4e8d1f23aa58e510e09960eb",
+    "react-ts/expected.json": "ffc21d656976e766c34f02736f61488270302ab663232ba0dc16d351600c634c"
+  }
+}

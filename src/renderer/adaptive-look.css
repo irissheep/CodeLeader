@@ -1,0 +1,41 @@
+/* Presentation sizes and zoom bands leave the ReactFlow positioning layer intact. */
+.graph-canvas[data-adaptive=true] .card-body-layer{width:100%;height:100%;transition:opacity var(--motion-normal) var(--motion-ease);pointer-events:auto}
+.graph-canvas[data-adaptive=true] .card-size-layer{width:calc(100% / var(--card-scale));height:calc(100% / var(--card-scale));transform:scale(var(--card-scale));transform-origin:top left}
+.graph-canvas[data-adaptive=true] .card-size-layer>.graph-card,.graph-canvas[data-adaptive=true] .card-size-layer>.service-container{width:100%;height:100%;min-width:0;box-sizing:border-box}
+.graph-canvas[data-adaptive=true] .card-name,.graph-canvas[data-adaptive=true] .service-heading strong,.graph-canvas[data-adaptive=true] .backbone-title strong{white-space:normal;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;line-height:1.45;max-height:2.9em;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.graph-canvas[data-adaptive=true] .service-heading{min-height:36px;height:auto;align-items:center;gap:var(--space-1)}
+.graph-canvas[data-adaptive=true] .service-heading>svg,.graph-canvas[data-adaptive=true] .card-icon{color:var(--role-color);flex-shrink:0}
+.graph-canvas[data-adaptive=true] .service-heading>span,.graph-canvas[data-adaptive=true] .backbone-title>span{font-size:var(--font-small);padding:2px 6px;background:var(--color-surface);border-radius:var(--radius-control);white-space:nowrap;line-height:1.45;flex-shrink:0}
+.graph-canvas[data-adaptive=true] .has-module-tiles .module-tiles{display:grid;grid-template-columns:repeat(var(--look-tileColumns),minmax(0,1fr));gap:var(--space-1);max-height:calc(var(--look-tileMaxRows) * var(--look-tileStep-px))!important;overflow-y:auto;overflow-x:hidden;padding:var(--space-1) 0;scrollbar-width:thin}
+.graph-canvas[data-adaptive=true] .module-tiles .capability{min-width:0;min-height:calc(var(--look-tileStep-px) - var(--space-1));height:calc(var(--look-tileStep-px) - var(--space-1));background:transparent;border:0;padding:0;position:relative}
+.graph-canvas[data-adaptive=true] .module-tiles .capability>button{display:grid;place-items:center;width:100%;height:calc(var(--look-tileStep-px) - var(--space-1));min-height:calc(var(--look-tileStep-px) - var(--space-1));padding:0;background:var(--color-accent-soft);border-radius:var(--radius-control);border:0;color:var(--color-accent)}
+.graph-canvas[data-adaptive=true] .module-tiles .capability>button:hover,.graph-canvas[data-adaptive=true] .module-tiles .capability>button:focus-visible{background:var(--color-surface);outline:1px solid var(--color-accent)}
+.module-tile-mark{font-size:var(--font-body);font-variant-numeric:tabular-nums}
+.graph-canvas[data-adaptive=true] .module-tiles .capability-hint{white-space:nowrap;left:0;top:auto;bottom:calc(100% + var(--space-half));max-width:320px;z-index:20}
+.semantic-token{position:absolute;left:0;top:50%;transform:translateY(-50%);width:100%;height:var(--look-pillHeight-px);display:flex;align-items:center;justify-content:center;gap:var(--space-1);border:1px solid var(--color-line);border-radius:var(--radius-pill);background:var(--color-surface);color:var(--color-text);padding:var(--space-1) var(--space-2);opacity:0;pointer-events:none;transition:opacity var(--motion-normal) var(--motion-ease);font:600 var(--font-title)/1.45 var(--font-family)}
+.semantic-token>svg{color:var(--role-color);flex-shrink:0}.semantic-token>span{overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;text-overflow:ellipsis}.semantic-token>i{display:none;width:8px;height:8px;background:var(--role-color);border-radius:50%;position:absolute;bottom:12px;right:12px}
+.graph-canvas[data-semantic=pill] .card-body-layer,.graph-canvas[data-semantic=dot] .card-body-layer{opacity:0;pointer-events:none}
+.graph-canvas[data-semantic=pill] .semantic-token,.graph-canvas[data-semantic=dot] .semantic-token{opacity:1;pointer-events:auto}
+.graph-canvas[data-semantic=dot] .semantic-token{left:50%;transform:translate(-50%,-50%);width:var(--look-dotSize-px);height:var(--look-dotSize-px);padding:0;border-radius:var(--radius-card)}
+.graph-canvas[data-semantic=dot] .semantic-token>span{display:none}.graph-canvas[data-semantic=dot] .semantic-token>i{display:block}.graph-canvas[data-semantic=dot] .semantic-token>svg{width:32px;height:32px}
+.graph-canvas[data-adaptive=true][data-semantic=pill] .react-flow__edge-path{stroke-width:1.2px!important;opacity:.5}.graph-canvas[data-adaptive=true][data-semantic=dot] .react-flow__edge-path{stroke-width:1px!important;opacity:.35}
+.graph-absence{position:absolute;bottom:var(--space-3);left:var(--space-3);z-index:5;max-width:420px;padding:var(--space-2);border:1px dashed var(--color-line);border-radius:var(--radius-card);background:var(--color-surface);color:var(--color-secondary);display:flex;gap:var(--space-2);font-size:var(--font-body);line-height:1.5;pointer-events:auto}
+.graph-absence>svg{flex-shrink:0;color:var(--color-secondary)}.graph-absence strong{color:var(--color-text);font-weight:500}.graph-absence p{margin:var(--space-half) 0 0}.graph-absence.is-empty{left:50%;top:50%;bottom:auto;transform:translate(-50%,-50%);width:min(420px,calc(100% - 48px));box-sizing:border-box}
+.graph-canvas .card-accessible:has(.semantic-token:focus-visible){outline:2px solid var(--color-accent)}
+.reduce-motion .semantic-token,.reduce-motion .card-body-layer{transition:none}
+.graph-canvas[data-adaptive=true] .card-size-layer>.graph-card{grid-template-rows:minmax(24px,auto) auto}
+.graph-canvas[data-adaptive=true] .module-tile-mark{margin:0!important;justify-self:center}
+.graph-canvas[data-adaptive=true] .capability-name{font:inherit;color:inherit;min-width:0;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;background:transparent;margin:0;flex:1;text-align:left}
+.titlebar-toolbar .dependency-scope>summary{width:auto!important;max-width:180px;padding:0 var(--space-1)!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:calc(var(--look-tileStep-px) - var(--space-1));display:block!important}
+.titlebar-toolbar .dependency-scope{flex-shrink:0;order:2;margin-right:var(--space-1)}
+.graph-canvas[data-adaptive=true] .capability>button{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.graph-canvas[data-adaptive=true] .capability-grid:not(.module-tiles){overflow-x:hidden!important}
+.graph-canvas[data-adaptive=true] .module-tiles .capability>button{overflow:visible;justify-content:center}
+.graph-canvas[data-adaptive=true] .module-tiles:has(.inline-interfaces){max-height:none!important;overflow:visible!important}
+.graph-canvas[data-semantic=pill] .semantic-token{height:var(--semantic-pill-height);font-size:calc(var(--font-body) * var(--semantic-read-scale))}
+.graph-canvas[data-semantic=pill] .semantic-token>svg{width:calc(var(--look-pillIconPixels-px) * var(--semantic-read-scale));height:calc(var(--look-pillIconPixels-px) * var(--semantic-read-scale))}
+.graph-canvas[data-semantic=dot] .semantic-token{width:var(--semantic-dot-size);height:var(--semantic-dot-size)}
+.graph-canvas[data-semantic=dot] .semantic-token>svg{width:calc(var(--look-dotIconPixels-px) * var(--semantic-read-scale));height:calc(var(--look-dotIconPixels-px) * var(--semantic-read-scale))}
+.graph-canvas[data-semantic=dot] .semantic-token>i{width:calc(4px * var(--semantic-read-scale));height:calc(4px * var(--semantic-read-scale));right:16%;bottom:16%}
+@media(prefers-reduced-motion:reduce){.semantic-token,.card-body-layer{transition:none}}
+.app-read-failure{z-index:120;box-shadow:0 8px 24px var(--color-accent-soft)}.app-read-failure pre{white-space:pre-wrap;overflow-wrap:anywhere;font-family:var(--font-mono);font-size:var(--font-code)}.app-read-failure summary{cursor:pointer;margin:var(--space-1) 0}.app-read-failure .button{margin:var(--space-1) var(--space-1) 0 0;font-size:var(--font-body)}

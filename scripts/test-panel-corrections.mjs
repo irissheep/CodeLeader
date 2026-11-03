@@ -1,0 +1,2 @@
+import {build} from 'esbuild';import {guard,root,run} from './common.mjs';guard();
+for(const name of (process.argv.length>2?process.argv.slice(2):['panel-corrections','replay','walkthrough','stage-methods','data-panel','source-follow-errors'])){const output=root+'/.tmp/verification-panel-corrections/'+name+'.test.mjs';await build({entryPoints:['tests/'+name+'.test.ts'],outfile:output,platform:'node',format:'esm',bundle:true});await run(process.execPath,['--test',output]);}

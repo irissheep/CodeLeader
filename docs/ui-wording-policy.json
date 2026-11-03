@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "forbidden": ["profile", "索引", "候选", "追踪边界", "本轮支持", "静态配置与源码事实", "部分索引完成", "未合并", "不连成必经流程", "依据"],
+  "maximumSentences": 3,
+  "nonDisplayKeys": ["id", "key", "pattern", "regex", "expression", "selector", "command", "args", "type", "kind", "property", "namePattern"],
+  "scope": "src 下的应用自写文字、提示、标题、无障碍名称、错误与生成说明；真实源码、SQL、路径、接口和原始值不是产品措辞，不改写。",
+  "technicalLiteralReason": "import、属性键、正则与不含自然语言的程序常量不作为界面文案；英文文字出现在 JSX 或 title/aria-label 等显示属性时仍检查。"
+}

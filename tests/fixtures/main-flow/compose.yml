@@ -1,0 +1,8 @@
+services:
+  backend:
+    build: { context: ., dockerfile: backend/Dockerfile }
+    environment:
+      REMOTE_URL: http://api:9000
+      PRIVATE_TOKEN: fixture-only-not-a-secret
+  api:
+    build: { context: ., dockerfile: server/Dockerfile }

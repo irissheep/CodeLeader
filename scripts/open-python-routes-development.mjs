@@ -1,0 +1,43 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import net from 'node:net';
+import {spawn} from 'node:child_process';
+import electron from 'electron';
+import {chromium} from 'playwright';
+import {root,guard} from './common.mjs';
+guard();
+const read=async file=>JSON.parse(await fs.readFile(file,'utf8'));
+const review=await read(path.join(root,'tests/fixtures/r12-review.json'));
+const out=path.join(root,review.output),expected=await read(path.join(out,'after',review.startupProject,'model.json'));
+const server=net.createServer();await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
+const port=server.address().port;await new Promise(resolve=>server.close(resolve));
+const env={...process.env};delete env.ELECTRON_RUN_AS_NODE;
+const log=await fs.open(path.join(out,'latest-development.log'),'a');
+const child=spawn(electron,['.','--remote-debugging-port='+port,'--verification-size=1564x954','--project='+expected.root],{cwd:root,env,windowsHide:false,stdio:['ignore',log.fd,log.fd]});
+await fs.writeFile(path.join(out,'latest-development.json'),JSON.stringify({pid:child.pid,port,project:expected.root,startedAt:new Date().toISOString(),targetApplicationsStarted:false},null,2));
+let browser;
+for(let n=0;n<60;n++){try{browser=await chromium.connectOverCDP('http://127.0.0.1:'+port,{timeout:1000});break;}catch{await new Promise(resolve=>setTimeout(resolve,200));}}
+if(!browser)throw Error('Development window did not open');
+const page=browser.contexts()[0].pages().find(p=>p.url().includes('/renderer/index.html'));
+await page.waitForFunction(()=>!!window.codeleader,undefined,{timeout:30000});
+const current=await page.evaluate(()=>new Promise(resolve=>{const off=window.codeleader.onIndex(index=>{if(!['complete','partial','failed','cancelled'].includes(index.status))return;off();resolve(index);});}));
+if(current.root.toLowerCase()!==expected.root.toLowerCase()||current.entries.filter(e=>e.kind==='http').length!==19)throw Error('Unexpected current project');
+const guide=page.getByRole('button',{name:'接口导览',exact:true});if(await guide.isEnabled())await guide.click();
+await page.waitForSelector('.react-flow__node');
+const screenshot=async name=>{try{await page.screenshot({path:path.join(out,name+'.png'),timeout:5000});return{file:name+'.png'};}catch(error){return{unavailable:String(error).split('\n')[0]};}};
+const groups=[...new Set(current.entries.filter(e=>e.kind==='http').map(e=>e.group))],lists=[];
+for(const group of groups){
+ const card=page.locator(`[data-id=${JSON.stringify('entry-group:'+group)}] .card-accessible`);await card.press('Enter');
+ await page.waitForSelector('.inspector [data-entry-id]');
+ lists.push({group,entries:await page.locator('.inspector [data-entry-id] .entry-route').allTextContents()});
+ if(lists.length===1)lists[0].screenshot=await screenshot('native-interface-list');
+ await page.locator('.inspector-close').click();
+}
+const main=page.getByRole('button',{name:'项目主干',exact:true});if(await main.isEnabled())await main.click();
+await page.bringToFront();
+const notes=await page.evaluate(()=>window.codeleader.analysisNotes());
+const state={root:current.root,version:current.versions.rules,http:19,groups:lists,zeroInterfaceExplanations:notes.web.length,session:(await page.evaluate(()=>window.codeleader.execution.current()))?.id||null,targetApplicationsStarted:false,screenshot:await screenshot('latest-development')};
+await fs.writeFile(path.join(out,'latest-window.json'),JSON.stringify(state,null,2));
+console.log(JSON.stringify({http:state.http,groupCounts:lists.map(g=>g.entries.length),session:state.session,version:state.version}));
+await new Promise(resolve=>browser.once('disconnected',resolve));
+await log.close();

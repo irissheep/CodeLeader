@@ -1,0 +1,2208 @@
+{
+  "schema": 1,
+  "sourceBaselineSha256": "bbc1cbb3f5a33255ca1541051058c77002692ec0a5c5a724d503042a7b2bea9c",
+  "sourceExpectedLockSha256": "21c755fc85fdbe3d0bb863c1f3a4b360e9ee9cd2ada67e78843f6b4cd3c55dff",
+  "projects": [
+    {
+      "project": "petclinic",
+      "commit": "500158f732419217507c7656904b8e6aa1bcc0d6",
+      "grades": {
+        "A": {
+          "status": "✓",
+          "text": "后 1/1 · 前 0/0 · Py 0/0",
+          "metrics": {
+            "backend": {
+              "actual": [
+                "."
+              ],
+              "expected": [
+                "."
+              ],
+              "matched": 1
+            },
+            "frontend": {
+              "actual": [],
+              "expected": [],
+              "matched": 0
+            },
+            "python": {
+              "actual": [],
+              "expected": [],
+              "matched": 0
+            }
+          },
+          "reason": "Java 项目声明按根去重，但模型未区分库与应用；Python 只承认实际带 Python 源码根的服务实体，不凭存在 .py 自行补服务。"
+        },
+        "B": {
+          "status": "△",
+          "text": "匹配 2/3 · 分类 2/3 · 漏 1 · 多 0",
+          "metrics": {
+            "actual": [
+              "MySQL",
+              "PostgreSQL"
+            ],
+            "expected": [
+              "H2",
+              "MySQL",
+              "PostgreSQL"
+            ],
+            "matched": [
+              "MySQL",
+              "PostgreSQL"
+            ],
+            "missing": [
+              "H2"
+            ],
+            "extra": [],
+            "kindMatches": 2,
+            "unknown": []
+          },
+          "reason": "比较配置/源码中发现的引擎及数据库/缓存/向量等类别，不声称已运行或各接口实际访问；未命名的“关系数据”不算识别了某引擎。SQLite 被标 file 时也不会忽略分类偏差。"
+        },
+        "C": {
+          "status": "△",
+          "text": "接口 17/17 · 路径 16/17",
+          "metrics": {
+            "actual": 17,
+            "expected": 17,
+            "pathMatches": 16,
+            "missing": [
+              {
+                "file": "src/main/java/org/springframework/samples/petclinic/vet/VetController.java",
+                "method": "GET",
+                "path": "/vets"
+              }
+            ]
+          },
+          "reason": "总数与声明文件+方法+完整路径分别核对；同数但前缀缺失不算全对；不含框架自动端点。"
+        },
+        "D": {
+          "status": "✓",
+          "text": "模块 6/6 · 分布 6/6 · 最大 7/17 (41.2%)",
+          "metrics": {
+            "actual": 6,
+            "expected": 6,
+            "distribution": [
+              {
+                "name": "OwnerController",
+                "expected": 7,
+                "actual": 7
+              },
+              {
+                "name": "PetController",
+                "expected": 4,
+                "actual": 4
+              },
+              {
+                "name": "VisitController",
+                "expected": 2,
+                "actual": 2
+              },
+              {
+                "name": "CrashController",
+                "expected": 1,
+                "actual": 1
+              },
+              {
+                "name": "WelcomeController",
+                "expected": 1,
+                "actual": 1
+              },
+              {
+                "name": "VetController",
+                "expected": 2,
+                "actual": 2
+              }
+            ],
+            "biggest": 7,
+            "total": 17,
+            "ratio": 0.4117647058823529,
+            "domains": [
+              {
+                "name": "/owners",
+                "count": 7
+              },
+              {
+                "name": "/owners/{ownerId}/pets",
+                "count": 4
+              },
+              {
+                "name": "/owners/{ownerId}/pets/{petId}/visits/new",
+                "count": 2
+              },
+              {
+                "name": "/oups",
+                "count": 1
+              },
+              {
+                "name": "/",
+                "count": 1
+              },
+              {
+                "name": "VetController",
+                "count": 2
+              }
+            ]
+          },
+          "reason": "按 Controller / 路由文件计标准模块；通过入口所属文件核对每组数量。"
+        },
+        "E": {
+          "status": "✗",
+          "text": "页面 无法评估/0 · API 无法评估/0 · 对接 0 · 文件 13",
+          "metrics": {
+            "actualPages": null,
+            "expectedPages": 0,
+            "actualApi": null,
+            "expectedApi": 0,
+            "matchedBackend": 0,
+            "frontendHttpRelations": 0,
+            "frontendFiles": 13
+          },
+          "reason": "现有中间模型没有前端页面/API 定义集合；不能把本评估脚本独立数出的结果写回当产品能力。即使答案是 0，也不能把“字段不存在”说成已证明 0。"
+        },
+        "F": {
+          "status": "✓",
+          "text": "节点 1 · 边 0 · 占位 0 · 孤立 1 · >15 0",
+          "metrics": {
+            "nodes": 1,
+            "edges": 0,
+            "placeholder": 0,
+            "isolated": [
+              {
+                "id": "service:application",
+                "name": "petclinic"
+              }
+            ],
+            "over15": false
+          },
+          "reason": "单独应用无外部关系时的一个孤立节点允许；多卡片孤立、空图、占位或超预算判失败。图的身份覆盖另看 A/E/WMS 诊断。"
+        },
+        "G": {
+          "status": "✗",
+          "text": "层级 0/0 · 下层 2/3 · 交叉 1 · 类数 0/5 · 截去 0",
+          "metrics": {
+            "correct": 0,
+            "total": 0,
+            "pairs": [],
+            "lower": {
+              "correct": 2,
+              "total": 3,
+              "pairs": [
+                {
+                  "upper": "module:根模块 · org.springframework.samples.petclinic.owner",
+                  "lower": "module:根模块 · org.springframework.samples.petclinic.model",
+                  "correct": true
+                },
+                {
+                  "upper": "module:根模块 · org.springframework.samples.petclinic.vet",
+                  "lower": "module:根模块 · org.springframework.samples.petclinic.model",
+                  "correct": false
+                },
+                {
+                  "upper": "module:根模块 · org.springframework.samples.petclinic.system",
+                  "lower": "module:根模块 · org.springframework.samples.petclinic.model",
+                  "correct": true
+                }
+              ]
+            },
+            "crossings": 1,
+            "nodes": 5,
+            "edges": 4,
+            "classCountCards": 0,
+            "placeholder": 5,
+            "omitted": 0,
+            "roles": [
+              {
+                "id": "module:根模块 · org.springframework.samples.petclinic.model",
+                "name": "petclinic.model",
+                "controller": false,
+                "service": false,
+                "entity": true,
+                "common": false,
+                "classes": 3,
+                "y": 566
+              },
+              {
+                "id": "module:根模块 · org.springframework.samples.petclinic.owner",
+                "name": "petclinic.owner",
+                "controller": true,
+                "service": false,
+                "entity": false,
+                "common": false,
+                "classes": 11,
+                "y": 344
+              },
+              {
+                "id": "module:根模块 · org.springframework.samples.petclinic.vet",
+                "name": "petclinic.vet",
+                "controller": true,
+                "service": false,
+                "entity": false,
+                "common": false,
+                "classes": 5,
+                "y": 884
+              },
+              {
+                "id": "module:根模块 · org.springframework.samples.petclinic",
+                "name": "samples.petclinic",
+                "controller": false,
+                "service": false,
+                "entity": false,
+                "common": false,
+                "classes": 2,
+                "y": 122
+              },
+              {
+                "id": "module:根模块 · org.springframework.samples.petclinic.system",
+                "name": "petclinic.system",
+                "controller": true,
+                "service": false,
+                "entity": false,
+                "common": false,
+                "classes": 4,
+                "y": 122
+              }
+            ]
+          },
+          "reason": "执行原 layout.worker 的 overview / DOWN 和原正交布线；只替换 ELK 传输。层级是可见节点中 Controller/Service 及实体/公共层的纵向比较；循环/混合模块不能证明细分角色。交叉按不同边正交段内部交点去重计，重叠共线不算。"
+        },
+        "H": {
+          "status": "✓",
+          "text": "视图 3/3 · 空图 0 · 空框 0 · 无说明 0 · 错误 0",
+          "metrics": {
+            "views": [
+              {
+                "view": "main",
+                "nodes": 1,
+                "blankCards": 0,
+                "visible": 1,
+                "emptyText": "",
+                "errors": [],
+                "text": "petclinicSpring Bootowners7 接口 new2 接口 pets4 接口 /1 接口 oups1 接口 VetController2 接口 React FlowPress enter or space to select a node. You can then use the arrow keys to move the node around. Press delete "
+              },
+              {
+                "view": "guide",
+                "nodes": 6,
+                "blankCards": 0,
+                "visible": 6,
+                "emptyText": "",
+                "errors": [],
+                "text": "/GET/直接返回查看全部 1 个接口/oupsGET/oups查看全部 1 个接口/ownersPOST/owners/newPOST/owners/{ownerId}/editGET/owners/new直接返回查看全部 7 个接口/owners/{ownerId}/petsPOST/owners/{ownerId}/pets/newPOST/owners/{ownerId}/pets/{pe"
+              },
+              {
+                "view": "overview",
+                "nodes": 2,
+                "blankCards": 0,
+                "visible": 2,
+                "emptyText": "",
+                "errors": [],
+                "text": "petclinic.model包 / 目录结构打开petclinic.owner包 / 目录结构打开React FlowPress enter or space to select a node. You can then use the arrow keys to move the node around. Press delete to remove it and escape to canc"
+              }
+            ],
+            "emptyViews": 0,
+            "blankCards": 0,
+            "unexplained": 0,
+            "errors": 0,
+            "browserVerified": true
+          },
+          "reason": "当前真实组件+已导出完整模型，主干/接口/默认依赖三视图静态显示和空态文字核对，逐视图有截图；IPC 输入模拟，无目标页面或业务运行。只证明这三种初始显示，不扩展声称所有交互无裁切/遮挡。"
+        }
+      }
+    },
+    {
+      "project": "ruoyi",
+      "commit": "5e6c917ab0c29536b6ca792475c6611ebe0cea85",
+      "grades": {
+        "A": {
+          "status": "✗",
+          "text": "后 7/1 · 前 1/1 · Py 0/0",
+          "metrics": {
+            "backend": {
+              "actual": [
+                ".",
+                "ruoyi-admin",
+                "ruoyi-common",
+                "ruoyi-framework",
+                "ruoyi-generator",
+                "ruoyi-quartz",
+                "ruoyi-system"
+              ],
+              "expected": [
+                "ruoyi-admin"
+              ],
+              "matched": 1
+            },
+            "frontend": {
+              "actual": [
+                "ruoyi-ui"
+              ],
+              "expected": [
+                "ruoyi-ui"
+              ],
+              "matched": 1
+            },
+            "python": {
+              "actual": [],
+              "expected": [],
+              "matched": 0
+            }
+          },
+          "reason": "Java 项目声明按根去重，但模型未区分库与应用；Python 只承认实际带 Python 源码根的服务实体，不凭存在 .py 自行补服务。"
+        },
+        "B": {
+          "status": "✗",
+          "text": "匹配 0/2 · 分类 0/2 · 漏 2 · 多 0",
+          "metrics": {
+            "actual": [],
+            "expected": [
+              "MySQL",
+              "Redis"
+            ],
+            "matched": [],
+            "missing": [
+              "MySQL",
+              "Redis"
+            ],
+            "extra": [],
+            "kindMatches": 0,
+            "unknown": [
+              "关系数据"
+            ]
+          },
+          "reason": "比较配置/源码中发现的引擎及数据库/缓存/向量等类别，不声称已运行或各接口实际访问；未命名的“关系数据”不算识别了某引擎。SQLite 被标 file 时也不会忽略分类偏差。"
+        },
+        "C": {
+          "status": "△",
+          "text": "接口 140/140 · 路径 138/140",
+          "metrics": {
+            "actual": 140,
+            "expected": 140,
+            "pathMatches": 138,
+            "missing": [
+              {
+                "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysIndexController.java",
+                "method": "ANY",
+                "path": "/"
+              },
+              {
+                "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysUserController.java",
+                "method": "GET",
+                "path": "/system/user/"
+              }
+            ]
+          },
+          "reason": "总数与声明文件+方法+完整路径分别核对；同数但前缀缺失不算全对；不含框架自动端点。"
+        },
+        "D": {
+          "status": "✓",
+          "text": "模块 24/24 · 分布 24/24 · 最大 15/140 (10.7%)",
+          "metrics": {
+            "actual": 24,
+            "expected": 24,
+            "distribution": [
+              {
+                "name": "CaptchaController",
+                "expected": 1,
+                "actual": 1
+              },
+              {
+                "name": "CommonController",
+                "expected": 4,
+                "actual": 4
+              },
+              {
+                "name": "CacheController",
+                "expected": 7,
+                "actual": 7
+              },
+              {
+                "name": "ServerController",
+                "expected": 1,
+                "actual": 1
+              },
+              {
+                "name": "SysLogininforController",
+                "expected": 5,
+                "actual": 5
+              },
+              {
+                "name": "SysOperlogController",
+                "expected": 4,
+                "actual": 4
+              },
+              {
+                "name": "SysUserOnlineController",
+                "expected": 2,
+                "actual": 2
+              },
+              {
+                "name": "SysConfigController",
+                "expected": 8,
+                "actual": 8
+              },
+              {
+                "name": "SysDeptController",
+                "expected": 6,
+                "actual": 6
+              },
+              {
+                "name": "SysDictDataController",
+                "expected": 7,
+                "actual": 7
+              },
+              {
+                "name": "SysDictTypeController",
+                "expected": 8,
+                "actual": 8
+              },
+              {
+                "name": "SysIndexController",
+                "expected": 1,
+                "actual": 1
+              },
+              {
+                "name": "SysLoginController",
+                "expected": 3,
+                "actual": 3
+              },
+              {
+                "name": "SysMenuController",
+                "expected": 7,
+                "actual": 7
+              },
+              {
+                "name": "SysNoticeController",
+                "expected": 5,
+                "actual": 5
+              },
+              {
+                "name": "SysPostController",
+                "expected": 7,
+                "actual": 7
+              },
+              {
+                "name": "SysProfileController",
+                "expected": 4,
+                "actual": 4
+              },
+              {
+                "name": "SysRegisterController",
+                "expected": 1,
+                "actual": 1
+              },
+              {
+                "name": "SysRoleController",
+                "expected": 15,
+                "actual": 15
+              },
+              {
+                "name": "SysUserController",
+                "expected": 13,
+                "actual": 13
+              },
+              {
+                "name": "TestController",
+                "expected": 5,
+                "actual": 5
+              },
+              {
+                "name": "GenController",
+                "expected": 13,
+                "actual": 13
+              },
+              {
+                "name": "SysJobController",
+                "expected": 8,
+                "actual": 8
+              },
+              {
+                "name": "SysJobLogController",
+                "expected": 5,
+                "actual": 5
+              }
+            ],
+            "biggest": 15,
+            "total": 140,
+            "ratio": 0.10714285714285714,
+            "domains": [
+              {
+                "name": "/captchaImage",
+                "count": 1
+              },
+              {
+                "name": "/common",
+                "count": 4
+              },
+              {
+                "name": "/monitor/cache",
+                "count": 7
+              },
+              {
+                "name": "/monitor/server",
+                "count": 1
+              },
+              {
+                "name": "/monitor/logininfor",
+                "count": 5
+              },
+              {
+                "name": "/monitor/operlog",
+                "count": 4
+              },
+              {
+                "name": "/monitor/online",
+                "count": 2
+              },
+              {
+                "name": "/system/config",
+                "count": 8
+              },
+              {
+                "name": "/system/dept",
+                "count": 6
+              },
+              {
+                "name": "/system/dict/data",
+                "count": 7
+              },
+              {
+                "name": "/system/dict/type",
+                "count": 8
+              },
+              {
+                "name": "/",
+                "count": 1
+              },
+              {
+                "name": "SysLoginController",
+                "count": 3
+              },
+              {
+                "name": "/system/menu",
+                "count": 7
+              },
+              {
+                "name": "/system/notice",
+                "count": 5
+              },
+              {
+                "name": "/system/post",
+                "count": 7
+              },
+              {
+                "name": "/system/user/profile",
+                "count": 4
+              },
+              {
+                "name": "/register",
+                "count": 1
+              },
+              {
+                "name": "/system/role",
+                "count": 15
+              },
+              {
+                "name": "SysUserController",
+                "count": 13
+              },
+              {
+                "name": "/test/user",
+                "count": 5
+              },
+              {
+                "name": "/tool/gen",
+                "count": 13
+              },
+              {
+                "name": "/monitor/job",
+                "count": 8
+              },
+              {
+                "name": "/monitor/jobLog",
+                "count": 5
+              }
+            ]
+          },
+          "reason": "按 Controller / 路由文件计标准模块；通过入口所属文件核对每组数量。"
+        },
+        "E": {
+          "status": "✗",
+          "text": "页面 无法评估/12 · API 无法评估/113 · 对接 0 · 文件 167",
+          "metrics": {
+            "actualPages": null,
+            "expectedPages": 12,
+            "actualApi": null,
+            "expectedApi": 113,
+            "matchedBackend": 0,
+            "frontendHttpRelations": 0,
+            "frontendFiles": 167
+          },
+          "reason": "现有中间模型没有前端页面/API 定义集合；不能把本评估脚本独立数出的结果写回当产品能力。即使答案是 0，也不能把“字段不存在”说成已证明 0。"
+        },
+        "F": {
+          "status": "✓",
+          "text": "节点 2 · 边 1 · 占位 0 · 孤立 0 · >15 0",
+          "metrics": {
+            "nodes": 2,
+            "edges": 1,
+            "placeholder": 0,
+            "isolated": [],
+            "over15": false
+          },
+          "reason": "单独应用无外部关系时的一个孤立节点允许；多卡片孤立、空图、占位或超预算判失败。图的身份覆盖另看 A/E/WMS 诊断。"
+        },
+        "G": {
+          "status": "✗",
+          "text": "层级 0/0 · 下层 0/0 · 交叉 64 · 类数 0/24 · 截去 38",
+          "metrics": {
+            "correct": 0,
+            "total": 0,
+            "pairs": [],
+            "lower": {
+              "correct": 0,
+              "total": 0,
+              "pairs": []
+            },
+            "crossings": 64,
+            "nodes": 24,
+            "edges": 33,
+            "classCountCards": 0,
+            "placeholder": 23,
+            "omitted": 38,
+            "roles": [
+              {
+                "id": "module:ruoyi-admin · com.ruoyi",
+                "name": "ruoyi-admin · com.ruoyi",
+                "controller": false,
+                "service": false,
+                "entity": false,
+                "common": false,
+                "classes": 2,
+                "y": 122
+              },
+              {
+                "id": "module:ruoyi-common · com.ruoyi.common.config",
+                "name": "common.config",
+                "controller": false,
+                "service": false,
+                "entity": false,
+                "common": true,
+                "classes": 1,
+                "y": 728
+              },
+              {
+                "id": "module:ruoyi-common · com.ruoyi.common.constant",
+                "name": "common.constant",
+                "controller": false,
+                "service": false,
+                "entity": false,
+                "common": true,
+                "classes": 7,
+                "y": 1172
+              },
+              {
+                "id": "module:ruoyi-common · com.ruoyi.common.core.redis",
+                "name": "core.redis",
+                "controller": false,
+                "service": false,
+                "entity": false,
+                "common": true,
+                "classes": 1,
+                "y": 1172
+              },
+              {
+                "id": "module:ruoyi-common · com.ruoyi.common.exception",
+                "name": "common.exception",
+                "controller": false,
+                "service": false,
+                "entity": false,
+                "common": true,
+                "classes": 4,
+                "y": 1172
+              },
+              {
+                "id": "cycle:ruoyi-common · com.ruoyi.common.core.domain|ruoyi-common · com.ruoyi.common.core.domain.entity|ruoyi-common · com.ruoyi.common.core.domain.model|ruoyi-common · com.ruoyi.common.core.page|ruoyi-common · com.ruoyi.common.core.text|ruoyi-common · com.ruoyi.common.utils|ruoyi-common · com.ruoyi.common.utils.spring|ruoyi-common · com.ruoyi.common.utils.sql",
+                "name": "循环组 · domain / entity / model",
+                "controller": false,
+                "service": false,
+                "entity": true,
+                "common": true,
+                "classes": 34,
+                "y": 950
+              },
+              {
+                "id": "module:ruoyi-common · com.ruoyi.common.utils.sign",
+                "name": "utils.sign",
+                "controller": false,
+                "service": false,
+                "entity": false,
+                "common": true,
+                "classes": 2,
+                "y": 302
+              },
+              {
+                "id": "module:ruoyi-common · com.ruoyi.common.utils.uuid",
+                "name": "utils.uuid",
+                "controller": false,
+                "service": false,
+                "entity": false,
+                "common": true,
+                "classes": 4,
+                "y": 728
+              },
+              {
+                "id": "module:ruoyi-system · com.ruoyi.system.domain",
+                "name": "system.domain",
+                "controller": false,
+                "service": false,
+                "entity": true,
+                "common": false,
+                "classes": 11,
+                "y": 908
+              },
+              {
+                "id": "module:ruoyi-system · com.ruoyi.system.domain.vo",
+                "name": "domain.vo",
+                "controller": false,
+                "service": false,
+                "entity": true,
+                "common": false,
+                "classes": 2,
+                "y": 728
+              },
+              {
+                "id": "module:ruoyi-system · com.ruoyi.system.service",
+                "name": "system.service",
+                "controller": false,
+                "service": false,
+                "entity": false,
+                "common": false,
+                "classes": 12,
+                "y": 506
+              },
+              {
+                "id": "module:ruoyi-common · com.ruoyi.common.exception.base",
+                "name": "exception.base",
+                "controller": false,
+                "service": false,
+                "entity": false,
+                "common": true,
+                "classes": 1,
+                "y": 728
+              },
+              {
+                "id": "module:ruoyi-common · com.ruoyi.common.exception.file",
+                "name": "exception.file",
+                "controller": false,
+                "service": false,
+                "entity": false,
+                "common": true,
+                "classes": 9,
+                "y": 506
+              },
+              {
+                "id": "module:ruoyi-common · com.ruoyi.common.utils.file",
+                "name": "utils.file",
+                "controller": false,
+                "service": false,
+                "entity": false,
+                "common": true,
+                "classes": 5,
+                "y": 1364
+              },
+              {
+                "id": "module:ruoyi-common · com.ruoyi.common.enums",
+                "name": "common.enums",
+                "controller": false,
+                "service": false,
+                "entity": false,
+                "common": true,
+                "classes": 8,
+                "y": 728
+              },
+              {
+                "id": "module:ruoyi-framework · com.ruoyi.framework.config.properties",
+                "name": "config.properties",
+                "controller": false,
+                "service": false,
+                "entity": false,
+                "common": false,
+                "classes": 2,
+                "y": 122
+              },
+              {
+                "id": "module:ruoyi-framework · com.ruoyi.framework.datasource",
+                "name": "framework.datasource",
+                "controller": false,
+                "service": false,
+                "entity": false,
+                "common": false,
+                "classes": 2,
+                "y": 302
+              },
+              {
+                "id": "module:ruoyi-common · com.ruoyi.common.utils.http",
+                "name": "utils.http",
+                "controller": false,
+                "service": false,
+                "entity": false,
+                "common": true,
+                "classes": 4,
+                "y": 728
+              },
+              {
+                "id": "module:ruoyi-common · com.ruoyi.common.utils.html",
+                "name": "utils.html",
+                "controller": false,
+                "service": false,
+                "entity": false,
+                "common": true,
+                "classes": 2,
+                "y": 908
+              },
+              {
+                "id": "module:ruoyi-common · com.ruoyi.common.filter",
+                "name": "common.filter",
+                "controller": false,
+                "service": false,
+                "entity": false,
+                "common": true,
+                "classes": 5,
+                "y": 506
+              },
+              {
+                "id": "module:ruoyi-framework · com.ruoyi.framework.interceptor",
+                "name": "framework.interceptor",
+                "controller": false,
+                "service": false,
+                "entity": false,
+                "common": false,
+                "classes": 1,
+                "y": 728
+              },
+              {
+                "id": "module:ruoyi-framework · com.ruoyi.framework.security.context",
+                "name": "security.context",
+                "controller": false,
+                "service": false,
+                "entity": false,
+                "common": false,
+                "classes": 2,
+                "y": 728
+              },
+              {
+                "id": "module:ruoyi-common · com.ruoyi.common.exception.user",
+                "name": "exception.user",
+                "controller": false,
+                "service": false,
+                "entity": false,
+                "common": true,
+                "classes": 7,
+                "y": 506
+              },
+              {
+                "id": "module:ruoyi-common · com.ruoyi.common.utils.ip",
+                "name": "utils.ip",
+                "controller": false,
+                "service": false,
+                "entity": false,
+                "common": true,
+                "classes": 2,
+                "y": 506
+              }
+            ]
+          },
+          "reason": "执行原 layout.worker 的 overview / DOWN 和原正交布线；只替换 ELK 传输。层级是可见节点中 Controller/Service 及实体/公共层的纵向比较；循环/混合模块不能证明细分角色。交叉按不同边正交段内部交点去重计，重叠共线不算。"
+        },
+        "H": {
+          "status": "✓",
+          "text": "视图 3/3 · 空图 0 · 空框 0 · 无说明 0 · 错误 0",
+          "metrics": {
+            "views": [
+              {
+                "view": "main",
+                "nodes": 2,
+                "blankCards": 0,
+                "visible": 2,
+                "emptyText": "",
+                "errors": [],
+                "text": "ruoyiSpring Boottype8 接口 menu7 接口 dept6 接口 role15 接口 SysUserController13 接口 profile4 接口 其他 / 更多能力 18关系数据业务数据依据React FlowPress enter or space to select a node. You can then use the arrow keys to move t"
+              },
+              {
+                "view": "guide",
+                "nodes": 24,
+                "blankCards": 0,
+                "visible": 9,
+                "emptyText": "",
+                "errors": [],
+                "text": "/REQUEST/查看全部 1 个接口/captchaImageGET/captchaImage查看全部 1 个接口/commonPOST/common/uploadPOST/common/uploadsGET/common/download查看全部 4 个接口/monitor/cacheGET/monitor/cache/getNamesGET/monitor/cache/getKeys/{ca"
+              },
+              {
+                "view": "overview",
+                "nodes": 11,
+                "blankCards": 0,
+                "visible": 10,
+                "emptyText": "",
+                "errors": [],
+                "text": "common.config包 / 目录结构打开common.constant包 / 目录结构打开循环循环组 · domain / entity / model强连通分量 · 不代表执行顺序组内依据展开 8system.domain包 / 目录结构打开system.service包 / 目录结构打开utils.file包 / 目录结构打开common.enums包 / 目录结构打开web.servi"
+              }
+            ],
+            "emptyViews": 0,
+            "blankCards": 0,
+            "unexplained": 0,
+            "errors": 0,
+            "browserVerified": true
+          },
+          "reason": "当前真实组件+已导出完整模型，主干/接口/默认依赖三视图静态显示和空态文字核对，逐视图有截图；IPC 输入模拟，无目标页面或业务运行。只证明这三种初始显示，不扩展声称所有交互无裁切/遮挡。"
+        }
+      }
+    },
+    {
+      "project": "fastapi",
+      "commit": "b1125d8839482cb7bbae603ddc6d0081bf87532e",
+      "grades": {
+        "A": {
+          "status": "✗",
+          "text": "后 0/0 · 前 2/1 · Py 0/1",
+          "metrics": {
+            "backend": {
+              "actual": [],
+              "expected": [],
+              "matched": 0
+            },
+            "frontend": {
+              "actual": [
+                "frontend",
+                "packages/react-email"
+              ],
+              "expected": [
+                "frontend"
+              ],
+              "matched": 1
+            },
+            "python": {
+              "actual": [],
+              "expected": [
+                "backend"
+              ],
+              "matched": 0
+            }
+          },
+          "reason": "Java 项目声明按根去重，但模型未区分库与应用；Python 只承认实际带 Python 源码根的服务实体，不凭存在 .py 自行补服务。"
+        },
+        "B": {
+          "status": "✗",
+          "text": "匹配 0/1 · 分类 0/1 · 漏 1 · 多 0",
+          "metrics": {
+            "actual": [],
+            "expected": [
+              "PostgreSQL"
+            ],
+            "matched": [],
+            "missing": [
+              "PostgreSQL"
+            ],
+            "extra": [],
+            "kindMatches": 0,
+            "unknown": []
+          },
+          "reason": "比较配置/源码中发现的引擎及数据库/缓存/向量等类别，不声称已运行或各接口实际访问；未命名的“关系数据”不算识别了某引擎。SQLite 被标 file 时也不会忽略分类偏差。"
+        },
+        "C": {
+          "status": "△",
+          "text": "接口 23/23 · 路径 0/23",
+          "metrics": {
+            "actual": 23,
+            "expected": 23,
+            "pathMatches": 0,
+            "missing": [
+              {
+                "file": "backend/app/api/routes/items.py",
+                "method": "GET",
+                "path": "/api/v1/items/"
+              },
+              {
+                "file": "backend/app/api/routes/items.py",
+                "method": "GET",
+                "path": "/api/v1/items/{id}"
+              },
+              {
+                "file": "backend/app/api/routes/items.py",
+                "method": "POST",
+                "path": "/api/v1/items/"
+              },
+              {
+                "file": "backend/app/api/routes/items.py",
+                "method": "PUT",
+                "path": "/api/v1/items/{id}"
+              },
+              {
+                "file": "backend/app/api/routes/items.py",
+                "method": "DELETE",
+                "path": "/api/v1/items/{id}"
+              },
+              {
+                "file": "backend/app/api/routes/login.py",
+                "method": "POST",
+                "path": "/api/v1/login/access-token"
+              },
+              {
+                "file": "backend/app/api/routes/login.py",
+                "method": "POST",
+                "path": "/api/v1/login/test-token"
+              },
+              {
+                "file": "backend/app/api/routes/login.py",
+                "method": "POST",
+                "path": "/api/v1/password-recovery/{email}"
+              },
+              {
+                "file": "backend/app/api/routes/login.py",
+                "method": "POST",
+                "path": "/api/v1/reset-password/"
+              },
+              {
+                "file": "backend/app/api/routes/login.py",
+                "method": "POST",
+                "path": "/api/v1/password-recovery-html-content/{email}"
+              },
+              {
+                "file": "backend/app/api/routes/private.py",
+                "method": "POST",
+                "path": "/api/v1/private/users/"
+              },
+              {
+                "file": "backend/app/api/routes/users.py",
+                "method": "GET",
+                "path": "/api/v1/users/"
+              },
+              {
+                "file": "backend/app/api/routes/users.py",
+                "method": "POST",
+                "path": "/api/v1/users/"
+              },
+              {
+                "file": "backend/app/api/routes/users.py",
+                "method": "PATCH",
+                "path": "/api/v1/users/me"
+              },
+              {
+                "file": "backend/app/api/routes/users.py",
+                "method": "PATCH",
+                "path": "/api/v1/users/me/password"
+              },
+              {
+                "file": "backend/app/api/routes/users.py",
+                "method": "GET",
+                "path": "/api/v1/users/me"
+              },
+              {
+                "file": "backend/app/api/routes/users.py",
+                "method": "DELETE",
+                "path": "/api/v1/users/me"
+              },
+              {
+                "file": "backend/app/api/routes/users.py",
+                "method": "POST",
+                "path": "/api/v1/users/signup"
+              },
+              {
+                "file": "backend/app/api/routes/users.py",
+                "method": "GET",
+                "path": "/api/v1/users/{user_id}"
+              },
+              {
+                "file": "backend/app/api/routes/users.py",
+                "method": "PATCH",
+                "path": "/api/v1/users/{user_id}"
+              },
+              {
+                "file": "backend/app/api/routes/users.py",
+                "method": "DELETE",
+                "path": "/api/v1/users/{user_id}"
+              },
+              {
+                "file": "backend/app/api/routes/utils.py",
+                "method": "POST",
+                "path": "/api/v1/utils/test-email/"
+              },
+              {
+                "file": "backend/app/api/routes/utils.py",
+                "method": "GET",
+                "path": "/api/v1/utils/health-check/"
+              }
+            ]
+          },
+          "reason": "总数与声明文件+方法+完整路径分别核对；同数但前缀缺失不算全对；不含框架自动端点。"
+        },
+        "D": {
+          "status": "✓",
+          "text": "模块 5/5 · 分布 5/5 · 最大 10/23 (43.5%)",
+          "metrics": {
+            "actual": 5,
+            "expected": 5,
+            "distribution": [
+              {
+                "name": "backend/app/api/routes/items.py",
+                "expected": 5,
+                "actual": 5
+              },
+              {
+                "name": "backend/app/api/routes/login.py",
+                "expected": 5,
+                "actual": 5
+              },
+              {
+                "name": "backend/app/api/routes/private.py",
+                "expected": 1,
+                "actual": 1
+              },
+              {
+                "name": "backend/app/api/routes/users.py",
+                "expected": 10,
+                "actual": 10
+              },
+              {
+                "name": "backend/app/api/routes/utils.py",
+                "expected": 2,
+                "actual": 2
+              }
+            ],
+            "biggest": 10,
+            "total": 23,
+            "ratio": 0.43478260869565216,
+            "domains": [
+              {
+                "name": "/items",
+                "count": 5
+              },
+              {
+                "name": "router",
+                "count": 5
+              },
+              {
+                "name": "/private/users/",
+                "count": 1
+              },
+              {
+                "name": "/users",
+                "count": 10
+              },
+              {
+                "name": "/utils",
+                "count": 2
+              }
+            ]
+          },
+          "reason": "按 Controller / 路由文件计标准模块；通过入口所属文件核对每组数量。"
+        },
+        "E": {
+          "status": "✗",
+          "text": "页面 无法评估/8 · API 无法评估/23 · 对接 0 · 文件 114",
+          "metrics": {
+            "actualPages": null,
+            "expectedPages": 8,
+            "actualApi": null,
+            "expectedApi": 23,
+            "matchedBackend": 0,
+            "frontendHttpRelations": 0,
+            "frontendFiles": 114
+          },
+          "reason": "现有中间模型没有前端页面/API 定义集合；不能把本评估脚本独立数出的结果写回当产品能力。即使答案是 0，也不能把“字段不存在”说成已证明 0。"
+        },
+        "F": {
+          "status": "✓",
+          "text": "节点 1 · 边 0 · 占位 0 · 孤立 1 · >15 0",
+          "metrics": {
+            "nodes": 1,
+            "edges": 0,
+            "placeholder": 0,
+            "isolated": [
+              {
+                "id": "service:application",
+                "name": "fastapi"
+              }
+            ],
+            "over15": false
+          },
+          "reason": "单独应用无外部关系时的一个孤立节点允许；多卡片孤立、空图、占位或超预算判失败。图的身份覆盖另看 A/E/WMS 诊断。"
+        },
+        "G": {
+          "status": "✗",
+          "text": "层级 0/0 · 下层 0/0 · 交叉 0 · 类数 0/8 · 截去 0",
+          "metrics": {
+            "correct": 0,
+            "total": 0,
+            "pairs": [],
+            "lower": {
+              "correct": 0,
+              "total": 0,
+              "pairs": []
+            },
+            "crossings": 0,
+            "nodes": 8,
+            "edges": 0,
+            "classCountCards": 0,
+            "placeholder": 8,
+            "omitted": 0,
+            "roles": [
+              {
+                "id": "module:backend/app/alembic",
+                "name": "backend/app/alembic",
+                "controller": false,
+                "service": false,
+                "entity": false,
+                "common": false,
+                "classes": 0,
+                "y": 122
+              },
+              {
+                "id": "module:backend/app/alembic/versions",
+                "name": "backend/app/alembic/versions",
+                "controller": false,
+                "service": false,
+                "entity": false,
+                "common": false,
+                "classes": 0,
+                "y": 302
+              },
+              {
+                "id": "module:backend/app/api",
+                "name": "backend/app/api",
+                "controller": false,
+                "service": false,
+                "entity": false,
+                "common": false,
+                "classes": 0,
+                "y": 122
+              },
+              {
+                "id": "module:backend/app/api/routes",
+                "name": "backend/app/api/routes",
+                "controller": false,
+                "service": false,
+                "entity": false,
+                "common": false,
+                "classes": 1,
+                "y": 644
+              },
+              {
+                "id": "module:backend/app/core",
+                "name": "backend/app/core",
+                "controller": false,
+                "service": false,
+                "entity": false,
+                "common": false,
+                "classes": 1,
+                "y": 824
+              },
+              {
+                "id": "module:backend/app",
+                "name": "backend/app",
+                "controller": false,
+                "service": false,
+                "entity": false,
+                "common": false,
+                "classes": 20,
+                "y": 644
+              },
+              {
+                "id": "module:hooks",
+                "name": "hooks",
+                "controller": false,
+                "service": false,
+                "entity": false,
+                "common": false,
+                "classes": 0,
+                "y": 1166
+              },
+              {
+                "id": "module:scripts",
+                "name": "scripts",
+                "controller": false,
+                "service": false,
+                "entity": false,
+                "common": false,
+                "classes": 0,
+                "y": 1346
+              }
+            ]
+          },
+          "reason": "执行原 layout.worker 的 overview / DOWN 和原正交布线；只替换 ELK 传输。层级是可见节点中 Controller/Service 及实体/公共层的纵向比较；循环/混合模块不能证明细分角色。交叉按不同边正交段内部交点去重计，重叠共线不算。"
+        },
+        "H": {
+          "status": "✓",
+          "text": "视图 3/3 · 空图 0 · 空框 0 · 无说明 0 · 错误 0",
+          "metrics": {
+            "views": [
+              {
+                "view": "main",
+                "nodes": 1,
+                "blankCards": 0,
+                "visible": 1,
+                "emptyText": "",
+                "errors": [],
+                "text": "fastapirouter5 接口 utils2 接口 items5 接口 users1 接口 users10 接口 React FlowPress enter or space to select a node. You can then use the arrow keys to move the node around. Press delete to remove it and escap"
+              },
+              {
+                "view": "guide",
+                "nodes": 5,
+                "blankCards": 0,
+                "visible": 5,
+                "emptyText": "",
+                "errors": [],
+                "text": "/itemsPOST/items/GET/items/{id}DELETE/items/{id}查看全部 5 个接口/private/users/POST/private/users/查看全部 1 个接口/usersPOST/users/signupPOST/users/GET/users/me直接返回查看全部 10 个接口/utilsPOST/utils/test-email/GET/utils"
+              },
+              {
+                "view": "overview",
+                "nodes": 1,
+                "blankCards": 0,
+                "visible": 1,
+                "emptyText": "",
+                "errors": [],
+                "text": "backend/app/api/routes包 / 目录结构打开React FlowPress enter or space to select a node. You can then use the arrow keys to move the node around. Press delete to remove it and escape to cancel.Press enter or "
+              }
+            ],
+            "emptyViews": 0,
+            "blankCards": 0,
+            "unexplained": 0,
+            "errors": 0,
+            "browserVerified": true
+          },
+          "reason": "当前真实组件+已导出完整模型，主干/接口/默认依赖三视图静态显示和空态文字核对，逐视图有截图；IPC 输入模拟，无目标页面或业务运行。只证明这三种初始显示，不扩展声称所有交互无裁切/遮挡。"
+        }
+      }
+    },
+    {
+      "project": "microblog",
+      "commit": "a975ef64864354867c88e0ed3a17ba7d17dca752",
+      "grades": {
+        "A": {
+          "status": "✗",
+          "text": "后 0/0 · 前 0/0 · Py 0/1",
+          "metrics": {
+            "backend": {
+              "actual": [],
+              "expected": [],
+              "matched": 0
+            },
+            "frontend": {
+              "actual": [],
+              "expected": [],
+              "matched": 0
+            },
+            "python": {
+              "actual": [],
+              "expected": [
+                "."
+              ],
+              "matched": 0
+            }
+          },
+          "reason": "Java 项目声明按根去重，但模型未区分库与应用；Python 只承认实际带 Python 源码根的服务实体，不凭存在 .py 自行补服务。"
+        },
+        "B": {
+          "status": "✗",
+          "text": "匹配 0/5 · 分类 0/5 · 漏 5 · 多 0",
+          "metrics": {
+            "actual": [],
+            "expected": [
+              "SQLite",
+              "PostgreSQL",
+              "Redis",
+              "RQ",
+              "Elasticsearch"
+            ],
+            "matched": [],
+            "missing": [
+              "SQLite",
+              "PostgreSQL",
+              "Redis",
+              "RQ",
+              "Elasticsearch"
+            ],
+            "extra": [],
+            "kindMatches": 0,
+            "unknown": []
+          },
+          "reason": "比较配置/源码中发现的引擎及数据库/缓存/向量等类别，不声称已运行或各接口实际访问；未命名的“关系数据”不算识别了某引擎。SQLite 被标 file 时也不会忽略分类偏差。"
+        },
+        "C": {
+          "status": "✗",
+          "text": "接口 0/35 · 路径 0/35",
+          "metrics": {
+            "actual": 0,
+            "expected": 35,
+            "pathMatches": 0,
+            "missing": [
+              {
+                "file": "app/api/tokens.py",
+                "method": "POST",
+                "path": "/api/tokens"
+              },
+              {
+                "file": "app/api/tokens.py",
+                "method": "DELETE",
+                "path": "/api/tokens"
+              },
+              {
+                "file": "app/api/users.py",
+                "method": "GET",
+                "path": "/api/users/<int:id>"
+              },
+              {
+                "file": "app/api/users.py",
+                "method": "GET",
+                "path": "/api/users"
+              },
+              {
+                "file": "app/api/users.py",
+                "method": "GET",
+                "path": "/api/users/<int:id>/followers"
+              },
+              {
+                "file": "app/api/users.py",
+                "method": "GET",
+                "path": "/api/users/<int:id>/following"
+              },
+              {
+                "file": "app/api/users.py",
+                "method": "POST",
+                "path": "/api/users"
+              },
+              {
+                "file": "app/api/users.py",
+                "method": "PUT",
+                "path": "/api/users/<int:id>"
+              },
+              {
+                "file": "app/auth/routes.py",
+                "method": "GET",
+                "path": "/auth/login"
+              },
+              {
+                "file": "app/auth/routes.py",
+                "method": "POST",
+                "path": "/auth/login"
+              },
+              {
+                "file": "app/auth/routes.py",
+                "method": "GET",
+                "path": "/auth/logout"
+              },
+              {
+                "file": "app/auth/routes.py",
+                "method": "GET",
+                "path": "/auth/register"
+              },
+              {
+                "file": "app/auth/routes.py",
+                "method": "POST",
+                "path": "/auth/register"
+              },
+              {
+                "file": "app/auth/routes.py",
+                "method": "GET",
+                "path": "/auth/reset_password_request"
+              },
+              {
+                "file": "app/auth/routes.py",
+                "method": "POST",
+                "path": "/auth/reset_password_request"
+              },
+              {
+                "file": "app/auth/routes.py",
+                "method": "GET",
+                "path": "/auth/reset_password/<token>"
+              },
+              {
+                "file": "app/auth/routes.py",
+                "method": "POST",
+                "path": "/auth/reset_password/<token>"
+              },
+              {
+                "file": "app/main/routes.py",
+                "method": "GET",
+                "path": "/"
+              },
+              {
+                "file": "app/main/routes.py",
+                "method": "POST",
+                "path": "/"
+              },
+              {
+                "file": "app/main/routes.py",
+                "method": "GET",
+                "path": "/index"
+              },
+              {
+                "file": "app/main/routes.py",
+                "method": "POST",
+                "path": "/index"
+              },
+              {
+                "file": "app/main/routes.py",
+                "method": "GET",
+                "path": "/explore"
+              },
+              {
+                "file": "app/main/routes.py",
+                "method": "GET",
+                "path": "/user/<username>"
+              },
+              {
+                "file": "app/main/routes.py",
+                "method": "GET",
+                "path": "/user/<username>/popup"
+              },
+              {
+                "file": "app/main/routes.py",
+                "method": "GET",
+                "path": "/edit_profile"
+              },
+              {
+                "file": "app/main/routes.py",
+                "method": "POST",
+                "path": "/edit_profile"
+              },
+              {
+                "file": "app/main/routes.py",
+                "method": "POST",
+                "path": "/follow/<username>"
+              },
+              {
+                "file": "app/main/routes.py",
+                "method": "POST",
+                "path": "/unfollow/<username>"
+              },
+              {
+                "file": "app/main/routes.py",
+                "method": "POST",
+                "path": "/translate"
+              },
+              {
+                "file": "app/main/routes.py",
+                "method": "GET",
+                "path": "/search"
+              },
+              {
+                "file": "app/main/routes.py",
+                "method": "GET",
+                "path": "/send_message/<recipient>"
+              },
+              {
+                "file": "app/main/routes.py",
+                "method": "POST",
+                "path": "/send_message/<recipient>"
+              },
+              {
+                "file": "app/main/routes.py",
+                "method": "GET",
+                "path": "/messages"
+              },
+              {
+                "file": "app/main/routes.py",
+                "method": "GET",
+                "path": "/export_posts"
+              },
+              {
+                "file": "app/main/routes.py",
+                "method": "GET",
+                "path": "/notifications"
+              }
+            ]
+          },
+          "reason": "总数与声明文件+方法+完整路径分别核对；同数但前缀缺失不算全对；不含框架自动端点。"
+        },
+        "D": {
+          "status": "✗",
+          "text": "模块 0/4 · 分布 0/4 · 最大 0/0 (0.0%)",
+          "metrics": {
+            "actual": 0,
+            "expected": 4,
+            "distribution": [
+              {
+                "name": "app/api/tokens.py",
+                "expected": 2,
+                "actual": 0
+              },
+              {
+                "name": "app/api/users.py",
+                "expected": 6,
+                "actual": 0
+              },
+              {
+                "name": "app/auth/routes.py",
+                "expected": 9,
+                "actual": 0
+              },
+              {
+                "name": "app/main/routes.py",
+                "expected": 18,
+                "actual": 0
+              }
+            ],
+            "biggest": 0,
+            "total": 0,
+            "ratio": 0,
+            "domains": []
+          },
+          "reason": "按 Controller / 路由文件计标准模块；通过入口所属文件核对每组数量。"
+        },
+        "E": {
+          "status": "✗",
+          "text": "页面 无法评估/0 · API 无法评估/3 · 对接 0 · 文件 18",
+          "metrics": {
+            "actualPages": null,
+            "expectedPages": 0,
+            "actualApi": null,
+            "expectedApi": 3,
+            "matchedBackend": 0,
+            "frontendHttpRelations": 0,
+            "frontendFiles": 18
+          },
+          "reason": "现有中间模型没有前端页面/API 定义集合；不能把本评估脚本独立数出的结果写回当产品能力。即使答案是 0，也不能把“字段不存在”说成已证明 0。"
+        },
+        "F": {
+          "status": "✗",
+          "text": "节点 9 · 边 0 · 占位 0 · 孤立 9 · >15 0",
+          "metrics": {
+            "nodes": 9,
+            "edges": 0,
+            "placeholder": 0,
+            "isolated": [
+              {
+                "id": "service:application",
+                "name": "microblog"
+              },
+              {
+                "id": "module:app/api",
+                "name": "app/api"
+              },
+              {
+                "id": "module:app/auth",
+                "name": "app/auth"
+              },
+              {
+                "id": "module:app",
+                "name": "app"
+              },
+              {
+                "id": "module:app/errors",
+                "name": "app/errors"
+              },
+              {
+                "id": "module:app/main",
+                "name": "app/main"
+              },
+              {
+                "id": "module:根目录",
+                "name": "根目录"
+              },
+              {
+                "id": "module:migrations",
+                "name": "migrations"
+              },
+              {
+                "id": "module:migrations/versions",
+                "name": "migrations/versions"
+              }
+            ],
+            "over15": false
+          },
+          "reason": "单独应用无外部关系时的一个孤立节点允许；多卡片孤立、空图、占位或超预算判失败。图的身份覆盖另看 A/E/WMS 诊断。"
+        },
+        "G": {
+          "status": "✗",
+          "text": "层级 0/0 · 下层 0/0 · 交叉 0 · 类数 0/3 · 截去 0",
+          "metrics": {
+            "correct": 0,
+            "total": 0,
+            "pairs": [],
+            "lower": {
+              "correct": 0,
+              "total": 0,
+              "pairs": []
+            },
+            "crossings": 0,
+            "nodes": 3,
+            "edges": 0,
+            "classCountCards": 0,
+            "placeholder": 2,
+            "omitted": 0,
+            "roles": [
+              {
+                "id": "cycle:app|app/api|app/auth|app/errors|app/main|根目录",
+                "name": "循环组 · app / app/api / app/auth",
+                "controller": false,
+                "service": false,
+                "entity": false,
+                "common": false,
+                "classes": 19,
+                "y": 122
+              },
+              {
+                "id": "module:migrations",
+                "name": "migrations",
+                "controller": false,
+                "service": false,
+                "entity": false,
+                "common": false,
+                "classes": 0,
+                "y": 302
+              },
+              {
+                "id": "module:migrations/versions",
+                "name": "migrations/versions",
+                "controller": false,
+                "service": false,
+                "entity": false,
+                "common": false,
+                "classes": 0,
+                "y": 644
+              }
+            ]
+          },
+          "reason": "执行原 layout.worker 的 overview / DOWN 和原正交布线；只替换 ELK 传输。层级是可见节点中 Controller/Service 及实体/公共层的纵向比较；循环/混合模块不能证明细分角色。交叉按不同边正交段内部交点去重计，重叠共线不算。"
+        },
+        "H": {
+          "status": "✓",
+          "text": "视图 3/3 · 空图 0 · 空框 0 · 无说明 0 · 错误 0",
+          "metrics": {
+            "views": [
+              {
+                "view": "main",
+                "nodes": 9,
+                "blankCards": 0,
+                "visible": 9,
+                "emptyText": "",
+                "errors": [],
+                "text": "microblogapp/api打开app/auth打开app打开app/errors打开app/main打开根目录打开migrations打开migrations/versions打开React FlowPress enter or space to select a node. You can then use the arrow keys to move the node around. P"
+              },
+              {
+                "view": "guide",
+                "nodes": 9,
+                "blankCards": 0,
+                "visible": 9,
+                "emptyText": "",
+                "errors": [],
+                "text": "microblogapp/api打开app/auth打开app打开app/errors打开app/main打开根目录打开migrations打开migrations/versions打开React FlowPress enter or space to select a node. You can then use the arrow keys to move the node around. P"
+              },
+              {
+                "view": "overview",
+                "nodes": 3,
+                "blankCards": 0,
+                "visible": 3,
+                "emptyText": "",
+                "errors": [],
+                "text": "循环循环组 · app / app/api / app/auth强连通分量 · 不代表执行顺序组内依据展开 6migrations包 / 目录结构打开migrations/versions包 / 目录结构打开React FlowPress enter or space to select a node. You can then use the arrow keys to move the nod"
+              }
+            ],
+            "emptyViews": 0,
+            "blankCards": 0,
+            "unexplained": 0,
+            "errors": 0,
+            "browserVerified": true
+          },
+          "reason": "当前真实组件+已导出完整模型，主干/接口/默认依赖三视图静态显示和空态文字核对，逐视图有截图；IPC 输入模拟，无目标页面或业务运行。只证明这三种初始显示，不扩展声称所有交互无裁切/遮挡。"
+        }
+      }
+    },
+    {
+      "project": "vue-ts",
+      "commit": "edac9de9e77b4fe83ccd53e86217d87a8006efee",
+      "grades": {
+        "A": {
+          "status": "✓",
+          "text": "后 0/0 · 前 1/1 · Py 0/0",
+          "metrics": {
+            "backend": {
+              "actual": [],
+              "expected": [],
+              "matched": 0
+            },
+            "frontend": {
+              "actual": [
+                "."
+              ],
+              "expected": [
+                "."
+              ],
+              "matched": 1
+            },
+            "python": {
+              "actual": [],
+              "expected": [],
+              "matched": 0
+            }
+          },
+          "reason": "Java 项目声明按根去重，但模型未区分库与应用；Python 只承认实际带 Python 源码根的服务实体，不凭存在 .py 自行补服务。"
+        },
+        "B": {
+          "status": "✓",
+          "text": "匹配 0/0 · 分类 0/0 · 漏 0 · 多 0",
+          "metrics": {
+            "actual": [],
+            "expected": [],
+            "matched": [],
+            "missing": [],
+            "extra": [],
+            "kindMatches": 0,
+            "unknown": []
+          },
+          "reason": "比较配置/源码中发现的引擎及数据库/缓存/向量等类别，不声称已运行或各接口实际访问；未命名的“关系数据”不算识别了某引擎。SQLite 被标 file 时也不会忽略分类偏差。"
+        },
+        "C": {
+          "status": "✓",
+          "text": "接口 0/0 · 路径 0/0",
+          "metrics": {
+            "actual": 0,
+            "expected": 0,
+            "pathMatches": 0,
+            "missing": []
+          },
+          "reason": "总数与声明文件+方法+完整路径分别核对；同数但前缀缺失不算全对；不含框架自动端点。"
+        },
+        "D": {
+          "status": "✓",
+          "text": "模块 0/0 · 分布 0/0 · 最大 0/0 (0.0%)",
+          "metrics": {
+            "actual": 0,
+            "expected": 0,
+            "distribution": [],
+            "biggest": 0,
+            "total": 0,
+            "ratio": 0,
+            "domains": []
+          },
+          "reason": "按 Controller / 路由文件计标准模块；通过入口所属文件核对每组数量。"
+        },
+        "E": {
+          "status": "✗",
+          "text": "页面 无法评估/3 · API 无法评估/7 · 对接 0 · 文件 15",
+          "metrics": {
+            "actualPages": null,
+            "expectedPages": 3,
+            "actualApi": null,
+            "expectedApi": 7,
+            "matchedBackend": 0,
+            "frontendHttpRelations": 0,
+            "frontendFiles": 15
+          },
+          "reason": "现有中间模型没有前端页面/API 定义集合；不能把本评估脚本独立数出的结果写回当产品能力。即使答案是 0，也不能把“字段不存在”说成已证明 0。"
+        },
+        "F": {
+          "status": "✗",
+          "text": "节点 9 · 边 0 · 占位 0 · 孤立 9 · >15 0",
+          "metrics": {
+            "nodes": 9,
+            "edges": 0,
+            "placeholder": 0,
+            "isolated": [
+              {
+                "id": "service:application",
+                "name": "vue-ts"
+              },
+              {
+                "id": "file:.eslintrc.js",
+                "name": ".eslintrc.js"
+              },
+              {
+                "id": "file:babel.config.js",
+                "name": "babel.config.js"
+              },
+              {
+                "id": "file:public/index.html",
+                "name": "index.html"
+              },
+              {
+                "id": "file:src/App.vue",
+                "name": "App.vue"
+              },
+              {
+                "id": "file:src/components/AddTutorial.vue",
+                "name": "AddTutorial.vue"
+              },
+              {
+                "id": "file:src/components/TutorialDetails.vue",
+                "name": "TutorialDetails.vue"
+              },
+              {
+                "id": "file:src/components/TutorialsList.vue",
+                "name": "TutorialsList.vue"
+              },
+              {
+                "id": "file:src/http-common.ts",
+                "name": "http-common.ts"
+              }
+            ],
+            "over15": false
+          },
+          "reason": "单独应用无外部关系时的一个孤立节点允许；多卡片孤立、空图、占位或超预算判失败。图的身份覆盖另看 A/E/WMS 诊断。"
+        },
+        "G": {
+          "status": "✗",
+          "text": "层级 0/0 · 下层 0/0 · 交叉 0 · 类数 0/0 · 截去 0",
+          "metrics": {
+            "correct": 0,
+            "total": 0,
+            "pairs": [],
+            "lower": {
+              "correct": 0,
+              "total": 0,
+              "pairs": []
+            },
+            "crossings": 0,
+            "nodes": 0,
+            "edges": 0,
+            "classCountCards": 0,
+            "placeholder": 0,
+            "omitted": 0,
+            "roles": []
+          },
+          "reason": "依赖视图没有节点，不能以 0 交叉当布局成功。"
+        },
+        "H": {
+          "status": "✓",
+          "text": "视图 3/3 · 空图 1 · 空框 0 · 无说明 0 · 错误 0",
+          "metrics": {
+            "views": [
+              {
+                "view": "main",
+                "nodes": 9,
+                "blankCards": 0,
+                "visible": 9,
+                "emptyText": "",
+                "errors": [],
+                "text": "vue-ts.eslintrc.js打开babel.config.js打开index.html打开App.vue打开AddTutorial.vue打开TutorialDetails.vue打开TutorialsList.vue打开http-common.ts打开React FlowPress enter or space to select a node. You can then use the"
+              },
+              {
+                "view": "guide",
+                "nodes": 9,
+                "blankCards": 0,
+                "visible": 9,
+                "emptyText": "",
+                "errors": [],
+                "text": "vue-ts.eslintrc.js打开babel.config.js打开index.html打开App.vue打开AddTutorial.vue打开TutorialDetails.vue打开TutorialsList.vue打开http-common.ts打开React FlowPress enter or space to select a node. You can then use the"
+              },
+              {
+                "view": "overview",
+                "nodes": 0,
+                "blankCards": 0,
+                "visible": 0,
+                "emptyText": "当前未识别到可展示关系；可从文件或源码继续阅读。",
+                "errors": [],
+                "text": "React FlowPress enter or space to select a node. You can then use the arrow keys to move the node around. Press delete to remove it and escape to cancel.Press enter or space to select an edge. You can"
+              }
+            ],
+            "emptyViews": 1,
+            "blankCards": 0,
+            "unexplained": 0,
+            "errors": 0,
+            "browserVerified": true
+          },
+          "reason": "当前真实组件+已导出完整模型，主干/接口/默认依赖三视图静态显示和空态文字核对，逐视图有截图；IPC 输入模拟，无目标页面或业务运行。只证明这三种初始显示，不扩展声称所有交互无裁切/遮挡。"
+        }
+      }
+    },
+    {
+      "project": "react-ts",
+      "commit": "3fbede021c99814807a0c5d3a1d338532ab06550",
+      "grades": {
+        "A": {
+          "status": "✓",
+          "text": "后 0/0 · 前 1/1 · Py 0/0",
+          "metrics": {
+            "backend": {
+              "actual": [],
+              "expected": [],
+              "matched": 0
+            },
+            "frontend": {
+              "actual": [
+                "."
+              ],
+              "expected": [
+                "."
+              ],
+              "matched": 1
+            },
+            "python": {
+              "actual": [],
+              "expected": [],
+              "matched": 0
+            }
+          },
+          "reason": "Java 项目声明按根去重，但模型未区分库与应用；Python 只承认实际带 Python 源码根的服务实体，不凭存在 .py 自行补服务。"
+        },
+        "B": {
+          "status": "✓",
+          "text": "匹配 0/0 · 分类 0/0 · 漏 0 · 多 0",
+          "metrics": {
+            "actual": [],
+            "expected": [],
+            "matched": [],
+            "missing": [],
+            "extra": [],
+            "kindMatches": 0,
+            "unknown": []
+          },
+          "reason": "比较配置/源码中发现的引擎及数据库/缓存/向量等类别，不声称已运行或各接口实际访问；未命名的“关系数据”不算识别了某引擎。SQLite 被标 file 时也不会忽略分类偏差。"
+        },
+        "C": {
+          "status": "✓",
+          "text": "接口 0/0 · 路径 0/0",
+          "metrics": {
+            "actual": 0,
+            "expected": 0,
+            "pathMatches": 0,
+            "missing": []
+          },
+          "reason": "总数与声明文件+方法+完整路径分别核对；同数但前缀缺失不算全对；不含框架自动端点。"
+        },
+        "D": {
+          "status": "✓",
+          "text": "模块 0/0 · 分布 0/0 · 最大 0/0 (0.0%)",
+          "metrics": {
+            "actual": 0,
+            "expected": 0,
+            "distribution": [],
+            "biggest": 0,
+            "total": 0,
+            "ratio": 0,
+            "domains": []
+          },
+          "reason": "按 Controller / 路由文件计标准模块；通过入口所属文件核对每组数量。"
+        },
+        "E": {
+          "status": "✗",
+          "text": "页面 无法评估/3 · API 无法评估/7 · 对接 0 · 文件 14",
+          "metrics": {
+            "actualPages": null,
+            "expectedPages": 3,
+            "actualApi": null,
+            "expectedApi": 7,
+            "matchedBackend": 0,
+            "frontendHttpRelations": 0,
+            "frontendFiles": 14
+          },
+          "reason": "现有中间模型没有前端页面/API 定义集合；不能把本评估脚本独立数出的结果写回当产品能力。即使答案是 0，也不能把“字段不存在”说成已证明 0。"
+        },
+        "F": {
+          "status": "✗",
+          "text": "节点 9 · 边 0 · 占位 0 · 孤立 9 · >15 0",
+          "metrics": {
+            "nodes": 9,
+            "edges": 0,
+            "placeholder": 0,
+            "isolated": [
+              {
+                "id": "service:application",
+                "name": "react-ts"
+              },
+              {
+                "id": "file:public/index.html",
+                "name": "index.html"
+              },
+              {
+                "id": "file:src/App.css",
+                "name": "App.css"
+              },
+              {
+                "id": "file:src/App.tsx",
+                "name": "App.tsx"
+              },
+              {
+                "id": "file:src/components/add-tutorial.component.tsx",
+                "name": "add-tutorial.component.tsx"
+              },
+              {
+                "id": "file:src/components/tutorial.component.tsx",
+                "name": "tutorial.component.tsx"
+              },
+              {
+                "id": "file:src/components/tutorials-list.component.tsx",
+                "name": "tutorials-list.component.tsx"
+              },
+              {
+                "id": "file:src/http-common.ts",
+                "name": "http-common.ts"
+              },
+              {
+                "id": "file:src/index.css",
+                "name": "index.css"
+              }
+            ],
+            "over15": false
+          },
+          "reason": "单独应用无外部关系时的一个孤立节点允许；多卡片孤立、空图、占位或超预算判失败。图的身份覆盖另看 A/E/WMS 诊断。"
+        },
+        "G": {
+          "status": "✗",
+          "text": "层级 0/0 · 下层 0/0 · 交叉 0 · 类数 0/0 · 截去 0",
+          "metrics": {
+            "correct": 0,
+            "total": 0,
+            "pairs": [],
+            "lower": {
+              "correct": 0,
+              "total": 0,
+              "pairs": []
+            },
+            "crossings": 0,
+            "nodes": 0,
+            "edges": 0,
+            "classCountCards": 0,
+            "placeholder": 0,
+            "omitted": 0,
+            "roles": []
+          },
+          "reason": "依赖视图没有节点，不能以 0 交叉当布局成功。"
+        },
+        "H": {
+          "status": "✓",
+          "text": "视图 3/3 · 空图 1 · 空框 0 · 无说明 0 · 错误 0",
+          "metrics": {
+            "views": [
+              {
+                "view": "main",
+                "nodes": 9,
+                "blankCards": 0,
+                "visible": 9,
+                "emptyText": "",
+                "errors": [],
+                "text": "react-tsindex.html打开App.css打开App.tsx打开add-tutorial.component.tsx打开tutorial.component.tsx打开tutorials-list.component.tsx打开http-common.ts打开index.css打开React FlowPress enter or space to select a node. You "
+              },
+              {
+                "view": "guide",
+                "nodes": 9,
+                "blankCards": 0,
+                "visible": 9,
+                "emptyText": "",
+                "errors": [],
+                "text": "react-tsindex.html打开App.css打开App.tsx打开add-tutorial.component.tsx打开tutorial.component.tsx打开tutorials-list.component.tsx打开http-common.ts打开index.css打开React FlowPress enter or space to select a node. You "
+              },
+              {
+                "view": "overview",
+                "nodes": 0,
+                "blankCards": 0,
+                "visible": 0,
+                "emptyText": "当前未识别到可展示关系；可从文件或源码继续阅读。",
+                "errors": [],
+                "text": "React FlowPress enter or space to select a node. You can then use the arrow keys to move the node around. Press delete to remove it and escape to cancel.Press enter or space to select an edge. You can"
+              }
+            ],
+            "emptyViews": 1,
+            "blankCards": 0,
+            "unexplained": 0,
+            "errors": 0,
+            "browserVerified": true
+          },
+          "reason": "当前真实组件+已导出完整模型，主干/接口/默认依赖三视图静态显示和空态文字核对，逐视图有截图；IPC 输入模拟，无目标页面或业务运行。只证明这三种初始显示，不扩展声称所有交互无裁切/遮挡。"
+        }
+      }
+    }
+  ],
+  "publicExpectedLockSha256": "ec715186a4eb3a1425138508b606968d792a4a1ba4844a7094291c5206d0029e",
+  "publicLinkLockSha256": "16c3be0800a04eba1f7a608a653564709a76ba128e91cd842a09e01fad751f65"
+}

@@ -1,0 +1,111 @@
+import {validationInput,requireValidationInputs} from './verification-input.mjs';
+requireValidationInputs();
+import fs from 'node:fs';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+import { build } from 'esbuild';
+import { createRequire } from 'node:module';
+import { _electron as electron } from 'playwright';
+import electronPath from 'electron';
+import { guard, root } from './common.mjs';
+guard();
+const before=process.argv.includes('--before'),phase=before?'before':'after';
+const output=path.join(root,'.tmp/verification-canvas-entry');fs.mkdirSync(output,{recursive:true});
+if(before&&fs.existsSync(path.join(output,'baseline-index.json')))throw new Error('已有原始基线，禁止用新版覆盖 before 截图与索引。');
+await build({stdin:{contents:"export {segmentHits} from './src/renderer/graph-geometry';",resolveDir:root},outfile:path.join(output,'geometry.cjs'),platform:'node',format:'cjs',bundle:true});
+const {segmentHits}=createRequire(import.meta.url)(path.join(output,'geometry.cjs'));
+const env={...process.env};delete env.ELECTRON_RUN_AS_NODE;const reports=[];
+for(const [width,height] of [[1564,951],[1366,768]]){
+ const app=await electron.launch({executablePath:electronPath,args:[root],env});
+ try{
+  const page=await app.firstWindow();page.setDefaultTimeout(30000);
+  await app.evaluate(({BrowserWindow},s)=>BrowserWindow.getAllWindows()[0].setSize(s.width,s.height),{width,height});
+  await page.waitForSelector('.welcome');
+  const errors=[];page.on('pageerror',e=>errors.push(String(e)));
+  await page.evaluate(()=>{window._index=undefined;window.codeleader.onIndex(index=>window._index=index);const Native=window.Worker;window.Worker=class extends Native{constructor(...args){super(...args);this.addEventListener('message',e=>{if(e.data.snapshot)window._layout=e.data.snapshot;});}};});
+  await page.evaluate(()=>window.codeleader.analyze(validationInput(import.meta.url,'v0')));
+  await page.waitForFunction(()=>window._index&&['partial','complete'].includes(window._index.status));
+  const index=await page.evaluate(()=>window._index);
+  if(before)fs.writeFileSync(path.join(output,'baseline-index.json'),JSON.stringify(index,null,2));
+  else{const old=JSON.parse(fs.readFileSync(path.join(output,'baseline-index.json'),'utf8'));assert.deepEqual(index.files.map(f=>[f.path,f.hash]).sort(),old.files.map(f=>[f.path,f.hash]).sort());}
+  const stable=async()=>{await page.waitForFunction(()=>!document.querySelector('.layout-indicator')&&document.querySelector('.graph-canvas')?.dataset.layoutBusy!=='true');await page.waitForTimeout(300);assert.equal(await page.locator('.graph-budget[role=alert]').count(),0);};
+  const layouts=[],captures=[];
+  const geometry=async label=>{
+    await stable();const snapshot=await page.evaluate(()=>window._layout);assert.ok(snapshot);
+    for(const edge of snapshot.edges){const source=snapshot.nodes.find(n=>n.ports.some(p=>p.id===edge.sourcePort)),target=snapshot.nodes.find(n=>n.ports.some(p=>p.id===edge.targetPort));const a=source.ports.find(p=>p.id===edge.sourcePort),b=target.ports.find(p=>p.id===edge.targetPort);assert.deepEqual(edge.points[0],{x:source.x+a.x,y:source.y+a.y});assert.deepEqual(edge.points.at(-1),{x:target.x+b.x,y:target.y+b.y});for(let i=1;i<edge.points.length;i++){const a=edge.points[i-1],b=edge.points[i];assert.ok(a.x===b.x||a.y===b.y);for(const n of snapshot.nodes.filter(n=>n.id!==source.id&&n.id!==target.id))assert.ok(!segmentHits(a,b,n),`${label}: ${edge.id} -> ${n.id}`);}}
+    const handles=await page.evaluate(()=>{const host=document.querySelector('.graph-canvas').getBoundingClientRect(),m=new DOMMatrixReadOnly(getComputedStyle(document.querySelector('.react-flow__viewport')).transform);return [...document.querySelectorAll('.react-flow__handle')].map(h=>{const r=h.getBoundingClientRect();return{id:h.dataset.handleid,x:(r.left+r.width/2-host.left-m.e)/m.a,y:(r.top+r.height/2-host.top-m.f)/m.d};});});
+    let delta=0;for(const n of snapshot.nodes)for(const p of n.ports){const h=handles.find(h=>h.id===p.id);assert.ok(h);delta=Math.max(delta,Math.abs(h.x-n.x-p.x),Math.abs(h.y-n.y-p.y));}assert.ok(delta<0.6,`Handle mismatch ${delta}`);
+    layouts.push({label,nodes:snapshot.nodes.length,edges:snapshot.edges.length,maxHandleError:delta});return snapshot;
+  };
+  const shot=async task=>{await stable();const png=await app.evaluate(async({BrowserWindow})=>(await BrowserWindow.getAllWindows()[0].webContents.capturePage()).toPNG().toString('base64'));fs.writeFileSync(path.join(output,`${phase}-${width}x${height}-${task}.png`),Buffer.from(png,'base64'));captures.push({task,...await page.evaluate(()=>{const m=new DOMMatrixReadOnly(getComputedStyle(document.querySelector('.react-flow__viewport')).transform);return{viewport:{x:m.e,y:m.f,zoom:m.a},compact:!!document.querySelector('.graph-card.compact'),inspector:!!document.querySelector('.inspector'),drawer:!!document.querySelector('.project-drawer')};})});};
+  await shot('workspace');
+  if(before){
+   await page.getByRole('textbox',{name:'搜索文件与符号'}).fill('/api/tasks');await shot('search');
+   await page.getByRole('textbox',{name:'搜索文件与符号'}).fill('');
+   await page.locator('.graph-card').filter({hasText:validationInput(import.meta.url,'v1')}).first().click();await shot('dependencies');
+   await page.locator('.module-item').filter({hasText:validationInput(import.meta.url,'v2')}).first().click();await stable();
+   for(let i=0;i<3;i++){await page.getByTitle('缩小',{exact:true}).click();await page.waitForTimeout(240);}await shot('module-distant');
+   await page.getByRole('textbox',{name:'搜索文件与符号'}).fill('create');
+   await page.locator(validationInput(import.meta.url,'v3')).click();await shot('entry-path');
+   await page.getByRole('button',{name:'分析状态',exact:false}).click();await shot('analysis');
+  }else{
+   fs.writeFileSync(path.join(output,'current-index.json'),JSON.stringify(index,null,2));
+   const card=id=>page.locator('.react-flow__node').and(page.locator(`[data-id="${id}"]`));
+   const menu=async()=>{if(!await page.locator('.command-more').evaluate(el=>el.open))await page.locator('.command-more>summary').click();};
+   const closeMenu=async()=>{if(await page.locator('.command-more').evaluate(el=>el.open))await page.locator('.command-more>summary').click();};
+   const lookup=async text=>{await page.keyboard.press('Control+k');await page.getByRole('textbox',{name:'搜索文件与符号'}).fill(text);};
+   assert.equal(await page.locator('.topbar,.sidebar,.metrics-strip,.statusbar,.workspace-heading').count(),0);
+   assert.equal(await page.locator('.graph-toolbar').count(),1);assert.equal(await page.locator('.project-drawer').count(),0);
+   const area=await page.locator('.graph-canvas').boundingBox();assert.ok(area.width>=width-18&&area.height>=height-40);
+   await geometry('默认入口导览');
+   const viewport=await page.locator('.react-flow__viewport').getAttribute('style');
+   await page.keyboard.press('Control+b');await page.waitForSelector('.project-drawer');await shot('drawer');
+   await page.keyboard.press('Control+b');await stable();assert.equal(await page.locator('.project-drawer').count(),0);
+   assert.equal((await page.locator('.react-flow__viewport').getAttribute('style')).match(/scale\(([^)]+)/)[1],viewport.match(/scale\(([^)]+)/)[1]);
+   await page.getByTitle('搜索 · Ctrl+K',{exact:true}).click();await page.getByRole('textbox',{name:'搜索文件与符号'}).fill('/api/tasks');await shot('search');
+   assert.ok((await page.locator('.search-results').innerText()).includes('POST /api/tasks'));
+   await page.keyboard.press('Escape');await page.waitForFunction(()=>document.activeElement?.classList.contains('command-search'));
+   await page.getByRole('button',{name:'代码依赖',exact:true}).click();await geometry('代码依赖');
+   await page.locator('.kind-module').filter({hasText:validationInput(import.meta.url,'v4')}).first().click();await shot('dependencies');
+   await page.keyboard.press('Escape');await page.keyboard.press('Control+b');
+   await page.locator('.module-item').filter({hasText:validationInput(import.meta.url,'v5')}).click();await page.keyboard.press('Control+b');await stable();
+   await menu();for(let i=0;i<3;i++){await page.getByTitle('缩小',{exact:true}).click();await page.waitForTimeout(240);}await closeMenu();
+   const compact=await geometry('远景密度几何');assert.ok(compact.nodes.every(n=>n.height===96));await shot('module-distant');
+   const dimensions=await page.locator('.graph-card').evaluateAll(items=>items.map(el=>({height:el.getBoundingClientRect().height,compact:el.classList.contains('compact')})));assert.ok(dimensions.every(d=>d.compact));
+   await menu();for(let i=0;i<3;i++){await page.getByTitle('放大',{exact:true}).click();await page.waitForTimeout(240);}await closeMenu();await geometry('近景恢复成员');assert.ok(await page.locator('.file-symbols').count());
+   await lookup('TaskController.java');await page.locator('.symbol-item strong').filter({hasText:/^TaskController\.java$/}).click();await geometry('文件层级');await shot('file');
+   const controller=index.symbols.find(s=>s.name==='TaskController'&&s.kind==='class');assert.ok(controller);
+   await card(controller.id).dblclick();await geometry('类成员层级');assert.ok(await page.locator('.kind-symbol').count()>0);await shot('class');
+   await page.getByRole('button',{name:'入口导览',exact:true}).click();await stable();
+   await page.locator('.kind-entry-group').filter({hasText:'TaskController'}).first().locator('.card-name').click();await page.waitForSelector('.entry-choice');await shot('entry-choice');
+   const entry=index.entries.find(e=>e.name==='POST /api/tasks · create');assert.ok(entry&&entry.symbolId);
+   const service=index.symbols.find(s=>s.name==='create'&&index.symbols.find(p=>p.id===s.parent)?.name==='TaskService');assert.ok(service);
+   await page.locator(`[data-entry-id="${entry.id}"]`).click();let pathState=await geometry('HTTP 入口真实调用');assert.ok(pathState.nodes.some(n=>n.id===service.id),'应有真实已索引的 TaskService.create');await shot('entry-path');
+   const anchored=await card(entry.symbolId).boundingBox();await card(service.id).getByTitle('展开一层调用关系',{exact:true}).click();pathState=await geometry('展开真实实现一层');
+   const grown=await card(entry.symbolId).boundingBox();assert.ok(Math.abs(anchored.x-grown.x)<1&&Math.abs(anchored.y-grown.y)<1);
+   for(const qualified of [validationInput(import.meta.url,'v6'),validationInput(import.meta.url,'v7'),validationInput(import.meta.url,'v8')])assert.ok(pathState.nodes.some(n=>n.id===index.symbols.find(s=>s.qualifiedName===qualified)?.id),`${qualified} 应作为有依据的主干优先显示`);
+   await menu();await page.getByTitle('查看全部',{exact:true}).click();await closeMenu();pathState=await geometry('入口展开后的全部视口');await shot('entry-expanded');
+   await page.locator('.edge-label').first().click();await page.waitForSelector('.relation-row');await page.locator('.source-link').first().click();await page.waitForSelector('.source-evidence');await shot('source');
+   const beforeResize=await page.locator('.inspector').boundingBox(),sourceViewport=await page.locator('.react-flow__viewport').getAttribute('style');
+   const separator=await page.getByRole('separator',{name:'调整检查面板宽度'}).boundingBox();await page.mouse.move(separator.x+4,separator.y+90);await page.mouse.down();await page.mouse.move(separator.x-56,separator.y+90,{steps:4});await page.mouse.up();await geometry('调整源码面板宽度');
+   assert.ok(Math.abs((await page.locator('.inspector').boundingBox()).width-beforeResize.width-60)<1);assert.equal((await page.locator('.react-flow__viewport').getAttribute('style')).match(/scale\(([^)]+)/)[1],sourceViewport.match(/scale\(([^)]+)/)[1]);
+   await page.getByRole('separator',{name:'调整检查面板宽度'}).focus();for(let i=0;i<3;i++)await page.keyboard.press('ArrowRight');await stable();
+   await page.locator('.monaco-editor textarea').first().focus();await page.keyboard.press('Control+Enter');await geometry('源码到方法');
+   await page.getByTitle('后退',{exact:true}).click();const restored=await geometry('返回入口快照');assert.deepEqual(restored.nodes.map(n=>[n.id,n.x,n.y]),pathState.nodes.map(n=>[n.id,n.x,n.y]));
+   await page.keyboard.press('Escape');await stable();const node=await card(entry.symbolId).boundingBox();await page.mouse.move(node.x+70,node.y+40);await page.mouse.down();await page.mouse.move(node.x+112,node.y+67,{steps:6});await page.mouse.up();const dragged=await geometry('拖动后路由');
+   await menu();await page.getByRole('button',{name:'调用者',exact:true}).click();await closeMenu();const incoming=await geometry('调用者方向');assert.ok(!incoming.nodes.some(n=>n.id===service.id));
+   await page.getByTitle('后退',{exact:true}).click();assert.deepEqual((await geometry('方向返回保留拖动')).nodes.map(n=>[n.id,n.x,n.y]),dragged.nodes.map(n=>[n.id,n.x,n.y]));
+   await page.getByRole('button',{name:'入口导览',exact:true}).click();await stable();const health=index.entries.find(e=>e.name==='GET /api/health · health');assert.ok(health);
+   await page.locator('.entry-previews button').getByText('/api/health',{exact:true}).click();const healthState=await geometry('独立健康入口');assert.equal(healthState.edges.length,0);
+   await card(health.symbolId).click();await page.getByRole('tab',{name:'详情',exact:true}).click();assert.ok((await page.locator('.inspector-content').innerText()).includes('无更多已解析的项目内调用'));await shot('health-boundary');
+   await page.keyboard.press('Escape');await lookup('TaskStatus');await page.locator('.symbol-item').filter({has:page.locator('strong',{hasText:/^TaskStatus$/})}).first().click();await geometry('枚举类型层级');
+   const type=index.symbols.find(s=>s.name==='TaskStatus');await card(type.id).click();assert.ok((await page.locator('.inspector-content').innerText()).includes('枚举'));await shot('type-detail');
+   await page.getByTitle('查看分析状态与范围',{exact:true}).click();await shot('analysis');
+   await page.keyboard.press('Escape');await menu();await page.getByRole('button',{name:'设置与关于',exact:true}).click();await shot('settings');
+   await page.getByRole('checkbox',{name:'界面动画'}).uncheck();assert.ok(await page.locator('.app.reduce-motion').count());await page.keyboard.press('Escape');await page.waitForFunction(()=>document.activeElement?.matches('.command-more>summary'));assert.equal(await page.locator('.command-more').evaluate(el=>el.open),false);
+   await menu();await page.getByRole('checkbox',{name:'显示测试区域'}).focus();await page.keyboard.press('Escape');await page.waitForFunction(()=>document.activeElement?.matches('.command-more>summary'));assert.equal(await page.locator('.command-more').evaluate(el=>el.open),false);assert.equal(errors.length,0,errors.join('\n'));
+  }
+  reports.push({width,height,client:await page.evaluate(()=>[innerWidth,innerHeight,devicePixelRatio]),files:index.files.map(f=>[f.path,f.hash]),routes:index.symbols.filter(s=>s.routes.length).map(s=>({id:s.id,routes:s.routes})),entries:index.entries,layouts,captures,errors});
+ }catch(error){const png=await app.evaluate(async({BrowserWindow})=>(await BrowserWindow.getAllWindows()[0].webContents.capturePage()).toPNG().toString('base64'));fs.writeFileSync(path.join(output,`${phase}-${width}x${height}-failure.png`),Buffer.from(png,'base64'));throw error;}finally{await app.close();}
+}
+fs.writeFileSync(path.join(output,`${phase}-conditions.json`),JSON.stringify(reports,null,2));console.log(JSON.stringify({phase,conditions:reports.map(r=>({width:r.width,height:r.height,routes:r.routes.length}))}));

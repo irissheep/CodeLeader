@@ -1,0 +1,86 @@
+{
+  "limits": {
+    "webReasons": {
+      "value": 2,
+      "basis": "说明只保留与当前文件有关的两个主要缺项，避免把猜测铺满卡片。"
+    },
+    "partialGroups": {
+      "value": 3,
+      "basis": "默认只展示影响最大的三类，完整记录保留在折叠详情。"
+    },
+    "addressExamples": {
+      "value": 3,
+      "basis": "悬停先展示三处实际调用，全部位置仍可在接口详情查看。"
+    },
+    "readConcurrency": {
+      "value": 16,
+      "basis": "限制只读文件请求的并发，避免大仓库耗尽文件句柄。"
+    }
+  },
+  "webFrameworks": [
+    {
+      "pattern": "django",
+      "name": "Django",
+      "files": "(?:^|/)(?:urls|views)\\.py$",
+      "basis": "Django 的 URLconf 与 view 模块约定；只用于说明已扫描范围，不发现新接口。",
+      "legacyImport": "from\\s+django\\.conf\\.urls\\s+import[^\\n]*\\burl\\b",
+      "legacyCall": "\\burl\\s*\\(",
+      "legacyText": "路由使用了较早的 url(...) 写法，这些路径还没有读出来。",
+      "classBases": "APIView|ViewSet|Mixin"
+    },
+    {
+      "pattern": "fastapi|flask",
+      "files": "(?:^|/)(?:routes?|views?|api|endpoints?)(?:/|\\.py$)|(?:^|/)(?:app|main)\\.py$",
+      "basis": "Python Web 框架常见路由文件，另包含已有入口与路由角色所在文件。"
+    },
+    {
+      "pattern": "spring|quarkus|micronaut",
+      "files": "(?:Controller|Resource)\\.java$",
+      "basis": "Java Web 文件命名是范围提示，已识别的控制器角色优先。"
+    }
+  ],
+  "partialCategories": [
+    {
+      "id": "dependency",
+      "pattern": "could not be resolved|无法解析.*(?:依赖|导入)|签名.*(?:未解析|缺失)|缺少.*(?:依赖|classpath)|unresolved (?:type|import)|cannot be resolved",
+      "text": "缺少第三方依赖",
+      "impact": "部分调用的目标无法确定；已读出的文件和接口仍可查看。",
+      "basis": "原有分析消息明确报告导入、签名或依赖缺失。计数为原消息条数，不冒充类型数量。"
+    },
+    {
+      "id": "dynamic-sql",
+      "pattern": "SQL.*动态|动态.*SQL",
+      "text": "有些查询会在运行时拼接",
+      "impact": "这些查询涉及哪些表还不能确定。",
+      "basis": "既有 SQL 读取结果明确指出动态片段。"
+    },
+    {
+      "id": "initialization",
+      "pattern": "模块或字段初始化|初始化.*不属于",
+      "text": "部分调用写在方法之外",
+      "impact": "这些调用还没接到方法流程中。",
+      "basis": "既有消息指出模块或字段初始化调用未进入具名方法图。"
+    },
+    {
+      "id": "frontend-scope",
+      "pattern": "没有找到 Java 或 Python|只发现前端文件",
+      "text": "所选目录只读到了前端",
+      "impact": "这个范围内没有后端源码；可选择同时包含后端的目录。",
+      "basis": "扫描结果明确报告只读到前端源码。"
+    },
+    {
+      "id": "profile",
+      "pattern": "其他环境配置.*未合并|其他环境的设置，当前没有读取|配置.*未求值|环境变量.*未",
+      "text": "部分环境设置没有确定取值",
+      "impact": "相应地址或连接方式还不能确定。",
+      "basis": "既有配置读取消息明确指出没读取其他环境设置或未求值。"
+    },
+    {
+      "id": "parse",
+      "pattern": "解析失败|无法解析文件|parse error|syntax error",
+      "text": "有些文件没能读完整",
+      "impact": "这些文件中的接口或调用可能没有列全。",
+      "basis": "既有消息明确指出文件读取或语法处理失败。"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "javaAgent": {"version":"2.27.0","license":"Apache-2.0","url":"https://github.com/open-telemetry/opentelemetry-java-instrumentation/releases/download/v2.27.0/opentelemetry-javaagent.jar","sha256":"bd01fea1304e8c8803fff827a0bdda02b2266742a85c62548053c6761474bb5b"},
+  "collector": {"version":"0.163.1","license":"Apache-2.0","url":"https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.163.1/otelcol-contrib_0.163.1_windows_amd64.tar.gz","sha256":"6068de8181c39bcbae855dbb571ef4116ab2ce683cf9cf198500c15a9d3338c9","binarySha256":"75de8b42553aba3b11ec90794ad593db392c174b138655b9bd19254dd824abdb","sbomUrl":"https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.163.1/otelcol-contrib_0.163.1_windows_amd64.tar.gz.sbom.json","sbomSha256":"442076fefd53b99d34736429f757ee82ef06667e0a05bc4816f6abb1a6ccfa03"},
+  "python": {"sdk":"1.45.1","instrumentation":"0.66b1","license":"Apache-2.0","url":"https://pypi.org/project/opentelemetry-sdk/1.45.1/"}
+}

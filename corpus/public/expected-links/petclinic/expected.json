@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "project": "petclinic",
+  "commit": "500158f732419217507c7656904b8e6aa1bcc0d6",
+  "originalExpectedSha256": "50a124033b3ab1b0e4a1b5868ebb65661bfb1641c9573a1c1c207863fe9e1dbb",
+  "referenceSha256": "6c8dcce3892981474a7cbf2a524d74de4374eca074ce17895a2d1f27ae418f8e",
+  "scope": {
+    "allCalls": 0,
+    "sample": 0,
+    "sampling": "全部选定 HTTP 调用",
+    "sources": "独立 TypeScript/Tree-sitter 语法读取、旧冻结 HTTP 依据重新验证；不读取产品输出"
+  },
+  "cases": [],
+  "evidence": []
+}

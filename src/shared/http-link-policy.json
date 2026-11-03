@@ -1,0 +1,14 @@
+{
+ "version":"frontend-links/2",
+ "loopbackHosts":["localhost","127.0.0.1","::1"],
+ "serverDefaults":[
+  {"framework":"Spring Boot","port":8080,"context":"","basis":"https://docs.spring.io/spring-boot/appendix/application-properties/index.html"},
+  {"framework":"FastAPI","port":8000,"context":"","basis":"https://fastapi.tiangolo.com/deployment/manually/"},
+  {"framework":"Flask","port":5000,"context":"","basis":"https://flask.palletsprojects.com/en/stable/cli/"},
+  {"framework":"Django","port":8000,"context":"","basis":"https://docs.djangoproject.com/en/stable/ref/django-admin/#runserver"}
+ ],
+ "springKeys":{"port":"server.port","context":"server.servlet.context-path","address":"server.address","profile":"spring.config.activate.on-profile"},
+ "frameworkEndpoints":[{"import":"org.springframework.security.config.annotation.web.builders.HttpSecurity","method":"logoutUrl","verb":"POST","basis":"https://docs.spring.io/spring-security/reference/servlet/authentication/logout.html"}],
+ "templates":[{"framework":"Flask","constructor":"flask.Flask","renderer":"flask.render_template","defaultFolder":"templates","basis":"https://flask.palletsprojects.com/en/stable/api/#flask.Flask"}],
+ "thresholds":{"expressionDepth":{"value":40,"why":"只追溯有限的常量/配置引用，遇到循环或更深动态构造保留未知，不执行配置。"}}
+}

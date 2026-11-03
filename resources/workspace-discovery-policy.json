@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "limits": {
+    "files": {"value": 200000, "reason": "限制一次只读发现的工作量，达到后保留已发现内容并说明。"},
+    "directories": {"value": 50000, "reason": "避免目录树过大或异常嵌套使发现无法结束。"},
+    "milliseconds": {"value": 30000, "reason": "让用户在合理时间内获得部分结果，较大目录可选择更小范围。"},
+    "analysisMilliseconds": {"value": 120000, "reason": "分析长时间没有完成时保留已发送结构并明确结束，避免界面永久等待。"},
+    "sourceBytes": {"value": 2097152, "reason": "与现有源码分析的单文件大小上限一致。"}
+  },
+  "ignoredDirectories": [
+    {"name":".git","reason":"版本控制对象和历史"}, {"name":".svn","reason":"版本控制元数据"}, {"name":".hg","reason":"版本控制元数据"},
+    {"name":"node_modules","reason":"已安装依赖"}, {"name":"__pycache__","reason":"Python 字节码缓存"},
+    {"name":".gradle","reason":"构建工具缓存"}, {"name":".idea","reason":"编辑器状态"},
+    {"name":".cache","reason":"缓存目录"}, {"name":".tmp","reason":"临时目录"}, {"name":".appdata","reason":"工具运行数据"}, {"name":".tools","reason":"工具链副本"},
+    {"name":"target","reason":"构建输出"}, {"name":"build","reason":"构建输出"}, {"name":"dist","reason":"构建输出"}, {"name":"release","reason":"发行输出"},
+    {"name":".agents","reason":"代理工具技能及工具脚本，不属于所选业务源码"}, {"name":".archify","reason":"图表工具生成的输出"}
+  ],
+  "markers": [
+    {"pattern":"^pom\\.xml$","type":"Maven"}, {"pattern":"^build\\.gradle(?:\\.kts)?$","type":"Gradle"},
+    {"pattern":"^package\\.json$","type":"JavaScript"}, {"pattern":"^pyproject\\.toml$","type":"Python"},
+    {"pattern":"^requirements[^/]*\\.txt$","type":"Python"}, {"pattern":"^Pipfile$","type":"Python"},
+    {"pattern":"^setup\\.cfg$","type":"Python"}, {"pattern":"^manage\\.py$","type":"Django"}
+  ],
+  "javaSourceSets": [
+    {"path":"src/main/java","role":"production","reason":"Maven 与 Gradle 的约定生产源码根，仅用于区分源码角色，不用于判定项目是否存在。"},
+    {"path":"src/test/java","role":"test","reason":"Maven 与 Gradle 的约定测试源码根，仅用于区分源码角色，不用于判定项目是否存在。"}
+  ],
+  "javaRolePatterns": {
+    "production":"(?:^|/)src/main/(?:java|resources)(?:/|$)",
+    "test":"(?:^|/)src/test/(?:java|resources)(?:/|$)",
+    "reason":"已知构建惯例仅作为源码角色回退，不作为项目或前后端类型判定。"
+  }
+}

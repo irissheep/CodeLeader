@@ -1,0 +1,16 @@
+const {app,BrowserWindow,ipcMain}=require('electron');
+const fs=require('node:fs'),path=require('node:path');
+const root=path.resolve(__dirname,'..'),config=JSON.parse(fs.readFileSync(process.env.CODELEADER_LAYOUT_CONFIG||path.join(root,'tests/fixtures/u4-review.json'))),out=path.join(root,config.output),phase=process.env.CODELEADER_LAYOUT_PHASE||'after',folder=path.join(out,'layout',phase);
+for(const[key,dir]of Object.entries({userData:'user',sessionData:'session',temp:'temp',crashDumps:'crashes'})){const target=path.join(folder,dir);fs.mkdirSync(target,{recursive:true});app.setPath(key,target);}app.setAppLogsPath(path.join(folder,'logs'));app.commandLine.appendSwitch('remote-debugging-port',process.env.CODELEADER_LAYOUT_PORT);app.commandLine.appendSwitch('disable-gpu-shader-disk-cache');
+const history=JSON.parse(fs.readFileSync(path.join(out,'runtime-inputs.json')));let current,window;
+const {collectAnalysisNotes}=require(path.join(folder,'notes.cjs'));
+ipcMain.handle('u4:notes',()=>{const index=current.index;return collectAnalysisNotes(index,async file=>{const target=path.resolve(index.root,file);if(!target.startsWith(path.resolve(index.root)+path.sep))throw Error('Outside project');return fs.promises.readFile(target,'utf8');});});
+ipcMain.handle('u2:input',()=>current);
+ipcMain.handle('u8:display',()=>({displays:require('electron').screen.getAllDisplays().map(d=>({size:d.size,scaleFactor:d.scaleFactor,frequency:d.displayFrequency})),gpu:app.getGPUFeatureStatus()}));
+ipcMain.handle('u4:load',async(_e,input)=>{if(input.mode==='runtime')current={index:history.runtime,record:{...history.record,historical:true}};else{const projects=JSON.parse(fs.readFileSync(path.join(out,'projects.json')));if(!projects.some(p=>p.id===input.project))throw Error('Project outside review');current={index:JSON.parse(fs.readFileSync(path.join(out,'before',input.project,'model.json')))};}setImmediate(()=>window.reload());});
+ipcMain.handle('u4:size',(_e,width,height)=>window.setContentSize(width,height));
+ipcMain.handle('u2:source',(_e,file)=>{const target=path.resolve(current.index.root,file),base=path.resolve(current.index.root);if(!target.startsWith(base+path.sep))throw Error('Outside source scope');return{text:fs.readFileSync(target,'utf8'),stale:false};});
+ipcMain.handle('u2:thumbnail',()=>undefined);ipcMain.handle('u2:frame',()=>window.webContents.invalidate());ipcMain.handle('u2:close',()=>{setImmediate(()=>app.quit());});
+ipcMain.handle('u2:capture',async(_e,name)=>{if(!/^[a-z0-9_/-]+$/.test(name)||name.includes('..'))throw Error('Invalid capture');const file=path.join(folder,name+'.png');fs.mkdirSync(path.dirname(file),{recursive:true});fs.writeFileSync(file,(await window.webContents.capturePage()).toPNG());});
+app.whenReady().then(async()=>{current={index:history.static};const native=process.env.CODELEADER_ZOOM_NATIVE==='1';window=new BrowserWindow({width:1564,height:954,useContentSize:true,show:native,webPreferences:{preload:path.join(__dirname,'layout-preload.cjs'),contextIsolation:true,sandbox:true,offscreen:!native,backgroundThrottling:false}});if(!native)window.webContents.setFrameRate(60);await window.loadFile(path.join(folder,'renderer/index.html'));});
+app.on('window-all-closed',()=>app.quit());

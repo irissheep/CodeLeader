@@ -1,0 +1,139 @@
+{
+  "name": "codeleader",
+  "productName": "CodeLeader",
+  "version": "0.1.0",
+  "description": "本地 Java / Python 代码关系导航",
+  "author": "CodeLeader",
+  "license": "MIT",
+  "private": true,
+  "main": "dist/main.cjs",
+  "scripts": {
+    "prepare:resources": "node scripts/resources.mjs",
+    "build": "node scripts/build.mjs",
+    "dev": "node scripts/start.mjs",
+    "check": "tsc --noEmit",
+    "check:layout": "node scripts/check-layout.mjs",
+    "check:overlay-fit": "node scripts/check-overlay-fit.mjs",
+    "check:zoom-smooth": "node scripts/check-zoom-smooth.mjs",
+    "check:zoom-text": "node scripts/check-zoom-text.mjs",
+    "check:runtime-start": "node scripts/check-runtime-start.mjs",
+    "check:overlay-follow": "node scripts/check-overlay-follow.mjs",
+    "check:orientation": "node scripts/check-u9b.mjs",
+    "check:contrast": "node scripts/check-u9b.mjs --contrast",
+    "check:wording": "node scripts/check-wording.mjs",
+    "check:workspace": "node scripts/check-workspace.mjs",
+    "perf:profile": "node scripts/perf-profile.mjs",
+    "perf:attach": "node scripts/perf-attach.mjs",
+    "test:ranges": "node scripts/test-ranges.mjs",
+    "corpus": "node corpus/run.mjs",
+    "corpus:prepare-public": "node corpus/public/acquire.mjs",
+    "corpus:public-scorecard": "node corpus/public/scorecard.mjs",
+    "test": "node scripts/test.mjs",
+    "package": "node scripts/package.mjs",
+    "zip": "node scripts/zip.mjs",
+    "verify": "node scripts/verify.mjs",
+    "verify:source": "node scripts/verify-source.mjs",
+    "verify:grouping": "node scripts/verify-grouping.mjs",
+    "test:graph": "node scripts/test-graph.mjs",
+    "test:entries": "node scripts/test-entries.mjs",
+    "test:main-flow": "node scripts/test-main-flow.mjs",
+    "test:reader-first": "node scripts/test-reader-first.mjs",
+    "verify:main-flow": "node scripts/verify-main-flow.mjs",
+    "verify:reader-first": "node scripts/verify-reader-first.mjs",
+    "test:continuous-exploration": "node scripts/test-continuous-exploration.mjs",
+    "verify:continuous-exploration": "node scripts/verify-continuous-exploration.mjs",
+    "test:readable-interactions": "node scripts/test-readable-interactions.mjs",
+    "verify:readable-interactions": "node scripts/verify-readable-interactions.mjs",
+    "test:execution": "node scripts/test-execution.mjs",
+    "test:replay": "node scripts/test-replay.mjs",
+    "build:runtime-java": "node scripts/build-runtime-java.mjs",
+    "verify:replay": "node scripts/verify-step-replay.mjs",
+    "verify:canvas-entry": "node scripts/verify-canvas-entry.mjs",
+    "build:java-worker": "node scripts/build-java-worker.mjs",
+    "verify:graph": "node scripts/verify-graph.mjs",
+    "verify:graph-interactions": "node scripts/verify-graph-interactions.mjs",
+    "check:no-project-terms": "node scripts/check-no-project-terms.mjs",
+    "test:unit-discovery": "node scripts/test-unit-discovery.mjs",
+    "test:python-http": "node scripts/test-python-http.mjs",
+    "test:frontend-model": "node scripts/test-frontend-model.mjs",
+    "test:frontend-links": "node scripts/test-frontend-links.mjs"
+  },
+  "dependencies": {
+    "@jridgewell/trace-mapping": "0.3.31",
+    "@xyflow/react": "12.12.0",
+    "elkjs": "0.12.0",
+    "js-yaml": "4.3.2",
+    "lucide-react": "1.59.0",
+    "monaco-editor": "0.57.0",
+    "pyright": "1.1.414",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "web-tree-sitter": "0.24.7"
+  },
+  "devDependencies": {
+    "@types/node": "24.10.1",
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3",
+    "electron": "44.9.1",
+    "electron-builder": "26.15.3",
+    "esbuild": "0.28.2",
+    "playwright": "1.64.1",
+    "tree-sitter-wasms": "0.1.13",
+    "typescript": "5.9.3",
+    "vite": "8.3.4"
+  },
+  "build": {
+    "appId": "local.codeleader.desktop",
+    "productName": "CodeLeader",
+    "asar": true,
+    "directories": {
+      "output": "release",
+      "buildResources": "resources"
+    },
+    "files": [
+      "dist/main.cjs",
+      "dist/preload.cjs",
+      "dist/worker.cjs",
+      "dist/renderer/**",
+      "package.json",
+      "node_modules/web-tree-sitter/**"
+    ],
+    "extraResources": [
+      {
+        "from": "resources/grammars",
+        "to": "grammars"
+      },
+      {
+        "from": "resources/java",
+        "to": "java"
+      },
+      {
+        "from": "resources/jre",
+        "to": "jre"
+      },
+      {
+        "from": "node_modules/pyright/dist",
+        "to": "pyright"
+      },
+      {
+        "from": "resources/licenses",
+        "to": "licenses"
+      }
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "dir",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "signAndEditExecutable": false
+    },
+    "electronFuses": {
+      "runAsNode": true
+    },
+    "npmRebuild": false
+  }
+}

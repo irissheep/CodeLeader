@@ -1,0 +1,7 @@
+.graph-canvas{view-transition-name:graph-view}
+::view-transition-old(root),::view-transition-new(root){animation:none;mix-blend-mode:normal}
+::view-transition-group(root),::view-transition-group(graph-view){animation:none}
+::view-transition-old(graph-view){animation:view-out var(--viewMotion-viewDuration) var(--viewMotion-cardEase) both;mix-blend-mode:normal}
+::view-transition-new(graph-view){animation:fade var(--viewMotion-viewDuration) var(--viewMotion-cardEase) both;mix-blend-mode:normal}
+@keyframes view-out{to{opacity:0}}
+@media(prefers-reduced-motion:reduce){::view-transition-old(graph-view),::view-transition-new(graph-view){animation:none}}

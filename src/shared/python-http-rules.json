@@ -1,0 +1,36 @@
+{
+  "version":"python-http/2",
+  "constructors":[
+    {"callee":"fastapi.FastAPI","framework":"FastAPI","kind":"app","prefix":"","basis":"https://fastapi.tiangolo.com/tutorial/bigger-applications/"},
+    {"callee":"fastapi.APIRouter","framework":"FastAPI","kind":"router","prefix":"prefix","basis":"https://fastapi.tiangolo.com/tutorial/bigger-applications/"},
+    {"callee":"flask.Flask","framework":"Flask","kind":"app","prefix":"","basis":"https://flask.palletsprojects.com/en/stable/api/#flask.Flask"},
+    {"callee":"flask.Blueprint","framework":"Flask","kind":"blueprint","prefix":"url_prefix","basis":"https://flask.palletsprojects.com/en/stable/blueprints/"},
+    {"callee":"rest_framework.routers.SimpleRouter","framework":"Django","kind":"drf-router","prefix":"","basis":"https://www.django-rest-framework.org/api-guide/routers/"},
+    {"callee":"rest_framework.routers.DefaultRouter","framework":"Django","kind":"drf-router","prefix":"","basis":"https://www.django-rest-framework.org/api-guide/routers/"}
+  ],
+  "mounts":[
+    {"method":"include_router","framework":"FastAPI","prefix":"prefix","override":false,"basis":"https://fastapi.tiangolo.com/tutorial/bigger-applications/"},
+    {"method":"register_blueprint","framework":"Flask","prefix":"url_prefix","override":true,"basis":"https://flask.palletsprojects.com/en/stable/blueprints/"}
+  ],
+  "httpMethods":["GET","POST","PUT","PATCH","DELETE","HEAD","OPTIONS","TRACE"],
+  "defaultMethods":{"route":["GET"],"add_url_rule":["GET"],"api_view":["GET"]},
+  "djangoPatterns":["django.urls.path","django.urls.re_path","django.conf.urls.url"],
+  "djangoIncludes":["django.urls.include","django.conf.urls.include"],
+  "djangoRegex":["django.urls.re_path","django.conf.urls.url"],
+  "djangoViewBases":["django.views.View","django.views.generic.View","django.views.generic.base.View"],
+  "apiView":"rest_framework.decorators.api_view",
+  "fieldDefaults":["pydantic.Field"],
+  "dynamicCalls":["os.getenv","os.environ.get"],
+  "drfActions":[
+    {"name":"list","method":"GET","detail":false,"basis":"https://www.django-rest-framework.org/api-guide/routers/#simplerouter"},
+    {"name":"create","method":"POST","detail":false,"basis":"https://www.django-rest-framework.org/api-guide/routers/#simplerouter"},
+    {"name":"retrieve","method":"GET","detail":true,"basis":"https://www.django-rest-framework.org/api-guide/routers/#simplerouter"},
+    {"name":"update","method":"PUT","detail":true,"basis":"https://www.django-rest-framework.org/api-guide/routers/#simplerouter"},
+    {"name":"partial_update","method":"PATCH","detail":true,"basis":"https://www.django-rest-framework.org/api-guide/routers/#simplerouter"},
+    {"name":"destroy","method":"DELETE","detail":true,"basis":"https://www.django-rest-framework.org/api-guide/routers/#simplerouter"}
+  ],
+  "drfBases":[
+    {"callee":"rest_framework.viewsets.ModelViewSet","actions":["list","create","retrieve","update","partial_update","destroy"],"basis":"https://www.django-rest-framework.org/api-guide/viewsets/#modelviewset"},
+    {"callee":"rest_framework.viewsets.ReadOnlyModelViewSet","actions":["list","retrieve"],"basis":"https://www.django-rest-framework.org/api-guide/viewsets/#readonlymodelviewset"}
+  ]
+}

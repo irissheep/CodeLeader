@@ -1,0 +1,19 @@
+{
+ "version":"spring-http/1",
+ "mappings":[
+  {"type":"org.springframework.web.bind.annotation.RequestMapping","method":"ANY","basis":"https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/RequestMapping.html"},
+  {"type":"org.springframework.web.bind.annotation.GetMapping","method":"GET","basis":"https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/GetMapping.html"},
+  {"type":"org.springframework.web.bind.annotation.PostMapping","method":"POST","basis":"https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/PostMapping.html"},
+  {"type":"org.springframework.web.bind.annotation.PutMapping","method":"PUT","basis":"https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/PutMapping.html"},
+  {"type":"org.springframework.web.bind.annotation.DeleteMapping","method":"DELETE","basis":"https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/DeleteMapping.html"},
+  {"type":"org.springframework.web.bind.annotation.PatchMapping","method":"PATCH","basis":"https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/PatchMapping.html"}
+ ],
+ "roles":[
+  {"type":"org.springframework.web.bind.annotation.RestController","role":"Controller","basis":"https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/RestController.html"},
+  {"type":"org.springframework.stereotype.Controller","role":"Controller","basis":"https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Controller.html"},
+  {"type":"org.springframework.stereotype.Service","role":"Service","basis":"https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Service.html"},
+  {"type":"org.springframework.stereotype.Repository","role":"Repository","basis":"https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Repository.html"}
+ ],
+ "enum":{"type":"org.springframework.web.bind.annotation.RequestMethod","values":["GET","HEAD","POST","PUT","PATCH","DELETE","OPTIONS","TRACE"],"basis":"https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/RequestMethod.html"},
+ "thresholds":{"constantDepth":{"value":64,"why":"限制常量链的递归深度；超出或有循环时保留表达式和原因，不运行 Java 代码。"}}
+}

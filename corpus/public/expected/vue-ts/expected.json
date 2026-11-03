@@ -1,0 +1,290 @@
+{
+  "schema": 1,
+  "id": "vue-ts",
+  "commit": "edac9de9e77b4fe83ccd53e86217d87a8006efee",
+  "reviewed": "2026-10-24",
+  "review": "先读目录、构建、启动/路由、HTTP封装和资源配置，再独立按注解/装饰器/语法统计；不导入产品分析代码。",
+  "units": {
+    "backend": {
+      "count": 0,
+      "items": [],
+      "evidence": [
+        {
+          "file": "package.json",
+          "line": 1,
+          "sha256": "dba2b4f2d4a3498aeb0fcf2357f4fc26d5ea99ab4d944493a99e641b56015e24"
+        },
+        {
+          "file": "src/main.ts",
+          "line": 1,
+          "sha256": "ac1a931d4b9723a13b22b2af6601c004d5cf0b2cb98296c610d0a14ed97be7d0"
+        }
+      ]
+    },
+    "frontend": {
+      "count": 1,
+      "items": [
+        {
+          "root": ".",
+          "evidence": [
+            {
+              "file": "package.json",
+              "line": 1,
+              "sha256": "dba2b4f2d4a3498aeb0fcf2357f4fc26d5ea99ab4d944493a99e641b56015e24"
+            }
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "file": "package.json",
+          "line": 1,
+          "sha256": "dba2b4f2d4a3498aeb0fcf2357f4fc26d5ea99ab4d944493a99e641b56015e24"
+        },
+        {
+          "file": "src/main.ts",
+          "line": 1,
+          "sha256": "ac1a931d4b9723a13b22b2af6601c004d5cf0b2cb98296c610d0a14ed97be7d0"
+        }
+      ]
+    },
+    "python": {
+      "count": 0,
+      "items": [],
+      "evidence": [
+        {
+          "file": "package.json",
+          "line": 1,
+          "sha256": "dba2b4f2d4a3498aeb0fcf2357f4fc26d5ea99ab4d944493a99e641b56015e24"
+        },
+        {
+          "file": "src/main.ts",
+          "line": 1,
+          "sha256": "ac1a931d4b9723a13b22b2af6601c004d5cf0b2cb98296c610d0a14ed97be7d0"
+        }
+      ]
+    }
+  },
+  "infrastructure": {
+    "count": 0,
+    "items": [],
+    "evidence": [
+      {
+        "file": "package.json",
+        "line": 1,
+        "sha256": "dba2b4f2d4a3498aeb0fcf2357f4fc26d5ea99ab4d944493a99e641b56015e24"
+      },
+      {
+        "file": "src/main.ts",
+        "line": 1,
+        "sha256": "ac1a931d4b9723a13b22b2af6601c004d5cf0b2cb98296c610d0a14ed97be7d0"
+      }
+    ]
+  },
+  "http": {
+    "count": 0,
+    "items": [],
+    "evidence": [
+      {
+        "file": "package.json",
+        "line": 1,
+        "sha256": "dba2b4f2d4a3498aeb0fcf2357f4fc26d5ea99ab4d944493a99e641b56015e24"
+      },
+      {
+        "file": "src/main.ts",
+        "line": 1,
+        "sha256": "ac1a931d4b9723a13b22b2af6601c004d5cf0b2cb98296c610d0a14ed97be7d0"
+      }
+    ]
+  },
+  "modules": {
+    "count": 0,
+    "items": [],
+    "evidence": [
+      {
+        "file": "package.json",
+        "line": 1,
+        "sha256": "dba2b4f2d4a3498aeb0fcf2357f4fc26d5ea99ab4d944493a99e641b56015e24"
+      },
+      {
+        "file": "src/main.ts",
+        "line": 1,
+        "sha256": "ac1a931d4b9723a13b22b2af6601c004d5cf0b2cb98296c610d0a14ed97be7d0"
+      }
+    ]
+  },
+  "frontend": {
+    "pages": {
+      "count": 3,
+      "items": [
+        {
+          "file": "src/router.ts",
+          "line": 5,
+          "path": "/",
+          "evidence": [
+            {
+              "file": "src/router.ts",
+              "line": 5,
+              "sha256": "28feb095d2eca4c03cbefe2d19e90f52a80171f417cb0dbad727894941e6dd7c"
+            }
+          ]
+        },
+        {
+          "file": "src/router.ts",
+          "line": 11,
+          "path": "/tutorials/:id",
+          "evidence": [
+            {
+              "file": "src/router.ts",
+              "line": 11,
+              "sha256": "28feb095d2eca4c03cbefe2d19e90f52a80171f417cb0dbad727894941e6dd7c"
+            }
+          ]
+        },
+        {
+          "file": "src/router.ts",
+          "line": 16,
+          "path": "/add",
+          "evidence": [
+            {
+              "file": "src/router.ts",
+              "line": 16,
+              "sha256": "28feb095d2eca4c03cbefe2d19e90f52a80171f417cb0dbad727894941e6dd7c"
+            }
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "file": "src/router.ts",
+          "line": 1,
+          "sha256": "28feb095d2eca4c03cbefe2d19e90f52a80171f417cb0dbad727894941e6dd7c"
+        }
+      ]
+    },
+    "api": {
+      "count": 7,
+      "items": [
+        {
+          "file": "src/services/TutorialDataService.ts",
+          "line": 6,
+          "method": "GET",
+          "path": "/tutorials",
+          "evidence": [
+            {
+              "file": "src/services/TutorialDataService.ts",
+              "line": 6,
+              "sha256": "52ddf82d44fd1154e20012119719d1ef1d347a0fb8ac64116abd80526d53df85"
+            }
+          ]
+        },
+        {
+          "file": "src/services/TutorialDataService.ts",
+          "line": 10,
+          "method": "GET",
+          "path": "/tutorials/{value}",
+          "evidence": [
+            {
+              "file": "src/services/TutorialDataService.ts",
+              "line": 10,
+              "sha256": "52ddf82d44fd1154e20012119719d1ef1d347a0fb8ac64116abd80526d53df85"
+            }
+          ]
+        },
+        {
+          "file": "src/services/TutorialDataService.ts",
+          "line": 14,
+          "method": "POST",
+          "path": "/tutorials",
+          "evidence": [
+            {
+              "file": "src/services/TutorialDataService.ts",
+              "line": 14,
+              "sha256": "52ddf82d44fd1154e20012119719d1ef1d347a0fb8ac64116abd80526d53df85"
+            }
+          ]
+        },
+        {
+          "file": "src/services/TutorialDataService.ts",
+          "line": 18,
+          "method": "PUT",
+          "path": "/tutorials/{value}",
+          "evidence": [
+            {
+              "file": "src/services/TutorialDataService.ts",
+              "line": 18,
+              "sha256": "52ddf82d44fd1154e20012119719d1ef1d347a0fb8ac64116abd80526d53df85"
+            }
+          ]
+        },
+        {
+          "file": "src/services/TutorialDataService.ts",
+          "line": 22,
+          "method": "DELETE",
+          "path": "/tutorials/{value}",
+          "evidence": [
+            {
+              "file": "src/services/TutorialDataService.ts",
+              "line": 22,
+              "sha256": "52ddf82d44fd1154e20012119719d1ef1d347a0fb8ac64116abd80526d53df85"
+            }
+          ]
+        },
+        {
+          "file": "src/services/TutorialDataService.ts",
+          "line": 26,
+          "method": "DELETE",
+          "path": "/tutorials",
+          "evidence": [
+            {
+              "file": "src/services/TutorialDataService.ts",
+              "line": 26,
+              "sha256": "52ddf82d44fd1154e20012119719d1ef1d347a0fb8ac64116abd80526d53df85"
+            }
+          ]
+        },
+        {
+          "file": "src/services/TutorialDataService.ts",
+          "line": 30,
+          "method": "GET",
+          "path": "/tutorials?title={value}",
+          "evidence": [
+            {
+              "file": "src/services/TutorialDataService.ts",
+              "line": 30,
+              "sha256": "52ddf82d44fd1154e20012119719d1ef1d347a0fb8ac64116abd80526d53df85"
+            }
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "file": "src/services/TutorialDataService.ts",
+          "line": 1,
+          "sha256": "52ddf82d44fd1154e20012119719d1ef1d347a0fb8ac64116abd80526d53df85"
+        }
+      ]
+    }
+  },
+  "size": {
+    "files": 24,
+    "classes": 1,
+    "classScope": "生产 Java class/interface、Python class 及选择的前端 class 声明；不含测试",
+    "evidence": [
+      {
+        "file": "package.json",
+        "line": 1,
+        "sha256": "dba2b4f2d4a3498aeb0fcf2357f4fc26d5ea99ab4d944493a99e641b56015e24"
+      },
+      {
+        "file": "src/main.ts",
+        "line": 1,
+        "sha256": "ac1a931d4b9723a13b22b2af6601c004d5cf0b2cb98296c610d0a14ed97be7d0"
+      }
+    ]
+  },
+  "notes": [
+    "Vue3/TS 小型独立项目；后端 API 不在所选仓库，不能猜出后端接口。",
+    "路由别名不增加页面实例。"
+  ]
+}

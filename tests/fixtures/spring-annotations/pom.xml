@@ -1,0 +1,1 @@
+<project><modelVersion>4.0.0</modelVersion><groupId>sample</groupId><artifactId>annotation-fixture</artifactId><version>1</version><dependencies><dependency><groupId>org.springframework.boot</groupId><artifactId>spring-boot-starter-web</artifactId><version>3.3.0</version></dependency></dependencies></project>

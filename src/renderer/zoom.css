@@ -1,0 +1,27 @@
+.graph-canvas .react-flow__viewport,.graph-canvas .react-flow__node{transition-property:opacity!important}
+@property --semantic-read-scale{syntax:'<number>';inherits:true;initial-value:1}
+.graph-canvas{--z:1;--semantic-read-scale:calc(1 / var(--z));--semantic-pill-height:max(var(--look-pillHeight-px),calc(var(--look-pillMinScreenHeight-px) / var(--z)));--semantic-dot-size:max(var(--look-dotSize-px),calc(var(--look-dotMinScreenSize-px) / var(--z)))}
+.graph-canvas.zooming .react-flow__viewport{will-change:transform}
+.graph-canvas.zooming .graph-card,.graph-canvas.zooming .service-container,.graph-canvas.zooming .module-block,.graph-canvas.zooming .card-accessible::after{box-shadow:none!important;backdrop-filter:none!important;filter:none!important}
+.graph-canvas.zooming .react-flow__edge-path{filter:none!important}
+.graph-canvas.zooming .hierarchy-travel-dot{animation-play-state:paused!important}
+.resource-idle .hierarchy-travel-dot,.resource-background .app,.resource-background .app *{animation-play-state:paused!important}
+.graph-canvas[data-adaptive=true] .card-body-layer,.graph-canvas .semantic-token{transition:opacity var(--zoom-tierDuration) var(--motion-ease)}
+/* The viewport transform and --z are updated together before paint. */
+.graph-canvas .card-body-layer,.graph-canvas .card-size-layer{width:100%;height:100%}
+.graph-canvas[data-tier] .card-name,.graph-canvas[data-tier] .service-heading strong,.graph-canvas[data-tier] .module-group-heading strong{font-size:clamp(calc(12px * var(--layout-read-scale,1)),calc(14px * var(--layout-read-scale,1)),calc(16px * var(--layout-read-scale,1)))!important}
+.graph-canvas[data-tier] .semantic-token>span{font-size:clamp(calc(12px * var(--semantic-read-scale,1)),calc(14px * var(--semantic-read-scale,1)),calc(16px * var(--semantic-read-scale,1)))}
+.graph-canvas[data-tier=summary] .module-block,.graph-canvas[data-tier=summary] .runtime-method-row{visibility:hidden;pointer-events:none}
+.graph-canvas[data-tier=summary] .backbone-frontend-content{pointer-events:none}.graph-canvas[data-tier=summary] .backbone-frontend-content>:not([data-copy-key=frontend-total]){display:none}.graph-canvas[data-tier=summary] .backbone-frontend-content>[data-copy-key=frontend-total]{display:block!important;margin:calc(12px * var(--semantic-read-scale,1)) 0 0;font-size:calc(12px * var(--semantic-read-scale,1));white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.graph-canvas[data-adaptive=false][data-tier=summary] :is(.address-explanation,.capability-grid,.service-more,.card-summary,.service-heading .layout-tail,.backbone-title .layout-tail,.runtime-step-bubble){visibility:hidden;pointer-events:none}
+.graph-canvas[data-tier=application] .card-body-layer,.graph-canvas[data-tier=overview] .card-body-layer{visibility:hidden}
+.graph-canvas[data-tier=card] .semantic-token,.graph-canvas[data-tier=summary] .semantic-token{visibility:hidden}
+.graph-canvas[data-tier=overview] .semantic-token>span{display:block;position:absolute;top:calc(100% + 2px * var(--semantic-read-scale,1));left:50%;transform:translateX(-50%);width:max-content;max-width:calc(140px * var(--semantic-read-scale,1));white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.graph-canvas[data-tier=overview] .card-accessible[data-zoom-label=hidden] .semantic-token>span{visibility:hidden}
+.graph-canvas[data-tier=application] .card-accessible[data-zoom-label=hidden] .semantic-token>span{visibility:hidden}
+.graph-canvas:is([data-tier=summary],[data-tier=application],[data-tier=overview]) .card-hint{visibility:hidden!important;opacity:0!important;pointer-events:none}
+.graph-canvas[data-tier=overview] .card-accessible[data-zoom-place=above] .semantic-token>span{top:auto;bottom:calc(100% + 2px * var(--semantic-read-scale,1))}
+.graph-canvas .module-name[data-zoom-hide=true]{visibility:hidden}
+.graph-canvas[data-leaf-metrics=small] .module-amount{visibility:hidden}
+.graph-canvas[data-leaf-metrics=small] .orientation-mark{visibility:hidden}
+.graph-canvas[data-tier=summary] .hierarchy-frontend{overflow:hidden!important}.graph-canvas[data-tier=summary] .hierarchy-frontend .hierarchy-stack,.graph-canvas[data-tier=summary] .hierarchy-frontend .hierarchy-front-pages,.graph-canvas[data-tier=summary] .hierarchy-frontend .runtime-entry-card,.graph-canvas[data-tier=summary] .hierarchy-frontend .hierarchy-front-progress{display:none}.graph-canvas[data-tier=summary] .hierarchy-frontend-heading strong{display:block;white-space:nowrap}

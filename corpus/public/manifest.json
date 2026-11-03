@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "projects": [
+    {
+      "id": "petclinic",
+      "source": "https://github.com/spring-projects/spring-petclinic.git",
+      "commit": "500158f732419217507c7656904b8e6aa1bcc0d6",
+      "license": "Apache-2.0"
+    },
+    {
+      "id": "ruoyi",
+      "source": "https://github.com/yangzongzhuan/RuoYi-Vue.git",
+      "commit": "5e6c917ab0c29536b6ca792475c6611ebe0cea85",
+      "license": "MIT"
+    },
+    {
+      "id": "fastapi",
+      "source": "https://github.com/fastapi/full-stack-fastapi-template.git",
+      "commit": "b1125d8839482cb7bbae603ddc6d0081bf87532e",
+      "license": "MIT"
+    },
+    {
+      "id": "microblog",
+      "source": "https://github.com/miguelgrinberg/microblog.git",
+      "commit": "a975ef64864354867c88e0ed3a17ba7d17dca752",
+      "license": "MIT"
+    },
+    {
+      "id": "vue-ts",
+      "source": "https://github.com/bezkoder/vue-3-typescript-example.git",
+      "commit": "edac9de9e77b4fe83ccd53e86217d87a8006efee",
+      "license": "未知"
+    },
+    {
+      "id": "react-ts",
+      "source": "https://github.com/bezkoder/react-axios-typescript-example.git",
+      "commit": "3fbede021c99814807a0c5d3a1d338532ab06550",
+      "license": "未知"
+    }
+  ]
+}

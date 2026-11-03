@@ -1,0 +1,1201 @@
+{
+  "version": "drf-http/1",
+  "versions": [
+    {
+      "version": "3.4.4",
+      "sources": [
+        {
+          "file": "rest_framework/generics.py",
+          "url": "https://raw.githubusercontent.com/encode/django-rest-framework/3.4.4/rest_framework/generics.py",
+          "sha256": "c8a7d092ec0547e40215350feea1a49037149d8146eaf3b9ef3554e369559e6f"
+        },
+        {
+          "file": "rest_framework/mixins.py",
+          "url": "https://raw.githubusercontent.com/encode/django-rest-framework/3.4.4/rest_framework/mixins.py",
+          "sha256": "3ad9acbbd8e94cce9b8d88cfea080efbc602a0d532e1a5e538f431b5f1a2035e"
+        },
+        {
+          "file": "rest_framework/viewsets.py",
+          "url": "https://raw.githubusercontent.com/encode/django-rest-framework/3.4.4/rest_framework/viewsets.py",
+          "sha256": "d4c89914c7bbceeded1a0262f58d9b4715f587df39ef31cc75c22d173323d096"
+        },
+        {
+          "file": "rest_framework/views.py",
+          "url": "https://raw.githubusercontent.com/encode/django-rest-framework/3.4.4/rest_framework/views.py",
+          "sha256": "690d4e010da3208c927bd0b5ab272732cea648496a0462279b4a4e47cc9024c2"
+        },
+        {
+          "file": "rest_framework/routers.py",
+          "url": "https://raw.githubusercontent.com/encode/django-rest-framework/3.4.4/rest_framework/routers.py",
+          "sha256": "4e34d37deb50edec9c3f26e892d6124e9de9d50eb1e9fdf5bff10a8648fafce5"
+        },
+        {
+          "file": "rest_framework/decorators.py",
+          "url": "https://raw.githubusercontent.com/encode/django-rest-framework/3.4.4/rest_framework/decorators.py",
+          "sha256": "7f86cd7030a8eba8c73fd925800fc0269957fd0fbbf40770640129623d1a6d5a"
+        }
+      ],
+      "classes": [
+        {
+          "type": "rest_framework.generics.GenericAPIView",
+          "bases": [
+            "rest_framework.views.APIView"
+          ],
+          "kind": "view",
+          "http": {},
+          "actions": {},
+          "basis": "https://raw.githubusercontent.com/encode/django-rest-framework/3.4.4/rest_framework/generics.py#L25"
+        },
+        {
+          "type": "rest_framework.generics.CreateAPIView",
+          "bases": [
+            "rest_framework.mixins.CreateModelMixin",
+            "rest_framework.generics.GenericAPIView"
+          ],
+          "kind": "view",
+          "http": {
+            "POST": {
+              "member": "post",
+              "file": "rest_framework/generics.py",
+              "line": 190,
+              "delegate": "create"
+            }
+          },
+          "actions": {
+            "create": {
+              "member": "create",
+              "file": "rest_framework/mixins.py",
+              "line": 18
+            }
+          },
+          "basis": "https://raw.githubusercontent.com/encode/django-rest-framework/3.4.4/rest_framework/generics.py#L185"
+        },
+        {
+          "type": "rest_framework.generics.ListAPIView",
+          "bases": [
+            "rest_framework.mixins.ListModelMixin",
+            "rest_framework.generics.GenericAPIView"
+          ],
+          "kind": "view",
+          "http": {
+            "GET": {
+              "member": "get",
+              "file": "rest_framework/generics.py",
+              "line": 199,
+              "delegate": "list"
+            }
+          },
+          "actions": {
+            "list": {
+              "member": "list",
+              "file": "rest_framework/mixins.py",
+              "line": 39,
+              "delegate": "get_paginated_response"
+            }
+          },
+          "basis": "https://raw.githubusercontent.com/encode/django-rest-framework/3.4.4/rest_framework/generics.py#L194"
+        },
+        {
+          "type": "rest_framework.generics.RetrieveAPIView",
+          "bases": [
+            "rest_framework.mixins.RetrieveModelMixin",
+            "rest_framework.generics.GenericAPIView"
+          ],
+          "kind": "view",
+          "http": {
+            "GET": {
+              "member": "get",
+              "file": "rest_framework/generics.py",
+              "line": 208,
+              "delegate": "retrieve"
+            }
+          },
+          "actions": {
+            "retrieve": {
+              "member": "retrieve",
+              "file": "rest_framework/mixins.py",
+              "line": 55
+            }
+          },
+          "basis": "https://raw.githubusercontent.com/encode/django-rest-framework/3.4.4/rest_framework/generics.py#L203"
+        },
+        {
+          "type": "rest_framework.generics.DestroyAPIView",
+          "bases": [
+            "rest_framework.mixins.DestroyModelMixin",
+            "rest_framework.generics.GenericAPIView"
+          ],
+          "kind": "view",
+          "http": {
+            "DELETE": {
+              "member": "delete",
+              "file": "rest_framework/generics.py",
+              "line": 217,
+              "delegate": "destroy"
+            }
+          },
+          "actions": {
+            "destroy": {
+              "member": "destroy",
+              "file": "rest_framework/mixins.py",
+              "line": 85
+            }
+          },
+          "basis": "https://raw.githubusercontent.com/encode/django-rest-framework/3.4.4/rest_framework/generics.py#L212"
+        },
+        {
+          "type": "rest_framework.generics.UpdateAPIView",
+          "bases": [
+            "rest_framework.mixins.UpdateModelMixin",
+            "rest_framework.generics.GenericAPIView"
+          ],
+          "kind": "view",
+          "http": {
+            "PUT": {
+              "member": "put",
+              "file": "rest_framework/generics.py",
+              "line": 226,
+              "delegate": "update"
+            },
+            "PATCH": {
+              "member": "patch",
+              "file": "rest_framework/generics.py",
+              "line": 229,
+              "delegate": "partial_update"
+            }
+          },
+          "actions": {
+            "update": {
+              "member": "update",
+              "file": "rest_framework/mixins.py",
+              "line": 65
+            },
+            "partial_update": {
+              "member": "partial_update",
+              "file": "rest_framework/mixins.py",
+              "line": 76,
+              "delegate": "update"
+            }
+          },
+          "basis": "https://raw.githubusercontent.com/encode/django-rest-framework/3.4.4/rest_framework/generics.py#L221"
+        },
+        {
+          "type": "rest_framework.generics.ListCreateAPIView",
+          "bases": [
+            "rest_framework.mixins.ListModelMixin",
+            "rest_framework.mixins.CreateModelMixin",
+            "rest_framework.generics.GenericAPIView"
+          ],
+          "kind": "view",
+          "http": {
+            "GET": {
+              "member": "get",
+              "file": "rest_framework/generics.py",
+              "line": 239,
+              "delegate": "list"
+            },
+            "POST": {
+              "member": "post",
+              "file": "rest_framework/generics.py",
+              "line": 242,
+              "delegate": "create"
+            }
+          },
+          "actions": {
+            "list": {
+              "member": "list",
+              "file": "rest_framework/mixins.py",
+              "line": 39,
+              "delegate": "get_paginated_response"
+            },
+            "create": {
+              "member": "create",
+              "file": "rest_framework/mixins.py",
+              "line": 18
+            }
+          },
+          "basis": "https://raw.githubusercontent.com/encode/django-rest-framework/3.4.4/rest_framework/generics.py#L233"
+        },
+        {
+          "type": "rest_framework.generics.RetrieveUpdateAPIView",
+          "bases": [
+            "rest_framework.mixins.RetrieveModelMixin",
+            "rest_framework.mixins.UpdateModelMixin",
+            "rest_framework.generics.GenericAPIView"
+          ],
+          "kind": "view",
+          "http": {
+            "GET": {
+              "member": "get",
+              "file": "rest_framework/generics.py",
+              "line": 252,
+              "delegate": "retrieve"
+            },
+            "PUT": {
+              "member": "put",
+              "file": "rest_framework/generics.py",
+              "line": 255,
+              "delegate": "update"
+            },
+            "PATCH": {
+              "member": "patch",
+              "file": "rest_framework/generics.py",
+              "line": 258,
+              "delegate": "partial_update"
+            }
+          },
+          "actions": {
+            "retrieve": {
+              "member": "retrieve",
+              "file": "rest_framework/mixins.py",
+              "line": 55
+            },
+            "update": {
+              "member": "update",
+              "file": "rest_framework/mixins.py",
+              "line": 65
+            },
+            "partial_update": {
+              "member": "partial_update",
+              "file": "rest_framework/mixins.py",
+              "line": 76,
+              "delegate": "update"
+            }
+          },
+          "basis": "https://raw.githubusercontent.com/encode/django-rest-framework/3.4.4/rest_framework/generics.py#L246"
+        },
+        {
+          "type": "rest_framework.generics.RetrieveDestroyAPIView",
+          "bases": [
+            "rest_framework.mixins.RetrieveModelMixin",
+            "rest_framework.mixins.DestroyModelMixin",
+            "rest_framework.generics.GenericAPIView"
+          ],
+          "kind": "view",
+          "http": {
+            "GET": {
+              "member": "get",
+              "file": "rest_framework/generics.py",
+              "line": 268,
+              "delegate": "retrieve"
+            },
+            "DELETE": {
+              "member": "delete",
+              "file": "rest_framework/generics.py",
+              "line": 271,
+              "delegate": "destroy"
+            }
+          },
+          "actions": {
+            "retrieve": {
+              "member": "retrieve",
+              "file": "rest_framework/mixins.py",
+              "line": 55
+            },
+            "destroy": {
+              "member": "destroy",
+              "file": "rest_framework/mixins.py",
+              "line": 85
+            }
+          },
+          "basis": "https://raw.githubusercontent.com/encode/django-rest-framework/3.4.4/rest_framework/generics.py#L262"
+        },
+        {
+          "type": "rest_framework.generics.RetrieveUpdateDestroyAPIView",
+          "bases": [
+            "rest_framework.mixins.RetrieveModelMixin",
+            "rest_framework.mixins.UpdateModelMixin",
+            "rest_framework.mixins.DestroyModelMixin",
+            "rest_framework.generics.GenericAPIView"
+          ],
+          "kind": "view",
+          "http": {
+            "GET": {
+              "member": "get",
+              "file": "rest_framework/generics.py",
+              "line": 282,
+              "delegate": "retrieve"
+            },
+            "PUT": {
+              "member": "put",
+              "file": "rest_framework/generics.py",
+              "line": 285,
+              "delegate": "update"
+            },
+            "PATCH": {
+              "member": "patch",
+              "file": "rest_framework/generics.py",
+              "line": 288,
+              "delegate": "partial_update"
+            },
+            "DELETE": {
+              "member": "delete",
+              "file": "rest_framework/generics.py",
+              "line": 291,
+              "delegate": "destroy"
+            }
+          },
+          "actions": {
+            "retrieve": {
+              "member": "retrieve",
+              "file": "rest_framework/mixins.py",
+              "line": 55
+            },
+            "update": {
+              "member": "update",
+              "file": "rest_framework/mixins.py",
+              "line": 65
+            },
+            "partial_update": {
+              "member": "partial_update",
+              "file": "rest_framework/mixins.py",
+              "line": 76,
+              "delegate": "update"
+            },
+            "destroy": {
+              "member": "destroy",
+              "file": "rest_framework/mixins.py",
+              "line": 85
+            }
+          },
+          "basis": "https://raw.githubusercontent.com/encode/django-rest-framework/3.4.4/rest_framework/generics.py#L275"
+        },
+        {
+          "type": "rest_framework.mixins.CreateModelMixin",
+          "bases": [
+            "builtins.object"
+          ],
+          "kind": "mixin",
+          "http": {},
+          "actions": {
+            "create": {
+              "member": "create",
+              "file": "rest_framework/mixins.py",
+              "line": 18
+            }
+          },
+          "basis": "https://raw.githubusercontent.com/encode/django-rest-framework/3.4.4/rest_framework/mixins.py#L14"
+        },
+        {
+          "type": "rest_framework.mixins.ListModelMixin",
+          "bases": [
+            "builtins.object"
+          ],
+          "kind": "mixin",
+          "http": {},
+          "actions": {
+            "list": {
+              "member": "list",
+              "file": "rest_framework/mixins.py",
+              "line": 39,
+              "delegate": "get_paginated_response"
+            }
+          },
+          "basis": "https://raw.githubusercontent.com/encode/django-rest-framework/3.4.4/rest_framework/mixins.py#L35"
+        },
+        {
+          "type": "rest_framework.mixins.RetrieveModelMixin",
+          "bases": [
+            "builtins.object"
+          ],
+          "kind": "mixin",
+          "http": {},
+          "actions": {
+            "retrieve": {
+              "member": "retrieve",
+              "file": "rest_framework/mixins.py",
+              "line": 55
+            }
+          },
+          "basis": "https://raw.githubusercontent.com/encode/django-rest-framework/3.4.4/rest_framework/mixins.py#L51"
+        },
+        {
+          "type": "rest_framework.mixins.UpdateModelMixin",
+          "bases": [
+            "builtins.object"
+          ],
+          "kind": "mixin",
+          "http": {},
+          "actions": {
+            "update": {
+              "member": "update",
+              "file": "rest_framework/mixins.py",
+              "line": 65
+            },
+            "partial_update": {
+              "member": "partial_update",
+              "file": "rest_framework/mixins.py",
+              "line": 76,
+              "delegate": "update"
+            }
+          },
+          "basis": "https://raw.githubusercontent.com/encode/django-rest-framework/3.4.4/rest_framework/mixins.py#L61"
+        },
+        {
+          "type": "rest_framework.mixins.DestroyModelMixin",
+          "bases": [
+            "builtins.object"
+          ],
+          "kind": "mixin",
+          "http": {},
+          "actions": {
+            "destroy": {
+              "member": "destroy",
+              "file": "rest_framework/mixins.py",
+              "line": 85
+            }
+          },
+          "basis": "https://raw.githubusercontent.com/encode/django-rest-framework/3.4.4/rest_framework/mixins.py#L81"
+        },
+        {
+          "type": "rest_framework.viewsets.ViewSetMixin",
+          "bases": [
+            "builtins.object"
+          ],
+          "kind": "viewset",
+          "http": {},
+          "actions": {},
+          "basis": "https://raw.githubusercontent.com/encode/django-rest-framework/3.4.4/rest_framework/viewsets.py#L29"
+        },
+        {
+          "type": "rest_framework.viewsets.ViewSet",
+          "bases": [
+            "rest_framework.viewsets.ViewSetMixin",
+            "rest_framework.views.APIView"
+          ],
+          "kind": "viewset",
+          "http": {},
+          "actions": {},
+          "basis": "https://raw.githubusercontent.com/encode/django-rest-framework/3.4.4/rest_framework/viewsets.py#L122"
+        },
+        {
+          "type": "rest_framework.viewsets.GenericViewSet",
+          "bases": [
+            "rest_framework.viewsets.ViewSetMixin",
+            "rest_framework.generics.GenericAPIView"
+          ],
+          "kind": "viewset",
+          "http": {},
+          "actions": {},
+          "basis": "https://raw.githubusercontent.com/encode/django-rest-framework/3.4.4/rest_framework/viewsets.py#L129"
+        },
+        {
+          "type": "rest_framework.viewsets.ReadOnlyModelViewSet",
+          "bases": [
+            "rest_framework.mixins.RetrieveModelMixin",
+            "rest_framework.mixins.ListModelMixin",
+            "rest_framework.viewsets.GenericViewSet"
+          ],
+          "kind": "viewset",
+          "http": {},
+          "actions": {
+            "list": {
+              "member": "list",
+              "file": "rest_framework/mixins.py",
+              "line": 39,
+              "delegate": "get_paginated_response"
+            },
+            "retrieve": {
+              "member": "retrieve",
+              "file": "rest_framework/mixins.py",
+              "line": 55
+            }
+          },
+          "basis": "https://raw.githubusercontent.com/encode/django-rest-framework/3.4.4/rest_framework/viewsets.py#L138"
+        },
+        {
+          "type": "rest_framework.viewsets.ModelViewSet",
+          "bases": [
+            "rest_framework.mixins.CreateModelMixin",
+            "rest_framework.mixins.RetrieveModelMixin",
+            "rest_framework.mixins.UpdateModelMixin",
+            "rest_framework.mixins.DestroyModelMixin",
+            "rest_framework.mixins.ListModelMixin",
+            "rest_framework.viewsets.GenericViewSet"
+          ],
+          "kind": "viewset",
+          "http": {},
+          "actions": {
+            "list": {
+              "member": "list",
+              "file": "rest_framework/mixins.py",
+              "line": 39,
+              "delegate": "get_paginated_response"
+            },
+            "create": {
+              "member": "create",
+              "file": "rest_framework/mixins.py",
+              "line": 18
+            },
+            "retrieve": {
+              "member": "retrieve",
+              "file": "rest_framework/mixins.py",
+              "line": 55
+            },
+            "update": {
+              "member": "update",
+              "file": "rest_framework/mixins.py",
+              "line": 65
+            },
+            "partial_update": {
+              "member": "partial_update",
+              "file": "rest_framework/mixins.py",
+              "line": 76,
+              "delegate": "update"
+            },
+            "destroy": {
+              "member": "destroy",
+              "file": "rest_framework/mixins.py",
+              "line": 85
+            }
+          },
+          "basis": "https://raw.githubusercontent.com/encode/django-rest-framework/3.4.4/rest_framework/viewsets.py#L147"
+        },
+        {
+          "type": "rest_framework.views.APIView",
+          "bases": [
+            "django.views.generic.View"
+          ],
+          "kind": "view",
+          "http": {},
+          "actions": {},
+          "basis": "https://raw.githubusercontent.com/encode/django-rest-framework/3.4.4/rest_framework/views.py#L106"
+        }
+      ],
+      "decorators": [
+        {
+          "type": "rest_framework.decorators.detail_route",
+          "detail": true,
+          "basis": "https://raw.githubusercontent.com/encode/django-rest-framework/3.4.4/rest_framework/decorators.py#L113"
+        },
+        {
+          "type": "rest_framework.decorators.list_route",
+          "detail": false,
+          "basis": "https://raw.githubusercontent.com/encode/django-rest-framework/3.4.4/rest_framework/decorators.py#L127"
+        }
+      ],
+      "routerBasis": "https://github.com/encode/django-rest-framework/blob/3.4.4/rest_framework/routers.py"
+    },
+    {
+      "version": "3.16.1",
+      "sources": [
+        {
+          "file": "rest_framework/generics.py",
+          "url": "https://raw.githubusercontent.com/encode/django-rest-framework/3.16.1/rest_framework/generics.py",
+          "sha256": "a68f08e3bf48389a46129372305ee983d1484b088cf99070386fa9884eafada0"
+        },
+        {
+          "file": "rest_framework/mixins.py",
+          "url": "https://raw.githubusercontent.com/encode/django-rest-framework/3.16.1/rest_framework/mixins.py",
+          "sha256": "6ea765cfaa742658513480377318633e4636e1d3d358c70cb2f5947f1f8c7b0b"
+        },
+        {
+          "file": "rest_framework/viewsets.py",
+          "url": "https://raw.githubusercontent.com/encode/django-rest-framework/3.16.1/rest_framework/viewsets.py",
+          "sha256": "1ca55bc73677b6165c097535a1e97aec22220fe6dcb168a5e2d0e039c7fc04b2"
+        },
+        {
+          "file": "rest_framework/views.py",
+          "url": "https://raw.githubusercontent.com/encode/django-rest-framework/3.16.1/rest_framework/views.py",
+          "sha256": "5d74cea83cb68b51b53586cdf559d817754c99e8e4331855b7f6699ad77810eb"
+        },
+        {
+          "file": "rest_framework/routers.py",
+          "url": "https://raw.githubusercontent.com/encode/django-rest-framework/3.16.1/rest_framework/routers.py",
+          "sha256": "3e2e69b585c4a1875c01be6a295bb906465ce70aa34f34a4ec49820da945fe8c"
+        },
+        {
+          "file": "rest_framework/decorators.py",
+          "url": "https://raw.githubusercontent.com/encode/django-rest-framework/3.16.1/rest_framework/decorators.py",
+          "sha256": "59abdeda58f4009cdd9e0fc8890073b1a1771a3eee1c95d01da155c8b92cbcfb"
+        }
+      ],
+      "classes": [
+        {
+          "type": "rest_framework.generics.GenericAPIView",
+          "bases": [
+            "rest_framework.views.APIView"
+          ],
+          "kind": "view",
+          "http": {},
+          "actions": {},
+          "basis": "https://raw.githubusercontent.com/encode/django-rest-framework/3.16.1/rest_framework/generics.py#L24"
+        },
+        {
+          "type": "rest_framework.generics.CreateAPIView",
+          "bases": [
+            "rest_framework.mixins.CreateModelMixin",
+            "rest_framework.generics.GenericAPIView"
+          ],
+          "kind": "view",
+          "http": {
+            "POST": {
+              "member": "post",
+              "file": "rest_framework/generics.py",
+              "line": 193,
+              "delegate": "create"
+            }
+          },
+          "actions": {
+            "create": {
+              "member": "create",
+              "file": "rest_framework/mixins.py",
+              "line": 16
+            }
+          },
+          "basis": "https://raw.githubusercontent.com/encode/django-rest-framework/3.16.1/rest_framework/generics.py#L188"
+        },
+        {
+          "type": "rest_framework.generics.ListAPIView",
+          "bases": [
+            "rest_framework.mixins.ListModelMixin",
+            "rest_framework.generics.GenericAPIView"
+          ],
+          "kind": "view",
+          "http": {
+            "GET": {
+              "member": "get",
+              "file": "rest_framework/generics.py",
+              "line": 202,
+              "delegate": "list"
+            }
+          },
+          "actions": {
+            "list": {
+              "member": "list",
+              "file": "rest_framework/mixins.py",
+              "line": 37,
+              "delegate": "get_paginated_response"
+            }
+          },
+          "basis": "https://raw.githubusercontent.com/encode/django-rest-framework/3.16.1/rest_framework/generics.py#L197"
+        },
+        {
+          "type": "rest_framework.generics.RetrieveAPIView",
+          "bases": [
+            "rest_framework.mixins.RetrieveModelMixin",
+            "rest_framework.generics.GenericAPIView"
+          ],
+          "kind": "view",
+          "http": {
+            "GET": {
+              "member": "get",
+              "file": "rest_framework/generics.py",
+              "line": 211,
+              "delegate": "retrieve"
+            }
+          },
+          "actions": {
+            "retrieve": {
+              "member": "retrieve",
+              "file": "rest_framework/mixins.py",
+              "line": 53
+            }
+          },
+          "basis": "https://raw.githubusercontent.com/encode/django-rest-framework/3.16.1/rest_framework/generics.py#L206"
+        },
+        {
+          "type": "rest_framework.generics.DestroyAPIView",
+          "bases": [
+            "rest_framework.mixins.DestroyModelMixin",
+            "rest_framework.generics.GenericAPIView"
+          ],
+          "kind": "view",
+          "http": {
+            "DELETE": {
+              "member": "delete",
+              "file": "rest_framework/generics.py",
+              "line": 220,
+              "delegate": "destroy"
+            }
+          },
+          "actions": {
+            "destroy": {
+              "member": "destroy",
+              "file": "rest_framework/mixins.py",
+              "line": 89
+            }
+          },
+          "basis": "https://raw.githubusercontent.com/encode/django-rest-framework/3.16.1/rest_framework/generics.py#L215"
+        },
+        {
+          "type": "rest_framework.generics.UpdateAPIView",
+          "bases": [
+            "rest_framework.mixins.UpdateModelMixin",
+            "rest_framework.generics.GenericAPIView"
+          ],
+          "kind": "view",
+          "http": {
+            "PUT": {
+              "member": "put",
+              "file": "rest_framework/generics.py",
+              "line": 229,
+              "delegate": "update"
+            },
+            "PATCH": {
+              "member": "patch",
+              "file": "rest_framework/generics.py",
+              "line": 232,
+              "delegate": "partial_update"
+            }
+          },
+          "actions": {
+            "update": {
+              "member": "update",
+              "file": "rest_framework/mixins.py",
+              "line": 63
+            },
+            "partial_update": {
+              "member": "partial_update",
+              "file": "rest_framework/mixins.py",
+              "line": 80,
+              "delegate": "update"
+            }
+          },
+          "basis": "https://raw.githubusercontent.com/encode/django-rest-framework/3.16.1/rest_framework/generics.py#L224"
+        },
+        {
+          "type": "rest_framework.generics.ListCreateAPIView",
+          "bases": [
+            "rest_framework.mixins.ListModelMixin",
+            "rest_framework.mixins.CreateModelMixin",
+            "rest_framework.generics.GenericAPIView"
+          ],
+          "kind": "view",
+          "http": {
+            "GET": {
+              "member": "get",
+              "file": "rest_framework/generics.py",
+              "line": 242,
+              "delegate": "list"
+            },
+            "POST": {
+              "member": "post",
+              "file": "rest_framework/generics.py",
+              "line": 245,
+              "delegate": "create"
+            }
+          },
+          "actions": {
+            "list": {
+              "member": "list",
+              "file": "rest_framework/mixins.py",
+              "line": 37,
+              "delegate": "get_paginated_response"
+            },
+            "create": {
+              "member": "create",
+              "file": "rest_framework/mixins.py",
+              "line": 16
+            }
+          },
+          "basis": "https://raw.githubusercontent.com/encode/django-rest-framework/3.16.1/rest_framework/generics.py#L236"
+        },
+        {
+          "type": "rest_framework.generics.RetrieveUpdateAPIView",
+          "bases": [
+            "rest_framework.mixins.RetrieveModelMixin",
+            "rest_framework.mixins.UpdateModelMixin",
+            "rest_framework.generics.GenericAPIView"
+          ],
+          "kind": "view",
+          "http": {
+            "GET": {
+              "member": "get",
+              "file": "rest_framework/generics.py",
+              "line": 255,
+              "delegate": "retrieve"
+            },
+            "PUT": {
+              "member": "put",
+              "file": "rest_framework/generics.py",
+              "line": 258,
+              "delegate": "update"
+            },
+            "PATCH": {
+              "member": "patch",
+              "file": "rest_framework/generics.py",
+              "line": 261,
+              "delegate": "partial_update"
+            }
+          },
+          "actions": {
+            "retrieve": {
+              "member": "retrieve",
+              "file": "rest_framework/mixins.py",
+              "line": 53
+            },
+            "update": {
+              "member": "update",
+              "file": "rest_framework/mixins.py",
+              "line": 63
+            },
+            "partial_update": {
+              "member": "partial_update",
+              "file": "rest_framework/mixins.py",
+              "line": 80,
+              "delegate": "update"
+            }
+          },
+          "basis": "https://raw.githubusercontent.com/encode/django-rest-framework/3.16.1/rest_framework/generics.py#L249"
+        },
+        {
+          "type": "rest_framework.generics.RetrieveDestroyAPIView",
+          "bases": [
+            "rest_framework.mixins.RetrieveModelMixin",
+            "rest_framework.mixins.DestroyModelMixin",
+            "rest_framework.generics.GenericAPIView"
+          ],
+          "kind": "view",
+          "http": {
+            "GET": {
+              "member": "get",
+              "file": "rest_framework/generics.py",
+              "line": 271,
+              "delegate": "retrieve"
+            },
+            "DELETE": {
+              "member": "delete",
+              "file": "rest_framework/generics.py",
+              "line": 274,
+              "delegate": "destroy"
+            }
+          },
+          "actions": {
+            "retrieve": {
+              "member": "retrieve",
+              "file": "rest_framework/mixins.py",
+              "line": 53
+            },
+            "destroy": {
+              "member": "destroy",
+              "file": "rest_framework/mixins.py",
+              "line": 89
+            }
+          },
+          "basis": "https://raw.githubusercontent.com/encode/django-rest-framework/3.16.1/rest_framework/generics.py#L265"
+        },
+        {
+          "type": "rest_framework.generics.RetrieveUpdateDestroyAPIView",
+          "bases": [
+            "rest_framework.mixins.RetrieveModelMixin",
+            "rest_framework.mixins.UpdateModelMixin",
+            "rest_framework.mixins.DestroyModelMixin",
+            "rest_framework.generics.GenericAPIView"
+          ],
+          "kind": "view",
+          "http": {
+            "GET": {
+              "member": "get",
+              "file": "rest_framework/generics.py",
+              "line": 285,
+              "delegate": "retrieve"
+            },
+            "PUT": {
+              "member": "put",
+              "file": "rest_framework/generics.py",
+              "line": 288,
+              "delegate": "update"
+            },
+            "PATCH": {
+              "member": "patch",
+              "file": "rest_framework/generics.py",
+              "line": 291,
+              "delegate": "partial_update"
+            },
+            "DELETE": {
+              "member": "delete",
+              "file": "rest_framework/generics.py",
+              "line": 294,
+              "delegate": "destroy"
+            }
+          },
+          "actions": {
+            "retrieve": {
+              "member": "retrieve",
+              "file": "rest_framework/mixins.py",
+              "line": 53
+            },
+            "update": {
+              "member": "update",
+              "file": "rest_framework/mixins.py",
+              "line": 63
+            },
+            "partial_update": {
+              "member": "partial_update",
+              "file": "rest_framework/mixins.py",
+              "line": 80,
+              "delegate": "update"
+            },
+            "destroy": {
+              "member": "destroy",
+              "file": "rest_framework/mixins.py",
+              "line": 89
+            }
+          },
+          "basis": "https://raw.githubusercontent.com/encode/django-rest-framework/3.16.1/rest_framework/generics.py#L278"
+        },
+        {
+          "type": "rest_framework.mixins.CreateModelMixin",
+          "bases": [],
+          "kind": "mixin",
+          "http": {},
+          "actions": {
+            "create": {
+              "member": "create",
+              "file": "rest_framework/mixins.py",
+              "line": 16
+            }
+          },
+          "basis": "https://raw.githubusercontent.com/encode/django-rest-framework/3.16.1/rest_framework/mixins.py#L12"
+        },
+        {
+          "type": "rest_framework.mixins.ListModelMixin",
+          "bases": [],
+          "kind": "mixin",
+          "http": {},
+          "actions": {
+            "list": {
+              "member": "list",
+              "file": "rest_framework/mixins.py",
+              "line": 37,
+              "delegate": "get_paginated_response"
+            }
+          },
+          "basis": "https://raw.githubusercontent.com/encode/django-rest-framework/3.16.1/rest_framework/mixins.py#L33"
+        },
+        {
+          "type": "rest_framework.mixins.RetrieveModelMixin",
+          "bases": [],
+          "kind": "mixin",
+          "http": {},
+          "actions": {
+            "retrieve": {
+              "member": "retrieve",
+              "file": "rest_framework/mixins.py",
+              "line": 53
+            }
+          },
+          "basis": "https://raw.githubusercontent.com/encode/django-rest-framework/3.16.1/rest_framework/mixins.py#L49"
+        },
+        {
+          "type": "rest_framework.mixins.UpdateModelMixin",
+          "bases": [],
+          "kind": "mixin",
+          "http": {},
+          "actions": {
+            "update": {
+              "member": "update",
+              "file": "rest_framework/mixins.py",
+              "line": 63
+            },
+            "partial_update": {
+              "member": "partial_update",
+              "file": "rest_framework/mixins.py",
+              "line": 80,
+              "delegate": "update"
+            }
+          },
+          "basis": "https://raw.githubusercontent.com/encode/django-rest-framework/3.16.1/rest_framework/mixins.py#L59"
+        },
+        {
+          "type": "rest_framework.mixins.DestroyModelMixin",
+          "bases": [],
+          "kind": "mixin",
+          "http": {},
+          "actions": {
+            "destroy": {
+              "member": "destroy",
+              "file": "rest_framework/mixins.py",
+              "line": 89
+            }
+          },
+          "basis": "https://raw.githubusercontent.com/encode/django-rest-framework/3.16.1/rest_framework/mixins.py#L85"
+        },
+        {
+          "type": "rest_framework.viewsets.ViewSetMixin",
+          "bases": [],
+          "kind": "viewset",
+          "http": {},
+          "actions": {},
+          "basis": "https://raw.githubusercontent.com/encode/django-rest-framework/3.16.1/rest_framework/viewsets.py#L45"
+        },
+        {
+          "type": "rest_framework.viewsets.ViewSet",
+          "bases": [
+            "rest_framework.viewsets.ViewSetMixin",
+            "rest_framework.views.APIView"
+          ],
+          "kind": "viewset",
+          "http": {},
+          "actions": {},
+          "basis": "https://raw.githubusercontent.com/encode/django-rest-framework/3.16.1/rest_framework/viewsets.py#L220"
+        },
+        {
+          "type": "rest_framework.viewsets.GenericViewSet",
+          "bases": [
+            "rest_framework.viewsets.ViewSetMixin",
+            "rest_framework.generics.GenericAPIView"
+          ],
+          "kind": "viewset",
+          "http": {},
+          "actions": {},
+          "basis": "https://raw.githubusercontent.com/encode/django-rest-framework/3.16.1/rest_framework/viewsets.py#L227"
+        },
+        {
+          "type": "rest_framework.viewsets.ReadOnlyModelViewSet",
+          "bases": [
+            "rest_framework.mixins.RetrieveModelMixin",
+            "rest_framework.mixins.ListModelMixin",
+            "rest_framework.viewsets.GenericViewSet"
+          ],
+          "kind": "viewset",
+          "http": {},
+          "actions": {
+            "list": {
+              "member": "list",
+              "file": "rest_framework/mixins.py",
+              "line": 37,
+              "delegate": "get_paginated_response"
+            },
+            "retrieve": {
+              "member": "retrieve",
+              "file": "rest_framework/mixins.py",
+              "line": 53
+            }
+          },
+          "basis": "https://raw.githubusercontent.com/encode/django-rest-framework/3.16.1/rest_framework/viewsets.py#L236"
+        },
+        {
+          "type": "rest_framework.viewsets.ModelViewSet",
+          "bases": [
+            "rest_framework.mixins.CreateModelMixin",
+            "rest_framework.mixins.RetrieveModelMixin",
+            "rest_framework.mixins.UpdateModelMixin",
+            "rest_framework.mixins.DestroyModelMixin",
+            "rest_framework.mixins.ListModelMixin",
+            "rest_framework.viewsets.GenericViewSet"
+          ],
+          "kind": "viewset",
+          "http": {},
+          "actions": {
+            "list": {
+              "member": "list",
+              "file": "rest_framework/mixins.py",
+              "line": 37,
+              "delegate": "get_paginated_response"
+            },
+            "create": {
+              "member": "create",
+              "file": "rest_framework/mixins.py",
+              "line": 16
+            },
+            "retrieve": {
+              "member": "retrieve",
+              "file": "rest_framework/mixins.py",
+              "line": 53
+            },
+            "update": {
+              "member": "update",
+              "file": "rest_framework/mixins.py",
+              "line": 63
+            },
+            "partial_update": {
+              "member": "partial_update",
+              "file": "rest_framework/mixins.py",
+              "line": 80,
+              "delegate": "update"
+            },
+            "destroy": {
+              "member": "destroy",
+              "file": "rest_framework/mixins.py",
+              "line": 89
+            }
+          },
+          "basis": "https://raw.githubusercontent.com/encode/django-rest-framework/3.16.1/rest_framework/viewsets.py#L245"
+        },
+        {
+          "type": "rest_framework.views.APIView",
+          "bases": [
+            "django.views.generic.View"
+          ],
+          "kind": "view",
+          "http": {},
+          "actions": {},
+          "basis": "https://raw.githubusercontent.com/encode/django-rest-framework/3.16.1/rest_framework/views.py#L105"
+        },
+        {
+          "type": "rest_framework.decorators.MethodMapper",
+          "bases": [
+            "rest_framework.decorators.dict"
+          ],
+          "kind": "mixin",
+          "http": {
+            "GET": {
+              "member": "get",
+              "file": "rest_framework/decorators.py",
+              "line": 211,
+              "delegate": "_map"
+            },
+            "POST": {
+              "member": "post",
+              "file": "rest_framework/decorators.py",
+              "line": 214,
+              "delegate": "_map"
+            },
+            "PUT": {
+              "member": "put",
+              "file": "rest_framework/decorators.py",
+              "line": 217,
+              "delegate": "_map"
+            },
+            "PATCH": {
+              "member": "patch",
+              "file": "rest_framework/decorators.py",
+              "line": 220,
+              "delegate": "_map"
+            },
+            "DELETE": {
+              "member": "delete",
+              "file": "rest_framework/decorators.py",
+              "line": 223,
+              "delegate": "_map"
+            },
+            "HEAD": {
+              "member": "head",
+              "file": "rest_framework/decorators.py",
+              "line": 226,
+              "delegate": "_map"
+            },
+            "TRACE": {
+              "member": "trace",
+              "file": "rest_framework/decorators.py",
+              "line": 232,
+              "delegate": "_map"
+            }
+          },
+          "actions": {},
+          "basis": "https://raw.githubusercontent.com/encode/django-rest-framework/3.16.1/rest_framework/decorators.py#L177"
+        }
+      ],
+      "decorators": [
+        {
+          "type": "rest_framework.decorators.action",
+          "detail": null,
+          "basis": "https://raw.githubusercontent.com/encode/django-rest-framework/3.16.1/rest_framework/decorators.py#L123"
+        }
+      ],
+      "routerBasis": "https://github.com/encode/django-rest-framework/blob/3.16.1/rest_framework/routers.py"
+    }
+  ],
+  "defaults": {
+    "lookup": "pk",
+    "trailingSlash": "/"
+  },
+  "thresholds": {
+    "inheritanceDepth": {
+      "value": 64,
+      "why": "只追溯有源码或固定框架来源的有限继承链；循环或更深层保留原因。"
+    }
+  }
+}

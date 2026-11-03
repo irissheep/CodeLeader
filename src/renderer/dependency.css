@@ -1,0 +1,16 @@
+.dependency-card{border-color:var(--line);padding:12px 15px;border-top:2px solid var(--accent)}
+.dependency-card.dependency-receive{border-top-color:var(--secondary)}
+.dependency-card.dependency-data{border-top-color:var(--path)}
+.dependency-card.dependency-common{border-top-color:var(--muted)}
+.dependency-card .card-top{height:18px;display:flex;align-items:center;justify-content:space-between}
+.dependency-count{font-size:var(--font-small);color:var(--secondary);font-variant-numeric:tabular-nums}
+.dependency-card .card-name{font-size:var(--font-title);line-height:22px;margin:5px 0 2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dependency-card .card-summary{font-size:var(--font-body);line-height:19px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-height:19px}
+.dependency-card .card-bottom{height:24px;margin-top:3px;padding-top:1px;border:0;justify-content:flex-end}
+.dependency-card .card-bottom button{font-size:var(--font-body);min-height:24px}
+.graph-canvas.motion .dependency-flow-node{transition:transform var(--motion-normal) var(--motion-ease)}
+.graph-canvas.is-dragging .dependency-flow-node{transition:none}
+.dependency-scope{font-size:var(--font-body);flex-shrink:0}
+.dependency-bundle-label{position:absolute;pointer-events:auto;white-space:nowrap;font-size:var(--font-body)}
+.edge-choices{max-height:var(--dependency-menu-height);overflow:auto;max-width:min(var(--dependency-menu-width),100%)}
+@media(prefers-reduced-motion:reduce){.graph-canvas.motion .dependency-flow-node{transition:none}}

@@ -1,0 +1,288 @@
+{
+  "schema": 1,
+  "project": "react-ts",
+  "commit": "3fbede021c99814807a0c5d3a1d338532ab06550",
+  "originalExpectedSha256": "2d87db7d306bfbd8a2ab280802f4298d0128381d75d3ab14bf827b7085125b58",
+  "referenceSha256": "6c8dcce3892981474a7cbf2a524d74de4374eca074ce17895a2d1f27ae418f8e",
+  "scope": {
+    "allCalls": 7,
+    "sample": 7,
+    "sampling": "全部选定 HTTP 调用",
+    "sources": "独立 TypeScript/Tree-sitter 语法读取、旧冻结 HTTP 依据重新验证；不读取产品输出"
+  },
+  "cases": [
+    {
+      "front": {
+        "file": "src/services/tutorial.service.ts",
+        "line": 6,
+        "method": "GET",
+        "path": "/tutorials"
+      },
+      "urls": [
+        "http://localhost:8080/api/tutorials"
+      ],
+      "expected": {
+        "outcome": "unmatched",
+        "reason": "external-backend",
+        "targets": [],
+        "externalOrigin": {
+          "host": "localhost",
+          "port": 8080,
+          "origin": "http://localhost:8080"
+        }
+      },
+      "evidence": [
+        {
+          "file": "src/services/tutorial.service.ts",
+          "line": 6,
+          "sha256": "e4375c563f5a35edfb1ac2a7550bd3a7c65860bdbe84f5b9c32700343d266c45"
+        },
+        {
+          "file": "src/http-common.ts",
+          "line": 4,
+          "sha256": "ccd500babbeced5912e6fe6ac7209c52c9f82b2f7ce74e03a5c8acd5afe87355"
+        }
+      ]
+    },
+    {
+      "front": {
+        "file": "src/services/tutorial.service.ts",
+        "line": 10,
+        "method": "GET",
+        "path": "/tutorials/{param}"
+      },
+      "urls": [
+        "http://localhost:8080/api/tutorials/{param}"
+      ],
+      "expected": {
+        "outcome": "unmatched",
+        "reason": "external-backend",
+        "targets": [],
+        "externalOrigin": {
+          "host": "localhost",
+          "port": 8080,
+          "origin": "http://localhost:8080"
+        }
+      },
+      "evidence": [
+        {
+          "file": "src/services/tutorial.service.ts",
+          "line": 10,
+          "sha256": "e4375c563f5a35edfb1ac2a7550bd3a7c65860bdbe84f5b9c32700343d266c45"
+        },
+        {
+          "file": "src/http-common.ts",
+          "line": 4,
+          "sha256": "ccd500babbeced5912e6fe6ac7209c52c9f82b2f7ce74e03a5c8acd5afe87355"
+        }
+      ]
+    },
+    {
+      "front": {
+        "file": "src/services/tutorial.service.ts",
+        "line": 14,
+        "method": "POST",
+        "path": "/tutorials"
+      },
+      "urls": [
+        "http://localhost:8080/api/tutorials"
+      ],
+      "expected": {
+        "outcome": "unmatched",
+        "reason": "external-backend",
+        "targets": [],
+        "externalOrigin": {
+          "host": "localhost",
+          "port": 8080,
+          "origin": "http://localhost:8080"
+        }
+      },
+      "evidence": [
+        {
+          "file": "src/services/tutorial.service.ts",
+          "line": 14,
+          "sha256": "e4375c563f5a35edfb1ac2a7550bd3a7c65860bdbe84f5b9c32700343d266c45"
+        },
+        {
+          "file": "src/http-common.ts",
+          "line": 4,
+          "sha256": "ccd500babbeced5912e6fe6ac7209c52c9f82b2f7ce74e03a5c8acd5afe87355"
+        }
+      ]
+    },
+    {
+      "front": {
+        "file": "src/services/tutorial.service.ts",
+        "line": 18,
+        "method": "PUT",
+        "path": "/tutorials/{param}"
+      },
+      "urls": [
+        "http://localhost:8080/api/tutorials/{param}"
+      ],
+      "expected": {
+        "outcome": "unmatched",
+        "reason": "external-backend",
+        "targets": [],
+        "externalOrigin": {
+          "host": "localhost",
+          "port": 8080,
+          "origin": "http://localhost:8080"
+        }
+      },
+      "evidence": [
+        {
+          "file": "src/services/tutorial.service.ts",
+          "line": 18,
+          "sha256": "e4375c563f5a35edfb1ac2a7550bd3a7c65860bdbe84f5b9c32700343d266c45"
+        },
+        {
+          "file": "src/http-common.ts",
+          "line": 4,
+          "sha256": "ccd500babbeced5912e6fe6ac7209c52c9f82b2f7ce74e03a5c8acd5afe87355"
+        }
+      ]
+    },
+    {
+      "front": {
+        "file": "src/services/tutorial.service.ts",
+        "line": 22,
+        "method": "DELETE",
+        "path": "/tutorials/{param}"
+      },
+      "urls": [
+        "http://localhost:8080/api/tutorials/{param}"
+      ],
+      "expected": {
+        "outcome": "unmatched",
+        "reason": "external-backend",
+        "targets": [],
+        "externalOrigin": {
+          "host": "localhost",
+          "port": 8080,
+          "origin": "http://localhost:8080"
+        }
+      },
+      "evidence": [
+        {
+          "file": "src/services/tutorial.service.ts",
+          "line": 22,
+          "sha256": "e4375c563f5a35edfb1ac2a7550bd3a7c65860bdbe84f5b9c32700343d266c45"
+        },
+        {
+          "file": "src/http-common.ts",
+          "line": 4,
+          "sha256": "ccd500babbeced5912e6fe6ac7209c52c9f82b2f7ce74e03a5c8acd5afe87355"
+        }
+      ]
+    },
+    {
+      "front": {
+        "file": "src/services/tutorial.service.ts",
+        "line": 26,
+        "method": "DELETE",
+        "path": "/tutorials"
+      },
+      "urls": [
+        "http://localhost:8080/api/tutorials"
+      ],
+      "expected": {
+        "outcome": "unmatched",
+        "reason": "external-backend",
+        "targets": [],
+        "externalOrigin": {
+          "host": "localhost",
+          "port": 8080,
+          "origin": "http://localhost:8080"
+        }
+      },
+      "evidence": [
+        {
+          "file": "src/services/tutorial.service.ts",
+          "line": 26,
+          "sha256": "e4375c563f5a35edfb1ac2a7550bd3a7c65860bdbe84f5b9c32700343d266c45"
+        },
+        {
+          "file": "src/http-common.ts",
+          "line": 4,
+          "sha256": "ccd500babbeced5912e6fe6ac7209c52c9f82b2f7ce74e03a5c8acd5afe87355"
+        }
+      ]
+    },
+    {
+      "front": {
+        "file": "src/services/tutorial.service.ts",
+        "line": 30,
+        "method": "GET",
+        "path": "/tutorials?title={param}"
+      },
+      "urls": [
+        "http://localhost:8080/api/tutorials?title={param}"
+      ],
+      "expected": {
+        "outcome": "unmatched",
+        "reason": "external-backend",
+        "targets": [],
+        "externalOrigin": {
+          "host": "localhost",
+          "port": 8080,
+          "origin": "http://localhost:8080"
+        }
+      },
+      "evidence": [
+        {
+          "file": "src/services/tutorial.service.ts",
+          "line": 30,
+          "sha256": "e4375c563f5a35edfb1ac2a7550bd3a7c65860bdbe84f5b9c32700343d266c45"
+        },
+        {
+          "file": "src/http-common.ts",
+          "line": 4,
+          "sha256": "ccd500babbeced5912e6fe6ac7209c52c9f82b2f7ce74e03a5c8acd5afe87355"
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "file": "src/services/tutorial.service.ts",
+      "line": 6,
+      "sha256": "e4375c563f5a35edfb1ac2a7550bd3a7c65860bdbe84f5b9c32700343d266c45"
+    },
+    {
+      "file": "src/http-common.ts",
+      "line": 4,
+      "sha256": "ccd500babbeced5912e6fe6ac7209c52c9f82b2f7ce74e03a5c8acd5afe87355"
+    },
+    {
+      "file": "src/services/tutorial.service.ts",
+      "line": 10,
+      "sha256": "e4375c563f5a35edfb1ac2a7550bd3a7c65860bdbe84f5b9c32700343d266c45"
+    },
+    {
+      "file": "src/services/tutorial.service.ts",
+      "line": 14,
+      "sha256": "e4375c563f5a35edfb1ac2a7550bd3a7c65860bdbe84f5b9c32700343d266c45"
+    },
+    {
+      "file": "src/services/tutorial.service.ts",
+      "line": 18,
+      "sha256": "e4375c563f5a35edfb1ac2a7550bd3a7c65860bdbe84f5b9c32700343d266c45"
+    },
+    {
+      "file": "src/services/tutorial.service.ts",
+      "line": 22,
+      "sha256": "e4375c563f5a35edfb1ac2a7550bd3a7c65860bdbe84f5b9c32700343d266c45"
+    },
+    {
+      "file": "src/services/tutorial.service.ts",
+      "line": 26,
+      "sha256": "e4375c563f5a35edfb1ac2a7550bd3a7c65860bdbe84f5b9c32700343d266c45"
+    },
+    {
+      "file": "src/services/tutorial.service.ts",
+      "line": 30,
+      "sha256": "e4375c563f5a35edfb1ac2a7550bd3a7c65860bdbe84f5b9c32700343d266c45"
+    }
+  ]
+}

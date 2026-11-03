@@ -1,0 +1,11 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import {guard,root} from './common.mjs';
+guard();
+const label=process.argv.find(value=>value.startsWith('--label='))?.slice(8)||'soak';if(!/^[a-z0-9_-]+$/i.test(label))throw Error('测量名称无效');
+const folder=path.join(root,'.tmp/verification-p1-resources',label),run=JSON.parse(await fs.readFile(path.join(folder,'run.json'),'utf8')),phase=run.phases.find(item=>item.name==='soak');if(!phase)throw Error('没有完成的浸泡时段');
+const metrics=JSON.parse(await fs.readFile(path.join(folder,'electron-metrics.json'),'utf8')),system=(await fs.readFile(path.join(folder,'processes.jsonl'),'utf8')).split(/\r?\n/).filter(Boolean).map(JSON.parse);
+const median=values=>{const sorted=values.filter(Number.isFinite).sort((a,b)=>a-b);return sorted.length?sorted[Math.floor(sorted.length/2)]:null;},buckets=[];
+for(let start=phase.start;start<phase.end;start+=60000){const end=Math.min(start+60000,phase.end),windows=metrics.filter(item=>item.time>=start&&item.time<end),samples=system.filter(item=>item.timestamp>=start&&item.timestamp<end&&item.processes);buckets.push({minute:buckets.length+1,samples:samples.length,workingSetBytes:median(samples.map(item=>item.processes.filter(process=>process.owned).reduce((sum,process)=>sum+process.workingSet,0))),mainHeapBytes:median(windows.map(item=>item.mainMemory?.heapUsed)),rendererHeapBytes:median(windows.map(item=>item.rendererHeap?.usedSize)),visible:windows.filter(item=>item.window?.visible&&!item.window?.minimized).length,focused:windows.filter(item=>item.window?.focused).length,windowSamples:windows.length});}
+const first=buckets.find(item=>item.workingSetBytes!==null),last=[...buckets].reverse().find(item=>item.workingSetBytes!==null),growth=key=>first?.[key]>0&&last?.[key]!==null?(last[key]-first[key])/first[key]:null,result={phase,durationSeconds:(phase.end-phase.start)/1000,buckets,first,last,growth:{workingSet:growth('workingSetBytes'),mainHeap:growth('mainHeapBytes'),rendererHeap:growth('rendererHeapBytes')},complete:phase.end-phase.start>=1800000,note:'每分钟中位数；工作集相加包含共享页，且依赖进程采样完整性。堆会因 GC 波动，端点变化不能单独证明泄漏。'};
+await fs.writeFile(path.join(folder,'SOAK-SUMMARY.json'),JSON.stringify(result,null,2));console.log(JSON.stringify({durationSeconds:result.durationSeconds,growth:result.growth,complete:result.complete}));

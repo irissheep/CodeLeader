@@ -1,0 +1,289 @@
+{
+  "schema": 1,
+  "id": "react-ts",
+  "commit": "3fbede021c99814807a0c5d3a1d338532ab06550",
+  "reviewed": "2026-10-24",
+  "review": "先读目录、构建、启动/路由、HTTP封装和资源配置，再独立按注解/装饰器/语法统计；不导入产品分析代码。",
+  "units": {
+    "backend": {
+      "count": 0,
+      "items": [],
+      "evidence": [
+        {
+          "file": "package.json",
+          "line": 1,
+          "sha256": "888d2f2006ee3342754c23014b6f3447374a39b5f02e08294a61d6dbd988384b"
+        },
+        {
+          "file": "src/index.tsx",
+          "line": 1,
+          "sha256": "a81f213fb4b653ef15b5151e41dd433a55572c4286b336d79a1867a24fe2b526"
+        }
+      ]
+    },
+    "frontend": {
+      "count": 1,
+      "items": [
+        {
+          "root": ".",
+          "evidence": [
+            {
+              "file": "package.json",
+              "line": 1,
+              "sha256": "888d2f2006ee3342754c23014b6f3447374a39b5f02e08294a61d6dbd988384b"
+            }
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "file": "package.json",
+          "line": 1,
+          "sha256": "888d2f2006ee3342754c23014b6f3447374a39b5f02e08294a61d6dbd988384b"
+        },
+        {
+          "file": "src/index.tsx",
+          "line": 1,
+          "sha256": "a81f213fb4b653ef15b5151e41dd433a55572c4286b336d79a1867a24fe2b526"
+        }
+      ]
+    },
+    "python": {
+      "count": 0,
+      "items": [],
+      "evidence": [
+        {
+          "file": "package.json",
+          "line": 1,
+          "sha256": "888d2f2006ee3342754c23014b6f3447374a39b5f02e08294a61d6dbd988384b"
+        },
+        {
+          "file": "src/index.tsx",
+          "line": 1,
+          "sha256": "a81f213fb4b653ef15b5151e41dd433a55572c4286b336d79a1867a24fe2b526"
+        }
+      ]
+    }
+  },
+  "infrastructure": {
+    "count": 0,
+    "items": [],
+    "evidence": [
+      {
+        "file": "package.json",
+        "line": 1,
+        "sha256": "888d2f2006ee3342754c23014b6f3447374a39b5f02e08294a61d6dbd988384b"
+      },
+      {
+        "file": "src/index.tsx",
+        "line": 1,
+        "sha256": "a81f213fb4b653ef15b5151e41dd433a55572c4286b336d79a1867a24fe2b526"
+      }
+    ]
+  },
+  "http": {
+    "count": 0,
+    "items": [],
+    "evidence": [
+      {
+        "file": "package.json",
+        "line": 1,
+        "sha256": "888d2f2006ee3342754c23014b6f3447374a39b5f02e08294a61d6dbd988384b"
+      },
+      {
+        "file": "src/index.tsx",
+        "line": 1,
+        "sha256": "a81f213fb4b653ef15b5151e41dd433a55572c4286b336d79a1867a24fe2b526"
+      }
+    ]
+  },
+  "modules": {
+    "count": 0,
+    "items": [],
+    "evidence": [
+      {
+        "file": "package.json",
+        "line": 1,
+        "sha256": "888d2f2006ee3342754c23014b6f3447374a39b5f02e08294a61d6dbd988384b"
+      },
+      {
+        "file": "src/index.tsx",
+        "line": 1,
+        "sha256": "a81f213fb4b653ef15b5151e41dd433a55572c4286b336d79a1867a24fe2b526"
+      }
+    ]
+  },
+  "frontend": {
+    "pages": {
+      "count": 3,
+      "items": [
+        {
+          "file": "src/App.tsx",
+          "line": 34,
+          "path": "{[\"/\", \"/tutorials\"]}",
+          "evidence": [
+            {
+              "file": "src/App.tsx",
+              "line": 34,
+              "sha256": "c92ba4bb488056e0719d27646c715af236de58e27ece94a39b772b107001b706"
+            }
+          ]
+        },
+        {
+          "file": "src/App.tsx",
+          "line": 35,
+          "path": "\"/add\"",
+          "evidence": [
+            {
+              "file": "src/App.tsx",
+              "line": 35,
+              "sha256": "c92ba4bb488056e0719d27646c715af236de58e27ece94a39b772b107001b706"
+            }
+          ]
+        },
+        {
+          "file": "src/App.tsx",
+          "line": 36,
+          "path": "\"/tutorials/:id\"",
+          "evidence": [
+            {
+              "file": "src/App.tsx",
+              "line": 36,
+              "sha256": "c92ba4bb488056e0719d27646c715af236de58e27ece94a39b772b107001b706"
+            }
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "file": "src/App.tsx",
+          "line": 1,
+          "sha256": "c92ba4bb488056e0719d27646c715af236de58e27ece94a39b772b107001b706"
+        }
+      ]
+    },
+    "api": {
+      "count": 7,
+      "items": [
+        {
+          "file": "src/services/tutorial.service.ts",
+          "line": 6,
+          "method": "GET",
+          "path": "/tutorials",
+          "evidence": [
+            {
+              "file": "src/services/tutorial.service.ts",
+              "line": 6,
+              "sha256": "e4375c563f5a35edfb1ac2a7550bd3a7c65860bdbe84f5b9c32700343d266c45"
+            }
+          ]
+        },
+        {
+          "file": "src/services/tutorial.service.ts",
+          "line": 10,
+          "method": "GET",
+          "path": "/tutorials/{value}",
+          "evidence": [
+            {
+              "file": "src/services/tutorial.service.ts",
+              "line": 10,
+              "sha256": "e4375c563f5a35edfb1ac2a7550bd3a7c65860bdbe84f5b9c32700343d266c45"
+            }
+          ]
+        },
+        {
+          "file": "src/services/tutorial.service.ts",
+          "line": 14,
+          "method": "POST",
+          "path": "/tutorials",
+          "evidence": [
+            {
+              "file": "src/services/tutorial.service.ts",
+              "line": 14,
+              "sha256": "e4375c563f5a35edfb1ac2a7550bd3a7c65860bdbe84f5b9c32700343d266c45"
+            }
+          ]
+        },
+        {
+          "file": "src/services/tutorial.service.ts",
+          "line": 18,
+          "method": "PUT",
+          "path": "/tutorials/{value}",
+          "evidence": [
+            {
+              "file": "src/services/tutorial.service.ts",
+              "line": 18,
+              "sha256": "e4375c563f5a35edfb1ac2a7550bd3a7c65860bdbe84f5b9c32700343d266c45"
+            }
+          ]
+        },
+        {
+          "file": "src/services/tutorial.service.ts",
+          "line": 22,
+          "method": "DELETE",
+          "path": "/tutorials/{value}",
+          "evidence": [
+            {
+              "file": "src/services/tutorial.service.ts",
+              "line": 22,
+              "sha256": "e4375c563f5a35edfb1ac2a7550bd3a7c65860bdbe84f5b9c32700343d266c45"
+            }
+          ]
+        },
+        {
+          "file": "src/services/tutorial.service.ts",
+          "line": 26,
+          "method": "DELETE",
+          "path": "/tutorials",
+          "evidence": [
+            {
+              "file": "src/services/tutorial.service.ts",
+              "line": 26,
+              "sha256": "e4375c563f5a35edfb1ac2a7550bd3a7c65860bdbe84f5b9c32700343d266c45"
+            }
+          ]
+        },
+        {
+          "file": "src/services/tutorial.service.ts",
+          "line": 30,
+          "method": "GET",
+          "path": "/tutorials?title={value}",
+          "evidence": [
+            {
+              "file": "src/services/tutorial.service.ts",
+              "line": 30,
+              "sha256": "e4375c563f5a35edfb1ac2a7550bd3a7c65860bdbe84f5b9c32700343d266c45"
+            }
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "file": "src/services/tutorial.service.ts",
+          "line": 1,
+          "sha256": "e4375c563f5a35edfb1ac2a7550bd3a7c65860bdbe84f5b9c32700343d266c45"
+        }
+      ]
+    }
+  },
+  "size": {
+    "files": 27,
+    "classes": 5,
+    "classScope": "生产 Java class/interface、Python class 及选择的前端 class 声明；不含测试",
+    "evidence": [
+      {
+        "file": "package.json",
+        "line": 1,
+        "sha256": "888d2f2006ee3342754c23014b6f3447374a39b5f02e08294a61d6dbd988384b"
+      },
+      {
+        "file": "src/index.tsx",
+        "line": 1,
+        "sha256": "a81f213fb4b653ef15b5151e41dd433a55572c4286b336d79a1867a24fe2b526"
+      }
+    ]
+  },
+  "notes": [
+    "React/TS 小型独立项目；一个 Route 的两个路径别名计一个页面。"
+  ]
+}

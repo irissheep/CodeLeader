@@ -1,0 +1,4375 @@
+{
+  "schema": 1,
+  "id": "ruoyi",
+  "commit": "5e6c917ab0c29536b6ca792475c6611ebe0cea85",
+  "reviewed": "2026-10-24",
+  "review": "先读目录、构建、启动/路由、HTTP封装和资源配置，再独立按注解/装饰器/语法统计；不导入产品分析代码。",
+  "units": {
+    "backend": {
+      "count": 1,
+      "items": [
+        {
+          "root": "ruoyi-admin",
+          "evidence": [
+            {
+              "file": "ruoyi-admin/pom.xml",
+              "line": 1,
+              "sha256": "3ba926509f7ea5f86aac79d0b7a47f83c69ae48aec7554b1160408d786da2653"
+            }
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "file": "pom.xml",
+          "line": 1,
+          "sha256": "a90817f81061a2f503c9c430161aca4457c5f9fde7fa91d0527e28474975b719"
+        },
+        {
+          "file": "ruoyi-admin/pom.xml",
+          "line": 1,
+          "sha256": "3ba926509f7ea5f86aac79d0b7a47f83c69ae48aec7554b1160408d786da2653"
+        },
+        {
+          "file": "ruoyi-ui/package.json",
+          "line": 1,
+          "sha256": "fa8dcc2635e8f6ddc0bc6e584c9e12a2cefb737b5da99776949c8b8c95a254cc"
+        }
+      ]
+    },
+    "frontend": {
+      "count": 1,
+      "items": [
+        {
+          "root": "ruoyi-ui",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/package.json",
+              "line": 1,
+              "sha256": "fa8dcc2635e8f6ddc0bc6e584c9e12a2cefb737b5da99776949c8b8c95a254cc"
+            }
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "file": "pom.xml",
+          "line": 1,
+          "sha256": "a90817f81061a2f503c9c430161aca4457c5f9fde7fa91d0527e28474975b719"
+        },
+        {
+          "file": "ruoyi-admin/pom.xml",
+          "line": 1,
+          "sha256": "3ba926509f7ea5f86aac79d0b7a47f83c69ae48aec7554b1160408d786da2653"
+        },
+        {
+          "file": "ruoyi-ui/package.json",
+          "line": 1,
+          "sha256": "fa8dcc2635e8f6ddc0bc6e584c9e12a2cefb737b5da99776949c8b8c95a254cc"
+        }
+      ]
+    },
+    "python": {
+      "count": 0,
+      "items": [],
+      "evidence": [
+        {
+          "file": "pom.xml",
+          "line": 1,
+          "sha256": "a90817f81061a2f503c9c430161aca4457c5f9fde7fa91d0527e28474975b719"
+        },
+        {
+          "file": "ruoyi-admin/pom.xml",
+          "line": 1,
+          "sha256": "3ba926509f7ea5f86aac79d0b7a47f83c69ae48aec7554b1160408d786da2653"
+        },
+        {
+          "file": "ruoyi-ui/package.json",
+          "line": 1,
+          "sha256": "fa8dcc2635e8f6ddc0bc6e584c9e12a2cefb737b5da99776949c8b8c95a254cc"
+        }
+      ]
+    }
+  },
+  "infrastructure": {
+    "count": 2,
+    "items": [
+      {
+        "name": "MySQL",
+        "kind": "database",
+        "condition": "configured",
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/resources/application-druid.yml",
+            "line": 1,
+            "sha256": "aca203c77317338f4ce97be0bd0c64e00910b8e858c5815e988a5b1a0b28a20d"
+          }
+        ]
+      },
+      {
+        "name": "Redis",
+        "kind": "cache",
+        "condition": "configured",
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/resources/application.yml",
+            "line": 1,
+            "sha256": "04e9b1c7bf967f3fa1b188a5447f5aaa9f29772738ec36f57226b4c95a3150a0"
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "file": "pom.xml",
+        "line": 1,
+        "sha256": "a90817f81061a2f503c9c430161aca4457c5f9fde7fa91d0527e28474975b719"
+      },
+      {
+        "file": "ruoyi-admin/pom.xml",
+        "line": 1,
+        "sha256": "3ba926509f7ea5f86aac79d0b7a47f83c69ae48aec7554b1160408d786da2653"
+      },
+      {
+        "file": "ruoyi-ui/package.json",
+        "line": 1,
+        "sha256": "fa8dcc2635e8f6ddc0bc6e584c9e12a2cefb737b5da99776949c8b8c95a254cc"
+      }
+    ]
+  },
+  "http": {
+    "count": 140,
+    "items": [
+      {
+        "method": "GET",
+        "path": "/captchaImage",
+        "module": "CaptchaController",
+        "name": "getCode",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/common/CaptchaController.java",
+        "line": 45,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/common/CaptchaController.java",
+            "line": 45,
+            "sha256": "80d37d38164690b6e67b6554c7bad1b730a4b274bac65722e43588d247490418"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/common/download",
+        "module": "CommonController",
+        "name": "fileDownload",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/common/CommonController.java",
+        "line": 46,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/common/CommonController.java",
+            "line": 46,
+            "sha256": "19b827bc5b35dbbc065dfb92c6012918607b0ab4b568d58b6e79ca0aea778dd4"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/common/upload",
+        "module": "CommonController",
+        "name": "uploadFile",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/common/CommonController.java",
+        "line": 75,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/common/CommonController.java",
+            "line": 75,
+            "sha256": "19b827bc5b35dbbc065dfb92c6012918607b0ab4b568d58b6e79ca0aea778dd4"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/common/uploads",
+        "module": "CommonController",
+        "name": "uploadFiles",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/common/CommonController.java",
+        "line": 101,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/common/CommonController.java",
+            "line": 101,
+            "sha256": "19b827bc5b35dbbc065dfb92c6012918607b0ab4b568d58b6e79ca0aea778dd4"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/common/download/resource",
+        "module": "CommonController",
+        "name": "resourceDownload",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/common/CommonController.java",
+        "line": 138,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/common/CommonController.java",
+            "line": 138,
+            "sha256": "19b827bc5b35dbbc065dfb92c6012918607b0ab4b568d58b6e79ca0aea778dd4"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/monitor/cache/",
+        "module": "CacheController",
+        "name": "getInfo",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/CacheController.java",
+        "line": 48,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/CacheController.java",
+            "line": 48,
+            "sha256": "7029c47166eacbaec605dd4812099e8a8c97ac23cf1a635902b017120ca45e8f"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/monitor/cache/getNames",
+        "module": "CacheController",
+        "name": "cache",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/CacheController.java",
+        "line": 72,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/CacheController.java",
+            "line": 72,
+            "sha256": "7029c47166eacbaec605dd4812099e8a8c97ac23cf1a635902b017120ca45e8f"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/monitor/cache/getKeys/{cacheName}",
+        "module": "CacheController",
+        "name": "getCacheKeys",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/CacheController.java",
+        "line": 79,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/CacheController.java",
+            "line": 79,
+            "sha256": "7029c47166eacbaec605dd4812099e8a8c97ac23cf1a635902b017120ca45e8f"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/monitor/cache/getValue/{cacheName}/{cacheKey}",
+        "module": "CacheController",
+        "name": "getCacheValue",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/CacheController.java",
+        "line": 87,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/CacheController.java",
+            "line": 87,
+            "sha256": "7029c47166eacbaec605dd4812099e8a8c97ac23cf1a635902b017120ca45e8f"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "path": "/monitor/cache/clearCacheName/{cacheName}",
+        "module": "CacheController",
+        "name": "clearCacheName",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/CacheController.java",
+        "line": 96,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/CacheController.java",
+            "line": 96,
+            "sha256": "7029c47166eacbaec605dd4812099e8a8c97ac23cf1a635902b017120ca45e8f"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "path": "/monitor/cache/clearCacheKey/{cacheKey}",
+        "module": "CacheController",
+        "name": "clearCacheKey",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/CacheController.java",
+        "line": 105,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/CacheController.java",
+            "line": 105,
+            "sha256": "7029c47166eacbaec605dd4812099e8a8c97ac23cf1a635902b017120ca45e8f"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "path": "/monitor/cache/clearCacheAll",
+        "module": "CacheController",
+        "name": "clearCacheAll",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/CacheController.java",
+        "line": 113,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/CacheController.java",
+            "line": 113,
+            "sha256": "7029c47166eacbaec605dd4812099e8a8c97ac23cf1a635902b017120ca45e8f"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/monitor/server/",
+        "module": "ServerController",
+        "name": "getInfo",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/ServerController.java",
+        "line": 19,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/ServerController.java",
+            "line": 19,
+            "sha256": "8a381ec9f810b55631df5b36a581b6acd40914ea679dffd1ef989d620cb7993a"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/monitor/logininfor/list",
+        "module": "SysLogininforController",
+        "name": "list",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/SysLogininforController.java",
+        "line": 38,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/SysLogininforController.java",
+            "line": 38,
+            "sha256": "3cca69a7ef125556abe0c75252e29a6e4f4d53f52b87b7d6d8d16beeee67adc4"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/monitor/logininfor/export",
+        "module": "SysLogininforController",
+        "name": "export",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/SysLogininforController.java",
+        "line": 47,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/SysLogininforController.java",
+            "line": 47,
+            "sha256": "3cca69a7ef125556abe0c75252e29a6e4f4d53f52b87b7d6d8d16beeee67adc4"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "path": "/monitor/logininfor/{infoIds}",
+        "module": "SysLogininforController",
+        "name": "remove",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/SysLogininforController.java",
+        "line": 57,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/SysLogininforController.java",
+            "line": 57,
+            "sha256": "3cca69a7ef125556abe0c75252e29a6e4f4d53f52b87b7d6d8d16beeee67adc4"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "path": "/monitor/logininfor/clean",
+        "module": "SysLogininforController",
+        "name": "clean",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/SysLogininforController.java",
+        "line": 65,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/SysLogininforController.java",
+            "line": 65,
+            "sha256": "3cca69a7ef125556abe0c75252e29a6e4f4d53f52b87b7d6d8d16beeee67adc4"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/monitor/logininfor/unlock/{userName}",
+        "module": "SysLogininforController",
+        "name": "unlock",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/SysLogininforController.java",
+        "line": 74,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/SysLogininforController.java",
+            "line": 74,
+            "sha256": "3cca69a7ef125556abe0c75252e29a6e4f4d53f52b87b7d6d8d16beeee67adc4"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/monitor/operlog/list",
+        "module": "SysOperlogController",
+        "name": "list",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/SysOperlogController.java",
+        "line": 34,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/SysOperlogController.java",
+            "line": 34,
+            "sha256": "0cda61dbd7b50c6e26f2687ce008b074164ebc7872222325c7fd6e85333a74f1"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/monitor/operlog/export",
+        "module": "SysOperlogController",
+        "name": "export",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/SysOperlogController.java",
+        "line": 43,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/SysOperlogController.java",
+            "line": 43,
+            "sha256": "0cda61dbd7b50c6e26f2687ce008b074164ebc7872222325c7fd6e85333a74f1"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "path": "/monitor/operlog/{operIds}",
+        "module": "SysOperlogController",
+        "name": "remove",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/SysOperlogController.java",
+        "line": 53,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/SysOperlogController.java",
+            "line": 53,
+            "sha256": "0cda61dbd7b50c6e26f2687ce008b074164ebc7872222325c7fd6e85333a74f1"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "path": "/monitor/operlog/clean",
+        "module": "SysOperlogController",
+        "name": "clean",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/SysOperlogController.java",
+        "line": 61,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/SysOperlogController.java",
+            "line": 61,
+            "sha256": "0cda61dbd7b50c6e26f2687ce008b074164ebc7872222325c7fd6e85333a74f1"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/monitor/online/list",
+        "module": "SysUserOnlineController",
+        "name": "list",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/SysUserOnlineController.java",
+        "line": 41,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/SysUserOnlineController.java",
+            "line": 41,
+            "sha256": "5c35ea2f33b365892e54791b48a1cc10d4a6264dc3bc8c535c8a3cc4cc450413"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "path": "/monitor/online/{tokenId}",
+        "module": "SysUserOnlineController",
+        "name": "forceLogout",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/SysUserOnlineController.java",
+        "line": 75,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/SysUserOnlineController.java",
+            "line": 75,
+            "sha256": "5c35ea2f33b365892e54791b48a1cc10d4a6264dc3bc8c535c8a3cc4cc450413"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/system/config/list",
+        "module": "SysConfigController",
+        "name": "list",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysConfigController.java",
+        "line": 40,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysConfigController.java",
+            "line": 40,
+            "sha256": "73fc56575def6421cbb25e397fa72628638d0863a715dc7e28dafdc0b62aa7cc"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/system/config/export",
+        "module": "SysConfigController",
+        "name": "export",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysConfigController.java",
+        "line": 49,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysConfigController.java",
+            "line": 49,
+            "sha256": "73fc56575def6421cbb25e397fa72628638d0863a715dc7e28dafdc0b62aa7cc"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/system/config/{configId}",
+        "module": "SysConfigController",
+        "name": "getInfo",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysConfigController.java",
+        "line": 62,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysConfigController.java",
+            "line": 62,
+            "sha256": "73fc56575def6421cbb25e397fa72628638d0863a715dc7e28dafdc0b62aa7cc"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/system/config/configKey/{configKey}",
+        "module": "SysConfigController",
+        "name": "getConfigKey",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysConfigController.java",
+        "line": 72,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysConfigController.java",
+            "line": 72,
+            "sha256": "73fc56575def6421cbb25e397fa72628638d0863a715dc7e28dafdc0b62aa7cc"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/system/config/",
+        "module": "SysConfigController",
+        "name": "add",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysConfigController.java",
+        "line": 81,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysConfigController.java",
+            "line": 81,
+            "sha256": "73fc56575def6421cbb25e397fa72628638d0863a715dc7e28dafdc0b62aa7cc"
+          }
+        ]
+      },
+      {
+        "method": "PUT",
+        "path": "/system/config/",
+        "module": "SysConfigController",
+        "name": "edit",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysConfigController.java",
+        "line": 97,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysConfigController.java",
+            "line": 97,
+            "sha256": "73fc56575def6421cbb25e397fa72628638d0863a715dc7e28dafdc0b62aa7cc"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "path": "/system/config/{configIds}",
+        "module": "SysConfigController",
+        "name": "remove",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysConfigController.java",
+        "line": 113,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysConfigController.java",
+            "line": 113,
+            "sha256": "73fc56575def6421cbb25e397fa72628638d0863a715dc7e28dafdc0b62aa7cc"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "path": "/system/config/refreshCache",
+        "module": "SysConfigController",
+        "name": "refreshCache",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysConfigController.java",
+        "line": 125,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysConfigController.java",
+            "line": 125,
+            "sha256": "73fc56575def6421cbb25e397fa72628638d0863a715dc7e28dafdc0b62aa7cc"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/system/dept/list",
+        "module": "SysDeptController",
+        "name": "list",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysDeptController.java",
+        "line": 40,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysDeptController.java",
+            "line": 40,
+            "sha256": "625fa9347029fbefdd7d1c2639e0d5468b6874191ec9c4e688e0e4ae32b5941d"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/system/dept/list/exclude/{deptId}",
+        "module": "SysDeptController",
+        "name": "excludeChild",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysDeptController.java",
+        "line": 51,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysDeptController.java",
+            "line": 51,
+            "sha256": "625fa9347029fbefdd7d1c2639e0d5468b6874191ec9c4e688e0e4ae32b5941d"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/system/dept/{deptId}",
+        "module": "SysDeptController",
+        "name": "getInfo",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysDeptController.java",
+        "line": 63,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysDeptController.java",
+            "line": 63,
+            "sha256": "625fa9347029fbefdd7d1c2639e0d5468b6874191ec9c4e688e0e4ae32b5941d"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/system/dept/",
+        "module": "SysDeptController",
+        "name": "add",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysDeptController.java",
+        "line": 74,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysDeptController.java",
+            "line": 74,
+            "sha256": "625fa9347029fbefdd7d1c2639e0d5468b6874191ec9c4e688e0e4ae32b5941d"
+          }
+        ]
+      },
+      {
+        "method": "PUT",
+        "path": "/system/dept/",
+        "module": "SysDeptController",
+        "name": "edit",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysDeptController.java",
+        "line": 90,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysDeptController.java",
+            "line": 90,
+            "sha256": "625fa9347029fbefdd7d1c2639e0d5468b6874191ec9c4e688e0e4ae32b5941d"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "path": "/system/dept/{deptId}",
+        "module": "SysDeptController",
+        "name": "remove",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysDeptController.java",
+        "line": 116,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysDeptController.java",
+            "line": 116,
+            "sha256": "625fa9347029fbefdd7d1c2639e0d5468b6874191ec9c4e688e0e4ae32b5941d"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/system/dict/data/list",
+        "module": "SysDictDataController",
+        "name": "list",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysDictDataController.java",
+        "line": 43,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysDictDataController.java",
+            "line": 43,
+            "sha256": "e8c44cfd184c41fb220461bad363651b40369a100460a9ef7d0a67e8af95591f"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/system/dict/data/export",
+        "module": "SysDictDataController",
+        "name": "export",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysDictDataController.java",
+        "line": 52,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysDictDataController.java",
+            "line": 52,
+            "sha256": "e8c44cfd184c41fb220461bad363651b40369a100460a9ef7d0a67e8af95591f"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/system/dict/data/{dictCode}",
+        "module": "SysDictDataController",
+        "name": "getInfo",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysDictDataController.java",
+        "line": 65,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysDictDataController.java",
+            "line": 65,
+            "sha256": "e8c44cfd184c41fb220461bad363651b40369a100460a9ef7d0a67e8af95591f"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/system/dict/data/type/{dictType}",
+        "module": "SysDictDataController",
+        "name": "dictType",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysDictDataController.java",
+        "line": 75,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysDictDataController.java",
+            "line": 75,
+            "sha256": "e8c44cfd184c41fb220461bad363651b40369a100460a9ef7d0a67e8af95591f"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/system/dict/data/",
+        "module": "SysDictDataController",
+        "name": "add",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysDictDataController.java",
+        "line": 89,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysDictDataController.java",
+            "line": 89,
+            "sha256": "e8c44cfd184c41fb220461bad363651b40369a100460a9ef7d0a67e8af95591f"
+          }
+        ]
+      },
+      {
+        "method": "PUT",
+        "path": "/system/dict/data/",
+        "module": "SysDictDataController",
+        "name": "edit",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysDictDataController.java",
+        "line": 101,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysDictDataController.java",
+            "line": 101,
+            "sha256": "e8c44cfd184c41fb220461bad363651b40369a100460a9ef7d0a67e8af95591f"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "path": "/system/dict/data/{dictCodes}",
+        "module": "SysDictDataController",
+        "name": "remove",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysDictDataController.java",
+        "line": 113,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysDictDataController.java",
+            "line": 113,
+            "sha256": "e8c44cfd184c41fb220461bad363651b40369a100460a9ef7d0a67e8af95591f"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/system/dict/type/list",
+        "module": "SysDictTypeController",
+        "name": "list",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysDictTypeController.java",
+        "line": 37,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysDictTypeController.java",
+            "line": 37,
+            "sha256": "9264e9d605044144b5e73feb124c363176c46aaae7fecb4ea11a9c13a3f01875"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/system/dict/type/export",
+        "module": "SysDictTypeController",
+        "name": "export",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysDictTypeController.java",
+        "line": 46,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysDictTypeController.java",
+            "line": 46,
+            "sha256": "9264e9d605044144b5e73feb124c363176c46aaae7fecb4ea11a9c13a3f01875"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/system/dict/type/{dictId}",
+        "module": "SysDictTypeController",
+        "name": "getInfo",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysDictTypeController.java",
+        "line": 59,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysDictTypeController.java",
+            "line": 59,
+            "sha256": "9264e9d605044144b5e73feb124c363176c46aaae7fecb4ea11a9c13a3f01875"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/system/dict/type/",
+        "module": "SysDictTypeController",
+        "name": "add",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysDictTypeController.java",
+        "line": 69,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysDictTypeController.java",
+            "line": 69,
+            "sha256": "9264e9d605044144b5e73feb124c363176c46aaae7fecb4ea11a9c13a3f01875"
+          }
+        ]
+      },
+      {
+        "method": "PUT",
+        "path": "/system/dict/type/",
+        "module": "SysDictTypeController",
+        "name": "edit",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysDictTypeController.java",
+        "line": 85,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysDictTypeController.java",
+            "line": 85,
+            "sha256": "9264e9d605044144b5e73feb124c363176c46aaae7fecb4ea11a9c13a3f01875"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "path": "/system/dict/type/{dictIds}",
+        "module": "SysDictTypeController",
+        "name": "remove",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysDictTypeController.java",
+        "line": 101,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysDictTypeController.java",
+            "line": 101,
+            "sha256": "9264e9d605044144b5e73feb124c363176c46aaae7fecb4ea11a9c13a3f01875"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "path": "/system/dict/type/refreshCache",
+        "module": "SysDictTypeController",
+        "name": "refreshCache",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysDictTypeController.java",
+        "line": 113,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysDictTypeController.java",
+            "line": 113,
+            "sha256": "9264e9d605044144b5e73feb124c363176c46aaae7fecb4ea11a9c13a3f01875"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/system/dict/type/optionselect",
+        "module": "SysDictTypeController",
+        "name": "optionselect",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysDictTypeController.java",
+        "line": 125,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysDictTypeController.java",
+            "line": 125,
+            "sha256": "9264e9d605044144b5e73feb124c363176c46aaae7fecb4ea11a9c13a3f01875"
+          }
+        ]
+      },
+      {
+        "method": "ANY",
+        "path": "/",
+        "module": "SysIndexController",
+        "name": "index",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysIndexController.java",
+        "line": 24,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysIndexController.java",
+            "line": 24,
+            "sha256": "b9c9b234fd5a9c28ce4ba0b22a927c1396c3e7b170acc46cf82f23d50603834f"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/login",
+        "module": "SysLoginController",
+        "name": "login",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysLoginController.java",
+        "line": 48,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysLoginController.java",
+            "line": 48,
+            "sha256": "1fa8babdf2c6c4ea1c55ff3a98a5ae1b23e484413a29731efcbf2d73a91e665a"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/getInfo",
+        "module": "SysLoginController",
+        "name": "getInfo",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysLoginController.java",
+        "line": 64,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysLoginController.java",
+            "line": 64,
+            "sha256": "1fa8babdf2c6c4ea1c55ff3a98a5ae1b23e484413a29731efcbf2d73a91e665a"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/getRouters",
+        "module": "SysLoginController",
+        "name": "getRouters",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysLoginController.java",
+        "line": 90,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysLoginController.java",
+            "line": 90,
+            "sha256": "1fa8babdf2c6c4ea1c55ff3a98a5ae1b23e484413a29731efcbf2d73a91e665a"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/system/menu/list",
+        "module": "SysMenuController",
+        "name": "list",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysMenuController.java",
+        "line": 39,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysMenuController.java",
+            "line": 39,
+            "sha256": "21ae91d6b5fe30d1e60d4632956adfbad4107da4908b5f652778f73781df8f81"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/system/menu/{menuId}",
+        "module": "SysMenuController",
+        "name": "getInfo",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysMenuController.java",
+        "line": 50,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysMenuController.java",
+            "line": 50,
+            "sha256": "21ae91d6b5fe30d1e60d4632956adfbad4107da4908b5f652778f73781df8f81"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/system/menu/treeselect",
+        "module": "SysMenuController",
+        "name": "treeselect",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysMenuController.java",
+        "line": 60,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysMenuController.java",
+            "line": 60,
+            "sha256": "21ae91d6b5fe30d1e60d4632956adfbad4107da4908b5f652778f73781df8f81"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/system/menu/roleMenuTreeselect/{roleId}",
+        "module": "SysMenuController",
+        "name": "roleMenuTreeselect",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysMenuController.java",
+        "line": 70,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysMenuController.java",
+            "line": 70,
+            "sha256": "21ae91d6b5fe30d1e60d4632956adfbad4107da4908b5f652778f73781df8f81"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/system/menu/",
+        "module": "SysMenuController",
+        "name": "add",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysMenuController.java",
+        "line": 83,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysMenuController.java",
+            "line": 83,
+            "sha256": "21ae91d6b5fe30d1e60d4632956adfbad4107da4908b5f652778f73781df8f81"
+          }
+        ]
+      },
+      {
+        "method": "PUT",
+        "path": "/system/menu/",
+        "module": "SysMenuController",
+        "name": "edit",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysMenuController.java",
+        "line": 103,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysMenuController.java",
+            "line": 103,
+            "sha256": "21ae91d6b5fe30d1e60d4632956adfbad4107da4908b5f652778f73781df8f81"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "path": "/system/menu/{menuId}",
+        "module": "SysMenuController",
+        "name": "remove",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysMenuController.java",
+        "line": 127,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysMenuController.java",
+            "line": 127,
+            "sha256": "21ae91d6b5fe30d1e60d4632956adfbad4107da4908b5f652778f73781df8f81"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/system/notice/list",
+        "module": "SysNoticeController",
+        "name": "list",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysNoticeController.java",
+        "line": 38,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysNoticeController.java",
+            "line": 38,
+            "sha256": "38ec69236a37d909996c7302328a5523d3e7786fb6ef3c032db0f59b268ea7cb"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/system/notice/{noticeId}",
+        "module": "SysNoticeController",
+        "name": "getInfo",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysNoticeController.java",
+        "line": 50,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysNoticeController.java",
+            "line": 50,
+            "sha256": "38ec69236a37d909996c7302328a5523d3e7786fb6ef3c032db0f59b268ea7cb"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/system/notice/",
+        "module": "SysNoticeController",
+        "name": "add",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysNoticeController.java",
+        "line": 60,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysNoticeController.java",
+            "line": 60,
+            "sha256": "38ec69236a37d909996c7302328a5523d3e7786fb6ef3c032db0f59b268ea7cb"
+          }
+        ]
+      },
+      {
+        "method": "PUT",
+        "path": "/system/notice/",
+        "module": "SysNoticeController",
+        "name": "edit",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysNoticeController.java",
+        "line": 72,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysNoticeController.java",
+            "line": 72,
+            "sha256": "38ec69236a37d909996c7302328a5523d3e7786fb6ef3c032db0f59b268ea7cb"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "path": "/system/notice/{noticeIds}",
+        "module": "SysNoticeController",
+        "name": "remove",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysNoticeController.java",
+        "line": 84,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysNoticeController.java",
+            "line": 84,
+            "sha256": "38ec69236a37d909996c7302328a5523d3e7786fb6ef3c032db0f59b268ea7cb"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/system/post/list",
+        "module": "SysPostController",
+        "name": "list",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysPostController.java",
+        "line": 40,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysPostController.java",
+            "line": 40,
+            "sha256": "6a9d373bdf5b68112c80ff26ac1550399419a1818ca9848843636443232d62d6"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/system/post/export",
+        "module": "SysPostController",
+        "name": "export",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysPostController.java",
+        "line": 49,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysPostController.java",
+            "line": 49,
+            "sha256": "6a9d373bdf5b68112c80ff26ac1550399419a1818ca9848843636443232d62d6"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/system/post/{postId}",
+        "module": "SysPostController",
+        "name": "getInfo",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysPostController.java",
+        "line": 62,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysPostController.java",
+            "line": 62,
+            "sha256": "6a9d373bdf5b68112c80ff26ac1550399419a1818ca9848843636443232d62d6"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/system/post/",
+        "module": "SysPostController",
+        "name": "add",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysPostController.java",
+        "line": 72,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysPostController.java",
+            "line": 72,
+            "sha256": "6a9d373bdf5b68112c80ff26ac1550399419a1818ca9848843636443232d62d6"
+          }
+        ]
+      },
+      {
+        "method": "PUT",
+        "path": "/system/post/",
+        "module": "SysPostController",
+        "name": "edit",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysPostController.java",
+        "line": 92,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysPostController.java",
+            "line": 92,
+            "sha256": "6a9d373bdf5b68112c80ff26ac1550399419a1818ca9848843636443232d62d6"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "path": "/system/post/{postIds}",
+        "module": "SysPostController",
+        "name": "remove",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysPostController.java",
+        "line": 112,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysPostController.java",
+            "line": 112,
+            "sha256": "6a9d373bdf5b68112c80ff26ac1550399419a1818ca9848843636443232d62d6"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/system/post/optionselect",
+        "module": "SysPostController",
+        "name": "optionselect",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysPostController.java",
+        "line": 123,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysPostController.java",
+            "line": 123,
+            "sha256": "6a9d373bdf5b68112c80ff26ac1550399419a1818ca9848843636443232d62d6"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/system/user/profile/",
+        "module": "SysProfileController",
+        "name": "profile",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysProfileController.java",
+        "line": 45,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysProfileController.java",
+            "line": 45,
+            "sha256": "177d3b4818cf61dbd613dd4c5f5c92d2991ca0831967b4359b990e4179ffd25e"
+          }
+        ]
+      },
+      {
+        "method": "PUT",
+        "path": "/system/user/profile/",
+        "module": "SysProfileController",
+        "name": "updateProfile",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysProfileController.java",
+        "line": 59,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysProfileController.java",
+            "line": 59,
+            "sha256": "177d3b4818cf61dbd613dd4c5f5c92d2991ca0831967b4359b990e4179ffd25e"
+          }
+        ]
+      },
+      {
+        "method": "PUT",
+        "path": "/system/user/profile/updatePwd",
+        "module": "SysProfileController",
+        "name": "updatePwd",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysProfileController.java",
+        "line": 89,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysProfileController.java",
+            "line": 89,
+            "sha256": "177d3b4818cf61dbd613dd4c5f5c92d2991ca0831967b4359b990e4179ffd25e"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/system/user/profile/avatar",
+        "module": "SysProfileController",
+        "name": "avatar",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysProfileController.java",
+        "line": 120,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysProfileController.java",
+            "line": 120,
+            "sha256": "177d3b4818cf61dbd613dd4c5f5c92d2991ca0831967b4359b990e4179ffd25e"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/register",
+        "module": "SysRegisterController",
+        "name": "register",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysRegisterController.java",
+        "line": 28,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysRegisterController.java",
+            "line": 28,
+            "sha256": "4ba1ee192fae2e2ebdc716d0fc4179b3aba1477f147fceff967350e90e8ca8c9"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/system/role/list",
+        "module": "SysRoleController",
+        "name": "list",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysRoleController.java",
+        "line": 58,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysRoleController.java",
+            "line": 58,
+            "sha256": "2a1ae4a64a104ef1390d0bc32c0d87b6514bb4afd4ee43011784db1bb8bf9f6c"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/system/role/export",
+        "module": "SysRoleController",
+        "name": "export",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysRoleController.java",
+        "line": 67,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysRoleController.java",
+            "line": 67,
+            "sha256": "2a1ae4a64a104ef1390d0bc32c0d87b6514bb4afd4ee43011784db1bb8bf9f6c"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/system/role/{roleId}",
+        "module": "SysRoleController",
+        "name": "getInfo",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysRoleController.java",
+        "line": 80,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysRoleController.java",
+            "line": 80,
+            "sha256": "2a1ae4a64a104ef1390d0bc32c0d87b6514bb4afd4ee43011784db1bb8bf9f6c"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/system/role/",
+        "module": "SysRoleController",
+        "name": "add",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysRoleController.java",
+        "line": 91,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysRoleController.java",
+            "line": 91,
+            "sha256": "2a1ae4a64a104ef1390d0bc32c0d87b6514bb4afd4ee43011784db1bb8bf9f6c"
+          }
+        ]
+      },
+      {
+        "method": "PUT",
+        "path": "/system/role/",
+        "module": "SysRoleController",
+        "name": "edit",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysRoleController.java",
+        "line": 112,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysRoleController.java",
+            "line": 112,
+            "sha256": "2a1ae4a64a104ef1390d0bc32c0d87b6514bb4afd4ee43011784db1bb8bf9f6c"
+          }
+        ]
+      },
+      {
+        "method": "PUT",
+        "path": "/system/role/dataScope",
+        "module": "SysRoleController",
+        "name": "dataScope",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysRoleController.java",
+        "line": 147,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysRoleController.java",
+            "line": 147,
+            "sha256": "2a1ae4a64a104ef1390d0bc32c0d87b6514bb4afd4ee43011784db1bb8bf9f6c"
+          }
+        ]
+      },
+      {
+        "method": "PUT",
+        "path": "/system/role/changeStatus",
+        "module": "SysRoleController",
+        "name": "changeStatus",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysRoleController.java",
+        "line": 160,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysRoleController.java",
+            "line": 160,
+            "sha256": "2a1ae4a64a104ef1390d0bc32c0d87b6514bb4afd4ee43011784db1bb8bf9f6c"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "path": "/system/role/{roleIds}",
+        "module": "SysRoleController",
+        "name": "remove",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysRoleController.java",
+        "line": 174,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysRoleController.java",
+            "line": 174,
+            "sha256": "2a1ae4a64a104ef1390d0bc32c0d87b6514bb4afd4ee43011784db1bb8bf9f6c"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/system/role/optionselect",
+        "module": "SysRoleController",
+        "name": "optionselect",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysRoleController.java",
+        "line": 185,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysRoleController.java",
+            "line": 185,
+            "sha256": "2a1ae4a64a104ef1390d0bc32c0d87b6514bb4afd4ee43011784db1bb8bf9f6c"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/system/role/authUser/allocatedList",
+        "module": "SysRoleController",
+        "name": "allocatedList",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysRoleController.java",
+        "line": 195,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysRoleController.java",
+            "line": 195,
+            "sha256": "2a1ae4a64a104ef1390d0bc32c0d87b6514bb4afd4ee43011784db1bb8bf9f6c"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/system/role/authUser/unallocatedList",
+        "module": "SysRoleController",
+        "name": "unallocatedList",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysRoleController.java",
+        "line": 207,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysRoleController.java",
+            "line": 207,
+            "sha256": "2a1ae4a64a104ef1390d0bc32c0d87b6514bb4afd4ee43011784db1bb8bf9f6c"
+          }
+        ]
+      },
+      {
+        "method": "PUT",
+        "path": "/system/role/authUser/cancel",
+        "module": "SysRoleController",
+        "name": "cancelAuthUser",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysRoleController.java",
+        "line": 219,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysRoleController.java",
+            "line": 219,
+            "sha256": "2a1ae4a64a104ef1390d0bc32c0d87b6514bb4afd4ee43011784db1bb8bf9f6c"
+          }
+        ]
+      },
+      {
+        "method": "PUT",
+        "path": "/system/role/authUser/cancelAll",
+        "module": "SysRoleController",
+        "name": "cancelAuthUserAll",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysRoleController.java",
+        "line": 230,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysRoleController.java",
+            "line": 230,
+            "sha256": "2a1ae4a64a104ef1390d0bc32c0d87b6514bb4afd4ee43011784db1bb8bf9f6c"
+          }
+        ]
+      },
+      {
+        "method": "PUT",
+        "path": "/system/role/authUser/selectAll",
+        "module": "SysRoleController",
+        "name": "selectAuthUserAll",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysRoleController.java",
+        "line": 241,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysRoleController.java",
+            "line": 241,
+            "sha256": "2a1ae4a64a104ef1390d0bc32c0d87b6514bb4afd4ee43011784db1bb8bf9f6c"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/system/role/deptTree/{roleId}",
+        "module": "SysRoleController",
+        "name": "deptTree",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysRoleController.java",
+        "line": 253,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysRoleController.java",
+            "line": 253,
+            "sha256": "2a1ae4a64a104ef1390d0bc32c0d87b6514bb4afd4ee43011784db1bb8bf9f6c"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/system/user/list",
+        "module": "SysUserController",
+        "name": "list",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysUserController.java",
+        "line": 59,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysUserController.java",
+            "line": 59,
+            "sha256": "46c6063c3113778f1f1adb75d3ea442c58a4434f6babd59373e5f782d2aece31"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/system/user/export",
+        "module": "SysUserController",
+        "name": "export",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysUserController.java",
+        "line": 68,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysUserController.java",
+            "line": 68,
+            "sha256": "46c6063c3113778f1f1adb75d3ea442c58a4434f6babd59373e5f782d2aece31"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/system/user/importData",
+        "module": "SysUserController",
+        "name": "importData",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysUserController.java",
+        "line": 78,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysUserController.java",
+            "line": 78,
+            "sha256": "46c6063c3113778f1f1adb75d3ea442c58a4434f6babd59373e5f782d2aece31"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/system/user/importTemplate",
+        "module": "SysUserController",
+        "name": "importTemplate",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysUserController.java",
+        "line": 90,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysUserController.java",
+            "line": 90,
+            "sha256": "46c6063c3113778f1f1adb75d3ea442c58a4434f6babd59373e5f782d2aece31"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/system/user/",
+        "module": "SysUserController",
+        "name": "getInfo",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysUserController.java",
+        "line": 100,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysUserController.java",
+            "line": 100,
+            "sha256": "46c6063c3113778f1f1adb75d3ea442c58a4434f6babd59373e5f782d2aece31"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/system/user/",
+        "module": "SysUserController",
+        "name": "add",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysUserController.java",
+        "line": 122,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysUserController.java",
+            "line": 122,
+            "sha256": "46c6063c3113778f1f1adb75d3ea442c58a4434f6babd59373e5f782d2aece31"
+          }
+        ]
+      },
+      {
+        "method": "PUT",
+        "path": "/system/user/",
+        "module": "SysUserController",
+        "name": "edit",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysUserController.java",
+        "line": 149,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysUserController.java",
+            "line": 149,
+            "sha256": "46c6063c3113778f1f1adb75d3ea442c58a4434f6babd59373e5f782d2aece31"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "path": "/system/user/{userIds}",
+        "module": "SysUserController",
+        "name": "remove",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysUserController.java",
+        "line": 177,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysUserController.java",
+            "line": 177,
+            "sha256": "46c6063c3113778f1f1adb75d3ea442c58a4434f6babd59373e5f782d2aece31"
+          }
+        ]
+      },
+      {
+        "method": "PUT",
+        "path": "/system/user/resetPwd",
+        "module": "SysUserController",
+        "name": "resetPwd",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysUserController.java",
+        "line": 192,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysUserController.java",
+            "line": 192,
+            "sha256": "46c6063c3113778f1f1adb75d3ea442c58a4434f6babd59373e5f782d2aece31"
+          }
+        ]
+      },
+      {
+        "method": "PUT",
+        "path": "/system/user/changeStatus",
+        "module": "SysUserController",
+        "name": "changeStatus",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysUserController.java",
+        "line": 207,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysUserController.java",
+            "line": 207,
+            "sha256": "46c6063c3113778f1f1adb75d3ea442c58a4434f6babd59373e5f782d2aece31"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/system/user/authRole/{userId}",
+        "module": "SysUserController",
+        "name": "authRole",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysUserController.java",
+        "line": 221,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysUserController.java",
+            "line": 221,
+            "sha256": "46c6063c3113778f1f1adb75d3ea442c58a4434f6babd59373e5f782d2aece31"
+          }
+        ]
+      },
+      {
+        "method": "PUT",
+        "path": "/system/user/authRole",
+        "module": "SysUserController",
+        "name": "insertAuthRole",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysUserController.java",
+        "line": 236,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysUserController.java",
+            "line": 236,
+            "sha256": "46c6063c3113778f1f1adb75d3ea442c58a4434f6babd59373e5f782d2aece31"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/system/user/deptTree",
+        "module": "SysUserController",
+        "name": "deptTree",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysUserController.java",
+        "line": 250,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysUserController.java",
+            "line": 250,
+            "sha256": "46c6063c3113778f1f1adb75d3ea442c58a4434f6babd59373e5f782d2aece31"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/test/user/list",
+        "module": "TestController",
+        "name": "userList",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/tool/TestController.java",
+        "line": 41,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/tool/TestController.java",
+            "line": 41,
+            "sha256": "f2c196cbd0e49323e3340cf8e2e366054d31df0f64ea6981590fdd714607f7f4"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/test/user/{userId}",
+        "module": "TestController",
+        "name": "getUser",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/tool/TestController.java",
+        "line": 49,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/tool/TestController.java",
+            "line": 49,
+            "sha256": "f2c196cbd0e49323e3340cf8e2e366054d31df0f64ea6981590fdd714607f7f4"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/test/user/save",
+        "module": "TestController",
+        "name": "save",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/tool/TestController.java",
+        "line": 64,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/tool/TestController.java",
+            "line": 64,
+            "sha256": "f2c196cbd0e49323e3340cf8e2e366054d31df0f64ea6981590fdd714607f7f4"
+          }
+        ]
+      },
+      {
+        "method": "PUT",
+        "path": "/test/user/update",
+        "module": "TestController",
+        "name": "update",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/tool/TestController.java",
+        "line": 82,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/tool/TestController.java",
+            "line": 82,
+            "sha256": "f2c196cbd0e49323e3340cf8e2e366054d31df0f64ea6981590fdd714607f7f4"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "path": "/test/user/{userId}",
+        "module": "TestController",
+        "name": "delete",
+        "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/tool/TestController.java",
+        "line": 99,
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/tool/TestController.java",
+            "line": 99,
+            "sha256": "f2c196cbd0e49323e3340cf8e2e366054d31df0f64ea6981590fdd714607f7f4"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/tool/gen/list",
+        "module": "GenController",
+        "name": "genList",
+        "file": "ruoyi-generator/src/main/java/com/ruoyi/generator/controller/GenController.java",
+        "line": 57,
+        "evidence": [
+          {
+            "file": "ruoyi-generator/src/main/java/com/ruoyi/generator/controller/GenController.java",
+            "line": 57,
+            "sha256": "407349523792fdfa8eb0df184ba88c8e9430ca60e4e88cff256821befa9a785c"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/tool/gen/{tableId}",
+        "module": "GenController",
+        "name": "getInfo",
+        "file": "ruoyi-generator/src/main/java/com/ruoyi/generator/controller/GenController.java",
+        "line": 69,
+        "evidence": [
+          {
+            "file": "ruoyi-generator/src/main/java/com/ruoyi/generator/controller/GenController.java",
+            "line": 69,
+            "sha256": "407349523792fdfa8eb0df184ba88c8e9430ca60e4e88cff256821befa9a785c"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/tool/gen/db/list",
+        "module": "GenController",
+        "name": "dataList",
+        "file": "ruoyi-generator/src/main/java/com/ruoyi/generator/controller/GenController.java",
+        "line": 86,
+        "evidence": [
+          {
+            "file": "ruoyi-generator/src/main/java/com/ruoyi/generator/controller/GenController.java",
+            "line": 86,
+            "sha256": "407349523792fdfa8eb0df184ba88c8e9430ca60e4e88cff256821befa9a785c"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/tool/gen/column/{tableId}",
+        "module": "GenController",
+        "name": "columnList",
+        "file": "ruoyi-generator/src/main/java/com/ruoyi/generator/controller/GenController.java",
+        "line": 98,
+        "evidence": [
+          {
+            "file": "ruoyi-generator/src/main/java/com/ruoyi/generator/controller/GenController.java",
+            "line": 98,
+            "sha256": "407349523792fdfa8eb0df184ba88c8e9430ca60e4e88cff256821befa9a785c"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/tool/gen/importTable",
+        "module": "GenController",
+        "name": "importTableSave",
+        "file": "ruoyi-generator/src/main/java/com/ruoyi/generator/controller/GenController.java",
+        "line": 112,
+        "evidence": [
+          {
+            "file": "ruoyi-generator/src/main/java/com/ruoyi/generator/controller/GenController.java",
+            "line": 112,
+            "sha256": "407349523792fdfa8eb0df184ba88c8e9430ca60e4e88cff256821befa9a785c"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/tool/gen/createTable",
+        "module": "GenController",
+        "name": "createTableSave",
+        "file": "ruoyi-generator/src/main/java/com/ruoyi/generator/controller/GenController.java",
+        "line": 127,
+        "evidence": [
+          {
+            "file": "ruoyi-generator/src/main/java/com/ruoyi/generator/controller/GenController.java",
+            "line": 127,
+            "sha256": "407349523792fdfa8eb0df184ba88c8e9430ca60e4e88cff256821befa9a785c"
+          }
+        ]
+      },
+      {
+        "method": "PUT",
+        "path": "/tool/gen/",
+        "module": "GenController",
+        "name": "editSave",
+        "file": "ruoyi-generator/src/main/java/com/ruoyi/generator/controller/GenController.java",
+        "line": 164,
+        "evidence": [
+          {
+            "file": "ruoyi-generator/src/main/java/com/ruoyi/generator/controller/GenController.java",
+            "line": 164,
+            "sha256": "407349523792fdfa8eb0df184ba88c8e9430ca60e4e88cff256821befa9a785c"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "path": "/tool/gen/{tableIds}",
+        "module": "GenController",
+        "name": "remove",
+        "file": "ruoyi-generator/src/main/java/com/ruoyi/generator/controller/GenController.java",
+        "line": 177,
+        "evidence": [
+          {
+            "file": "ruoyi-generator/src/main/java/com/ruoyi/generator/controller/GenController.java",
+            "line": 177,
+            "sha256": "407349523792fdfa8eb0df184ba88c8e9430ca60e4e88cff256821befa9a785c"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/tool/gen/preview/{tableId}",
+        "module": "GenController",
+        "name": "preview",
+        "file": "ruoyi-generator/src/main/java/com/ruoyi/generator/controller/GenController.java",
+        "line": 189,
+        "evidence": [
+          {
+            "file": "ruoyi-generator/src/main/java/com/ruoyi/generator/controller/GenController.java",
+            "line": 189,
+            "sha256": "407349523792fdfa8eb0df184ba88c8e9430ca60e4e88cff256821befa9a785c"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/tool/gen/download/{tableName}",
+        "module": "GenController",
+        "name": "download",
+        "file": "ruoyi-generator/src/main/java/com/ruoyi/generator/controller/GenController.java",
+        "line": 200,
+        "evidence": [
+          {
+            "file": "ruoyi-generator/src/main/java/com/ruoyi/generator/controller/GenController.java",
+            "line": 200,
+            "sha256": "407349523792fdfa8eb0df184ba88c8e9430ca60e4e88cff256821befa9a785c"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/tool/gen/genCode/{tableName}",
+        "module": "GenController",
+        "name": "genCode",
+        "file": "ruoyi-generator/src/main/java/com/ruoyi/generator/controller/GenController.java",
+        "line": 212,
+        "evidence": [
+          {
+            "file": "ruoyi-generator/src/main/java/com/ruoyi/generator/controller/GenController.java",
+            "line": 212,
+            "sha256": "407349523792fdfa8eb0df184ba88c8e9430ca60e4e88cff256821befa9a785c"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/tool/gen/synchDb/{tableName}",
+        "module": "GenController",
+        "name": "synchDb",
+        "file": "ruoyi-generator/src/main/java/com/ruoyi/generator/controller/GenController.java",
+        "line": 228,
+        "evidence": [
+          {
+            "file": "ruoyi-generator/src/main/java/com/ruoyi/generator/controller/GenController.java",
+            "line": 228,
+            "sha256": "407349523792fdfa8eb0df184ba88c8e9430ca60e4e88cff256821befa9a785c"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/tool/gen/batchGenCode",
+        "module": "GenController",
+        "name": "batchGenCode",
+        "file": "ruoyi-generator/src/main/java/com/ruoyi/generator/controller/GenController.java",
+        "line": 240,
+        "evidence": [
+          {
+            "file": "ruoyi-generator/src/main/java/com/ruoyi/generator/controller/GenController.java",
+            "line": 240,
+            "sha256": "407349523792fdfa8eb0df184ba88c8e9430ca60e4e88cff256821befa9a785c"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/monitor/job/list",
+        "module": "SysJobController",
+        "name": "list",
+        "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobController.java",
+        "line": 45,
+        "evidence": [
+          {
+            "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobController.java",
+            "line": 45,
+            "sha256": "4c81a924e1b717546b58a896c35a87701e58975ce1b5948920626024357e3800"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/monitor/job/export",
+        "module": "SysJobController",
+        "name": "export",
+        "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobController.java",
+        "line": 57,
+        "evidence": [
+          {
+            "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobController.java",
+            "line": 57,
+            "sha256": "4c81a924e1b717546b58a896c35a87701e58975ce1b5948920626024357e3800"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/monitor/job/{jobId}",
+        "module": "SysJobController",
+        "name": "getInfo",
+        "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobController.java",
+        "line": 70,
+        "evidence": [
+          {
+            "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobController.java",
+            "line": 70,
+            "sha256": "4c81a924e1b717546b58a896c35a87701e58975ce1b5948920626024357e3800"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/monitor/job/",
+        "module": "SysJobController",
+        "name": "add",
+        "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobController.java",
+        "line": 80,
+        "evidence": [
+          {
+            "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobController.java",
+            "line": 80,
+            "sha256": "4c81a924e1b717546b58a896c35a87701e58975ce1b5948920626024357e3800"
+          }
+        ]
+      },
+      {
+        "method": "PUT",
+        "path": "/monitor/job/",
+        "module": "SysJobController",
+        "name": "edit",
+        "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobController.java",
+        "line": 116,
+        "evidence": [
+          {
+            "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobController.java",
+            "line": 116,
+            "sha256": "4c81a924e1b717546b58a896c35a87701e58975ce1b5948920626024357e3800"
+          }
+        ]
+      },
+      {
+        "method": "PUT",
+        "path": "/monitor/job/changeStatus",
+        "module": "SysJobController",
+        "name": "changeStatus",
+        "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobController.java",
+        "line": 152,
+        "evidence": [
+          {
+            "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobController.java",
+            "line": 152,
+            "sha256": "4c81a924e1b717546b58a896c35a87701e58975ce1b5948920626024357e3800"
+          }
+        ]
+      },
+      {
+        "method": "PUT",
+        "path": "/monitor/job/run",
+        "module": "SysJobController",
+        "name": "run",
+        "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobController.java",
+        "line": 165,
+        "evidence": [
+          {
+            "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobController.java",
+            "line": 165,
+            "sha256": "4c81a924e1b717546b58a896c35a87701e58975ce1b5948920626024357e3800"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "path": "/monitor/job/{jobIds}",
+        "module": "SysJobController",
+        "name": "remove",
+        "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobController.java",
+        "line": 177,
+        "evidence": [
+          {
+            "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobController.java",
+            "line": 177,
+            "sha256": "4c81a924e1b717546b58a896c35a87701e58975ce1b5948920626024357e3800"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/monitor/jobLog/list",
+        "module": "SysJobLogController",
+        "name": "list",
+        "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobLogController.java",
+        "line": 37,
+        "evidence": [
+          {
+            "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobLogController.java",
+            "line": 37,
+            "sha256": "2320159febac2a3df9d0104ed2fb814013a15d3ee2bba774dc9cb96ecd13472c"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "path": "/monitor/jobLog/export",
+        "module": "SysJobLogController",
+        "name": "export",
+        "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobLogController.java",
+        "line": 49,
+        "evidence": [
+          {
+            "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobLogController.java",
+            "line": 49,
+            "sha256": "2320159febac2a3df9d0104ed2fb814013a15d3ee2bba774dc9cb96ecd13472c"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "path": "/monitor/jobLog/{jobLogId}",
+        "module": "SysJobLogController",
+        "name": "getInfo",
+        "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobLogController.java",
+        "line": 62,
+        "evidence": [
+          {
+            "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobLogController.java",
+            "line": 62,
+            "sha256": "2320159febac2a3df9d0104ed2fb814013a15d3ee2bba774dc9cb96ecd13472c"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "path": "/monitor/jobLog/{jobLogIds}",
+        "module": "SysJobLogController",
+        "name": "remove",
+        "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobLogController.java",
+        "line": 73,
+        "evidence": [
+          {
+            "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobLogController.java",
+            "line": 73,
+            "sha256": "2320159febac2a3df9d0104ed2fb814013a15d3ee2bba774dc9cb96ecd13472c"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "path": "/monitor/jobLog/clean",
+        "module": "SysJobLogController",
+        "name": "clean",
+        "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobLogController.java",
+        "line": 84,
+        "evidence": [
+          {
+            "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobLogController.java",
+            "line": 84,
+            "sha256": "2320159febac2a3df9d0104ed2fb814013a15d3ee2bba774dc9cb96ecd13472c"
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "file": "pom.xml",
+        "line": 1,
+        "sha256": "a90817f81061a2f503c9c430161aca4457c5f9fde7fa91d0527e28474975b719"
+      },
+      {
+        "file": "ruoyi-admin/pom.xml",
+        "line": 1,
+        "sha256": "3ba926509f7ea5f86aac79d0b7a47f83c69ae48aec7554b1160408d786da2653"
+      },
+      {
+        "file": "ruoyi-ui/package.json",
+        "line": 1,
+        "sha256": "fa8dcc2635e8f6ddc0bc6e584c9e12a2cefb737b5da99776949c8b8c95a254cc"
+      }
+    ]
+  },
+  "modules": {
+    "count": 24,
+    "items": [
+      {
+        "name": "CaptchaController",
+        "count": 1,
+        "files": [
+          "ruoyi-admin/src/main/java/com/ruoyi/web/controller/common/CaptchaController.java"
+        ],
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/common/CaptchaController.java",
+            "line": 1,
+            "sha256": "80d37d38164690b6e67b6554c7bad1b730a4b274bac65722e43588d247490418"
+          }
+        ]
+      },
+      {
+        "name": "CommonController",
+        "count": 4,
+        "files": [
+          "ruoyi-admin/src/main/java/com/ruoyi/web/controller/common/CommonController.java"
+        ],
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/common/CommonController.java",
+            "line": 1,
+            "sha256": "19b827bc5b35dbbc065dfb92c6012918607b0ab4b568d58b6e79ca0aea778dd4"
+          }
+        ]
+      },
+      {
+        "name": "CacheController",
+        "count": 7,
+        "files": [
+          "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/CacheController.java"
+        ],
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/CacheController.java",
+            "line": 1,
+            "sha256": "7029c47166eacbaec605dd4812099e8a8c97ac23cf1a635902b017120ca45e8f"
+          }
+        ]
+      },
+      {
+        "name": "ServerController",
+        "count": 1,
+        "files": [
+          "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/ServerController.java"
+        ],
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/ServerController.java",
+            "line": 1,
+            "sha256": "8a381ec9f810b55631df5b36a581b6acd40914ea679dffd1ef989d620cb7993a"
+          }
+        ]
+      },
+      {
+        "name": "SysLogininforController",
+        "count": 5,
+        "files": [
+          "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/SysLogininforController.java"
+        ],
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/SysLogininforController.java",
+            "line": 1,
+            "sha256": "3cca69a7ef125556abe0c75252e29a6e4f4d53f52b87b7d6d8d16beeee67adc4"
+          }
+        ]
+      },
+      {
+        "name": "SysOperlogController",
+        "count": 4,
+        "files": [
+          "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/SysOperlogController.java"
+        ],
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/SysOperlogController.java",
+            "line": 1,
+            "sha256": "0cda61dbd7b50c6e26f2687ce008b074164ebc7872222325c7fd6e85333a74f1"
+          }
+        ]
+      },
+      {
+        "name": "SysUserOnlineController",
+        "count": 2,
+        "files": [
+          "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/SysUserOnlineController.java"
+        ],
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/monitor/SysUserOnlineController.java",
+            "line": 1,
+            "sha256": "5c35ea2f33b365892e54791b48a1cc10d4a6264dc3bc8c535c8a3cc4cc450413"
+          }
+        ]
+      },
+      {
+        "name": "SysConfigController",
+        "count": 8,
+        "files": [
+          "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysConfigController.java"
+        ],
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysConfigController.java",
+            "line": 1,
+            "sha256": "73fc56575def6421cbb25e397fa72628638d0863a715dc7e28dafdc0b62aa7cc"
+          }
+        ]
+      },
+      {
+        "name": "SysDeptController",
+        "count": 6,
+        "files": [
+          "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysDeptController.java"
+        ],
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysDeptController.java",
+            "line": 1,
+            "sha256": "625fa9347029fbefdd7d1c2639e0d5468b6874191ec9c4e688e0e4ae32b5941d"
+          }
+        ]
+      },
+      {
+        "name": "SysDictDataController",
+        "count": 7,
+        "files": [
+          "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysDictDataController.java"
+        ],
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysDictDataController.java",
+            "line": 1,
+            "sha256": "e8c44cfd184c41fb220461bad363651b40369a100460a9ef7d0a67e8af95591f"
+          }
+        ]
+      },
+      {
+        "name": "SysDictTypeController",
+        "count": 8,
+        "files": [
+          "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysDictTypeController.java"
+        ],
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysDictTypeController.java",
+            "line": 1,
+            "sha256": "9264e9d605044144b5e73feb124c363176c46aaae7fecb4ea11a9c13a3f01875"
+          }
+        ]
+      },
+      {
+        "name": "SysIndexController",
+        "count": 1,
+        "files": [
+          "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysIndexController.java"
+        ],
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysIndexController.java",
+            "line": 1,
+            "sha256": "b9c9b234fd5a9c28ce4ba0b22a927c1396c3e7b170acc46cf82f23d50603834f"
+          }
+        ]
+      },
+      {
+        "name": "SysLoginController",
+        "count": 3,
+        "files": [
+          "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysLoginController.java"
+        ],
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysLoginController.java",
+            "line": 1,
+            "sha256": "1fa8babdf2c6c4ea1c55ff3a98a5ae1b23e484413a29731efcbf2d73a91e665a"
+          }
+        ]
+      },
+      {
+        "name": "SysMenuController",
+        "count": 7,
+        "files": [
+          "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysMenuController.java"
+        ],
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysMenuController.java",
+            "line": 1,
+            "sha256": "21ae91d6b5fe30d1e60d4632956adfbad4107da4908b5f652778f73781df8f81"
+          }
+        ]
+      },
+      {
+        "name": "SysNoticeController",
+        "count": 5,
+        "files": [
+          "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysNoticeController.java"
+        ],
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysNoticeController.java",
+            "line": 1,
+            "sha256": "38ec69236a37d909996c7302328a5523d3e7786fb6ef3c032db0f59b268ea7cb"
+          }
+        ]
+      },
+      {
+        "name": "SysPostController",
+        "count": 7,
+        "files": [
+          "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysPostController.java"
+        ],
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysPostController.java",
+            "line": 1,
+            "sha256": "6a9d373bdf5b68112c80ff26ac1550399419a1818ca9848843636443232d62d6"
+          }
+        ]
+      },
+      {
+        "name": "SysProfileController",
+        "count": 4,
+        "files": [
+          "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysProfileController.java"
+        ],
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysProfileController.java",
+            "line": 1,
+            "sha256": "177d3b4818cf61dbd613dd4c5f5c92d2991ca0831967b4359b990e4179ffd25e"
+          }
+        ]
+      },
+      {
+        "name": "SysRegisterController",
+        "count": 1,
+        "files": [
+          "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysRegisterController.java"
+        ],
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysRegisterController.java",
+            "line": 1,
+            "sha256": "4ba1ee192fae2e2ebdc716d0fc4179b3aba1477f147fceff967350e90e8ca8c9"
+          }
+        ]
+      },
+      {
+        "name": "SysRoleController",
+        "count": 15,
+        "files": [
+          "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysRoleController.java"
+        ],
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysRoleController.java",
+            "line": 1,
+            "sha256": "2a1ae4a64a104ef1390d0bc32c0d87b6514bb4afd4ee43011784db1bb8bf9f6c"
+          }
+        ]
+      },
+      {
+        "name": "SysUserController",
+        "count": 13,
+        "files": [
+          "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysUserController.java"
+        ],
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/system/SysUserController.java",
+            "line": 1,
+            "sha256": "46c6063c3113778f1f1adb75d3ea442c58a4434f6babd59373e5f782d2aece31"
+          }
+        ]
+      },
+      {
+        "name": "TestController",
+        "count": 5,
+        "files": [
+          "ruoyi-admin/src/main/java/com/ruoyi/web/controller/tool/TestController.java"
+        ],
+        "evidence": [
+          {
+            "file": "ruoyi-admin/src/main/java/com/ruoyi/web/controller/tool/TestController.java",
+            "line": 1,
+            "sha256": "f2c196cbd0e49323e3340cf8e2e366054d31df0f64ea6981590fdd714607f7f4"
+          }
+        ]
+      },
+      {
+        "name": "GenController",
+        "count": 13,
+        "files": [
+          "ruoyi-generator/src/main/java/com/ruoyi/generator/controller/GenController.java"
+        ],
+        "evidence": [
+          {
+            "file": "ruoyi-generator/src/main/java/com/ruoyi/generator/controller/GenController.java",
+            "line": 1,
+            "sha256": "407349523792fdfa8eb0df184ba88c8e9430ca60e4e88cff256821befa9a785c"
+          }
+        ]
+      },
+      {
+        "name": "SysJobController",
+        "count": 8,
+        "files": [
+          "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobController.java"
+        ],
+        "evidence": [
+          {
+            "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobController.java",
+            "line": 1,
+            "sha256": "4c81a924e1b717546b58a896c35a87701e58975ce1b5948920626024357e3800"
+          }
+        ]
+      },
+      {
+        "name": "SysJobLogController",
+        "count": 5,
+        "files": [
+          "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobLogController.java"
+        ],
+        "evidence": [
+          {
+            "file": "ruoyi-quartz/src/main/java/com/ruoyi/quartz/controller/SysJobLogController.java",
+            "line": 1,
+            "sha256": "2320159febac2a3df9d0104ed2fb814013a15d3ee2bba774dc9cb96ecd13472c"
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "file": "pom.xml",
+        "line": 1,
+        "sha256": "a90817f81061a2f503c9c430161aca4457c5f9fde7fa91d0527e28474975b719"
+      },
+      {
+        "file": "ruoyi-admin/pom.xml",
+        "line": 1,
+        "sha256": "3ba926509f7ea5f86aac79d0b7a47f83c69ae48aec7554b1160408d786da2653"
+      },
+      {
+        "file": "ruoyi-ui/package.json",
+        "line": 1,
+        "sha256": "fa8dcc2635e8f6ddc0bc6e584c9e12a2cefb737b5da99776949c8b8c95a254cc"
+      }
+    ]
+  },
+  "frontend": {
+    "pages": {
+      "count": 12,
+      "items": [
+        {
+          "file": "ruoyi-ui/src/router/index.js",
+          "line": 38,
+          "path": "/redirect/:path(.*)",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/router/index.js",
+              "line": 38,
+              "sha256": "49235236b781ecfd17deca233ef7ba275a3eb76c6f53b4a25c251dffc250983a"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/router/index.js",
+          "line": 44,
+          "path": "/login",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/router/index.js",
+              "line": 44,
+              "sha256": "49235236b781ecfd17deca233ef7ba275a3eb76c6f53b4a25c251dffc250983a"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/router/index.js",
+          "line": 49,
+          "path": "/register",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/router/index.js",
+              "line": 49,
+              "sha256": "49235236b781ecfd17deca233ef7ba275a3eb76c6f53b4a25c251dffc250983a"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/router/index.js",
+          "line": 54,
+          "path": "/404",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/router/index.js",
+              "line": 54,
+              "sha256": "49235236b781ecfd17deca233ef7ba275a3eb76c6f53b4a25c251dffc250983a"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/router/index.js",
+          "line": 59,
+          "path": "/401",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/router/index.js",
+              "line": 59,
+              "sha256": "49235236b781ecfd17deca233ef7ba275a3eb76c6f53b4a25c251dffc250983a"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/router/index.js",
+          "line": 69,
+          "path": "index",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/router/index.js",
+              "line": 69,
+              "sha256": "49235236b781ecfd17deca233ef7ba275a3eb76c6f53b4a25c251dffc250983a"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/router/index.js",
+          "line": 83,
+          "path": "profile",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/router/index.js",
+              "line": 83,
+              "sha256": "49235236b781ecfd17deca233ef7ba275a3eb76c6f53b4a25c251dffc250983a"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/router/index.js",
+          "line": 101,
+          "path": "role/:userId(\\d+)",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/router/index.js",
+              "line": 101,
+              "sha256": "49235236b781ecfd17deca233ef7ba275a3eb76c6f53b4a25c251dffc250983a"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/router/index.js",
+          "line": 115,
+          "path": "user/:roleId(\\d+)",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/router/index.js",
+              "line": 115,
+              "sha256": "49235236b781ecfd17deca233ef7ba275a3eb76c6f53b4a25c251dffc250983a"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/router/index.js",
+          "line": 129,
+          "path": "index/:dictId(\\d+)",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/router/index.js",
+              "line": 129,
+              "sha256": "49235236b781ecfd17deca233ef7ba275a3eb76c6f53b4a25c251dffc250983a"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/router/index.js",
+          "line": 143,
+          "path": "index/:jobId(\\d+)",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/router/index.js",
+              "line": 143,
+              "sha256": "49235236b781ecfd17deca233ef7ba275a3eb76c6f53b4a25c251dffc250983a"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/router/index.js",
+          "line": 157,
+          "path": "index/:tableId(\\d+)",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/router/index.js",
+              "line": 157,
+              "sha256": "49235236b781ecfd17deca233ef7ba275a3eb76c6f53b4a25c251dffc250983a"
+            }
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "file": "ruoyi-ui/src/router/index.js",
+          "line": 1,
+          "sha256": "49235236b781ecfd17deca233ef7ba275a3eb76c6f53b4a25c251dffc250983a"
+        }
+      ]
+    },
+    "api": {
+      "count": 113,
+      "items": [
+        {
+          "file": "ruoyi-ui/src/api/login.js",
+          "line": 11,
+          "method": "POST",
+          "path": "/login",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/login.js",
+              "line": 11,
+              "sha256": "75c0def10f37b3a9447bbbb5bab377ac8576641fea0a9fb2f1e0a5b142aea51d"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/login.js",
+          "line": 24,
+          "method": "POST",
+          "path": "/register",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/login.js",
+              "line": 24,
+              "sha256": "75c0def10f37b3a9447bbbb5bab377ac8576641fea0a9fb2f1e0a5b142aea51d"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/login.js",
+          "line": 36,
+          "method": "GET",
+          "path": "/getInfo",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/login.js",
+              "line": 36,
+              "sha256": "75c0def10f37b3a9447bbbb5bab377ac8576641fea0a9fb2f1e0a5b142aea51d"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/login.js",
+          "line": 44,
+          "method": "POST",
+          "path": "/logout",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/login.js",
+              "line": 44,
+              "sha256": "75c0def10f37b3a9447bbbb5bab377ac8576641fea0a9fb2f1e0a5b142aea51d"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/login.js",
+          "line": 52,
+          "method": "GET",
+          "path": "/captchaImage",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/login.js",
+              "line": 52,
+              "sha256": "75c0def10f37b3a9447bbbb5bab377ac8576641fea0a9fb2f1e0a5b142aea51d"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/menu.js",
+          "line": 5,
+          "method": "GET",
+          "path": "/getRouters",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/menu.js",
+              "line": 5,
+              "sha256": "66d916a76b3f2cd1e0f29573f6edd19239a9cb50573dc26448730d4b1ac79c50"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/monitor/cache.js",
+          "line": 5,
+          "method": "GET",
+          "path": "/monitor/cache",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/monitor/cache.js",
+              "line": 5,
+              "sha256": "074331ad120d0023cd9ce2ac080287cdaaf886078cbba2f872e466460b421a33"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/monitor/cache.js",
+          "line": 13,
+          "method": "GET",
+          "path": "/monitor/cache/getNames",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/monitor/cache.js",
+              "line": 13,
+              "sha256": "074331ad120d0023cd9ce2ac080287cdaaf886078cbba2f872e466460b421a33"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/monitor/cache.js",
+          "line": 21,
+          "method": "GET",
+          "path": "/monitor/cache/getKeys/{value}",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/monitor/cache.js",
+              "line": 21,
+              "sha256": "074331ad120d0023cd9ce2ac080287cdaaf886078cbba2f872e466460b421a33"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/monitor/cache.js",
+          "line": 29,
+          "method": "GET",
+          "path": "/monitor/cache/getValue/{value}/{value}",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/monitor/cache.js",
+              "line": 29,
+              "sha256": "074331ad120d0023cd9ce2ac080287cdaaf886078cbba2f872e466460b421a33"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/monitor/cache.js",
+          "line": 37,
+          "method": "DELETE",
+          "path": "/monitor/cache/clearCacheName/{value}",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/monitor/cache.js",
+              "line": 37,
+              "sha256": "074331ad120d0023cd9ce2ac080287cdaaf886078cbba2f872e466460b421a33"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/monitor/cache.js",
+          "line": 45,
+          "method": "DELETE",
+          "path": "/monitor/cache/clearCacheKey/{value}",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/monitor/cache.js",
+              "line": 45,
+              "sha256": "074331ad120d0023cd9ce2ac080287cdaaf886078cbba2f872e466460b421a33"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/monitor/cache.js",
+          "line": 53,
+          "method": "DELETE",
+          "path": "/monitor/cache/clearCacheAll",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/monitor/cache.js",
+              "line": 53,
+              "sha256": "074331ad120d0023cd9ce2ac080287cdaaf886078cbba2f872e466460b421a33"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/monitor/job.js",
+          "line": 5,
+          "method": "GET",
+          "path": "/monitor/job/list",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/monitor/job.js",
+              "line": 5,
+              "sha256": "bafe5f26c8fc36281a6a2b5297fabcc656a708413bec38d9b33dbced19598694"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/monitor/job.js",
+          "line": 14,
+          "method": "GET",
+          "path": "/monitor/job/{value}",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/monitor/job.js",
+              "line": 14,
+              "sha256": "bafe5f26c8fc36281a6a2b5297fabcc656a708413bec38d9b33dbced19598694"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/monitor/job.js",
+          "line": 22,
+          "method": "POST",
+          "path": "/monitor/job",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/monitor/job.js",
+              "line": 22,
+              "sha256": "bafe5f26c8fc36281a6a2b5297fabcc656a708413bec38d9b33dbced19598694"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/monitor/job.js",
+          "line": 31,
+          "method": "PUT",
+          "path": "/monitor/job",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/monitor/job.js",
+              "line": 31,
+              "sha256": "bafe5f26c8fc36281a6a2b5297fabcc656a708413bec38d9b33dbced19598694"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/monitor/job.js",
+          "line": 40,
+          "method": "DELETE",
+          "path": "/monitor/job/{value}",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/monitor/job.js",
+              "line": 40,
+              "sha256": "bafe5f26c8fc36281a6a2b5297fabcc656a708413bec38d9b33dbced19598694"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/monitor/job.js",
+          "line": 52,
+          "method": "PUT",
+          "path": "/monitor/job/changeStatus",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/monitor/job.js",
+              "line": 52,
+              "sha256": "bafe5f26c8fc36281a6a2b5297fabcc656a708413bec38d9b33dbced19598694"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/monitor/job.js",
+          "line": 66,
+          "method": "PUT",
+          "path": "/monitor/job/run",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/monitor/job.js",
+              "line": 66,
+              "sha256": "bafe5f26c8fc36281a6a2b5297fabcc656a708413bec38d9b33dbced19598694"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/monitor/jobLog.js",
+          "line": 5,
+          "method": "GET",
+          "path": "/monitor/jobLog/list",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/monitor/jobLog.js",
+              "line": 5,
+              "sha256": "0032077dc97869ad9e410c2a9764cb7faad95010cca7a5344ea2f0f9d10eb88b"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/monitor/jobLog.js",
+          "line": 14,
+          "method": "DELETE",
+          "path": "/monitor/jobLog/{value}",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/monitor/jobLog.js",
+              "line": 14,
+              "sha256": "0032077dc97869ad9e410c2a9764cb7faad95010cca7a5344ea2f0f9d10eb88b"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/monitor/jobLog.js",
+          "line": 22,
+          "method": "DELETE",
+          "path": "/monitor/jobLog/clean",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/monitor/jobLog.js",
+              "line": 22,
+              "sha256": "0032077dc97869ad9e410c2a9764cb7faad95010cca7a5344ea2f0f9d10eb88b"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/monitor/logininfor.js",
+          "line": 5,
+          "method": "GET",
+          "path": "/monitor/logininfor/list",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/monitor/logininfor.js",
+              "line": 5,
+              "sha256": "1a076089e0049572e74ad08a247507809a6423aacb3ce3336941452ba4bd5bf7"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/monitor/logininfor.js",
+          "line": 14,
+          "method": "DELETE",
+          "path": "/monitor/logininfor/{value}",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/monitor/logininfor.js",
+              "line": 14,
+              "sha256": "1a076089e0049572e74ad08a247507809a6423aacb3ce3336941452ba4bd5bf7"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/monitor/logininfor.js",
+          "line": 22,
+          "method": "GET",
+          "path": "/monitor/logininfor/unlock/{value}",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/monitor/logininfor.js",
+              "line": 22,
+              "sha256": "1a076089e0049572e74ad08a247507809a6423aacb3ce3336941452ba4bd5bf7"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/monitor/logininfor.js",
+          "line": 30,
+          "method": "DELETE",
+          "path": "/monitor/logininfor/clean",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/monitor/logininfor.js",
+              "line": 30,
+              "sha256": "1a076089e0049572e74ad08a247507809a6423aacb3ce3336941452ba4bd5bf7"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/monitor/online.js",
+          "line": 5,
+          "method": "GET",
+          "path": "/monitor/online/list",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/monitor/online.js",
+              "line": 5,
+              "sha256": "b6419feb82928993e67c7ef30d89c36737313ccfcca5357e0e0a770b7f3353c7"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/monitor/online.js",
+          "line": 14,
+          "method": "DELETE",
+          "path": "/monitor/online/{value}",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/monitor/online.js",
+              "line": 14,
+              "sha256": "b6419feb82928993e67c7ef30d89c36737313ccfcca5357e0e0a770b7f3353c7"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/monitor/operlog.js",
+          "line": 5,
+          "method": "GET",
+          "path": "/monitor/operlog/list",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/monitor/operlog.js",
+              "line": 5,
+              "sha256": "dc07d884fadc33adb9252ebdef1bba142bec5ab3b3295b6b69c011cfc4aa2609"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/monitor/operlog.js",
+          "line": 14,
+          "method": "DELETE",
+          "path": "/monitor/operlog/{value}",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/monitor/operlog.js",
+              "line": 14,
+              "sha256": "dc07d884fadc33adb9252ebdef1bba142bec5ab3b3295b6b69c011cfc4aa2609"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/monitor/operlog.js",
+          "line": 22,
+          "method": "DELETE",
+          "path": "/monitor/operlog/clean",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/monitor/operlog.js",
+              "line": 22,
+              "sha256": "dc07d884fadc33adb9252ebdef1bba142bec5ab3b3295b6b69c011cfc4aa2609"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/monitor/server.js",
+          "line": 5,
+          "method": "GET",
+          "path": "/monitor/server",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/monitor/server.js",
+              "line": 5,
+              "sha256": "69a36fc054349125251ad3d77faaeea199d84c4728c6cae52288663629f69d25"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/config.js",
+          "line": 5,
+          "method": "GET",
+          "path": "/system/config/list",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/config.js",
+              "line": 5,
+              "sha256": "ce38a77c86defc254b4aeb9ff6bc9c7020143f1b65124ea854eadb98465f988e"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/config.js",
+          "line": 14,
+          "method": "GET",
+          "path": "/system/config/{value}",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/config.js",
+              "line": 14,
+              "sha256": "ce38a77c86defc254b4aeb9ff6bc9c7020143f1b65124ea854eadb98465f988e"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/config.js",
+          "line": 22,
+          "method": "GET",
+          "path": "/system/config/configKey/{value}",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/config.js",
+              "line": 22,
+              "sha256": "ce38a77c86defc254b4aeb9ff6bc9c7020143f1b65124ea854eadb98465f988e"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/config.js",
+          "line": 30,
+          "method": "POST",
+          "path": "/system/config",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/config.js",
+              "line": 30,
+              "sha256": "ce38a77c86defc254b4aeb9ff6bc9c7020143f1b65124ea854eadb98465f988e"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/config.js",
+          "line": 39,
+          "method": "PUT",
+          "path": "/system/config",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/config.js",
+              "line": 39,
+              "sha256": "ce38a77c86defc254b4aeb9ff6bc9c7020143f1b65124ea854eadb98465f988e"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/config.js",
+          "line": 48,
+          "method": "DELETE",
+          "path": "/system/config/{value}",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/config.js",
+              "line": 48,
+              "sha256": "ce38a77c86defc254b4aeb9ff6bc9c7020143f1b65124ea854eadb98465f988e"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/config.js",
+          "line": 56,
+          "method": "DELETE",
+          "path": "/system/config/refreshCache",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/config.js",
+              "line": 56,
+              "sha256": "ce38a77c86defc254b4aeb9ff6bc9c7020143f1b65124ea854eadb98465f988e"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/dept.js",
+          "line": 5,
+          "method": "GET",
+          "path": "/system/dept/list",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/dept.js",
+              "line": 5,
+              "sha256": "913e273cfe5d80c080ad07f2339704eeced7823d1e4982f0d9ce97ba367b33c1"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/dept.js",
+          "line": 14,
+          "method": "GET",
+          "path": "/system/dept/list/exclude/{value}",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/dept.js",
+              "line": 14,
+              "sha256": "913e273cfe5d80c080ad07f2339704eeced7823d1e4982f0d9ce97ba367b33c1"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/dept.js",
+          "line": 22,
+          "method": "GET",
+          "path": "/system/dept/{value}",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/dept.js",
+              "line": 22,
+              "sha256": "913e273cfe5d80c080ad07f2339704eeced7823d1e4982f0d9ce97ba367b33c1"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/dept.js",
+          "line": 30,
+          "method": "POST",
+          "path": "/system/dept",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/dept.js",
+              "line": 30,
+              "sha256": "913e273cfe5d80c080ad07f2339704eeced7823d1e4982f0d9ce97ba367b33c1"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/dept.js",
+          "line": 39,
+          "method": "PUT",
+          "path": "/system/dept",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/dept.js",
+              "line": 39,
+              "sha256": "913e273cfe5d80c080ad07f2339704eeced7823d1e4982f0d9ce97ba367b33c1"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/dept.js",
+          "line": 48,
+          "method": "DELETE",
+          "path": "/system/dept/{value}",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/dept.js",
+              "line": 48,
+              "sha256": "913e273cfe5d80c080ad07f2339704eeced7823d1e4982f0d9ce97ba367b33c1"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/dict/data.js",
+          "line": 5,
+          "method": "GET",
+          "path": "/system/dict/data/list",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/dict/data.js",
+              "line": 5,
+              "sha256": "3ace5ef26ab4b5292b21da074b4689fa7d2de8ba09d438fa54563aba8e0d8fc1"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/dict/data.js",
+          "line": 14,
+          "method": "GET",
+          "path": "/system/dict/data/{value}",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/dict/data.js",
+              "line": 14,
+              "sha256": "3ace5ef26ab4b5292b21da074b4689fa7d2de8ba09d438fa54563aba8e0d8fc1"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/dict/data.js",
+          "line": 22,
+          "method": "GET",
+          "path": "/system/dict/data/type/{value}",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/dict/data.js",
+              "line": 22,
+              "sha256": "3ace5ef26ab4b5292b21da074b4689fa7d2de8ba09d438fa54563aba8e0d8fc1"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/dict/data.js",
+          "line": 30,
+          "method": "POST",
+          "path": "/system/dict/data",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/dict/data.js",
+              "line": 30,
+              "sha256": "3ace5ef26ab4b5292b21da074b4689fa7d2de8ba09d438fa54563aba8e0d8fc1"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/dict/data.js",
+          "line": 39,
+          "method": "PUT",
+          "path": "/system/dict/data",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/dict/data.js",
+              "line": 39,
+              "sha256": "3ace5ef26ab4b5292b21da074b4689fa7d2de8ba09d438fa54563aba8e0d8fc1"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/dict/data.js",
+          "line": 48,
+          "method": "DELETE",
+          "path": "/system/dict/data/{value}",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/dict/data.js",
+              "line": 48,
+              "sha256": "3ace5ef26ab4b5292b21da074b4689fa7d2de8ba09d438fa54563aba8e0d8fc1"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/dict/type.js",
+          "line": 5,
+          "method": "GET",
+          "path": "/system/dict/type/list",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/dict/type.js",
+              "line": 5,
+              "sha256": "9d1f2c37d048ae79214547d42dace2a941b8c1c93e7622ed6e2aa9736067db48"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/dict/type.js",
+          "line": 14,
+          "method": "GET",
+          "path": "/system/dict/type/{value}",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/dict/type.js",
+              "line": 14,
+              "sha256": "9d1f2c37d048ae79214547d42dace2a941b8c1c93e7622ed6e2aa9736067db48"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/dict/type.js",
+          "line": 22,
+          "method": "POST",
+          "path": "/system/dict/type",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/dict/type.js",
+              "line": 22,
+              "sha256": "9d1f2c37d048ae79214547d42dace2a941b8c1c93e7622ed6e2aa9736067db48"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/dict/type.js",
+          "line": 31,
+          "method": "PUT",
+          "path": "/system/dict/type",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/dict/type.js",
+              "line": 31,
+              "sha256": "9d1f2c37d048ae79214547d42dace2a941b8c1c93e7622ed6e2aa9736067db48"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/dict/type.js",
+          "line": 40,
+          "method": "DELETE",
+          "path": "/system/dict/type/{value}",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/dict/type.js",
+              "line": 40,
+              "sha256": "9d1f2c37d048ae79214547d42dace2a941b8c1c93e7622ed6e2aa9736067db48"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/dict/type.js",
+          "line": 48,
+          "method": "DELETE",
+          "path": "/system/dict/type/refreshCache",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/dict/type.js",
+              "line": 48,
+              "sha256": "9d1f2c37d048ae79214547d42dace2a941b8c1c93e7622ed6e2aa9736067db48"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/dict/type.js",
+          "line": 56,
+          "method": "GET",
+          "path": "/system/dict/type/optionselect",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/dict/type.js",
+              "line": 56,
+              "sha256": "9d1f2c37d048ae79214547d42dace2a941b8c1c93e7622ed6e2aa9736067db48"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/menu.js",
+          "line": 5,
+          "method": "GET",
+          "path": "/system/menu/list",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/menu.js",
+              "line": 5,
+              "sha256": "19152a5f25b770462114546e31d3466b82b8429f393341a8e25c76ade368905a"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/menu.js",
+          "line": 14,
+          "method": "GET",
+          "path": "/system/menu/{value}",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/menu.js",
+              "line": 14,
+              "sha256": "19152a5f25b770462114546e31d3466b82b8429f393341a8e25c76ade368905a"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/menu.js",
+          "line": 22,
+          "method": "GET",
+          "path": "/system/menu/treeselect",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/menu.js",
+              "line": 22,
+              "sha256": "19152a5f25b770462114546e31d3466b82b8429f393341a8e25c76ade368905a"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/menu.js",
+          "line": 30,
+          "method": "GET",
+          "path": "/system/menu/roleMenuTreeselect/{value}",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/menu.js",
+              "line": 30,
+              "sha256": "19152a5f25b770462114546e31d3466b82b8429f393341a8e25c76ade368905a"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/menu.js",
+          "line": 38,
+          "method": "POST",
+          "path": "/system/menu",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/menu.js",
+              "line": 38,
+              "sha256": "19152a5f25b770462114546e31d3466b82b8429f393341a8e25c76ade368905a"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/menu.js",
+          "line": 47,
+          "method": "PUT",
+          "path": "/system/menu",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/menu.js",
+              "line": 47,
+              "sha256": "19152a5f25b770462114546e31d3466b82b8429f393341a8e25c76ade368905a"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/menu.js",
+          "line": 56,
+          "method": "DELETE",
+          "path": "/system/menu/{value}",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/menu.js",
+              "line": 56,
+              "sha256": "19152a5f25b770462114546e31d3466b82b8429f393341a8e25c76ade368905a"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/notice.js",
+          "line": 5,
+          "method": "GET",
+          "path": "/system/notice/list",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/notice.js",
+              "line": 5,
+              "sha256": "b521662b624a6cd28e0933ecb8290f74d2371ed8980ac2e88c051f3c15ff99a5"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/notice.js",
+          "line": 14,
+          "method": "GET",
+          "path": "/system/notice/{value}",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/notice.js",
+              "line": 14,
+              "sha256": "b521662b624a6cd28e0933ecb8290f74d2371ed8980ac2e88c051f3c15ff99a5"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/notice.js",
+          "line": 22,
+          "method": "POST",
+          "path": "/system/notice",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/notice.js",
+              "line": 22,
+              "sha256": "b521662b624a6cd28e0933ecb8290f74d2371ed8980ac2e88c051f3c15ff99a5"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/notice.js",
+          "line": 31,
+          "method": "PUT",
+          "path": "/system/notice",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/notice.js",
+              "line": 31,
+              "sha256": "b521662b624a6cd28e0933ecb8290f74d2371ed8980ac2e88c051f3c15ff99a5"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/notice.js",
+          "line": 40,
+          "method": "DELETE",
+          "path": "/system/notice/{value}",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/notice.js",
+              "line": 40,
+              "sha256": "b521662b624a6cd28e0933ecb8290f74d2371ed8980ac2e88c051f3c15ff99a5"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/post.js",
+          "line": 5,
+          "method": "GET",
+          "path": "/system/post/list",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/post.js",
+              "line": 5,
+              "sha256": "b52f0a2eeba254085f87a01a46247a923a146681faef9982196e9e809bbafee1"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/post.js",
+          "line": 14,
+          "method": "GET",
+          "path": "/system/post/{value}",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/post.js",
+              "line": 14,
+              "sha256": "b52f0a2eeba254085f87a01a46247a923a146681faef9982196e9e809bbafee1"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/post.js",
+          "line": 22,
+          "method": "POST",
+          "path": "/system/post",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/post.js",
+              "line": 22,
+              "sha256": "b52f0a2eeba254085f87a01a46247a923a146681faef9982196e9e809bbafee1"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/post.js",
+          "line": 31,
+          "method": "PUT",
+          "path": "/system/post",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/post.js",
+              "line": 31,
+              "sha256": "b52f0a2eeba254085f87a01a46247a923a146681faef9982196e9e809bbafee1"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/post.js",
+          "line": 40,
+          "method": "DELETE",
+          "path": "/system/post/{value}",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/post.js",
+              "line": 40,
+              "sha256": "b52f0a2eeba254085f87a01a46247a923a146681faef9982196e9e809bbafee1"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/role.js",
+          "line": 5,
+          "method": "GET",
+          "path": "/system/role/list",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/role.js",
+              "line": 5,
+              "sha256": "e0920b49c745225e77c90e01d39f60c381713d559afe1d4896a0be1f02d83a9d"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/role.js",
+          "line": 14,
+          "method": "GET",
+          "path": "/system/role/{value}",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/role.js",
+              "line": 14,
+              "sha256": "e0920b49c745225e77c90e01d39f60c381713d559afe1d4896a0be1f02d83a9d"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/role.js",
+          "line": 22,
+          "method": "POST",
+          "path": "/system/role",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/role.js",
+              "line": 22,
+              "sha256": "e0920b49c745225e77c90e01d39f60c381713d559afe1d4896a0be1f02d83a9d"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/role.js",
+          "line": 31,
+          "method": "PUT",
+          "path": "/system/role",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/role.js",
+              "line": 31,
+              "sha256": "e0920b49c745225e77c90e01d39f60c381713d559afe1d4896a0be1f02d83a9d"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/role.js",
+          "line": 40,
+          "method": "PUT",
+          "path": "/system/role/dataScope",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/role.js",
+              "line": 40,
+              "sha256": "e0920b49c745225e77c90e01d39f60c381713d559afe1d4896a0be1f02d83a9d"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/role.js",
+          "line": 53,
+          "method": "PUT",
+          "path": "/system/role/changeStatus",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/role.js",
+              "line": 53,
+              "sha256": "e0920b49c745225e77c90e01d39f60c381713d559afe1d4896a0be1f02d83a9d"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/role.js",
+          "line": 62,
+          "method": "DELETE",
+          "path": "/system/role/{value}",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/role.js",
+              "line": 62,
+              "sha256": "e0920b49c745225e77c90e01d39f60c381713d559afe1d4896a0be1f02d83a9d"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/role.js",
+          "line": 70,
+          "method": "GET",
+          "path": "/system/role/authUser/allocatedList",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/role.js",
+              "line": 70,
+              "sha256": "e0920b49c745225e77c90e01d39f60c381713d559afe1d4896a0be1f02d83a9d"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/role.js",
+          "line": 79,
+          "method": "GET",
+          "path": "/system/role/authUser/unallocatedList",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/role.js",
+              "line": 79,
+              "sha256": "e0920b49c745225e77c90e01d39f60c381713d559afe1d4896a0be1f02d83a9d"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/role.js",
+          "line": 88,
+          "method": "PUT",
+          "path": "/system/role/authUser/cancel",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/role.js",
+              "line": 88,
+              "sha256": "e0920b49c745225e77c90e01d39f60c381713d559afe1d4896a0be1f02d83a9d"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/role.js",
+          "line": 97,
+          "method": "PUT",
+          "path": "/system/role/authUser/cancelAll",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/role.js",
+              "line": 97,
+              "sha256": "e0920b49c745225e77c90e01d39f60c381713d559afe1d4896a0be1f02d83a9d"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/role.js",
+          "line": 106,
+          "method": "PUT",
+          "path": "/system/role/authUser/selectAll",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/role.js",
+              "line": 106,
+              "sha256": "e0920b49c745225e77c90e01d39f60c381713d559afe1d4896a0be1f02d83a9d"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/role.js",
+          "line": 115,
+          "method": "GET",
+          "path": "/system/role/deptTree/{value}",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/role.js",
+              "line": 115,
+              "sha256": "e0920b49c745225e77c90e01d39f60c381713d559afe1d4896a0be1f02d83a9d"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/user.js",
+          "line": 6,
+          "method": "GET",
+          "path": "/system/user/list",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/user.js",
+              "line": 6,
+              "sha256": "2581c322a2d12e135e641b369461753e4f9351a7b7714e2a823856996f1bb90c"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/user.js",
+          "line": 15,
+          "method": "GET",
+          "path": "/system/user/{value}",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/user.js",
+              "line": 15,
+              "sha256": "2581c322a2d12e135e641b369461753e4f9351a7b7714e2a823856996f1bb90c"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/user.js",
+          "line": 23,
+          "method": "POST",
+          "path": "/system/user",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/user.js",
+              "line": 23,
+              "sha256": "2581c322a2d12e135e641b369461753e4f9351a7b7714e2a823856996f1bb90c"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/user.js",
+          "line": 32,
+          "method": "PUT",
+          "path": "/system/user",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/user.js",
+              "line": 32,
+              "sha256": "2581c322a2d12e135e641b369461753e4f9351a7b7714e2a823856996f1bb90c"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/user.js",
+          "line": 41,
+          "method": "DELETE",
+          "path": "/system/user/{value}",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/user.js",
+              "line": 41,
+              "sha256": "2581c322a2d12e135e641b369461753e4f9351a7b7714e2a823856996f1bb90c"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/user.js",
+          "line": 53,
+          "method": "PUT",
+          "path": "/system/user/resetPwd",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/user.js",
+              "line": 53,
+              "sha256": "2581c322a2d12e135e641b369461753e4f9351a7b7714e2a823856996f1bb90c"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/user.js",
+          "line": 66,
+          "method": "PUT",
+          "path": "/system/user/changeStatus",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/user.js",
+              "line": 66,
+              "sha256": "2581c322a2d12e135e641b369461753e4f9351a7b7714e2a823856996f1bb90c"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/user.js",
+          "line": 75,
+          "method": "GET",
+          "path": "/system/user/profile",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/user.js",
+              "line": 75,
+              "sha256": "2581c322a2d12e135e641b369461753e4f9351a7b7714e2a823856996f1bb90c"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/user.js",
+          "line": 83,
+          "method": "PUT",
+          "path": "/system/user/profile",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/user.js",
+              "line": 83,
+              "sha256": "2581c322a2d12e135e641b369461753e4f9351a7b7714e2a823856996f1bb90c"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/user.js",
+          "line": 96,
+          "method": "PUT",
+          "path": "/system/user/profile/updatePwd",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/user.js",
+              "line": 96,
+              "sha256": "2581c322a2d12e135e641b369461753e4f9351a7b7714e2a823856996f1bb90c"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/user.js",
+          "line": 105,
+          "method": "POST",
+          "path": "/system/user/profile/avatar",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/user.js",
+              "line": 105,
+              "sha256": "2581c322a2d12e135e641b369461753e4f9351a7b7714e2a823856996f1bb90c"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/user.js",
+          "line": 115,
+          "method": "GET",
+          "path": "/system/user/authRole/{value}",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/user.js",
+              "line": 115,
+              "sha256": "2581c322a2d12e135e641b369461753e4f9351a7b7714e2a823856996f1bb90c"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/user.js",
+          "line": 123,
+          "method": "PUT",
+          "path": "/system/user/authRole",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/user.js",
+              "line": 123,
+              "sha256": "2581c322a2d12e135e641b369461753e4f9351a7b7714e2a823856996f1bb90c"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/user.js",
+          "line": 132,
+          "method": "GET",
+          "path": "/system/user/deptTree",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/system/user.js",
+              "line": 132,
+              "sha256": "2581c322a2d12e135e641b369461753e4f9351a7b7714e2a823856996f1bb90c"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/tool/gen.js",
+          "line": 5,
+          "method": "GET",
+          "path": "/tool/gen/list",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/tool/gen.js",
+              "line": 5,
+              "sha256": "27b7e700435147151a53416ee1f03659321ca22e13451179f7f36f94e06570fe"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/tool/gen.js",
+          "line": 13,
+          "method": "GET",
+          "path": "/tool/gen/db/list",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/tool/gen.js",
+              "line": 13,
+              "sha256": "27b7e700435147151a53416ee1f03659321ca22e13451179f7f36f94e06570fe"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/tool/gen.js",
+          "line": 22,
+          "method": "GET",
+          "path": "/tool/gen/{value}",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/tool/gen.js",
+              "line": 22,
+              "sha256": "27b7e700435147151a53416ee1f03659321ca22e13451179f7f36f94e06570fe"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/tool/gen.js",
+          "line": 30,
+          "method": "PUT",
+          "path": "/tool/gen",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/tool/gen.js",
+              "line": 30,
+              "sha256": "27b7e700435147151a53416ee1f03659321ca22e13451179f7f36f94e06570fe"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/tool/gen.js",
+          "line": 39,
+          "method": "POST",
+          "path": "/tool/gen/importTable",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/tool/gen.js",
+              "line": 39,
+              "sha256": "27b7e700435147151a53416ee1f03659321ca22e13451179f7f36f94e06570fe"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/tool/gen.js",
+          "line": 48,
+          "method": "POST",
+          "path": "/tool/gen/createTable",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/tool/gen.js",
+              "line": 48,
+              "sha256": "27b7e700435147151a53416ee1f03659321ca22e13451179f7f36f94e06570fe"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/tool/gen.js",
+          "line": 57,
+          "method": "GET",
+          "path": "/tool/gen/preview/{value}",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/tool/gen.js",
+              "line": 57,
+              "sha256": "27b7e700435147151a53416ee1f03659321ca22e13451179f7f36f94e06570fe"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/tool/gen.js",
+          "line": 65,
+          "method": "DELETE",
+          "path": "/tool/gen/{value}",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/tool/gen.js",
+              "line": 65,
+              "sha256": "27b7e700435147151a53416ee1f03659321ca22e13451179f7f36f94e06570fe"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/tool/gen.js",
+          "line": 73,
+          "method": "GET",
+          "path": "/tool/gen/genCode/{value}",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/tool/gen.js",
+              "line": 73,
+              "sha256": "27b7e700435147151a53416ee1f03659321ca22e13451179f7f36f94e06570fe"
+            }
+          ]
+        },
+        {
+          "file": "ruoyi-ui/src/api/tool/gen.js",
+          "line": 81,
+          "method": "GET",
+          "path": "/tool/gen/synchDb/{value}",
+          "evidence": [
+            {
+              "file": "ruoyi-ui/src/api/tool/gen.js",
+              "line": 81,
+              "sha256": "27b7e700435147151a53416ee1f03659321ca22e13451179f7f36f94e06570fe"
+            }
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "file": "ruoyi-ui/src/api/login.js",
+          "line": 1,
+          "sha256": "75c0def10f37b3a9447bbbb5bab377ac8576641fea0a9fb2f1e0a5b142aea51d"
+        },
+        {
+          "file": "ruoyi-ui/src/api/menu.js",
+          "line": 1,
+          "sha256": "66d916a76b3f2cd1e0f29573f6edd19239a9cb50573dc26448730d4b1ac79c50"
+        },
+        {
+          "file": "ruoyi-ui/src/api/monitor/cache.js",
+          "line": 1,
+          "sha256": "074331ad120d0023cd9ce2ac080287cdaaf886078cbba2f872e466460b421a33"
+        },
+        {
+          "file": "ruoyi-ui/src/api/monitor/job.js",
+          "line": 1,
+          "sha256": "bafe5f26c8fc36281a6a2b5297fabcc656a708413bec38d9b33dbced19598694"
+        },
+        {
+          "file": "ruoyi-ui/src/api/monitor/jobLog.js",
+          "line": 1,
+          "sha256": "0032077dc97869ad9e410c2a9764cb7faad95010cca7a5344ea2f0f9d10eb88b"
+        },
+        {
+          "file": "ruoyi-ui/src/api/monitor/logininfor.js",
+          "line": 1,
+          "sha256": "1a076089e0049572e74ad08a247507809a6423aacb3ce3336941452ba4bd5bf7"
+        },
+        {
+          "file": "ruoyi-ui/src/api/monitor/online.js",
+          "line": 1,
+          "sha256": "b6419feb82928993e67c7ef30d89c36737313ccfcca5357e0e0a770b7f3353c7"
+        },
+        {
+          "file": "ruoyi-ui/src/api/monitor/operlog.js",
+          "line": 1,
+          "sha256": "dc07d884fadc33adb9252ebdef1bba142bec5ab3b3295b6b69c011cfc4aa2609"
+        },
+        {
+          "file": "ruoyi-ui/src/api/monitor/server.js",
+          "line": 1,
+          "sha256": "69a36fc054349125251ad3d77faaeea199d84c4728c6cae52288663629f69d25"
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/config.js",
+          "line": 1,
+          "sha256": "ce38a77c86defc254b4aeb9ff6bc9c7020143f1b65124ea854eadb98465f988e"
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/dept.js",
+          "line": 1,
+          "sha256": "913e273cfe5d80c080ad07f2339704eeced7823d1e4982f0d9ce97ba367b33c1"
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/dict/data.js",
+          "line": 1,
+          "sha256": "3ace5ef26ab4b5292b21da074b4689fa7d2de8ba09d438fa54563aba8e0d8fc1"
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/dict/type.js",
+          "line": 1,
+          "sha256": "9d1f2c37d048ae79214547d42dace2a941b8c1c93e7622ed6e2aa9736067db48"
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/menu.js",
+          "line": 1,
+          "sha256": "19152a5f25b770462114546e31d3466b82b8429f393341a8e25c76ade368905a"
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/notice.js",
+          "line": 1,
+          "sha256": "b521662b624a6cd28e0933ecb8290f74d2371ed8980ac2e88c051f3c15ff99a5"
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/post.js",
+          "line": 1,
+          "sha256": "b52f0a2eeba254085f87a01a46247a923a146681faef9982196e9e809bbafee1"
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/role.js",
+          "line": 1,
+          "sha256": "e0920b49c745225e77c90e01d39f60c381713d559afe1d4896a0be1f02d83a9d"
+        },
+        {
+          "file": "ruoyi-ui/src/api/system/user.js",
+          "line": 1,
+          "sha256": "2581c322a2d12e135e641b369461753e4f9351a7b7714e2a823856996f1bb90c"
+        },
+        {
+          "file": "ruoyi-ui/src/api/tool/gen.js",
+          "line": 1,
+          "sha256": "27b7e700435147151a53416ee1f03659321ca22e13451179f7f36f94e06570fe"
+        }
+      ]
+    }
+  },
+  "size": {
+    "files": 603,
+    "classes": 251,
+    "classScope": "生产 Java class/interface、Python class 及选择的前端 class 声明；不含测试",
+    "evidence": [
+      {
+        "file": "pom.xml",
+        "line": 1,
+        "sha256": "a90817f81061a2f503c9c430161aca4457c5f9fde7fa91d0527e28474975b719"
+      },
+      {
+        "file": "ruoyi-admin/pom.xml",
+        "line": 1,
+        "sha256": "3ba926509f7ea5f86aac79d0b7a47f83c69ae48aec7554b1160408d786da2653"
+      },
+      {
+        "file": "ruoyi-ui/package.json",
+        "line": 1,
+        "sha256": "fa8dcc2635e8f6ddc0bc6e584c9e12a2cefb737b5da99776949c8b8c95a254cc"
+      }
+    ]
+  },
+  "notes": [
+    "6 个子 Maven 模块不等于 6 个独立后端；按 ruoyi-admin 启动应用计 1。",
+    "只计源码 constantRoutes/dynamicRoutes 的页面；服务器菜单按权限生成的更多页面不静态猜数。"
+  ]
+}

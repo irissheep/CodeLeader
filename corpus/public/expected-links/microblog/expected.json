@@ -1,0 +1,175 @@
+{
+  "schema": 1,
+  "project": "microblog",
+  "commit": "a975ef64864354867c88e0ed3a17ba7d17dca752",
+  "originalExpectedSha256": "de13fd7a984991805fdce9f7fb7dca5f851f31c4fe525795b9b099bacc9ddc01",
+  "referenceSha256": "6c8dcce3892981474a7cbf2a524d74de4374eca074ce17895a2d1f27ae418f8e",
+  "scope": {
+    "allCalls": 3,
+    "sample": 3,
+    "sampling": "全部选定 HTTP 调用",
+    "sources": "独立 TypeScript/Tree-sitter 语法读取、旧冻结 HTTP 依据重新验证；不读取产品输出"
+  },
+  "cases": [
+    {
+      "front": {
+        "file": "app/templates/base.html",
+        "line": 101,
+        "method": "POST",
+        "path": "/translate"
+      },
+      "urls": [
+        "/translate"
+      ],
+      "expected": {
+        "outcome": "matched",
+        "reason": "unique",
+        "targets": [
+          {
+            "file": "app/main/routes.py",
+            "line": 158,
+            "method": "POST",
+            "path": "/translate",
+            "unitRoot": "."
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "file": "app/templates/base.html",
+          "line": 101,
+          "sha256": "04d46ba8bb4fe4e05301bc07e3f9b4b7438bb96e980dcaad021e8dc0d11a9c4f"
+        },
+        {
+          "file": "app/main/routes.py",
+          "line": 158,
+          "sha256": "c984b72bb1d0d5ac3020a1529752a99963a478421f9f1faff42aa1596347a06c"
+        },
+        {
+          "file": "microblog.py",
+          "line": 1,
+          "sha256": "9a3f1d28594c1ed95a05959c33172e42f8872ff46599f57dc47f0e68456a586e"
+        }
+      ]
+    },
+    {
+      "front": {
+        "file": "app/templates/base.html",
+        "line": 131,
+        "method": "GET",
+        "path": "/user/{param}/popup"
+      },
+      "urls": [
+        "/user/{param}/popup"
+      ],
+      "expected": {
+        "outcome": "matched",
+        "reason": "unique",
+        "targets": [
+          {
+            "file": "app/main/routes.py",
+            "line": 91,
+            "method": "GET",
+            "path": "/user/<username>/popup",
+            "unitRoot": "."
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "file": "app/templates/base.html",
+          "line": 131,
+          "sha256": "04d46ba8bb4fe4e05301bc07e3f9b4b7438bb96e980dcaad021e8dc0d11a9c4f"
+        },
+        {
+          "file": "app/main/routes.py",
+          "line": 91,
+          "sha256": "c984b72bb1d0d5ac3020a1529752a99963a478421f9f1faff42aa1596347a06c"
+        },
+        {
+          "file": "microblog.py",
+          "line": 1,
+          "sha256": "9a3f1d28594c1ed95a05959c33172e42f8872ff46599f57dc47f0e68456a586e"
+        }
+      ]
+    },
+    {
+      "front": {
+        "file": "app/templates/base.html",
+        "line": 161,
+        "method": "GET",
+        "path": "{template:main.notifications}?since={param}"
+      },
+      "urls": [
+        "/notifications?since={param}"
+      ],
+      "expected": {
+        "outcome": "matched",
+        "reason": "unique",
+        "targets": [
+          {
+            "file": "app/main/routes.py",
+            "line": 232,
+            "method": "GET",
+            "path": "/notifications",
+            "unitRoot": "."
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "file": "app/templates/base.html",
+          "line": 161,
+          "sha256": "04d46ba8bb4fe4e05301bc07e3f9b4b7438bb96e980dcaad021e8dc0d11a9c4f"
+        },
+        {
+          "file": "app/main/routes.py",
+          "line": 232,
+          "sha256": "c984b72bb1d0d5ac3020a1529752a99963a478421f9f1faff42aa1596347a06c"
+        },
+        {
+          "file": "microblog.py",
+          "line": 1,
+          "sha256": "9a3f1d28594c1ed95a05959c33172e42f8872ff46599f57dc47f0e68456a586e"
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "file": "microblog.py",
+      "line": 1,
+      "sha256": "9a3f1d28594c1ed95a05959c33172e42f8872ff46599f57dc47f0e68456a586e"
+    },
+    {
+      "file": "app/templates/base.html",
+      "line": 101,
+      "sha256": "04d46ba8bb4fe4e05301bc07e3f9b4b7438bb96e980dcaad021e8dc0d11a9c4f"
+    },
+    {
+      "file": "app/main/routes.py",
+      "line": 158,
+      "sha256": "c984b72bb1d0d5ac3020a1529752a99963a478421f9f1faff42aa1596347a06c"
+    },
+    {
+      "file": "app/templates/base.html",
+      "line": 131,
+      "sha256": "04d46ba8bb4fe4e05301bc07e3f9b4b7438bb96e980dcaad021e8dc0d11a9c4f"
+    },
+    {
+      "file": "app/main/routes.py",
+      "line": 91,
+      "sha256": "c984b72bb1d0d5ac3020a1529752a99963a478421f9f1faff42aa1596347a06c"
+    },
+    {
+      "file": "app/templates/base.html",
+      "line": 161,
+      "sha256": "04d46ba8bb4fe4e05301bc07e3f9b4b7438bb96e980dcaad021e8dc0d11a9c4f"
+    },
+    {
+      "file": "app/main/routes.py",
+      "line": 232,
+      "sha256": "c984b72bb1d0d5ac3020a1529752a99963a478421f9f1faff42aa1596347a06c"
+    }
+  ]
+}

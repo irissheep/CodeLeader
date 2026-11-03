@@ -1,0 +1,169 @@
+{
+  "version": "units-resources/1",
+  "frameworks": [
+    {
+      "name": "Spring Boot",
+      "language": "java",
+      "annotation": "org.springframework.boot.autoconfigure.SpringBootApplication",
+      "plugin": "spring-boot-maven-plugin",
+      "gradlePlugin": "org.springframework.boot",
+      "basis": "Spring Boot: @SpringBootApplication and main; Maven/Gradle executable archive plugins"
+    },
+    {
+      "name": "FastAPI",
+      "language": "python",
+      "dependency": "fastapi",
+      "constructor": "fastapi.FastAPI",
+      "basis": "FastAPI application constructor, including application factories"
+    },
+    {
+      "name": "Flask",
+      "language": "python",
+      "dependency": "flask",
+      "constructor": "flask.Flask",
+      "basis": "Flask application constructor, including create_app factories"
+    },
+    {
+      "name": "Django",
+      "language": "python",
+      "dependency": "django",
+      "settings": "DJANGO_SETTINGS_MODULE",
+      "basis": "Django manage.py plus the declared settings module"
+    }
+  ],
+  "frontend": [
+    {
+      "name": "Vue",
+      "dependency": "vue",
+      "basis": "Vue package dependency and a page/main/App entry with a build/start script"
+    },
+    {
+      "name": "React",
+      "dependency": "react",
+      "basis": "React package dependency and a page/main/App entry with a build/start script"
+    },
+    {
+      "name": "Next.js",
+      "dependency": "next",
+      "basis": "Next package, page entry and build/start script"
+    },
+    {
+      "name": "Nuxt",
+      "dependency": "nuxt",
+      "basis": "Nuxt package, app/page entry and build/start script"
+    }
+  ],
+  "frontendEntries": [
+    {
+      "pattern": "^(?:index\\.html|(?:src/)?(?:main\\.[jt]sx?|App\\.(?:[jt]sx?|vue))|(?:src/)?app/(?:page|layout)\\.[jt]sx?|(?:src/)?pages/index\\.(?:[jt]sx?|vue))$",
+      "basis": "Standard Vue/React/Vite/Next page and application entry files; a library barrel index.ts alone is insufficient"
+    }
+  ],
+  "engines": [
+    {
+      "engine": "MySQL",
+      "kind": "database",
+      "dependencies": "^(?:com\\.mysql:mysql-connector-j|mysql:mysql-connector-java|pymysql|mysqlclient|mysql-connector-python|aiomysql|mysql2?)$",
+      "connections": "(?:jdbc:)?mysql(?:\\+[\\w]+)?://|django\\.db\\.backends\\.mysql",
+      "keys": "(?:^|[._])MYSQL[._](?:HOST|SERVER|PORT|DATABASE|DB|USER)$",
+      "images": "^(?:mysql|mysql/mysql-server)(?::|$)",
+      "imports": "^(?:com\\.mysql|pymysql|MySQLdb|mysql\\.connector|aiomysql)(?:[.*]|$)",
+      "basis": "MySQL Connector/J/Python, DBAPI clients, JDBC/SQLAlchemy DSNs and official MySQL images"
+    },
+    {
+      "engine": "PostgreSQL",
+      "kind": "database",
+      "dependencies": "^(?:org\\.postgresql:(?:postgresql|r2dbc-postgresql)|psycopg2?(?:-binary)?|asyncpg|pg|postgres)$",
+      "connections": "(?:jdbc:)?postgres(?:ql)?(?:\\+[\\w]+)?://|django\\.db\\.backends\\.postgresql(?:_psycopg2)?",
+      "keys": "(?:^|[._])POSTGRES(?:QL)?[._](?:HOST|SERVER|PORT|DATABASE|DB|USER)$",
+      "images": "^(?:postgres|postgresql)(?::|$)",
+      "imports": "^(?:org\\.postgresql|psycopg2?|asyncpg)(?:[.*]|$)",
+      "basis": "PostgreSQL JDBC, psycopg/asyncpg, PostgreSQL DSNs, settings keys and official postgres images"
+    },
+    {
+      "engine": "SQLite",
+      "kind": "database",
+      "dependencies": "^(?:org\\.xerial:sqlite-jdbc|aiosqlite|better-sqlite3|sqlite3)$",
+      "connections": "(?:jdbc:sqlite:|sqlite(?:\\+[\\w]+)?://)|django\\.db\\.backends\\.sqlite3",
+      "keys": "^SQLITE[._](?:URL|PATH|DATABASE)$",
+      "images": "^(?:sqlite)(?::|$)",
+      "imports": "^(?:sqlite3|aiosqlite|org\\.sqlite)(?:[.*]|$)",
+      "basis": "SQLite is a relational database even when persisted in a local file; sqlite3 DBAPI/JDBC/SQLAlchemy DSNs"
+    },
+    {
+      "engine": "H2",
+      "kind": "database",
+      "dependencies": "^com\\.h2database:h2$",
+      "connections": "jdbc:h2:",
+      "keys": "^H2[._](?:URL|DATABASE)$",
+      "images": "^h2(?::|$)",
+      "imports": "^org\\.h2(?:[.*]|$)",
+      "basis": "H2 JDBC driver, jdbc:h2 connection strings and org.h2 imports"
+    },
+    {
+      "engine": "MariaDB",
+      "kind": "database",
+      "dependencies": "^(?:org\\.mariadb\\.jdbc:mariadb-java-client|mariadb)$",
+      "connections": "(?:jdbc:)?mariadb(?:\\+[\\w]+)?://",
+      "keys": "^MARIADB[._](?:HOST|PORT|DATABASE|USER)$",
+      "images": "^mariadb(?::|$)",
+      "imports": "^(?:mariadb|org\\.mariadb)(?:[.*]|$)",
+      "basis": "MariaDB Connector/J/Python, MariaDB DSNs and official mariadb images"
+    },
+    {
+      "engine": "Redis",
+      "kind": "cache",
+      "dependencies": "^(?:redis|ioredis|redis-py|org\\.springframework\\.boot:spring-boot-starter-data-redis(?:-reactive)?|io\\.lettuce:lettuce-core|redis\\.clients:jedis)$",
+      "connections": "rediss?://",
+      "keys": "(?:^|[._])REDIS[._](?:HOST|URL|PORT|DATABASE|DB)$",
+      "images": "^redis(?::|$)",
+      "imports": "^(?:redis|org\\.springframework\\.data\\.redis|io\\.lettuce|redis\\.clients)(?:[.*]|$)",
+      "basis": "Redis client dependencies/imports, redis/rediss URLs, Spring Redis settings and official Redis image"
+    },
+    {
+      "engine": "RQ",
+      "kind": "queue",
+      "dependencies": "^rq$",
+      "connections": "(?!)",
+      "keys": "^RQ[._](?:QUEUES|REDIS_URL)$",
+      "images": "(?!)",
+      "imports": "^rq(?:[.*]|$)",
+      "basis": "RQ package and rq.Queue/Worker imports; queue identity is distinct from its Redis backend"
+    },
+    {
+      "engine": "Elasticsearch",
+      "kind": "search",
+      "dependencies": "^(?:elasticsearch|@elastic/elasticsearch|org\\.elasticsearch(?:\\.client)?:[^:]+|co\\.elastic\\.clients:elasticsearch-java)$",
+      "connections": "elasticsearch://",
+      "keys": "(?:^|[._])ELASTICSEARCH[._](?:HOSTS?|URL|URIS|PORT)$",
+      "images": "^(?:elasticsearch|docker\\.elastic\\.co/elasticsearch/elasticsearch)(?::|$)",
+      "imports": "^(?:elasticsearch|org\\.elasticsearch|co\\.elastic\\.clients)(?:[.*]|$)",
+      "basis": "Official Elasticsearch clients, Elasticsearch settings and Docker image names"
+    },
+    {
+      "engine": "Chroma",
+      "kind": "vector",
+      "dependencies": "^(?:chromadb|chromadb-client)$",
+      "connections": "chroma://",
+      "keys": "^CHROMA[._](?:HOST|PORT|DIR|PATH|URL|PERSIST_DIRECTORY)$",
+      "images": "^chromadb/chroma(?::|$)",
+      "imports": "^chromadb(?:[.*]|$)",
+      "basis": "Chroma official Python/JS clients, persistence/client settings and official image"
+    },
+    {
+      "engine": "MongoDB",
+      "kind": "database",
+      "dependencies": "^(?:pymongo|motor|mongodb|org\\.springframework\\.boot:spring-boot-starter-data-mongodb(?:-reactive)?|org\\.mongodb:mongodb-driver[^:]*)$",
+      "connections": "mongodb(?:\\+srv)?://",
+      "keys": "^MONGO(?:DB)?[._](?:HOST|URL|URI|DATABASE)$",
+      "images": "^mongo(?::|$)",
+      "imports": "^(?:pymongo|motor|com\\.mongodb|org\\.springframework\\.data\\.mongodb)(?:[.*]|$)",
+      "basis": "MongoDB drivers, mongodb URLs and official mongo images"
+    }
+  ],
+  "genericRelational": {
+    "dependencies": "^(?:sqlalchemy|sqlmodel|flask-sqlalchemy|org\\.springframework\\.boot:spring-boot-starter-(?:jdbc|data-jpa))$",
+    "imports": "^(?:sqlalchemy|sqlmodel|django\\.db)(?:[.*]|$)",
+    "basis": "A generic relational ORM is not enough to choose a database engine"
+  }
+}

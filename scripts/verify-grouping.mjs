@@ -1,0 +1,38 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+import { _electron as electron } from 'playwright';
+import electronPath from 'electron';
+import { guard, root } from './common.mjs';
+import { clickGraphEdge } from './browser-graph.mjs';
+guard();
+const folder=path.join(root,'.tmp/grouping-source');fs.mkdirSync(folder,{recursive:true});
+fs.writeFileSync(path.join(folder,'dense.py'),Array.from({length:40},(_,i)=>`def f${i}():\n    return ${i===0?Array.from({length:39},(_,j)=>`f${j+1}()`).join(' + '):'1'}\n`).join('\n'));
+const env={...process.env};delete env.ELECTRON_RUN_AS_NODE;
+const app=await electron.launch({executablePath:electronPath,args:[root],env});
+const output=path.join(root,process.argv.includes('--main-flow')?'.tmp/verification-main-flow':process.argv.includes('--canvas')?'.tmp/verification-canvas-entry':'.tmp/verification-dev');fs.mkdirSync(output,{recursive:true});
+const result={};
+try {
+  const page=await app.firstWindow();await page.waitForSelector('.welcome');
+  await page.evaluate(()=>{window._index=undefined;window.codeleader.onIndex(value=>window._index=value);});
+  await page.evaluate(target=>window.codeleader.analyze(target),folder);
+  await page.waitForFunction(()=>window._index?.status==='complete');
+  await page.keyboard.press('Control+k');await page.getByRole('textbox',{name:'搜索文件与符号'}).fill('f0');await page.locator('.symbol-item strong').filter({hasText:/^f0$/}).first().click();
+  await page.waitForSelector('[title="展开聚合符号"]');await page.waitForFunction(()=>!document.querySelector('.layout-indicator'));await page.waitForTimeout(300);
+  await page.waitForFunction(()=>{const area=document.querySelector('.graph-canvas').getBoundingClientRect();return [...document.querySelectorAll('.react-flow__node')].every(node=>{const rect=node.getBoundingClientRect();return rect.left>=area.left&&rect.right<=area.right&&rect.top>=area.top&&rect.bottom<=area.bottom;});});
+  assert.equal(await page.locator('.react-flow__node').count(),4);
+  const focused=page.locator('.graph-card.is-focus');const before=await focused.boundingBox();assert.ok(before);
+  assert.ok(await focused.isVisible());
+  const base64=await app.evaluate(async({BrowserWindow})=>(await BrowserWindow.getAllWindows()[0].webContents.capturePage()).toPNG().toString('base64'));
+  fs.writeFileSync(path.join(output,'grouping-stable.png'),Buffer.from(base64,'base64'));
+  const groupId=await page.locator('.kind-group').locator('..').getAttribute('data-id');await clickGraphEdge(page,page.locator('.react-flow__edge').and(page.locator(`[data-id*="|${groupId}|"]`)).first());await page.waitForSelector('.relation-row');
+  assert.equal(await page.locator('.relation-row').count(),37);
+  await page.getByTitle('关闭检查面板',{exact:true}).click();
+  await page.getByTitle('展开聚合符号',{exact:true}).click();
+  await page.waitForFunction(()=>document.querySelectorAll('.react-flow__node').length===40&&!document.querySelector('.layout-indicator'));await page.waitForTimeout(250);
+  const after=await focused.boundingBox();assert.ok(after);assert.ok(Math.abs(after.x-before.x)<1&&Math.abs(after.y-before.y)<1,'展开时焦点位置应保持稳定');
+  await page.getByTitle('更多操作',{exact:true}).click();await page.getByRole('button',{name:'收起扩展',exact:true}).click();
+  await page.waitForFunction(()=>document.querySelectorAll('.react-flow__node').length===4&&!document.querySelector('.layout-indicator'));
+  result.compactNodes=4;result.expandedNodes=40;result.evidenceCount=37;result.focusPreserved=true;result.collapsedAgain=true;
+} finally {await app.close();}
+fs.writeFileSync(path.join(output,'grouping.json'),JSON.stringify(result,null,2));console.log(JSON.stringify(result));
