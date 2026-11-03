@@ -23,7 +23,7 @@ const ask=index.entries!.find(e=>e.name.startsWith('POST /api/ai/ask '))!,domain
 test('展开、换入口、逐层收起恢复独立快照，服务与资源身份保留',()=>{
  const graph=graphFor(index,base),positions=Object.fromEntries(graph.cards.map((c,i)=>[c.id,{x:i*700,y:110}])),view={...base,positions};
  const interfaces=openDomain(index,view,domain.id),chain=openEntry(index,interfaces,ask),model=graphFor(index,chain),layout=placeExploration(model.cards,positions);
- assert.equal(chain.level,'main');assert.ok(model.cards.some(c=>c.id===domain.serviceId));assert.ok(model.cards.some(c=>c.id===ask.symbolId&&c.kind==='anchor'));assert.equal(new Set(model.cards.map(c=>c.id)).size,model.cards.length);
+ assert.equal(chain.level,'main');assert.ok(model.cards.some(c=>c.id===domain.serviceId));assert.ok(model.cards.some(c=>c.id===ask.symbolId&&c.kind==='symbol'&&c.entry));assert.equal(new Set(model.cards.map(c=>c.id)).size,model.cards.length);
  assert.deepEqual(layout[domain.serviceId!],positions[domain.serviceId!]);routeSnapshot(1,model.cards,model.links,layout);
  assert.equal(collapse(chain).exploration?.stage,'interfaces');assert.deepEqual(collapse(collapse(chain)).viewport,view.viewport);assert.deepEqual(collapse(collapse(chain)).positions,view.positions);assert.deepEqual(collapse(collapse(chain)).reading,view.reading);
  assert.equal(collapse(chain).exploration?.entryId,ask.id);assert.equal(collapse(chain).selected,ask.symbolId);assert.deepEqual(continuationIds(index,chain,'retrieve'),['retrieve','query','gateway','entry']);

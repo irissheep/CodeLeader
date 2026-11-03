@@ -1,0 +1,21 @@
+// Runs in the reviewed page. Rectangles are measured in screen CSS pixels.
+export function inspectCollisions(){
+ const canvas=document.querySelector('.graph-canvas');if(!canvas)return{errors:['画布不可用']};
+ const visible=e=>{const r=e.getBoundingClientRect(),s=getComputedStyle(e);if(!r.width||!r.height||!e.checkVisibility({checkOpacity:true,checkVisibilityCSS:true})||s.visibility==='hidden'||s.display==='none'||Number(s.opacity)===0)return false;const x=Math.max(0,Math.min(innerWidth-1,r.left+r.width/2)),y=Math.max(0,Math.min(innerHeight-1,r.top+r.height/2)),hit=document.elementFromPoint(x,y);return !!hit&&(e===hit||e.contains(hit)||hit.contains(e));};
+ const rects=[],walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let textNodeId=0;
+ while(walker.nextNode()){
+  const node=walker.currentNode,parent=node.parentElement,id=++textNodeId;if(!parent||!node.textContent?.trim()||!visible(parent))continue;
+  const range=document.createRange();range.selectNodeContents(node);
+  for(const r of range.getClientRects())if(r.width&&r.height){const x=Math.max(0,Math.min(innerWidth-1,r.left+r.width/2)),y=Math.max(0,Math.min(innerHeight-1,r.top+r.height/2)),hit=document.elementFromPoint(x,y);if(hit&&(parent===hit||parent.contains(hit)||hit.contains(parent)))rects.push({id,text:node.textContent.trim().slice(0,60),element:parent.tagName+'.'+parent.className,left:r.left,right:r.right,top:r.top,bottom:r.bottom});}
+ }
+ const overlap=(a,b)=>Math.min(a.right,b.right)-Math.max(a.left,b.left)>1.5&&Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top)>3;
+ const text=[];for(let i=0;i<rects.length;i++)for(let j=i+1;j<rects.length;j++)if(rects[i].id!==rects[j].id&&overlap(rects[i],rects[j]))text.push([rects[i],rects[j]]);
+ const overflow=[];for(const e of canvas.querySelectorAll('.graph-card,.hierarchy-unit,.module-block,.inline-interfaces')){if(!visible(e))continue;const style=getComputedStyle(e);if(e.scrollWidth>e.clientWidth+1&&style.overflowX==='visible')overflow.push(e.className);}
+ const childrenOutside=[];for(const parent of canvas.querySelectorAll('.hierarchy-unit,.module-block,.inline-interfaces,.entry-row')){if(!visible(parent))continue;const p=parent.getBoundingClientRect(),s=getComputedStyle(parent),bounds={left:p.left+parseFloat(s.borderLeftWidth),right:p.right-parseFloat(s.borderRightWidth),top:p.top+parseFloat(s.borderTopWidth),bottom:p.bottom-parseFloat(s.borderBottomWidth)};for(const child of parent.children){if(!(child instanceof HTMLElement)||!visible(child)||getComputedStyle(child).position==='absolute'||child.classList.contains('react-flow__handle'))continue;const r=child.getBoundingClientRect();if(r.left<bounds.left-1||r.right>bounds.right+1||r.top<bounds.top-1||r.bottom>bounds.bottom+1)childrenOutside.push({parent:parent.className,child:child.className});}}
+ for(const child of canvas.querySelectorAll('[data-continuity-owner]')){if(!visible(child))continue;const id=child.getAttribute('data-continuity-owner'),parent=canvas.querySelector(`.react-flow__node[data-id="${CSS.escape(id)}"] .hierarchy-unit`);if(!parent){childrenOutside.push({parent:id,child:'缺少所属应用'});continue;}const p=parent.getBoundingClientRect(),r=child.getBoundingClientRect();if(r.left<p.left-1||r.right>p.right+1||r.top<p.top-1||r.bottom>p.bottom+1)childrenOutside.push({parent:id,child:child.closest('.react-flow__node')?.getAttribute('data-id')});}
+ const boxes=[...canvas.querySelectorAll('.react-flow__node[data-id]')].filter(visible).map(e=>({id:e.dataset.id,rect:e.getBoundingClientRect()}));
+ const controls=[...document.querySelectorAll('.react-flow__attribution,.react-flow__controls,.orientation-float')].filter(visible).map(e=>e.getBoundingClientRect());
+ const controlsOverlap=boxes.filter(b=>controls.some(c=>overlap(b.rect,c))).map(b=>b.id);
+ const tips=[...document.querySelectorAll('[role=tooltip][data-open=true]')].filter(visible);const tooltipOverlap=tips.filter(t=>{const id=t.getAttribute('data-module-tooltip'),anchor=id&&canvas.querySelector(`[data-module-block="${CSS.escape(id)}"]`);return anchor&&overlap(t.getBoundingClientRect(),anchor.getBoundingClientRect());}).length;
+ return{errors:[],text,overflow,childrenOutside,controlsOverlap,tooltipOverlap};
+}

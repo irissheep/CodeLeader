@@ -1,4 +1,4 @@
-import {createContext,memo,useCallback,useContext,useLayoutEffect,useMemo,useRef,useState,type CSSProperties,type ReactNode} from 'react';
+import {createContext,Fragment,memo,useCallback,useContext,useLayoutEffect,useMemo,useRef,useState,type CSSProperties,type ReactNode} from 'react';
 import {createPortal} from 'react-dom';
 import tokens from '../shared/ui-tokens';
 import {Row} from './Layout';
@@ -13,7 +13,7 @@ export function MethodBar({methods}:{methods:HierarchyModule['methods']}){
 export const ModuleBlock=memo(function ModuleBlock({module,selected=false,index=0,onSelect,guideUnit}:{module:HierarchyModule;selected?:boolean;index?:number;onSelect:()=>void;guideUnit?:string}){
  const tip=useContext(TooltipContext),heat=moduleHeat(module.heatAvailable?module.frontendCount:0);
  const moving=(element:HTMLElement)=>element.closest<HTMLElement>('.graph-canvas')?.dataset.overlayMoving==='true';
- const enter=(element:HTMLElement)=>{if(moving(element))return;tip.show(module,element);element.dispatchEvent(new CustomEvent('hierarchy-hover',{bubbles:true,detail:module}));};
+ const enter=(element:HTMLElement)=>{if(moving(element))return;const name=element.querySelector<HTMLElement>('.module-name');if(element.closest<HTMLElement>('.graph-canvas')?.dataset.hierarchyView!=='main'&&name&&name.scrollWidth>name.clientWidth)tip.show(module,element);element.dispatchEvent(new CustomEvent('hierarchy-hover',{bubbles:true,detail:module}));};
  const leave=(element:HTMLElement)=>{tip.hide();if(!moving(element))element.dispatchEvent(new CustomEvent('hierarchy-hover',{bubbles:true}));};
  const register=useCallback((element:HTMLButtonElement|null)=>{if(element)moduleElements.set(element,module);},[module]);
  return <button ref={register} type="button" className="module-block nodrag nopan" data-module-block={module.id} data-module-name={module.name} data-entry-count={module.count} data-module-width={module.width} data-module-scale={module.scale} data-frontend-count={module.frontendCount} data-has-tooltip="true" aria-label={moduleTitle(module)} aria-pressed={selected} style={{width:module.width*module.scale,height:t.blockHeight*module.scale,'--module-tint':heat.fill,'--module-heat-line':heat.line,'--module-enter-delay':index*t.entryStep+'ms'} as CSSProperties} onMouseEnter={e=>enter(e.currentTarget)} onMouseLeave={e=>leave(e.currentTarget)} onFocus={e=>enter(e.currentTarget)} onBlur={e=>leave(e.currentTarget)} onKeyDown={e=>{if(e.key==='Escape'){tip.hide();e.currentTarget.blur();}}} onClick={e=>{e.stopPropagation();tip.hide();onSelect();}}>
@@ -21,8 +21,11 @@ export const ModuleBlock=memo(function ModuleBlock({module,selected=false,index=
   <Row className="module-metric" visual leading={<span className="module-amount"><span>{module.count}</span><kbd>Enter</kbd></span>}><MethodBar methods={module.methods}/></Row>
  </button>;
 });
-export function ModuleGroups({groups,selected,start=0,onSelect,guideUnit}:{groups:HierarchyGroup[];selected?:string;start?:number;onSelect:(module:HierarchyModule)=>void;guideUnit?:string}){
- let order=start,first=true;return <div className="module-groups">{groups.map(group=><section className="module-group" key={group.name||'modules'}>{group.name&&<div className="module-group-heading"><strong>{group.name}</strong><span>{group.modules.length} 个模块 · {group.count} 个接口</span></div>}<div className="module-blocks">{group.modules.map(module=>{const marker=first?guideUnit:undefined;first=false;return <ModuleBlock key={module.id} module={module} selected={selected===module.id} index={order++} guideUnit={marker} onSelect={()=>onSelect(module)}/>;})}</div></section>)}</div>;
+export function ModuleGroups({groups,selected,start=0,onSelect,guideUnit,panel,rowWidth}:{groups:HierarchyGroup[];selected?:string;start?:number;onSelect:(module:HierarchyModule)=>void;guideUnit?:string;panel?:ReactNode;rowWidth?:number}){
+ let order=start,first=true;return <div className="module-groups">{groups.map(group=>{
+  let used=0,row=0,selectedRow=-1;const rows=group.modules.map(module=>{const width=module.width*module.scale;if(used&&rowWidth&&used+t.blockGap+width>rowWidth){row++;used=0;}used+=(used?t.blockGap:0)+width;if(module.id===selected)selectedRow=row;return row;});
+  return <section className="module-group" key={group.name||'modules'}>{group.name&&<div className="module-group-heading"><strong>{group.name}</strong><span>{group.modules.length} 个模块 · {group.count} 个接口</span></div>}<div className="module-blocks">{group.modules.map((module,i)=>{const marker=first?guideUnit:undefined;first=false;const lastInSelectedRow=selectedRow>=0&&rows[i]===selectedRow&&rows[i+1]!==selectedRow;return <Fragment key={module.id}><ModuleBlock module={module} selected={selected===module.id} index={order++} guideUnit={marker} onSelect={()=>onSelect(module)}/>{lastInSelectedRow&&panel}</Fragment>;})}</div></section>;
+ })}</div>;
 }
 type Active={module:HierarchyModule;anchor:HTMLElement};
 function placeTooltip(active:Active,element:HTMLDivElement){
@@ -43,7 +46,7 @@ function placeTooltip(active:Active,element:HTMLDivElement){
 export function ModuleTooltipProvider({children}:{children:ReactNode}){
  const [active,setActive]=useState<Active>(),latest=useRef<Active|undefined>(undefined),popup=useRef<HTMLDivElement>(null);
  const hide=useCallback(()=>{if(popup.current){popup.current.dataset.open='false';popup.current.setAttribute('aria-hidden','true');}},[]);
- const show=useCallback((module:HierarchyModule,anchor:HTMLElement)=>{if(anchor.closest<HTMLElement>('.graph-canvas')?.dataset.overlayMoving==='true')return;if(latest.current?.module===module&&latest.current.anchor===anchor){if(popup.current)placeTooltip(latest.current,popup.current);return;}latest.current={module,anchor};setActive(latest.current);},[]),context=useMemo(()=>({show,hide}),[show,hide]);
+ const show=useCallback((module:HierarchyModule,anchor:HTMLElement)=>{const root=anchor.closest<HTMLElement>('.graph-canvas');if(root?.dataset.overlayMoving==='true'||root?.dataset.hierarchyView==='main')return;if(latest.current?.module===module&&latest.current.anchor===anchor){if(popup.current)placeTooltip(latest.current,popup.current);return;}latest.current={module,anchor};setActive(latest.current);},[]),context=useMemo(()=>({show,hide}),[show,hide]);
  useLayoutEffect(()=>{
   if(active&&popup.current)placeTooltip(active,popup.current);
  },[active]);
@@ -53,5 +56,5 @@ export function ModuleTooltipProvider({children}:{children:ReactNode}){
   document.addEventListener('canvas-moving',moving);document.addEventListener('canvas-settled',settled);window.addEventListener('resize',moving);
   return()=>{document.removeEventListener('canvas-moving',moving);document.removeEventListener('canvas-settled',settled);window.removeEventListener('resize',moving);};
  },[show,hide]);
- return <TooltipContext.Provider value={context}>{children}{active&&createPortal(<div ref={popup} className="module-tooltip" role="tooltip" data-open="false" aria-hidden="true" data-module-tooltip={active.module.id} style={{visibility:'hidden'}}><strong>{moduleTitle(active.module).replace(/^\//,'')}</strong><p>{active.module.count} 个接口 · {active.module.frontendCount?`前端调用 ${active.module.frontendCount} 次`:'前端没有调用'}</p><MethodBar methods={active.module.methods}/><div className="module-method-legend">{active.module.methods.map(m=><span key={m.name}><i style={{backgroundColor:(colors as Record<string,string>)[m.name]||colors.other}}/>{m.name} {m.count}</span>)}</div></div>,document.body)}</TooltipContext.Provider>;
+ return <TooltipContext.Provider value={context}>{children}{active&&createPortal(<div ref={popup} className="module-tooltip" role="tooltip" data-open="false" aria-hidden="true" data-module-tooltip={active.module.id} style={{visibility:'hidden'}}><strong>{moduleTitle(active.module).replace(/^\//,'')}</strong></div>,document.body)}</TooltipContext.Provider>;
 }

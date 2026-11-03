@@ -21,9 +21,6 @@
 .graph-canvas[data-dependency-lanes] .react-flow__edge.lane-unrelated{opacity:1}
 .graph-canvas[data-dependency-lanes] .react-flow__edge.lane-unrelated .react-flow__edge-path{opacity:var(--lanes-unrelatedOpacity)!important}
 .graph-canvas[data-dependency-lanes] .react-flow__edge.lane-related .react-flow__edge-path{opacity:var(--lanes-focusedOpacity)!important}
-.graph-canvas[data-dependency-lanes] .react-flow__edge:has(.lane-common-edge):not(.lane-related){pointer-events:none}
-.graph-canvas[data-dependency-lanes] .react-flow__edge:has(.lane-common-edge):not(.lane-related) .react-flow__edge-path{opacity:0!important}
-.graph-canvas[data-dependency-lanes] .react-flow__edge:has(.lane-common-edge).lane-related{pointer-events:all}
 .lane-edge-visual{animation:fade var(--viewMotion-lineDuration) var(--viewMotion-cardEase) var(--viewMotion-lineDelay) backwards;transition:opacity var(--viewMotion-dependencyTransition)}
 .graph-canvas[data-dependency-lanes] .dependency-lane-card,.graph-canvas[data-dependency-lanes] .react-flow__node,.graph-canvas[data-dependency-lanes] .react-flow__edge,.graph-canvas[data-dependency-lanes] .react-flow__edge-path{transition:opacity var(--viewMotion-dependencyTransition)}
 .lane-draw-mask{stroke-dasharray:1;stroke-dashoffset:0;animation:draw var(--lanes-drawDuration-ms) var(--viewMotion-cardEase) var(--viewMotion-drawDelay) backwards}

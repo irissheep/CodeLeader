@@ -89,6 +89,10 @@ export interface ProjectIndex {
 export interface Progress { phase: string; current: number; total: number }
 export interface SourceResult { text: string; stale: boolean; file: string }
 export interface ViewState {
+  /** Per-module position in the interface list, scoped to this project's navigation history. */
+  guideScrolls?:Record<string,number>;
+  guideModuleId?:string;
+  guideToMain?:{token:number;viewport:{x:number;y:number;zoom:number}};
   frontendTargets?:Record<string,import('./frontend-links').FrontendTarget>;
   dependencyScope?:'chain'|'module'|'project';
   dependencyEntryId?:string;

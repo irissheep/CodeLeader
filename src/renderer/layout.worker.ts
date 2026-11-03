@@ -26,7 +26,7 @@ self.onmessage=async({data}:{data:{kind?:string;requestId?:number;index?:Project
     }
     const positions:Record<string,Point>={};
     if(cards.some(c=>c.inline||c.ownerId)){
-      const snapshot=routeSnapshot(id,cards,links,placeExploration(cards,data.positions));
+      const snapshot=routeSnapshot(id,cards,links,placeExploration(cards,data.positions,links));
       if(id===newest)self.postMessage({id,snapshot});return;
     }
     if(data.level==='guide'&&cards.some(c=>c.hierarchy?.module)){

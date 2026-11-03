@@ -88,14 +88,14 @@ export function mainGraph(index:ProjectIndex,view:ViewState){
  }
  return {cards,links,omitted:0};
 }
-export function sceneGraph(index:ProjectIndex,view:ViewState){
+export function sceneGraph(index:ProjectIndex,view:ViewState,initialBudget=15){
  const byId=new Map(index.symbols.map(s=>[s.id,s])),entities=new Map((index.entities||[]).map(e=>[e.id,e])),pathTarget=view.reading?.isolate==='path'?view.reading.target:undefined,root=byId.get(pathTarget?view.reading?.origin||view.focus||'':view.focus||'');if(!root)return {cards:[],links:[],omitted:0};
  const cards:GraphCard[]=[],visible=new Set<string>(),depths=new Map<string,number>(),hidden=new Map<string,string[]>(),expanded=new Set(view.expanded);
  let relations=index.relations.filter(r=>flowTypes.has(r.type)&&applicable(r,view));
  if(pathTarget){const allowed=new Set(pathLinks(relations.filter(r=>r.to).map(r=>({id:r.id,source:r.from,target:entities.get(r.to!)?.parentId===pathTarget?pathTarget:r.to!,type:r.type,label:'',status:r.status,relations:[r]})),root.id,pathTarget).map(r=>r.id));relations=relations.filter(r=>allowed.has(r.id));}
  const leads=(id:string,seen=new Set<string>(),depth=0):boolean=>{if(depth>6||seen.has(id))return false;seen.add(id);return relations.some(r=>r.from===id&&(r.type==='HTTP'||r.type==='READS'||r.type==='WRITES'||!!r.to&&leads(r.to,new Set(seen),depth+1)));};
  const eligible=(id:string)=>{const s=byId.get(id);return !!entities.get(id)||!!s&&(view.showAll||isCallable(s)&&!s.auxiliary&&s.kind!=='constructor'&&!['record_declaration','enum_declaration'].includes(byId.get(s.parent||'')?.declaration||''));};
- const queue=[{id:root.id,depth:0}],budget=view.showAll||pathTarget?60:Math.min(60,15+expanded.size*5);
+ const queue=[{id:root.id,depth:0}],budget=view.showAll||pathTarget?60:Math.min(60,initialBudget+expanded.size*5);
  while(queue.length){const {id,depth}=queue.shift()!;if(visible.has(id)||visible.size>=budget)continue;visible.add(id);depths.set(id,depth);
   const outgoing=[...new Set(relations.filter(r=>r.from===id&&r.to&&(view.showAll||!r.auxiliary)&&(r.status==='resolved'||r.rule?.outcome==='unique'||view.showAll||expanded.has(id)||expanded.has(r.to))).map(r=>r.to!))].filter(target=>eligible(target)||expanded.has(target));
   outgoing.sort((a,b)=>Number(leads(b))-Number(leads(a))||Number(!!entities.get(b))-Number(!!entities.get(a)));

@@ -18,6 +18,7 @@ export interface GraphCard {
   runtimeCall?:string;
   runtimeExpansion?:{domainId:string;calls:string[];height:number};
   ownerId?:string;local?:{x:number;y:number};canvasSize?:{width:number;height:number};
+  explorationFlowOrigin?:{x:number;y:number};
   inline?:{domainId:string;name:string;entries:EntryPoint[];top:number;height:number;stage:'interfaces'|'chain';entryId?:string};
   symbol?:SymbolInfo; members?:string[]; rows?:SymbolInfo[]; count?:number; focus?:boolean;
   callers:number; callees:number; language?:Language; section?:string; lane?:number; cycle?:boolean;

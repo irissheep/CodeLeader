@@ -105,16 +105,21 @@ export function routeSnapshot(version:number,cards:GraphCard[],links:GraphLink[]
   const pairs=links.map(link=>{
     const a=byId.get(link.source)!,b=byId.get(link.target)!;
     const dependency=cards.some(c=>c.id===a.id&&c.dependency),short=dependency&&cards.some(c=>c.appearance);
-    const vertical=short||link.type==='DATA'||cards.find(c=>c.id===a.id)?.vertical,forward=vertical?a.y+a.height/2<=b.y+b.height/2:a.x+a.width/2<=b.x+b.width/2,loop=a===b;
+    const sourceCard=cards.find(c=>c.id===a.id),targetCard=cards.find(c=>c.id===b.id),flowOwner=sourceCard?.ownerId&&cards.find(c=>c.id===sourceCard.ownerId&&c.explorationFlowOrigin),sameOwner=!!flowOwner&&sourceCard?.ownerId===targetCard?.ownerId;
+    const methodResource=!!flowOwner&&targetCard?.kind==='resource',vertical=short||methodResource||link.type==='DATA'||sourceCard?.vertical,forward=vertical?a.y+a.height/2<=b.y+b.height/2:a.x+a.width/2<=b.x+b.width/2,loop=a===b;
     const sameRow=dependency&&Math.abs(a.y-b.y)<1;
-    const source={node:a,side:(dependency?(sameRow?(a.x<b.x?'right':'left'):forward?'bottom':'top'):vertical?'bottom':'right') as Port['side'],type:'source' as const,id:`${link.id}:source`};
-    const target={node:b,side:(dependency?(sameRow?(a.x<b.x?'left':'right'):forward?'top':'bottom'):vertical?'top':'left') as Port['side'],type:'target' as const,id:`${link.id}:target`};
+    const sameColumn=sameOwner&&Math.abs(a.x-b.x)<1;
+    // A sibling directly below can block a resource edge's bottom port. Choose a
+    // clear side before routing instead of failing the whole scene.
+    const resourcePort=methodResource?(['bottom','right','left','top'] as const).find(side=>{const distance=11,x=side==='left'?a.x-distance:side==='right'?a.x+a.width+distance:a.x+a.width/2,y=side==='top'?a.y-distance:side==='bottom'?a.y+a.height+distance:a.y+a.height/2;return !obstacles.some(n=>n.id!==a.id&&x>n.x-10&&x<n.x+n.width+10&&y>n.y-10&&y<n.y+n.height+10);}):undefined;
+    const source={node:a,side:(dependency?(sameRow?(a.x<b.x?'right':'left'):forward?'bottom':'top'):sameOwner?(loop?'right':sameColumn?(a.y<b.y?'bottom':'top'):(a.x<b.x?'right':'left')):resourcePort|| (vertical?'bottom':'right')) as Port['side'],type:'source' as const,id:`${link.id}:source`};
+    const target={node:b,side:(dependency?(sameRow?(a.x<b.x?'left':'right'):forward?'top':'bottom'):sameOwner?(loop?'top':sameColumn?(a.y<b.y?'top':'bottom'):(a.x<b.x?'left':'right')):vertical?'top':'left') as Port['side'],type:'target' as const,id:`${link.id}:target`};
     for(const port of [source,target]){const key=`${port.node.id}:${port.side}`;assignments.set(key,[...(assignments.get(key)||[]),port]);}
     return {link,source,target,feedback:link.feedback??(loop||!forward)};
   });
   for(const ports of assignments.values()){
     ports.sort((a,b)=>{if(cards.find(c=>c.id===a.node.id)?.dependency){const other=(port:typeof a)=>{const pair=pairs.find(p=>p.source.id===port.id||p.target.id===port.id)!;return pair.source.id===port.id?pair.target.node:pair.source.node;};return other(a).x-other(b).x||other(a).y-other(b).y||a.id.localeCompare(b.id);}return a.id.localeCompare(b.id);});
-    ports.forEach(p=>p.node.ports.push({id:p.id,type:p.type,side:p.side,x:p.side==='left'?0:p.side==='right'?p.node.width:p.node.width/2,y:p.side==='top'?0:p.side==='bottom'?p.node.height:p.node.height/2}));
+    ports.forEach(p=>{const pair=pairs.find(pair=>pair.source.id===p.id||pair.target.id===p.id),from=pair&&cards.find(c=>c.id===pair.link.source),to=pair&&cards.find(c=>c.id===pair.link.target),serviceEntrance=p.type==='target'&&p.side==='left'&&!!from?.frontend&&!!to?.hierarchy?.groups&&pair?.link.type==='HTTP';p.node.ports.push({id:p.id,type:p.type,side:p.side,x:p.side==='left'?0:p.side==='right'?p.node.width:p.node.width/2,y:p.side==='top'?0:p.side==='bottom'?p.node.height:serviceEntrance?Math.min(p.node.height/2,tokens.hierarchy.applicationHeader):p.node.height/2});});
   }
   pairs.sort((a,b)=>cards.some(c=>c.dependency)?Math.abs(a.source.node.y-a.target.node.y)-Math.abs(b.source.node.y-b.target.node.y)||Math.abs(a.source.node.x-a.target.node.x)-Math.abs(b.source.node.x-b.target.node.x)||a.link.id.localeCompare(b.link.id):a.link.id.localeCompare(b.link.id));const displayLinks=pairs.map(p=>p.link),occupied:Segment[]=[];
   type RouteChoice={points:Point[];s:Pick<Port,'side'|'x'|'y'>;t:Pick<Port,'side'|'x'|'y'>;length:number};
@@ -122,7 +127,8 @@ export function routeSnapshot(version:number,cards:GraphCard[],links:GraphLink[]
   const edges:LayoutEdge[]=pairs.map(({link,source,target,feedback})=>{
     const s=source.node.ports.find(p=>p.id===source.id)!,t=target.node.ports.find(p=>p.id===target.id)!;
     const start={x:source.node.x+s.x,y:source.node.y+s.y},end={x:target.node.x+t.x,y:target.node.y+t.y};
-    const clearance=10;
+    const sourceOwner=cards.find(c=>c.id===link.source)?.ownerId,targetOwner=cards.find(c=>c.id===link.target)?.ownerId;
+    const clearance=sourceOwner&&sourceOwner===targetOwner&&cards.some(c=>c.id===sourceOwner&&c.explorationFlowOrigin)?4:10;
     const offset=(p:Point,side:Port['side'],own:LayoutNode,portId:string)=>{
       const peers=assignments.get(`${own.id}:${side}`)!,escape=cards.some(c=>c.appearance&&c.dependency)?look.routeEscape:24+peers.findIndex(p=>p.id===portId)*14;
       for(let distance=Math.max(escape,clearance+1);distance>=clearance+1;distance--){const point={x:p.x+(side==='left'?-distance:side==='right'?distance:0),y:p.y+(side==='top'?-distance:side==='bottom'?distance:0)};

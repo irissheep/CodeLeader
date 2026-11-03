@@ -8,11 +8,11 @@ import {primaryKind,type LaneId} from './dependency-lanes';
 import tokens from '../shared/ui-tokens';
 const t=tokens.lanes;
 export function DependencyLaneCard({card,skeleton,enterOrder}:{card:GraphCard;skeleton?:boolean;enterOrder?:number}){
- const lane=card.dependencyLane!,description=lane.common?`被 ${lane.users.length} 个使用`:card.kind==='group'?card.tag:card.tag||card.summary;
+ const lane=card.dependencyLane!,rawDescription=lane.common?(lane.users.length&&card.kind!=='group'?`当前范围 ${lane.users.length} 个使用方`:''):card.kind==='group'?card.tag:card.tag||card.summary,description=rawDescription==='类'?'':rawDescription;
  const enterDelay=useRef((enterOrder??lane.order)*t.entryStep).current;
  const hadSkeleton=useRef(!!skeleton).current;
  return <>{hadSkeleton&&<span aria-hidden="true" data-active={!!skeleton} className={`lane-skeleton-underlay ${lane.common?'lane-common-underlay':''}`}/>}<CardSurface className={`graph-card dependency-lane-card ${lane.common?'lane-common-chip':''} ${lane.compact?'lane-compact':''} ${skeleton?'lane-skeleton':''}`} data-lane-id={lane.id} data-lane-fold={card.kind==='group'} data-common-users={lane.users.length} style={{'--lane-color':t[lane.id as LaneId],'--lane-enter-delay':enterDelay+'ms'} as CSSProperties}>
-  <Row className="lane-card-row" detail={<span className="lane-card-subtitle" title={description}>{description}</span>}><strong className="lane-card-name" title={card.name}>{card.name}</strong></Row>
+  <Row className="lane-card-row" detail={description?<span className="lane-card-subtitle" title={description}>{description}</span>:undefined}><strong className="lane-card-name" title={card.name}>{card.name}</strong></Row>
   {!!lane.uses.length&&<span className="lane-common-dots" title={`用到 ${lane.uses.length} 处公共内容`} aria-label={`用到 ${lane.uses.length} 处公共内容`}>{Array.from({length:Math.min(t.commonDots,lane.uses.length)},(_,i)=><i key={i}/>)}</span>}
  </CardSurface></>;
 }
@@ -41,5 +41,5 @@ export function useDependencyLaneFocus(host:RefObject<HTMLDivElement|null>,enabl
  },[host,enabled,snapshot,cards,links,selected]);
 }
 export function laneEdgeStyle(link:GraphLink,main:boolean,common:boolean,color:string){
- const kind=primaryKind(link);return{stroke:color,strokeWidth:main?t.mainWidth:t.auxiliaryWidth,strokeDasharray:main?kind==='IMPLEMENTS'?t.implementationDash:undefined:t.auxiliaryDash,opacity:common?0:main?t.mainOpacity:t.auxiliaryOpacity};
+ const kind=primaryKind(link);return{stroke:color,strokeWidth:main?t.mainWidth:t.auxiliaryWidth,strokeDasharray:main?kind==='IMPLEMENTS'?t.implementationDash:undefined:t.auxiliaryDash,opacity:main&&!common?t.mainOpacity:t.auxiliaryOpacity};
 }

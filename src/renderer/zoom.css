@@ -21,7 +21,7 @@
 .graph-canvas[data-tier=application] .card-accessible[data-zoom-label=hidden] .semantic-token>span{visibility:hidden}
 .graph-canvas:is([data-tier=summary],[data-tier=application],[data-tier=overview]) .card-hint{visibility:hidden!important;opacity:0!important;pointer-events:none}
 .graph-canvas[data-tier=overview] .card-accessible[data-zoom-place=above] .semantic-token>span{top:auto;bottom:calc(100% + 2px * var(--semantic-read-scale,1))}
-.graph-canvas .module-name[data-zoom-hide=true]{visibility:hidden}
+.graph-canvas:not([data-tier=card]):not([data-hierarchy-view=guide]) .module-name[data-zoom-hide=true]{visibility:hidden}
 .graph-canvas[data-leaf-metrics=small] .module-amount{visibility:hidden}
 .graph-canvas[data-leaf-metrics=small] .orientation-mark{visibility:hidden}
 .graph-canvas[data-tier=summary] .hierarchy-frontend{overflow:hidden!important}.graph-canvas[data-tier=summary] .hierarchy-frontend .hierarchy-stack,.graph-canvas[data-tier=summary] .hierarchy-frontend .hierarchy-front-pages,.graph-canvas[data-tier=summary] .hierarchy-frontend .runtime-entry-card,.graph-canvas[data-tier=summary] .hierarchy-frontend .hierarchy-front-progress{display:none}.graph-canvas[data-tier=summary] .hierarchy-frontend-heading strong{display:block;white-space:nowrap}

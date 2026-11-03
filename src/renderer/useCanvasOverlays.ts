@@ -20,14 +20,15 @@ export function useCanvasOverlays(host:RefObject<HTMLDivElement|null>){
   const over=(event:PointerEvent)=>{point(event);if(root.dataset.overlayMoving!=='true')mark(event.target as Element);};
   const wheel=(event:WheelEvent)=>{if((event.target as Element).closest('.nowheel'))return;point(event);moving();};
   const down=(event:PointerEvent)=>{point(event);if((event.target as Element).classList.contains('react-flow__pane'))moving();};
+  const dismiss=()=>{hovered?.classList.remove('overlay-under-pointer');hovered=null;root.dispatchEvent(new CustomEvent('canvas-moving',{bubbles:true}));};
   const unsubscribe=store.subscribe((state,previous)=>{
    if(state.transform.every((n,i)=>n===previous.transform[i]))return;
    if(zoom!==state.transform[2]){zoom=state.transform[2];for(const node of scaled)node.style.setProperty('--overlay-inverse-zoom',String(1/zoom));}
    moving();
   });
   const observer=new MutationObserver(refresh);observer.observe(root,{childList:true,subtree:true});refresh();root.dataset.overlayReady='true';
-  root.addEventListener('pointermove',over,true);root.addEventListener('pointerdown',down,true);root.addEventListener('wheel',wheel,true);
-  return()=>{clearTimeout(timer);unsubscribe();observer.disconnect();hovered?.classList.remove('overlay-under-pointer');root.removeEventListener('pointermove',over,true);root.removeEventListener('pointerdown',down,true);root.removeEventListener('wheel',wheel,true);delete root.dataset.overlayMoving;delete root.dataset.overlayReady;};
+  root.addEventListener('pointermove',over,true);root.addEventListener('pointerdown',down,true);root.addEventListener('wheel',wheel,true);root.addEventListener('canvas-dismiss',dismiss);
+  return()=>{clearTimeout(timer);unsubscribe();observer.disconnect();hovered?.classList.remove('overlay-under-pointer');root.removeEventListener('pointermove',over,true);root.removeEventListener('pointerdown',down,true);root.removeEventListener('wheel',wheel,true);root.removeEventListener('canvas-dismiss',dismiss);delete root.dataset.overlayMoving;delete root.dataset.overlayReady;};
  },[host,store]);
 }
 

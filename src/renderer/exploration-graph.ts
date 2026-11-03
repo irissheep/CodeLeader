@@ -1,10 +1,12 @@
 import type { ProjectIndex, ViewState } from '../shared/model';
-import type { GraphCard } from './graph-model';
+import type { GraphCard, GraphLink } from './graph-model';
 import { mainGraph, sceneGraph } from './flow-model';
 import { entryOutcome } from './reading-model';
-import { interfaceRowHeight } from './entry-geometry';
+import { inlinePanelHeight } from './entry-geometry';
 import {visibleCapabilities,unitNoticeHeight} from './backbone-model';
 import {cardSize} from './graph-geometry';
+import tokens from '../shared/ui-tokens';
+import {explorationFlow} from './exploration-layout';
 
 export { interfaceRowHeight } from './entry-geometry';
 export function explorationGraph(index:ProjectIndex,view:ViewState){
@@ -17,12 +19,11 @@ export function explorationGraph(index:ProjectIndex,view:ViewState){
   const capabilities=source.capabilities||[],shown=visibleCapabilities(source);
   if(!shown.some(c=>c.id===domain.id)){source.compact=false;view={...view,expanded:[...view.expanded,source.id]};}
   const list=source.compact===false?capabilities:shown,slot=list.findIndex(c=>c.id===domain.id);
-  source.inline={domainId:domain.id,name:list[slot]?.name||domain.name,entries,top:66+(Math.floor(slot/2)+1)*52,height:42+entries.length*interfaceRowHeight,stage:task.stage,entryId:task.entryId};
+  source.inline={domainId:domain.id,name:list[slot]?.name||domain.name,entries,top:66+(Math.floor(slot/2)+1)*52,height:inlinePanelHeight(entries.length),stage:task.stage,entryId:task.entryId};
   source.destinations=Object.fromEntries(entries.map(e=>[e.id,entryOutcome(index,e)]));
-  for(const [i,e] of entries.entries())if(e.symbolId)graph.cards.push({id:e.symbolId,kind:'anchor',name:e.name,subtitle:'',tag:'',callers:0,callees:0,ownerId:source.id,local:{x:21,y:source.inline.top+43+i*interfaceRowHeight},canvasSize:{width:418,height:interfaceRowHeight}});
  }
  if(task.stage==='chain'&&entry?.symbolId){
-  const scene=sceneGraph(index,{...view,level:'function',focus:entry.symbolId,entryId:entry.id});
+  const scene=sceneGraph(index,{...view,level:'function',focus:entry.symbolId,entryId:entry.id},8);
   const canonical=(id:string)=>index.entities?.find(e=>e.id===id)?.parentId||id;
   for(const card of scene.cards){
    const id=canonical(card.id);if(graph.cards.some(c=>c.id===id))continue;
@@ -46,7 +47,7 @@ export function explorationGraph(index:ProjectIndex,view:ViewState){
  return graph;
 }
 
-export function placeExploration(cards:GraphCard[],saved:Record<string,{x:number;y:number}>){
+export function placeExploration(cards:GraphCard[],saved:Record<string,{x:number;y:number}>,links:GraphLink[]=[]){
  const positions:Record<string,{x:number;y:number}>={};
  const services=cards.filter(c=>c.kind==='service').sort((a,b)=>(saved[a.id]?.x||0)-(saved[b.id]?.x||0));
  for(const [i,c] of services.entries()){
@@ -54,10 +55,16 @@ export function placeExploration(cards:GraphCard[],saved:Record<string,{x:number
   positions[c.id]={...p,x:Math.max(p.x,left?positions[left.id].x+(left.appearance?cardSize(left).width:left.canvasSize?.width||460)+70:p.x)};
   const members=cards.filter(member=>member.ownerId===c.id&&member.kind!=='anchor');
   const scale=c.appearance?.scale||1;
-  members.forEach((member,n)=>positions[member.id]={x:positions[c.id].x+(c.inline?500:30)*scale,y:positions[c.id].y+((c.inline?.top||82+Math.ceil((c.capabilities?.length||0)/2)*52)+n*(member.runtimeCall?126:190)+20)*scale});
+  if(c.explorationFlowOrigin){const local=explorationFlow(members,links,c.explorationFlowOrigin,saved,saved[c.id]);for(const member of members){const point=local.positions[member.id];positions[member.id]={x:positions[c.id].x+point.x*scale,y:positions[c.id].y+point.y*scale};}}
+  else members.forEach((member,n)=>positions[member.id]={x:positions[c.id].x+(c.inline?500:30)*scale,y:positions[c.id].y+((c.inline?.top||82+Math.ceil((c.capabilities?.length||0)/2)*52)+n*(member.runtimeCall?126:190)+20)*scale});
  }
  for(const c of cards.filter(c=>c.kind==='anchor')){const parent=positions[c.ownerId!],scale=cards.find(card=>card.id===c.ownerId)?.appearance?.scale||1;positions[c.id]={x:parent.x+c.local!.x*scale,y:parent.y+c.local!.y*scale};}
  let bottom=Math.max(400,...services.map(c=>positions[c.id].y+(c.appearance?cardSize(c).height:c.canvasSize?.height||240)))+100;
- for(const [i,c] of cards.filter(c=>!positions[c.id]).entries()){const p=saved[c.id]||{x:70+(i%4)*260,y:bottom};positions[c.id]=c.kind==='browser'?saved[c.id]||{x:(positions[services[0]?.id]?.x||70)+125,y:(positions[services[0]?.id]?.y||110)-160}:{...p,y:Math.max(p.y,bottom)};}
+ for(const [i,c] of cards.filter(c=>!positions[c.id]).entries()){
+  const p=saved[c.id]||{x:70+(i%4)*260,y:bottom};
+  const owners=c.kind==='resource'?links.filter(l=>l.target===c.id).map(l=>cards.find(item=>item.id===l.source)).map(item=>item?.ownerId||item?.id):[];
+  const owner=services.find(service=>owners.includes(service.id)),expanded=owner?.inline?owner:undefined,displacement=owner&&saved[owner.id]?positions[owner.id].x-saved[owner.id].x:0;
+  positions[c.id]=c.kind==='browser'?saved[c.id]||{x:(positions[services[0]?.id]?.x||70)+125,y:(positions[services[0]?.id]?.y||110)-160}:expanded?{...p,x:p.x+displacement,y:Math.max(p.y,positions[expanded.id].y+cardSize(expanded).height+tokens.continuity.resourceGap)}:owner?{...p,x:p.x+displacement}:!links.length&&!services.some(service=>service.hierarchy)?{...p,y:Math.max(p.y,bottom)}:p;
+ }
  return positions;
 }

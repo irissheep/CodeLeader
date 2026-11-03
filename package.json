@@ -13,6 +13,8 @@
     "dev": "node scripts/start.mjs",
     "check": "tsc --noEmit",
     "check:layout": "node scripts/check-layout.mjs",
+    "check:collision": "node scripts/check-u11.mjs --collision",
+    "check:continuity": "node scripts/check-u11.mjs --continuity",
     "check:overlay-fit": "node scripts/check-overlay-fit.mjs",
     "check:zoom-smooth": "node scripts/check-zoom-smooth.mjs",
     "check:zoom-text": "node scripts/check-zoom-text.mjs",
